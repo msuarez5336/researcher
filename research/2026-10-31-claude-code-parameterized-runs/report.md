@@ -20,14 +20,19 @@ otherwise. Evidence ids (e.g. `SQ1-5`) point to `evidence/*.jsonl`.
    command line or in a checked-in `.claude/settings.json`. [E]
    ([skills](https://code.claude.com/docs/en/skills), [headless](https://code.claude.com/docs/en/headless);
    SQ2-10, SQ1-19, SQ2-18) ✓
-3. **`--bare` is the documented recommendation for scripts, but it turns skills off.** Bare mode
-   skips hooks, skills, commands, MCP servers, CLAUDE.md and memory, and it needs
-   `ANTHROPIC_API_KEY` because it does not use a subscription login. So choose: bare mode with the
-   prompt inlined (or in a file via `--append-system-prompt-file`), or normal mode with `/skill`.
-   [E] ([headless](https://code.claude.com/docs/en/headless); SQ1-5) ✓
+3. **`--bare` is the documented recommendation for scripts, but it turns off skill discovery.**
+   Bare mode skips auto-discovery of hooks, skills, commands, subagents, plugins, MCP servers,
+   CLAUDE.md and auto memory. Some of these can be passed back explicitly: `--mcp-config`, and
+   skills in folders named with `--add-dir`. Bare mode never uses a subscription login. On the
+   Anthropic API it needs `ANTHROPIC_API_KEY` or an `apiKeyHelper`; Bedrock, Agent Platform and
+   Foundry keep using their own credentials. So choose: bare mode with the prompt inlined (or in
+   a file via `--append-system-prompt-file`), or normal mode with `/skill`.
+   [E] ([headless](https://code.claude.com/docs/en/headless); SQ1-5) ✓ (narrowed after verifier
+   verdict `partial`)
 4. **Unattended runs no longer hang on permission prompts; they deny instead, and a denied run
    can still look successful.** Since v2.1.302 a `claude -p` run with no permission mode starts in
-   Manual mode, where unapproved calls are denied. A practitioner test found such runs still exit
+   Manual mode, where unapproved calls are denied. The exception is a run with
+   `--permission-prompt-tool` set, which waits for that tool's answer. A practitioner test found such runs still exit
    0 with `"subtype": "success"`. Denials are listed in `permission_denials`, so a script should
    check that field. [E] ([headless](https://code.claude.com/docs/en/headless); SQ1-9, LEAD-1) ✓ ·
    exit-0 behaviour: [E, grade C] ([wmedia.es, 2026-07-31](https://wmedia.es/en/tips/claude-code-dangerously-skip-permissions-silent-failure); SQ1-23) ✓
@@ -110,7 +115,8 @@ from a shell.
   It is not enforced; to block an action, use a PreToolUse hook.
   [E] ([memory](https://code.claude.com/docs/en/memory); SQ2-20–SQ2-22) ✓
 - **`claude -p` loads all of this too** (hooks, skills, commands, CLAUDE.md, `.mcp.json`)
-  unless `--bare` is set. [E] (SQ2-23, SQ1-5) ✓
+  unless `--bare` is set. In bare mode, `--settings` still supplies a settings file explicitly.
+  [E] (SQ2-23, SQ1-5) ✓
 
 ## Scripted runs: `claude -p` flags that matter
 
@@ -224,8 +230,12 @@ claude -p "/summarise $1 \"$2\"" \
   budget each. They used about 13, 6 and 8 calls. One wave.
 - **Quote check.** `check_quotes.py`: 61 of 61 quotes found verbatim in the cached pages, after
   two quote-less items (SQ2-25, SQ2-26) were dropped and one page (wmedia.es) was cached.
-- **Claim check.** Load-bearing claims were checked by fresh-context `claim-verifier` agents
-  (see `verdicts/`).
+- **Claim check.** Two fresh-context `claim-verifier` agents checked 10 load-bearing claims
+  (`claims/batch_1.json`, `claims/batch_2.json`).
+  - Result: 9 supported, 1 partial (the `--bare` claim, now narrowed), 0 unsupported,
+    contradicted or unverifiable.
+  - The exit-0-despite-denials detail rests on one practitioner test (wmedia.es); the official
+    docs confirm only that runs continue and that denials are listed.
 - **Blocked.** `github.com` returned HTTP 403 to `fetch_page.py`, so the `claude-code-action`
   README and the GitHub issue threads were not read. Action details come from Anthropic's
   GitHub Actions docs page instead. The two issue reports above stay unverified. They were not
