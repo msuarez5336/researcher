@@ -258,4 +258,5 @@ QUALITY BAR
 ```
 
 ## Approval
-- [ ] User approved on <date>, with these changes: <...>
+- [x] User approved on 2026-10-31, with no changes. The interpretation in §2 and the github.com
+  rule in §10 were accepted as written.
