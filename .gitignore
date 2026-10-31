@@ -1,0 +1,5 @@
+# Cached source pages: large, third-party content, regenerable with fetch_page.py
+research/*/pages/
+.claude/settings.local.json
+CLAUDE.local.md
+__pycache__/
