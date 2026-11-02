@@ -47,7 +47,7 @@ how they get verified.
 | `.claude/skills/codify/` | `/codify`: turn a repeated task into a script plus, if needed, a Haiku skill; `bin/claude-run` for unattended runs |
 | `.claude/agents/haiku-runner.md` | Cheap executor (Haiku, low effort) for long or verbose mechanical work |
 | `scripts/` | Deterministic helpers, listed in `scripts/INDEX.md` (e.g. `run_status.py` for a research run) |
-| `kit/` | `install.sh` and `token-rules.md`: install the token-lean kit for every project |
+| `kit/` | `install.sh`, `token-rules.md`, `README.md` and `package.sh` (builds the standalone `dist/token-lean-kit.zip`) |
 | `templates/` | `research-brief.md`, `delegation-plan.md`, `report.md`, `sources.md` |
 | `config/settings.example.json` | Suggested permissions (see Setup) |
 | `CLAUDE.md` | Standing research and delegation rules for every session in this repo |
@@ -79,6 +79,14 @@ step, and it reads data a script has already filtered.
 
 ```bash
 kit/install.sh                    # personal: ~/.claude, available in every project
+```
+
+To use it on a machine without this repo, build the standalone folder and zip
+(`dist/token-lean-kit.zip`), copy it over, unzip it anywhere, and run `./install.sh` there.
+`./install.sh --uninstall` removes it. See [kit/README.md](kit/README.md).
+
+```bash
+kit/package.sh
 ```
 
 ```bash

@@ -18,7 +18,7 @@ dated folder under `research/`. The procedures live in skills, and the reusable 
   and `haiku-runner` (cheap executor for mechanical steps).
 - `scripts/`: deterministic helpers, listed in `scripts/INDEX.md`.
 - `kit/`: `install.sh` installs `/codify`, `haiku-runner`, `claude-run` and the token rules
-  into `~/.claude` (every project) or `--project DIR`.
+  into `~/.claude` (every project) or `--project DIR`; `package.sh` builds the standalone zip.
 - `templates/`: `research-brief.md`, `delegation-plan.md`, `report.md`, `sources.md`.
 - `research/<YYYY-MM-DD>-<slug>/`: one folder per run, holding `brief.md`, `report.md`,
   `sources.md`, `notes/`, `evidence/`, `claims/` and `verdicts/`. The `pages/` subfolder
