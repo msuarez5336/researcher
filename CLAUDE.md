@@ -10,15 +10,8 @@ dated folder under `research/`. The procedures live in skills, and the reusable 
   hold `fetch_page.py` (caches page text) and `check_quotes.py` (checks quotes against the cache).
 - `.claude/skills/delegate/`: `/delegate <goal>` turns a goal or a report into a delegation
   plan with self-contained briefs.
-- `.claude/skills/codify/`: `/codify <name> "<goal>"` turns a repeated task into a tested
-  script, plus a Haiku skill only if a judgment step is left. `bin/claude-run` runs a skill
-  unattended with limits and fails on permission denials.
 - `.claude/agents/`: `researcher` (one sub-question, fixed budget), `claim-verifier` (fresh
-  context, never sees the draft), `brief-reviewer` (read-only check of briefs before launch)
-  and `haiku-runner` (cheap executor for mechanical steps).
-- `scripts/`: deterministic helpers, listed in `scripts/INDEX.md`.
-- `kit/`: `install.sh` installs `/codify`, `haiku-runner`, `claude-run` and the token rules
-  into `~/.claude` (every project) or `--project DIR`.
+  context, never sees the draft) and `brief-reviewer` (read-only check of briefs before launch).
 - `templates/`: `research-brief.md`, `delegation-plan.md`, `report.md`, `sources.md`.
 - `research/<YYYY-MM-DD>-<slug>/`: one folder per run, holding `brief.md`, `report.md`,
   `sources.md`, `notes/`, `evidence/`, `claims/` and `verdicts/`. The `pages/` subfolder
@@ -50,18 +43,3 @@ dated folder under `research/`. The procedures live in skills, and the reusable 
   `plans/YYYY-MM-DD-<slug>.md`.
 - The scripts use only the Python 3 standard library. Run them from the repo root.
 - Keep this file under ~100 lines. Put procedures in skills, not here.
-
-<!-- token-rules:start (installed by kit/install.sh; edit the source in the researcher repo) -->
-## Token rules
-- Before mechanical or repeated work, check `scripts/INDEX.md` and run a listed script.
-- If you do the same mechanical steps a second time, suggest `/codify <name> "<goal>"`.
-- Give long or verbose mechanical work (test or build runs, log digging, many-file listings,
-  bulk reformatting) to the `haiku-runner` subagent. A single short command is cheaper to run
-  directly. Keep design, debugging and writing here.
-- Don't write out text a command can produce (lists, counts, diffs, tables from data): run
-  the command and show its output.
-- Filter before reading: `rg`, `head`, `jq`, `--name-only`, failures-only test output. Never
-  read a whole large file or log.
-- Prefer CLI tools (`gh`, `jq`, `rg`) over MCP servers when both do the job.
-- Keep replies short. Don't restate tool output or narrate the steps you took.
-<!-- token-rules:end -->

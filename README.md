@@ -44,10 +44,6 @@ how they get verified.
 | `.claude/agents/researcher.md` | Worker for one sub-question: budget, disconfirming search, verbatim quotes, file outputs |
 | `.claude/agents/claim-verifier.md` | Fresh-context fact-checker with explicit verdicts; never shown the draft |
 | `.claude/agents/brief-reviewer.md` | Read-only check that briefs are self-contained, non-overlapping and complete |
-| `.claude/skills/codify/` | `/codify`: turn a repeated task into a script plus, if needed, a Haiku skill; `bin/claude-run` for unattended runs |
-| `.claude/agents/haiku-runner.md` | Cheap executor (Haiku, low effort) for long or verbose mechanical work |
-| `scripts/` | Deterministic helpers, listed in `scripts/INDEX.md` (e.g. `run_status.py` for a research run) |
-| `kit/` | `install.sh` and `token-rules.md`: install the token-lean kit for every project |
 | `templates/` | `research-brief.md`, `delegation-plan.md`, `report.md`, `sources.md` |
 | `config/settings.example.json` | Suggested permissions (see Setup) |
 | `CLAUDE.md` | Standing research and delegation rules for every session in this repo |
@@ -70,52 +66,6 @@ how they get verified.
    See the [cloud environments network access docs](https://code.claude.com/docs/en/cloud-environments#network-access).
 3. **Using it in another project.** Copy `.claude/agents/`, `.claude/skills/` and `templates/`
    into that project, and merge the rules from `CLAUDE.md` into its own.
-
-## Token-lean kit
-
-The kit spends tokens once, with a capable model, so that later runs are cheap. Scripts do
-everything with a single right answer for zero tokens. A small model does only the judgment
-step, and it reads data a script has already filtered.
-
-```bash
-kit/install.sh                    # personal: ~/.claude, available in every project
-```
-
-```bash
-kit/install.sh --project ../app   # one project: commit its .claude/ to share it
-```
-
-Then, in any project:
-
-| You want to… | Do |
-|---|---|
-| Make a task repeatable | `/codify weekly-prs "summarise merged PRs since a date for the team channel"` |
-| Run that task by hand | `/weekly-prs 2026-10-01` (or `python3 scripts/weekly-prs.py …` if no model step was needed) |
-| Run it from cron or CI | `claude-run weekly-prs 2026-10-01` (Haiku, 8 turns, $0.50 cap; exits non-zero on denials) |
-| Get validated JSON | `claude-run -j schema.json weekly-prs 2026-10-01` |
-
-The token rules installed into `CLAUDE.md`:
-- Check `scripts/INDEX.md` before doing mechanical or repeated work.
-- Suggest `/codify` when steps repeat.
-- Give long mechanical work to `haiku-runner`.
-- Never write out what a command can print.
-- Filter output before reading it.
-
-Measured in this repo on 2026-11-02 (Claude Code 2.1.316, one run each; costs are the CLI's
-client-side estimates):
-
-| Test | Turns | Cost |
-|---|---|---|
-| Haiku skill fed complete data by its script | 1 | $0.002 first run, $0.0004 repeat |
-| Same skill when the script left out data the task needed: Haiku went looking, got denied, and `claude-run` exited 3 | 3 | $0.004 |
-| Same skill with `-j` schema validation | 3 | $0.008 |
-| Sonnet session delegating one short command to `haiku-runner` | 2 | $0.06, of which Haiku $0.001 |
-
-Lessons from these runs, built into `/codify`:
-- The script has to supply everything the model step needs.
-- `disallowed-tools` in a skill did not stop tool attempts under `-p`.
-- Use schema mode only when a program reads the output.
-- Don't delegate a single short command.
 
 ## Why it's built this way
 
