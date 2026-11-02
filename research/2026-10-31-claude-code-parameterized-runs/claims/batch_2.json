@@ -1,0 +1,98 @@
+[
+ {
+  "cid": "C6",
+  "claim": "A claude -p run can exit 0 with \"subtype\": \"success\" and \"is_error\": false even when tool calls were denied; the denials are listed in the permission_denials field of the final result, so scripts should check that field.",
+  "evidence": [
+   {
+    "id": "SQ1-23",
+    "quote": "claude -p returns exit code 0 , \"subtype\": \"success\" and \"is_error\": false even when Claude never touched a file. The only trace is the permission_denials array in the JSON",
+    "url": "https://wmedia.es/en/tips/claude-code-dangerously-skip-permissions-silent-failure",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/wmedia.es-de4b20f42d.txt"
+   },
+   {
+    "id": "LEAD-1",
+    "quote": "With --output-format stream-json , denials appear as permission_denied system messages, and the final result message lists them in permission_denials .",
+    "url": "https://code.claude.com/docs/en/headless",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-213b515662.txt"
+   },
+   {
+    "id": "SQ1-11",
+    "quote": "Anything that would prompt is denied unless a PermissionRequest hook allows it, Claude is told that nobody can approve the request and not to retry it, and the run continues.",
+    "url": "https://code.claude.com/docs/en/headless",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-213b515662.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "Without --bare, claude -p runs a repository's project hooks and connects its .mcp.json servers with no workspace trust dialog or per-server approval, even in a folder that was never trusted.",
+  "evidence": [
+   {
+    "id": "SQ1-6",
+    "quote": "A -p session shows no workspace trust dialog and no per-server approval prompt.",
+    "url": "https://code.claude.com/docs/en/headless",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-213b515662.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "A skill's allowed-tools frontmatter pre-approves the listed tools only for the turn that invokes the skill and does not restrict which tools are available.",
+  "evidence": [
+   {
+    "id": "SQ2-11",
+    "quote": "It does not restrict which tools are available: every tool remains callable, and your permission settings still govern tools that are not listed.",
+    "url": "https://code.claude.com/docs/en/skills",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-bbd9e46f13.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "--max-budget-usd (CLI) and max_budget_usd (Python Agent SDK) cap a client-side cost estimate and can be exceeded.",
+  "evidence": [
+   {
+    "id": "SQ1-15",
+    "quote": "Claude Code checks the cap against its client-side cost estimate , which can differ from your bill.",
+    "url": "https://code.claude.com/docs/en/cli-reference",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-821f3282cf.txt"
+   },
+   {
+    "id": "SQ3-1",
+    "quote": "Stop the query when the client-side cost estimate reaches this USD value. The estimate can pass this value, so leave headroom .",
+    "url": "https://platform.claude.com/docs/en/agent-sdk/python",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/platform.claude.com-bf730dc505.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "claude-code-action runs in automation mode, without waiting for an @claude mention, when the workflow supplies a prompt input; its claude_args input passes any CLI argument; and Anthropic's cloud scheduled tasks need no machine or open session, with a minimum interval of 1 hour, while /loop is session-scoped.",
+  "evidence": [
+   {
+    "id": "SQ3-4",
+    "quote": "Automation mode : when the workflow provides a prompt input, Claude runs without waiting for a mention, subject only to the checks on who can trigger runs .",
+    "url": "https://code.claude.com/docs/en/github-actions",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-2ac06eb688.txt"
+   },
+   {
+    "id": "SQ3-5",
+    "quote": "The claude_args parameter accepts any Claude Code CLI argument :",
+    "url": "https://code.claude.com/docs/en/github-actions",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-2ac06eb688.txt"
+   },
+   {
+    "id": "SQ3-9",
+    "quote": "Use cloud tasks for work that should run reliably without your machine. Use Desktop tasks when you need access to local files and tools. Use /loop for quick polling during a session.",
+    "url": "https://code.claude.com/docs/en/scheduled-tasks",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-768bcbda53.txt"
+   },
+   {
+    "id": "SQ3-10",
+    "quote": "For scheduling that survives independently of any session, create a cloud scheduled task , set up a Desktop scheduled task , or use GitHub Actions .",
+    "url": "https://code.claude.com/docs/en/scheduled-tasks",
+    "page": "research/2026-10-31-claude-code-parameterized-runs/pages/code.claude.com-768bcbda53.txt"
+   }
+  ]
+ }
+]
