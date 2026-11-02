@@ -11,8 +11,10 @@ Goal: $goal
 
 You are paying once, now, with a capable model, so that every later run is cheap: a script does
 the deterministic work for zero tokens, and a small model does only the part that needs judgment.
-Why each rule exists: `research/2026-10-31-claude-code-parameterized-runs/report.md` and the
-Claude Code docs page "Manage costs effectively" (code.claude.com/docs/en/costs).
+Why each rule exists: the Claude Code docs pages "Manage costs effectively"
+(code.claude.com/docs/en/costs) and "Skills" (code.claude.com/docs/en/skills), the live tests in
+the README's "Token-lean kit" section, and the research run
+`research/2026-10-31-claude-code-parameterized-runs/` (if present in this repo).
 
 ## 1. Look before you build
 - Read `scripts/INDEX.md` (if it exists) and list `.claude/skills/`. If a script already covers
