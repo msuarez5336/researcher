@@ -274,3 +274,18 @@ QUALITY BAR
 ## Approval
 - [x] User approved on 2026-11-03 ("Run them"), with no changes. No budget or style
   preference was given, so the report gives picks across budgets and styles.
+
+## Wave 2 (follow-up, 2026-11-03)
+Wave 1 left three gaps: only two hands-on testers reachable (SQ1), no 2026 prices (SQ2), and
+almost no confirmed DFW stores (SQ3, because store locators were blocked). The plan allows one follow-up
+wave (§7), so three `researcher` workers were launched with 12 tool calls each:
+- **SQ1b**: testers not yet covered (Good Housekeeping, Consumer Reports, Taste of Home and others)
+  plus warranty terms for the shortlist.
+- **SQ2b**: 2026 prices for the shortlisted models, plus 2026 price and tariff statements.
+- **SQ3b**: DFW stores through sources that load (local news, garden centers, specialty shops),
+  and whether the Madisonville Christmas Plano store is open.
+
+Each brief carried wave 1's findings and the full blocked-host list, and forbade guessed URLs.
+Blocked hosts found in wave 1: homedepot.com category and store pages 403, costco.com
+category page 404, hobbylobby.com Texas store list 404, madisonvillechristmasco.com 503,
+thespruce.com 403, forbes.com 403, apartmenttherapy.com 403.
