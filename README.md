@@ -47,7 +47,7 @@ how they get verified.
 | `.claude/skills/codify/` | `/codify`: turn a repeated task into a script plus, if needed, a Haiku skill; `bin/claude-run` for unattended runs |
 | `.claude/agents/haiku-runner.md` | Cheap executor (Haiku, low effort) for long or verbose mechanical work |
 | `scripts/` | Deterministic helpers, listed in `scripts/INDEX.md` (e.g. `run_status.py` for a research run) |
-| `kit/` | `install.sh`, `token-rules.md`, `README.md` and `package.sh` (builds the standalone `dist/token-lean-kit.zip`) |
+| `kit/` | `install.sh`, `token-rules.md`, `README.md`, `hooks/trim-output.py` (trims large tool output), `bench/` (measures savings; results in `bench/RESULTS.md`) and `package.sh` (builds the standalone `dist/token-lean-kit.zip`) |
 | `templates/` | `research-brief.md`, `delegation-plan.md`, `report.md`, `sources.md` |
 | `config/settings.example.json` | Suggested permissions (see Setup) |
 | `CLAUDE.md` | Standing research and delegation rules for every session in this repo |

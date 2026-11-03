@@ -5,7 +5,7 @@
 #
 # Defaults: Haiku, 8 turns, $0.50 (a client-side estimate; it can be exceeded).
 # -j: validate the answer against a JSON Schema file and print it as JSON (structured_output).
-# Prints the result on stdout; cost, turns and permission denials on stderr.
+# Prints the result on stdout; turns, tokens (from modelUsage), cost and permission denials on stderr.
 # Exits non-zero if the run errored or any tool call was denied: claude -p can exit 0
 # with "subtype": "success" even when calls were denied (code.claude.com/docs/en/headless
 # lists them in permission_denials; a third-party test confirmed the exit code).
@@ -47,7 +47,16 @@ if [ -n "$schema" ]; then
 else
   jq -r '.result // empty' <<<"$out"
 fi
-jq -r '"claude-run: model='"$model"' turns=\(.num_turns // "?") cost_usd=\(.total_cost_usd // "?") (estimate)"' <<<"$out" >&2
+# Tokens from modelUsage: it covers subagents too; the plain usage field undercounts them
+# (code.claude.com/docs/en/agent-sdk/cost-tracking). Output tokens are shown separately because
+# writing code raises them even when input tokens fall.
+jq -r '
+  ([.modelUsage // {} | to_entries[] | .value]) as $m
+  | ($m | map(.inputTokens // 0) | add // 0) as $in
+  | ($m | map(.cacheReadInputTokens // 0) | add // 0) as $cr
+  | ($m | map(.cacheCreationInputTokens // 0) | add // 0) as $cw
+  | ($m | map(.outputTokens // 0) | add // 0) as $o
+  | "claude-run: model='"$model"' turns=\(.num_turns // "?") tokens_in=\($in + $cr + $cw) (uncached \($in), cache_read \($cr), cache_write \($cw)) tokens_out=\($o) cost_usd=\(.total_cost_usd // "?") (estimate)"' <<<"$out" >&2
 denials=$(jq '(.permission_denials // []) | length' <<<"$out")
 if [ "$denials" -gt 0 ]; then
   echo "claude-run: $denials tool call(s) denied:" >&2

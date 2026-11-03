@@ -9,6 +9,11 @@
   the command and show its output.
 - Filter before reading: `rg`, `head`, `jq`, `--name-only`, failures-only test output. Never
   read a whole large file or log.
-- Prefer CLI tools (`gh`, `jq`, `rg`) over MCP servers when both do the job.
+- Compute, don't read: for 3+ dependent tool calls, or large data where you need a count, total,
+  filter or join, write a short script (CLI or API) that prints only the answer, and run it.
+  For 1-2 calls with small results, call the tool directly; a script costs more there.
+- Prefer CLI tools (`gh`, `jq`, `rg`) over MCP servers when both do the job. Keep MCP tool
+  search on, and script big MCP results rather than raising `MAX_MCP_OUTPUT_TOKENS`.
+- Output marked `[token-kit: trimmed ...]` was saved to a file: query that file, don't re-print it.
 - Keep replies short. Don't restate tool output or narrate the steps you took.
 <!-- token-rules:end -->

@@ -1,6 +1,6 @@
 ---
 description: Turn a task that will be repeated into a tested script, plus a thin Haiku skill only when a judgment step is left, so later runs spend tokens only on what a script can't do. Use when the user says "make this repeatable", "script this", "codify", or repeats the same mechanical steps.
-argument-hint: <name> "<what the task does>"
+argument-hint: <name> "<what the task does>" (say "one-off" in the goal for a throwaway script)
 arguments: [name, goal]
 disable-model-invocation: true
 ---
@@ -15,6 +15,13 @@ Why each rule exists: the Claude Code docs pages "Manage costs effectively"
 (code.claude.com/docs/en/costs) and "Skills" (code.claude.com/docs/en/skills), the live tests in
 the README's "Token-lean kit" section, and the research run
 `research/2026-10-31-claude-code-parameterized-runs/` (if present in this repo).
+
+## 0. One-off or repeated?
+- **Repeated** (will run again with other inputs): follow steps 1-7.
+- **One-off** (just this once, but it needs 3+ dependent tool calls or large data): write the
+  script to the session scratchpad (or a temp dir), run it, and report only its answer. Skip
+  steps 5-6: no skill, no `scripts/INDEX.md` entry. If the user later asks for it again, come
+  back here as repeated.
 
 ## 1. Look before you build
 - Read `scripts/INDEX.md` (if it exists) and list `.claude/skills/`. If a script already covers

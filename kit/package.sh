@@ -12,11 +12,13 @@ OUT=$(mkdir -p "${1:-$REPO/dist}" && cd "${1:-$REPO/dist}" && pwd)
 PKG="$OUT/token-lean-kit"
 
 rm -rf "$PKG" "$PKG.zip"
-mkdir -p "$PKG/skills" "$PKG/agents"
+mkdir -p "$PKG/skills" "$PKG/agents" "$PKG/hooks" "$PKG/bench"
 cp -R "$REPO/.claude/skills/codify" "$PKG/skills/codify"
 cp "$REPO/.claude/agents/haiku-runner.md" "$PKG/agents/"
 cp "$REPO/kit/install.sh" "$REPO/kit/token-rules.md" "$REPO/kit/README.md" "$PKG/"
-chmod +x "$PKG/install.sh" "$PKG/skills/codify/bin/claude-run"
+cp "$REPO/kit/hooks/trim-output.py" "$PKG/hooks/"
+cp "$REPO/kit/bench/code_mode_bench.py" "$REPO/kit/bench/RESULTS.md" "$PKG/bench/"
+chmod +x "$PKG/install.sh" "$PKG/skills/codify/bin/claude-run" "$PKG/hooks/trim-output.py" "$PKG/bench/code_mode_bench.py"
 find "$PKG" -name '__pycache__' -prune -exec rm -rf {} +
 
 python3 - "$OUT" <<'EOF'

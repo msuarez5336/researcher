@@ -8,3 +8,4 @@ Add a row whenever `/codify` (or you) adds a script.
 | `.claude/skills/research/scripts/fetch_page.py` | Cache page text for quoting | `python3 .claude/skills/research/scripts/fetch_page.py --run-dir RUN URL` | used by `/research` |
 | `.claude/skills/research/scripts/check_quotes.py` | Check every evidence quote against the cached page | `python3 .claude/skills/research/scripts/check_quotes.py --run-dir RUN` | used by `/research` |
 | `.claude/skills/codify/bin/claude-run` | Run a skill unattended on Haiku with limits; fail on errors or permission denials | `.claude/skills/codify/bin/claude-run <skill> [args]` | used by `/codify` |
+| `kit/bench/code_mode_bench.py` | Measure compute-don't-read and the trim hook with real `claude -p` runs (costs tokens) | `python3 kit/bench/code_mode_bench.py --model sonnet --reps 3` | — |

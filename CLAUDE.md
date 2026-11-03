@@ -17,8 +17,9 @@ dated folder under `research/`. The procedures live in skills, and the reusable 
   context, never sees the draft), `brief-reviewer` (read-only check of briefs before launch)
   and `haiku-runner` (cheap executor for mechanical steps).
 - `scripts/`: deterministic helpers, listed in `scripts/INDEX.md`.
-- `kit/`: `install.sh` installs `/codify`, `haiku-runner`, `claude-run` and the token rules
-  into `~/.claude` (every project) or `--project DIR`; `package.sh` builds the standalone zip.
+- `kit/`: `install.sh` installs `/codify`, `haiku-runner`, `claude-run`, the token rules and the
+  trim-output hook (`kit/hooks/`) into `~/.claude` (every project) or `--project DIR`;
+  `kit/bench/` measures the savings; `package.sh` builds the standalone zip.
 - `templates/`: `research-brief.md`, `delegation-plan.md`, `report.md`, `sources.md`.
 - `research/<YYYY-MM-DD>-<slug>/`: one folder per run, holding `brief.md`, `report.md`,
   `sources.md`, `notes/`, `evidence/`, `claims/` and `verdicts/`. The `pages/` subfolder
@@ -62,6 +63,11 @@ dated folder under `research/`. The procedures live in skills, and the reusable 
   the command and show its output.
 - Filter before reading: `rg`, `head`, `jq`, `--name-only`, failures-only test output. Never
   read a whole large file or log.
-- Prefer CLI tools (`gh`, `jq`, `rg`) over MCP servers when both do the job.
+- Compute, don't read: for 3+ dependent tool calls, or large data where you need a count, total,
+  filter or join, write a short script (CLI or API) that prints only the answer, and run it.
+  For 1-2 calls with small results, call the tool directly; a script costs more there.
+- Prefer CLI tools (`gh`, `jq`, `rg`) over MCP servers when both do the job. Keep MCP tool
+  search on, and script big MCP results rather than raising `MAX_MCP_OUTPUT_TOKENS`.
+- Output marked `[token-kit: trimmed ...]` was saved to a file: query that file, don't re-print it.
 - Keep replies short. Don't restate tool output or narrate the steps you took.
 <!-- token-rules:end -->
