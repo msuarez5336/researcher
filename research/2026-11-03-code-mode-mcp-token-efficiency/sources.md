@@ -11,7 +11,7 @@
 | 2 | [Claude Code docs: MCP](https://code.claude.com/docs/en/mcp) | Official docs | read 2026-11 | ✓ | SQ3-1–SQ3-5 | Tool search defaults and thresholds, and the output limits. Essential for the kit. |
 | 3 | [Claude Code docs: Hooks](https://code.claude.com/docs/en/hooks) | Official docs | read 2026-11 | ✓ | SQ3-8, SQ3-9 | `updatedToolOutput`, the basis for the proposed trimming hook. |
 | 4 | [Anthropic: Introducing advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use) | Engineering blog | 2025-11-24 | ✓ | SQ1-8–SQ1-18 | Has the measured 37% PTC figure and the tool-search numbers, both self-reported. Clear "when to use" guidance. |
-| 5 | [Anthropic: Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) | Engineering blog | 2025-11-04 | ✓ | SQ1-1–SQ1-7 | The original description of the pattern. Its 98.7% is an illustrative example, so don't quote it as a benchmark. |
+| 5 | [Anthropic: Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) | Engineering blog | 2025-11-04 | ✓ | SQ1-1–SQ1-7 | The original description of the pattern. Its 98.7% is given in a worked example with no measurement setup, so don't quote it as a benchmark. |
 | 6 | [Claude Code docs: Agent SDK cost tracking](https://code.claude.com/docs/en/agent-sdk/cost-tracking) | Official docs | read 2026-11 | ✓ | SQ3-12, SQ3-13 | `modelUsage` versus `usage`. Directly relevant to `claude-run`. |
 | 7 | [Claude Code docs: Sandboxing](https://code.claude.com/docs/en/sandboxing) | Official docs | read 2026-11 | ✓ | SQ3-10 | Off by default; the safety basis for model-written scripts. |
 | 8 | [Claude Code docs: Costs](https://code.claude.com/docs/en/costs) | Official docs | read 2026-11 | ✓ | SQ3-6, SQ3-7 | CLIs over MCP; hooks for preprocessing. |
@@ -23,10 +23,10 @@
 | 14 | [Cloudflare: enterprise MCP](https://blog.cloudflare.com/enterprise-mcp) | Vendor blog | 2026-04 | ✓ | SQ1-39 | 94% on its internal portal, self-reported. |
 | 15 | [Cloudflare changelog: MCP portal Code Mode](https://developers.cloudflare.com/changelog/post/2026-03-26-mcp-portal-code-mode/index.md) | Official changelog | 2026-03-26 | ✓ | SQ1-40 | Shipping status only. |
 
-## Independent evidence and papers
+## Third-party evidence and papers
 | # | Source | Type | Date | Status | Evidence | Verdict |
 |---|---|---|---|---|---|---|
-| 16 | [AIMultiple: code execution with MCP](https://research.aimultiple.com/code-execution-with-mcp) | Independent benchmark | 2025-12-22 | ✓ | SQ2-1–SQ2-3, SQ2-5 | The only independent task-level measurement found: 78.5% input saved, 2.2× output. One model (GPT-4.1). |
+| 16 | [AIMultiple: code execution with MCP](https://research.aimultiple.com/code-execution-with-mcp) | Third-party benchmark | 2025-12-22 | ✓ | SQ2-1–SQ2-3, SQ2-5 | The only third-party task-level measurement found: 78.5% input saved, 2.2× output. One model (GPT-4.1), 2 query types × 50 runs. Discloses that Bright Data (the tested server) is a client. |
 | 17 | [Felendler et al., arXiv 2602.15945](https://arxiv.org/abs/2602.15945) | Preprint (security) | 2026-02-17 | ✓ (abstract) | SQ2-10, SQ2-11 | The key counterweight on security. Only the abstract was read, because the PDF was unsupported by the fetch script. |
 | 18 | ["Bitter Lesson of Tool Calling", arXiv 2608.06370](https://arxiv.org/abs/2608.06370) ([HTML](https://arxiv.org/html/2608.06370)) | Preprint, 14 models on BFCL v4 | 2026-08-06 | ✓ / ~ (GPT-5 latency figure) | SQ2-7–SQ2-9 | Multi-model accuracy and latency. Not peer-reviewed. |
 | 19 | [CodeAct, arXiv 2402.01030 (ICML 2024)](https://arxiv.org/html/2402.01030v4) | Peer-reviewed paper | 2024-06 | ✓ | SQ2-6 | Foundational evidence for code-as-action; older. |

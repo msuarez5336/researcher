@@ -16,15 +16,19 @@ Evidence ids (for example `SQ1-12`) point to `evidence/*.jsonl`.
 1. **The idea holds up, but the size of the saving depends on how much data or how many tools
    would otherwise pass through the model.** All the measured savings below are input-token
    savings.
-   - **Independent, measured:** 78.5% fewer input tokens (165K vs 771K) on GPT-4.1, with both
-     approaches succeeding on every task. [E] ([AIMultiple](https://research.aimultiple.com/code-execution-with-mcp),
-     2025-12-22; SQ2-1) ✓
+   - **Third-party, measured:** AIMultiple found 78.5% fewer input tokens (165K vs 771K) on
+     GPT-4.1, with both approaches succeeding on every task. [E]
+     ([AIMultiple](https://research.aimultiple.com/code-execution-with-mcp), 2025-12-22;
+     SQ2-1) ✓
+     - The test is narrow: 2 query types, 50 runs each, one model.
+     - AIMultiple discloses that Bright Data, whose MCP server was tested, subscribes to its MCP
+       benchmarking services. So it isn't fully independent.
    - **Anthropic's own measured figure:** programmatic tool calling cut average tokens 37%
      (43,588 to 27,297) on complex research tasks. [E, self-reported]
      ([Anthropic](https://www.anthropic.com/engineering/advanced-tool-use); SQ1-12) ✓
    - **The headline figures** are a different kind of number:
-     - Anthropic's 150,000 to 2,000 (98.7%) is an illustrative example. [E, self-reported]
-       (SQ1-2) ✓
+     - Anthropic's 150,000 to 2,000 (98.7%) is given inside a worked example (Google Drive to
+       Salesforce), with no measurement setup described. [E, self-reported] (SQ1-2) ✓
      - Cloudflare's 1.17 million to about 1,000 (99.9%) counts tool-definition tokens, not a
        task run. [E, self-reported] (SQ1-35) ✓
 2. **It loses on small jobs, and Anthropic's own docs say so.**
@@ -34,9 +38,10 @@ Evidence ids (for example `SQ1-12`) point to `evidence/*.jsonl`.
      SQ1-20) ✓
    - Anthropic recommends it for 3 or more dependent calls, large data needing only
      aggregates, filtering, and parallel work. [O] (SQ1-15, SQ1-21) ✓
-   - The independent benchmark also found **2.2 times more output tokens**, because the model
+   - The AIMultiple benchmark also found **2.2 times more output tokens**, because the model
      writes code. [E] (SQ2-2) ✓
-3. **Claude Code has no built-in "code mode".** It does have the building blocks:
+3. **The Claude Code docs describe no built-in "code mode".** They do describe the building
+   blocks:
    - **MCP tool search, on by default.** Tool definitions are deferred, so only names load at
      start. [E] (SQ3-1, SQ3-2) ✓
    - **Large MCP results are saved to a file** above 50,000 characters. [E] (SQ3-4) ✓
@@ -44,8 +49,8 @@ Evidence ids (for example `SQ1-12`) point to `evidence/*.jsonl`.
      (SQ3-8) ✓
    - **An OS-level Bash sandbox,** which is off by default. [E] (SQ3-10) ✓
 
-   API programmatic tool calling is a Messages API feature, not a Claude Code setting. [E]
-   (SQ3-11) ✓ It doesn't work with Haiku 4.5 (SQ1-19) ✓ or with MCP-connector tools
+   API programmatic tool calling is a Messages API feature. The Claude Code docs reviewed don't
+   describe a setting for it. [E] (SQ3-11) ✓ It doesn't work with Haiku 4.5 (SQ1-19) ✓ or with MCP-connector tools
    (SQ1-22) ✓.
 4. **In Claude Code, the practical way to get code mode is "compute, don't read".** The model
    writes a script that calls CLIs or APIs through Bash and prints only the answer.
@@ -90,14 +95,14 @@ header needed.
 
 | Source | What was counted | Direct | Code mode | Saving | Kind | Evidence |
 |---|---|---|---|---|---|---|
-| AIMultiple (GPT-4.1, Bright Data MCP) | input tokens per benchmark run | 771K | 165K | 78.5% (but 2.2× output tokens) | measured, independent, one model | SQ2-1, SQ2-2 ✓ |
+| AIMultiple (GPT-4.1, Bright Data MCP) | input tokens per benchmark run | 771K | 165K | 78.5% (but 2.2× output tokens) | measured by a third party (Bright Data is a disclosed AIMultiple client); one model, 2 query types × 50 runs | SQ2-1, SQ2-2 ✓ |
 | Anthropic PTC | average tokens, complex research tasks | 43,588 | 27,297 | 37% | measured, self-reported; model and task count not stated | SQ1-12 ✓ |
 | Anthropic PTC on tau2-bench | cost, 1–2 sequential calls per turn | — | — | **about 8% more** | measured, self-reported | SQ1-20 ✓ |
 | Bifrost (Maxim AI gateway) | input tokens vs number of tools | — | — | 58.2% at 96 tools, 84.5% at 251, 92.8% at 508 | measured, vendor self-reported | SQ2-4 ✓ |
 | Anthropic Tool Search | context taken by definitions, 50+ tools | about 77K | about 8.7K | 85% | measured, self-reported | SQ1-9 ✓ |
 | Cloudflare portal | definition tokens, 52 tools | about 9,400 | about 600 | 94% | self-reported | SQ1-39 ✓ |
-| Cloudflare full-API server | definition tokens | 1.17M (hypothetical equivalent) | about 1,000 | 99.9% | counted with tiktoken, self-reported | SQ1-35 ✓ |
-| Anthropic progressive disclosure | definition tokens | 150,000 | 2,000 | 98.7% | illustrative example | SQ1-2 ✓ |
+| Cloudflare full-API server | definition tokens | 1.17M (a modelled equivalent server, not a run) | about 1,000 | 99.9% | counted with tiktoken, self-reported | SQ1-35 ✓ |
+| Anthropic progressive disclosure | definition tokens | 150,000 | 2,000 | 98.7% | worked example, no measurement setup described | SQ1-2 ✓ |
 | LinkedIn demo (Chinta; trigger for this run) | input tokens, RevOps question | about 94.6K | about 1.2K | about 97% | estimated, "rehearsal runs", screenshot only | — (not checked) |
 
 **Accuracy and latency:**
@@ -105,6 +110,8 @@ header needed.
   and up to 30% fewer actions across 17 models. [E] (SQ2-6) ✓ This is older but foundational.
 - **A 2026 preprint, 14 models on BFCL v4:** PTC matched or beat JSON in **11 of 14** models,
   so 3 of 14 did worse. [E] (SQ2-7, SQ2-8) ✓
+  - Caveats: it used a 309-entry subset, and BFCL scores how calls are formatted, not real API
+    execution. ~ (search results quoting the paper)
   - On chaining tasks, latency was about half for 13 of 14 models.
   - The exception, GPT-5 at 2.8 times baseline latency, is only partly in the cached text. ~
     (SQ2-9)
@@ -119,7 +126,7 @@ header needed.
   - Savings shrink as the catalog gets smaller. (SQ2-4) ✓
   - AIMultiple says small deployments may not justify the complexity. [O] (SQ2-5) ✓
 - **Some models.** 3 of 14 models were less accurate with PTC. (SQ2-8) ✓
-- **Output-heavy runs.** Output tokens rose 2.2 times in the one independent benchmark.
+- **Output-heavy runs.** Output tokens rose 2.2 times in the one third-party task benchmark.
   (SQ2-2) ✓
 - **Untrusted inputs without a real sandbox.** See the security finding above. (SQ2-10) ✓
 
@@ -127,13 +134,13 @@ header needed.
 
 | Mechanism | What it does for tokens | How to configure | Limits | Evidence |
 |---|---|---|---|---|
-| MCP tool search | Loads only tool names until a tool is needed | On by default. `ENABLE_TOOL_SEARCH`: unset or `true` defers all; `auto` loads upfront under 10% of context; `auto:N` sets a custom percent; `false` loads all | Needs Sonnet 4, Opus 4 or Haiku 4.5 and later; not on Azure-hosted Foundry | SQ3-1–SQ3-3 ✓ |
+| MCP tool search | Loads only tool names until a tool is needed | On by default. `ENABLE_TOOL_SEARCH`: unset or `true` defers all; `auto` loads upfront under 10% of context; `auto:N` sets a custom percent; `false` loads all | Needs Sonnet 4, Opus 4 or Haiku 4.5 and later; 4.5-generation models or later on Google Cloud's Agent Platform; not on Azure-hosted Foundry; off under `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` or a HIPAA setup | SQ3-1–SQ3-3 ✓ |
 | MCP output limits | Warns at 10K tokens and caps at 25K by default; text over 50,000 characters goes to a file | `MAX_MCP_OUTPUT_TOKENS`; a server can raise its own limit up to 500,000 characters | The 50,000-character file rule ignores `MAX_MCP_OUTPUT_TOKENS` | SQ3-4, SQ3-5 ✓; 10K and 25K from the cached MCP page |
 | PostToolUse `updatedToolOutput` | Replaces what Claude sees from any tool | A hook in settings | The tool has already run; OpenTelemetry records the original output | SQ3-8, SQ3-9 ✓ |
 | PreToolUse `updatedInput` | Rewrites the command before it runs (for example, adds a filter) | A hook in settings | — | SQ3-9 ✓ |
 | Skills with `!` injection and scripts | Script output enters the prompt; the model never runs the gathering steps | `SKILL.md` (this is how `/codify` works) | — | earlier run (`2026-10-31-…parameterized-runs`) |
 | Bash sandbox | OS-enforced filesystem and network limits for model-written code | `/sandbox` or `sandbox.enabled`; `network.allowedDomains` | **Off by default** | SQ3-10 ✓ |
-| API programmatic tool calling | Code in an Anthropic-managed container calls your tools | Messages API `allowed_callers` with `code_execution_20260120` or later | Not a Claude Code setting; no Haiku 4.5; no MCP-connector tools; no `strict:true`; not ZDR-eligible; 90 s per cell; about 5 min idle reclaim | SQ3-11, SQ1-19, SQ1-22–SQ1-24, SQ1-30 ✓ |
+| API programmatic tool calling | Code in an Anthropic-managed container calls your tools | Messages API `allowed_callers` with `code_execution_20260120` or later | No Claude Code setting described in the docs reviewed; no Haiku 4.5; no MCP-connector tools; no `strict:true`; not ZDR-eligible; 90 s per cell; about 5 min idle reclaim | SQ3-11, SQ1-19, SQ1-22–SQ1-24, SQ1-30 ✓ |
 | Measuring tokens | Per-run totals | `claude -p --output-format json`: use **`modelUsage`** for tokens (`usage` undercounts with subagents); `total_cost_usd` is an estimate; OpenTelemetry `claude_code.token.usage` | — | SQ3-12–SQ3-14 ✓ |
 
 ## Recommendations for the token-lean kit [O]
@@ -170,8 +177,9 @@ implemented yet.
 6. **Recommend the Bash sandbox for model-written scripts that touch the network,** with
    `network.allowedDomains` limited to the APIs used (SQ3-10, SQ2-10). Note in the kit that the
    sandbox is off by default.
-7. **Don't build on API programmatic tool calling inside the kit.** It's for apps built on the
-   Messages API or the Agent SDK, not Claude Code sessions, and it excludes Haiku 4.5, which the
+7. **Don't build on API programmatic tool calling inside the kit.** It's documented for apps built
+   on the Messages API, the Claude Code docs reviewed describe no way to turn it on in a session,
+   and it excludes Haiku 4.5, which the
    kit relies on (SQ3-11, SQ1-19).
 8. **Measure before claiming savings.** Run the proposed benchmark (brief §9): one multi-call
    task done directly and with a script, recording turns, `modelUsage` tokens and cost. Then the
@@ -181,7 +189,7 @@ implemented yet.
 
 | Question | Position A | Position B | When each holds |
 |---|---|---|---|
-| How much does it save? | 94–99.9% (Cloudflare definition counts, Anthropic's example, the LinkedIn demo) (SQ1-2, SQ1-35, SQ1-39) | 37% (Anthropic, measured on tasks) and 78.5% (independent) (SQ1-12, SQ2-1) | The high figures count tool **definitions**, or are examples or estimates. Task-level runs save less. Savings grow with tool count and data size (SQ2-4). |
+| How much does it save? | 94–99.9% (Cloudflare definition counts, Anthropic's example, the LinkedIn demo) (SQ1-2, SQ1-35, SQ1-39) | 37% (Anthropic, measured on tasks) and 78.5% (AIMultiple, third party) (SQ1-12, SQ2-1) | The high figures count tool **definitions**, or are examples or estimates. Task-level runs save less. Savings grow with tool count and data size (SQ2-4). |
 | Tool search or code mode? | Anthropic recommends Tool Search above 10K tokens of definitions or 10+ tools (SQ1-16) | Cloudflare: search needs a maintained search function, and each matched tool still costs tokens (SQ1-38) | Not exclusive. Claude Code already has tool search on by default (SQ3-1); scripting removes intermediate data, which search doesn't. |
 | Is a sandbox enough? | Vendors run code in a V8 isolate or a managed container (SQ1-33, SQ1-36, SQ1-24) | The paper finds 16 attack classes and proposes layered defences beyond sandboxing (SQ2-10, SQ2-11) | Sandboxing is necessary but not proven sufficient, especially with untrusted tool outputs. |
 | Is it more accurate? | CodeAct: up to +20 points; the preprint: ≥ JSON in 11 of 14 models (SQ2-6, SQ2-7) | 3 of 14 models worse; tau2-bench scores unchanged (SQ2-8, SQ1-20) | Model-dependent. Gains show up on chained, multi-step tasks, not on 1–2 calls. |
@@ -204,8 +212,18 @@ implemented yet.
   independent evidence, SQ3 Claude Code. They used about 19, 17 and 14 tool calls.
 - **Evidence.** 65 items. `check_quotes.py`: 65 of 65 quotes found verbatim in the cached pages.
   One item (SQ1-25) is marked unverified by its worker; it repeats SQ1-24.
-- **Claim check.** Load-bearing claims were checked by fresh-context `claim-verifier` agents (see
-  `verdicts/`).
+- **Claim check.** Two fresh-context `claim-verifier` agents checked 10 load-bearing claims
+  (`claims/`, `verdicts/`).
+  - Result: 6 supported, 4 partial, 0 unsupported, contradicted or unverifiable. All partial
+    claims were narrowed in this report.
+  - What was narrowed:
+    - AIMultiple is no longer called independent (it discloses a commercial tie to Bright
+      Data), and its scope (one model, 2 query types) is stated.
+    - Anthropic's 98.7% is described as a worked example, not labelled "illustrative".
+    - The tool-search requirements now include the Google Cloud, Azure Foundry and HIPAA
+      exceptions.
+    - "Not a Claude Code setting" became "the Claude Code docs reviewed describe no setting".
+    - The BFCL caveat (309-entry subset; scores formatting, not execution) was added.
 - **Blocked or limited:**
   - github.com returned HTTP 400 to `fetch_page.py`.
   - `gh api` returned HTTP 403 ("GitHub access not enabled for this session") for every
@@ -216,7 +234,8 @@ implemented yet.
   - LinkedIn wasn't tried.
 - **Weak spots:**
   - Most savings numbers are vendor-reported.
-  - Only one independent task-level benchmark (one model), plus one 14-model preprint.
+  - Only one third-party task-level benchmark (one model, 2 query types, with a disclosed
+    commercial tie to the tested server), plus one 14-model preprint.
   - No measurement of debugging turns or of model-written code that fails.
 
 ## Open questions
