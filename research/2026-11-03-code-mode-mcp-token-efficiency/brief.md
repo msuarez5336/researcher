@@ -358,4 +358,5 @@ QUALITY BAR
 ```
 
 ## Approval
-- [ ] User approved on <date>, with these changes: <...>
+- [x] User approved on 2026-11-03 ("Ok"), with no changes. The follow-up benchmark in §9 is not
+  included. Research stays on branch `claude/code-mode-mcp-research`.
