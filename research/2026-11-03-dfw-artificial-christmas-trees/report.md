@@ -43,19 +43,24 @@ on the date given. They change daily, so treat them as ranges, not quotes.
      The catch: it's hard to repack. [E] (SQ1-10, SQ1-16, SQ1b-4, SQ1b-5) ✓
 2. **What to pay.**
    - **2026 prices:** Lowe's early Black Friday sale (seen 2026-10-29) had 7.5 ft pre-lit trees
-     from **$199.99** and 9 ft trees from **$269.99**, at "up to 40% off". [E] (SQ2b-1–SQ2b-5) ✓
-   - **Last season's sale prices** (Black Friday 2025): budget-to-mid 7.5 ft pre-lit trees about
-     **$140–$350**, and 9 ft about **$390–$450**. [E] (SQ2-1–SQ2-6) ✓
-   - **Premium list prices:** King of Christmas was about **$699** for a 7.5 ft flocked slim and
-     **$1,499** for a 9 ft flocked tree before its January 2026 clearance. [E] (SQ2b-6, SQ2b-7) ✓
-3. **The deepest discounts recorded were after Christmas.**
-   - On Amazon around 2025-12-10, a National Tree Co. 7.5 ft pre-lit Dunhill Fir was **$99.99**
-     against a $223 list price. [E] (SQ2-13) ✓
-   - A 9 ft unlit Dunhill Fir was **$199.99**, down from $396, in late December 2025. [E]
-     (SQ2b-13) ✓
-   - King of Christmas offered up to 70% off in January 2026. [E] (SQ2b-8) ✓
+     from **$199.99** and 9 ft trees from **$269.99**. The sale is advertised "up to 40% off",
+     but the trees listed were only about 9–16% off. [E] (SQ2b-1–SQ2b-5) ✓
+   - **Last season's sale prices** (Black Friday 2025): full-width 7.5 ft pre-lit trees about
+     **$140–$350**, with slim ones from about **$95**; 9 ft about **$390–$450**. [E]
+     (SQ2-1–SQ2-6) ✓
+   - **Premium "was" prices:** King of Christmas listed about **$699** for a 7.5 ft flocked slim
+     and **$1,499** for a 9 ft flocked tree in its January 2026 clearance. A "was" price isn't
+     proof of what the tree actually sold for. [E] (SQ2b-6, SQ2b-7) ✓
+3. **The biggest single discounts found came in December and January, not on Black Friday.**
+   This is a handful of deals, not a systematic comparison.
+   - In mid-December, before Christmas (posted around 2025-12-09/10), Amazon had a National Tree
+     Co. 7.5 ft pre-lit Dunhill Fir at **$99.99** against $223. [E] (SQ2-13) ✓
+   - After Christmas, a 9 ft unlit Dunhill Fir was **$199.99**, down from $396 (about 50%
+     off). [E] (SQ2b-13) ✓
+   - In January 2026, King of Christmas advertised "up to 70% off". The trees listed were about
+     25–43% off, plus an extra 20% with a code. [E] (SQ2b-6–SQ2b-8) ✓
 
-   The trade-off is selection: stock is thin then (see Where sources disagree). [O]
+   The trade-off is selection: stock gets thin (see Where sources disagree). [O]
 4. **Tariffs pushed 2025 prices up about 10–15%, and nobody has said what 2026 looks like.**
    - About 90% of US artificial trees are made in China (Fortune, November 2025). [E] (SQ2-9,
      SQ2-10) ✓
@@ -109,21 +114,22 @@ on the date given. They change daily, so treat them as ranges, not quotes.
 
 | Tier | 7.5 ft | 9 ft | Examples (retailer, date) | Evidence |
 |---|---|---|---|---|
-| Budget | about $100–$220 on sale | about $200–$320 | Best Choice 7.5 ft pre-lit $199.99 (Lowe's, Oct 2026); NTC 7.5 ft Dunhill $164 (Home Depot clearance, Dec 2025) and $99.99 (Amazon, Dec 2025); NTC 9 ft Dunhill unlit $199.99 (Amazon, Dec 2025); Goplus 9 ft pre-lit $319.77 (Lowe's, Oct 2026) | SQ2b-4, SQ2b-12, SQ2-13, SQ2b-13, SQ2b-3 ✓ |
+| Budget | about $95–$220 on sale | about $200–$320 | Best Choice 7.5 ft pre-lit $199.99 (Lowe's, Oct 2026); NTC 7.5 ft Dunhill $164 (Home Depot clearance, Dec 2025) and $99.99 (Amazon, Dec 2025); NTC 9 ft Dunhill unlit $199.99 (Amazon, Dec 2025); Goplus 9 ft pre-lit $319.77 (Lowe's, Oct 2026) | SQ2b-4, SQ2b-12, SQ2-13, SQ2b-13, SQ2b-3 ✓ |
 | Mid | about $220–$350 on sale | about $270–$450 | NTC 7.5 ft Norwegian Spruce $219.99 and Snowy Everest $349.99 (Amazon, Black Friday 2025); Home Decorators 7.5 ft Breckenridge Fraser Fir $299 (Home Depot, Dec 2025); NTC 9 ft Dunhill pre-lit $449.98 (Amazon, Black Friday 2025); Fraser Hill Farm 9 ft slim flocked $269.99 (Lowe's, Oct 2026) | SQ2-2, SQ2-3, SQ2b-11, SQ2-4, SQ2b-1 ✓ |
-| Premium | about $699 list (King of Christmas flocked slim) | about $1,499 list (King of Christmas flocked) | Clearance in Jan 2026 took these to $399 and $899 | SQ2b-6, SQ2b-7 ✓ |
+| Premium | about $699 "was" price (King of Christmas flocked slim) | about $1,499 "was" price (King of Christmas flocked) | The Jan 2026 clearance listed them at $399 and $899, before an extra 20% code | SQ2b-6–SQ2b-8 ✓ |
 
 The ranges are drawn from the listed examples only, a few prices per tier. They are not a market
 survey. No 2026 price was found for any shortlisted tree.
 
 **When to buy:**
-- **Now to Black Friday (November 27, 2026).** Early sales are already running: Lowe's has
-  "up to 40% off" (2026-10-29). [E] (SQ2b-5) ✓
+- **Now to Black Friday (November 27, 2026).** Early sales are already running. Lowe's
+  advertises "up to 40% off" (2026-10-29), though the trees listed were about 9–16% off. [E]
+  (SQ2b-1–SQ2b-5) ✓
   - Best for a tree you've settled on, while sizes and styles are still in stock.
   - The Black Friday date came from a search snippet. ~
-- **After Christmas (late December to mid-January).** This is where the deepest recorded cuts
-  were: roughly 50–70% off on National Tree Co. and King of Christmas trees. [E] (SQ2-13,
-  SQ2b-8, SQ2b-13) ✓
+- **Mid-December to mid-January.** The biggest single cuts found were here: about 55% off one
+  7.5 ft tree in mid-December, about 50% off a 9 ft tree after Christmas, and 25–43% (plus an
+  extra 20% code) at King of Christmas in January. [E] (SQ2-13, SQ2b-13, SQ2b-6–SQ2b-8) ✓
   - The catch is selection and stock. [O] (SQ2-12, SQ2b-8) ✓
   - It suits a tree for next year.
 - **Waiting a couple of weeks for a small discount** worked less well in 2025, according to
@@ -151,7 +157,7 @@ survey. No 2026 price was found for any shortlisted tree.
 |---|---|---|---|
 | Which tree is best overall? | **Balsam Hill:** Bob Vila (Classic Blue Spruce), Reviewed (Fraser Fir) | **Grand Duchess:** Yahoo #1. Taste of Home calls it best *smart*, and gives *most realistic* to Balsam Hill | Balsam Hill wins on realism if price doesn't matter. Grand Duchess wins on lights and easy setup. Testers judged different sizes and criteria (Reviewed tested 6.5–7.5 ft). |
 | Is the NTC Downswept Douglas Fir sturdy? | Bob Vila: crush-resistant tips held heavy ornaments (SQ1-2) | Yahoo: "a bit wobbly" (SQ1-13) | Different test units, and lit versus unlit versions. Check the stand when you set it up. |
-| Buy now or wait? | Balsam Hill CEO (2025): waiting for a 10% discount may not work in a tariff year (SQ2b-10) | Recorded post-Christmas cuts of 50–70% (SQ2-13, SQ2b-8, SQ2b-13) | Buy now for this Christmas and the full range of choice. Waiting works for next year's tree, if you accept whatever is left. |
+| Buy now or wait? | Balsam Hill CEO (2025): waiting for a 10% discount may not work in a tariff year (SQ2b-10) | December and January deals of about 25–55% off, with extra codes on top (SQ2-13, SQ2b-6–SQ2b-8, SQ2b-13) | Buy now for this Christmas and the full range of choice. Waiting works for next year's tree, if you accept whatever is left. |
 | Grand Duchess light colour and realism | Yahoo and Taste of Home: realistic, very little shedding (SQ1-10, SQ1b-4) | Christmas Tree Review Hub (scored from specs, not tested, grade C): about 50% PE, neutral-to-cool light (SQ1-21) | Hands-on testers outrank a spec-based score. If warm light matters to you, see it in person. |
 | Madisonville in Plano: store or pop-up? | CultureMap (Aug 2026): a store opening in September (SQ3-1) | Company release (Oct 2026): a seasonal pop-up (SQ3b-1) | The company's more recent wording wins. Expect it to be seasonal. |
 
