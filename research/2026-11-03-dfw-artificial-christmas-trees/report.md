@@ -14,11 +14,13 @@ on the date given. They change daily, so treat them as ranges, not quotes.
 ## Top findings
 
 1. **Three trees keep coming up across independent testers.** Each has its own trade-off.
-   - **National Tree Company "Feel Real" Downswept Douglas Fir (7.5 ft)** is picked by four sources:
-     - Bob Vila: "most realistic".
-     - Yahoo: "best for decorating".
+   - **National Tree Company "Feel Real" Downswept Douglas Fir (7.5 ft)** is picked by four
+     sources. They tested two versions:
+     - Bob Vila: "most realistic", for the **pre-lit** version (750 lights).
+     - Yahoo: "best for decorating", for the **unlit** version.
      - Reviewed: "best unlit", with a 5-year warranty.
-     - CNN Underscored: editor favorite, after a staffer's three seasons of use.
+     - CNN Underscored: editor favorite. A staffer is putting it up for a third season, so two
+       past seasons of use.
 
      The catch: it needs a lot of fluffing, and Yahoo found it a bit wobbly. [E]
      ([Bob Vila](https://www.bobvila.com/reviews/best-artificial-christmas-tree-options/),
@@ -26,9 +28,11 @@ on the date given. They change daily, so treat them as ranges, not quotes.
      [Reviewed](https://www.reviewed.com/home-outdoors/best-right-now/best-artificial-christmas-trees),
      [CNN](https://www.cnn.com/cnn-underscored/home/best-artificial-christmas-tree); SQ1-2, SQ1-13,
      SQ1b-9, SQ1b-13) ✓
-   - **Balsam Hill (Classic Blue Spruce, or Fraser Fir)** is the premium realism pick:
+   - **Balsam Hill (Classic Blue Spruce, or Fraser Fir)** is the premium pick. Testers don't all
+     rank it most realistic: Bob Vila gives that title to the National Tree Co. tree above.
      - Classic Blue Spruce: Bob Vila "best overall", Taste of Home "most realistic".
-     - Fraser Fir: Taste of Home "best pre-lit", Reviewed "best overall".
+     - Fraser Fir: Taste of Home "best pre-lit" (with Twinkly lights). Reviewed's "best overall"
+       is the Fraser Fir with Candlelight Clear LED.
      - Taste of Home lists a 3-year warranty covering the tree and the lights.
 
      The catch: testers found it wobbly and saw branches droop under heavy ornaments. Its 2026
@@ -38,7 +42,8 @@ on the date given. They change daily, so treat them as ranges, not quotes.
      light-show pick:
      - Yahoo's #1 overall.
      - Taste of Home's "best smart" tree, after a month-long test.
-     - 2,250 LEDs, very little shedding, 3-year warranty.
+     - 2,250 LEDs on the 7.5 ft tree Taste of Home tested, very little shedding, 3-year
+       warranty.
 
      The catch: it's hard to repack. [E] (SQ1-10, SQ1-16, SQ1b-4, SQ1b-5) ✓
 2. **What to pay.**
@@ -69,8 +74,8 @@ on the date given. They change daily, so treat them as ranges, not quotes.
    - No 2026 statement from the industry association (ACTA) or the press was found.
 5. **In DFW, the surest place to see many trees in person is Decorator's Warehouse in
    Arlington** (3708 W. Pioneer Pkwy).
-   - Arlington's visitor bureau lists "over 130 styles of lifelike pre-lit Christmas trees". [E]
-     (SQ3b-6) ✓
+   - Its listing on Arlington's visitor bureau site says "over 130 styles of lifelike pre-lit
+     Christmas trees". The store wrote that text itself, so it's self-reported. [E] (SQ3b-6) ✓
    - Its own site gives hours of Mon–Sat 10–6 and Sun 11–6, on an undated page. (SQ3b-7) ✓
    - Its 2026 season isn't confirmed, so call ahead. [O]
 
@@ -81,7 +86,7 @@ on the date given. They change daily, so treat them as ranges, not quotes.
 | The best value | **Puleo International Aspen Fir** (7.5 or 9 ft, pre-lit) or **Puleo Teton Pine** (7.5 ft, PVC, 600 lights) | Bob Vila's "best bang for the buck" (Aspen); Yahoo's best value (Teton), which lists a 5-year warranty | PVC needles look less real than PE (an opinion; see below) | SQ1-4, SQ1-11, SQ1-12 ✓ |
 | Realism at a mid price | **National Tree Co. Feel Real Downswept Douglas Fir** (7.5 ft, lit or unlit) | Four sources, above; 5-year warranty (Reviewed) | Lots of fluffing; about 50 lb; sections hard to separate | SQ1-2, SQ1-13, SQ1b-9, SQ1b-13 ✓ |
 | A light show | **Grand Duchess Twinkling / Smart Balsam Fir** (7.5, 9 ft; Home Depot) | Yahoo #1; Taste of Home best smart; 2,250 LEDs; 3-year warranty | Hard to repack; one lower-grade site says only about 50% PE and cool-toned light | SQ1-10, SQ1b-4, SQ1b-5 ✓; SQ1-21 (grade C) |
-| The most realism, price no object | **Balsam Hill Classic Blue Spruce** or **Fraser Fir** (7.5, 9 ft) | Top pick at Bob Vila, Taste of Home and Reviewed; 3-year warranty covering lights | Wobbly; sags under heavy ornaments; slowest to fluff; price not checked | SQ1-1, SQ1b-1, SQ1b-2, SQ1b-6, SQ1b-11 ✓ |
+| The most realism, price no object | **Balsam Hill Classic Blue Spruce** or **Fraser Fir** (7.5, 9 ft) | Best overall at Bob Vila and Reviewed; most realistic at Taste of Home; 3-year warranty covering lights | Wobbly; sags under heavy ornaments; slowest to fluff; price not checked | SQ1-1, SQ1b-1, SQ1b-2, SQ1b-6, SQ1b-11 ✓ |
 | A premium pre-lit tree | **King of Christmas King Fraser Fir** (7.5, 9 ft) | Bob Vila's "best prelit"; 1,000 LED microlights | Branches hard to compress for storage | SQ1-3 ✓ |
 | A flocked (snowy) look | **King of Christmas Queen Flock (Slim)** (7.5–9 ft) | Yahoo's best flocked; Taste of Home's best flocked | Sheds faux snow; one tester's stand bolt popped out; 2-year warranty | SQ1-15, SQ1b-7 ✓ |
 
@@ -140,7 +145,7 @@ survey. No 2026 price was found for any shortlisted tree.
 
 | Place | Area | Trees on display? | Notes | Evidence |
 |---|---|---|---|---|
-| **Decorator's Warehouse** | Arlington, 3708 W. Pioneer Pkwy | Yes: "over 130 styles of lifelike pre-lit Christmas trees" (Arlington visitor bureau listing) | Calls itself the largest Christmas store in Texas (self-reported). Hours Mon–Sat 10–6, Sun 11–6 (undated page). Call to confirm the 2026 season. | SQ3b-6, SQ3b-7, SQ3b-8 ✓ |
+| **Decorator's Warehouse** | Arlington, 3708 W. Pioneer Pkwy | Yes: "over 130 styles of lifelike pre-lit Christmas trees" (the store's own text on the Arlington visitor bureau listing) | Calls itself the largest Christmas store in Texas (self-reported). Hours Mon–Sat 10–6, Sun 11–6 (undated page). Call to confirm the 2026 season. | SQ3b-6, SQ3b-7, SQ3b-8 ✓ |
 | **Madisonville Christmas Company** (seasonal pop-up) | Plano, 5801 Preston Rd | Not stated | The company's press release (2026-10-12) confirms the pop-up and address; open by 2026-10-17. It describes "holiday decor, gifts and Christmas inspiration", not artificial trees, so call first. | SQ3b-1–SQ3b-3 ✓ |
 | **Calloway's Nursery** (garden centers across DFW) | Several DFW locations | Says it sells "lifelike" (artificial) trees as well as real ones | Sizes and stock by store unknown; call the store. | SQ3b-5 ✓ |
 | Big-box and decor chains: Home Depot, Lowe's, Costco, Walmart, Target, At Home, Michaels, Hobby Lobby | Throughout DFW | **Not confirmed** | Their store pages were blocked or returned errors, so in-store tree displays couldn't be checked. Many shortlisted trees are sold online at Amazon, Lowe's, Home Depot and Walmart (Bob Vila). | SQ1-1 ✓ (online availability only) |
@@ -155,7 +160,7 @@ survey. No 2026 price was found for any shortlisted tree.
 
 | Question | Position A | Position B | When each holds |
 |---|---|---|---|
-| Which tree is best overall? | **Balsam Hill:** Bob Vila (Classic Blue Spruce), Reviewed (Fraser Fir) | **Grand Duchess:** Yahoo #1. Taste of Home calls it best *smart*, and gives *most realistic* to Balsam Hill | Balsam Hill wins on realism if price doesn't matter. Grand Duchess wins on lights and easy setup. Testers judged different sizes and criteria (Reviewed tested 6.5–7.5 ft). |
+| Which tree is best overall, and which is most realistic? | **Balsam Hill:** Bob Vila (Classic Blue Spruce), Reviewed (Fraser Fir) | **Grand Duchess:** Yahoo #1. Taste of Home calls it best *smart*. For *most realistic*, Taste of Home picks Balsam Hill and Bob Vila picks the National Tree Co. Douglas Fir | Balsam Hill wins on realism if price doesn't matter. Grand Duchess wins on lights and easy setup. Testers judged different sizes and criteria (Reviewed tested 6.5–7.5 ft). |
 | Is the NTC Downswept Douglas Fir sturdy? | Bob Vila: crush-resistant tips held heavy ornaments (SQ1-2) | Yahoo: "a bit wobbly" (SQ1-13) | Different test units, and lit versus unlit versions. Check the stand when you set it up. |
 | Buy now or wait? | Balsam Hill CEO (2025): waiting for a 10% discount may not work in a tariff year (SQ2b-10) | December and January deals of about 25–55% off, with extra codes on top (SQ2-13, SQ2b-6–SQ2b-8, SQ2b-13) | Buy now for this Christmas and the full range of choice. Waiting works for next year's tree, if you accept whatever is left. |
 | Grand Duchess light colour and realism | Yahoo and Taste of Home: realistic, very little shedding (SQ1-10, SQ1b-4) | Christmas Tree Review Hub (scored from specs, not tested, grade C): about 50% PE, neutral-to-cool light (SQ1-21) | Hands-on testers outrank a spec-based score. If warm light matters to you, see it in person. |
@@ -181,8 +186,18 @@ survey. No 2026 price was found for any shortlisted tree.
   - Wave 1: SQ1 quality, SQ2 prices, SQ3 DFW stores, 15 calls each.
   - Wave 2: SQ1b, SQ2b, SQ3b, 12 calls each, aimed at the gaps wave 1 left.
 - **Evidence.** 74 items. `check_quotes.py`: 74 of 74 quotes found verbatim in the cached pages.
-- **Claim check.** Load-bearing claims were checked by fresh-context `claim-verifier` agents (see
-  `verdicts/`).
+- **Claim check.** Two fresh-context `claim-verifier` agents checked 10 load-bearing claims
+  (`claims/`, `verdicts/`).
+  - Result: 5 supported, 5 partial, 0 unsupported, contradicted or unverifiable. Every partial
+    claim was narrowed in this report.
+  - What was narrowed:
+    - The NTC tree's lit and unlit versions are now kept separate.
+    - CNN's use is two past seasons, not three.
+    - Balsam Hill is no longer called every tester's realism pick.
+    - Lowe's "up to 40%" is shown as a headline: the listed trees were about 9–16% off.
+    - The Black Friday 2025 low end is about $95 (slim trees).
+    - The $99.99 deal was before Christmas.
+    - King of Christmas "was" prices and its "up to 70%" headline are labelled as such.
 - **Blocked or failed:**
 
   | Site | Problem |
