@@ -1,0 +1,104 @@
+[
+ {
+  "cid": "C1",
+  "claim": "An independent benchmark (AIMultiple, GPT-4.1, Bright Data MCP) measured 78.5% fewer input tokens with code execution than regular MCP tool calling (165K vs 771K), with both approaches at 100% success, but code execution used 2.2x more output tokens.",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "Input token savings: Code execution uses 78.5% fewer input tokens (165K vs 771K):",
+    "url": "https://research.aimultiple.com/code-execution-with-mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/research.aimultiple.com-22b5e87e8b.txt"
+   },
+   {
+    "id": "SQ2-2",
+    "quote": "Higher output tokens: Code execution approach uses 2.2\u00d7 more output tokens because the model writes code + explanations",
+    "url": "https://research.aimultiple.com/code-execution-with-mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/research.aimultiple.com-22b5e87e8b.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "Anthropic reports programmatic tool calling cut average tokens 37% (43,588 to 27,297) on complex research tasks, while its docs report that on tau2-bench with 1-2 sequential tool calls per turn it left scores unchanged and cost roughly 8 percent more.",
+  "evidence": [
+   {
+    "id": "SQ1-12",
+    "quote": "Average usage dropped from 43,588 to 27,297 tokens, a 37% reduction on complex research tasks.",
+    "url": "https://www.anthropic.com/engineering/advanced-tool-use",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/www.anthropic.com-fe2899cf9c.txt"
+   },
+   {
+    "id": "SQ1-20",
+    "quote": "programmatic tool calling left scores unchanged and cost roughly 8 percent more. Sequential single-call workflows do not benefit.",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/platform.claude.com-667c8bf3c3.txt"
+   },
+   {
+    "id": "SQ1-21",
+    "quote": "Programmatic tool calling trades a small fixed overhead (container startup, script generation) for large savings on tool-result tokens and model round-trips.",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/platform.claude.com-667c8bf3c3.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "Cloudflare reports its Code Mode MCP server for the full Cloudflare API uses about 1,000 tokens versus 1.17 million tokens for an equivalent MCP server without Code Mode (99.9%), and its internal portal's 52 tools (about 9,400 tokens) collapse into 2 portal tools using about 600 tokens (94%).",
+  "evidence": [
+   {
+    "id": "SQ1-35",
+    "quote": "An equivalent MCP server without Code Mode would consume 1.17 million tokens",
+    "url": "https://blog.cloudflare.com/code-mode-mcp/",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/blog.cloudflare.com-87ac3d4a22.txt"
+   },
+   {
+    "id": "SQ1-39",
+    "quote": "those 52 tools collapse into 2 portal tools consuming roughly 600 tokens",
+    "url": "https://blog.cloudflare.com/enterprise-mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/blog.cloudflare.com-2832b2e139.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "Bifrost (Maxim AI) reports Code Mode cut input tokens 58.2% at 96 tools, 84.5% at 251 tools and 92.8% at 508 tools; Anthropic's 150,000-to-2,000-token (98.7%) figure is an illustrative example of progressive tool disclosure, not a benchmarked evaluation.",
+  "evidence": [
+   {
+    "id": "SQ2-4",
+    "quote": "In Bifrost's benchmark, Code Mode cut input tokens by 58.2% at 96 tools, 84.5% at 251 tools, and 92.8% at 508 tools, with a 100% pass rate in every round.",
+    "url": "https://www.getmaxim.ai/articles/cutting-mcp-token-costs-by-92-at-500-tools/",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/www.getmaxim.ai-02cbaafaec.txt"
+   },
+   {
+    "id": "SQ1-2",
+    "quote": "This reduces the token usage from 150,000 tokens to 2,000 tokens",
+    "url": "https://www.anthropic.com/engineering/code-execution-with-mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/www.anthropic.com-4dd2373a00.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "A 2026 preprint found programmatic tool calling matches or exceeds native JSON tool calling in 11 of 14 models on BFCL v4; Felendler et al. (2026) found code-execution MCP significantly reduces token usage and latency but introduces a vastly expanded attack surface, identifying 16 attack classes.",
+  "evidence": [
+   {
+    "id": "SQ2-7",
+    "quote": "Programmatic tool calling matches or exceeds native JSON tool calling in 11 of 14 models on BFCL v4, with the GPT-5.6 family achieving a 10.6% improvement over the JSON tool calling baseline.",
+    "url": "https://arxiv.org/abs/2608.06370",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/arxiv.org-8379ed04cf.txt"
+   },
+   {
+    "id": "SQ2-8",
+    "quote": "Programmatic tool calling matches or exceeds native JSON tool calling in 11 of 14 models on BFCL v4,",
+    "url": "https://arxiv.org/abs/2608.06370",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/arxiv.org-8379ed04cf.txt"
+   },
+   {
+    "id": "SQ2-10",
+    "quote": "demonstrating that while CE-MCP significantly reduces token usage and execution latency, it introduces a vastly expanded attack surface.",
+    "url": "https://arxiv.org/abs/2602.15945",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/arxiv.org-cc7bf32230.txt"
+   }
+  ]
+ }
+]

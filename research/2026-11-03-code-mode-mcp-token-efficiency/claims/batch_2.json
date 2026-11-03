@@ -1,0 +1,104 @@
+[
+ {
+  "cid": "C6",
+  "claim": "In Claude Code, MCP tool search is enabled by default so MCP tool definitions are deferred; ENABLE_TOOL_SEARCH=auto loads tools upfront while their definitions stay under 10% of the context window, and tool search requires Sonnet 4, Opus 4 or Haiku 4.5 and later.",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "Tool search is enabled by default: MCP tools are deferred and discovered on demand.",
+    "url": "https://code.claude.com/docs/en/mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-eb2b4999a9.txt"
+   },
+   {
+    "id": "SQ3-2",
+    "quote": "At 10% or more, tool search turns on",
+    "url": "https://code.claude.com/docs/en/mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-eb2b4999a9.txt"
+   },
+   {
+    "id": "SQ3-3",
+    "quote": "Tool search isn\u2019t supported on Microsoft Foundry deployments hosted on Azure",
+    "url": "https://code.claude.com/docs/en/mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-eb2b4999a9.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "In Claude Code, successful MCP text results longer than 50,000 characters are saved to a file regardless of MAX_MCP_OUTPUT_TOKENS, and a server can raise a tool's threshold up to a 500,000-character ceiling.",
+  "evidence": [
+   {
+    "id": "SQ3-4",
+    "quote": "Setting MAX_MCP_OUTPUT_TOKENS doesn\u2019t change this threshold",
+    "url": "https://code.claude.com/docs/en/mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-eb2b4999a9.txt"
+   },
+   {
+    "id": "SQ3-5",
+    "quote": "Claude Code raises that tool\u2019s threshold to the annotated value, up to a hard ceiling of 500,000 characters.",
+    "url": "https://code.claude.com/docs/en/mcp",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-eb2b4999a9.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "A Claude Code PostToolUse hook can return updatedToolOutput to replace the tool result Claude sees; the tool has already run when the hook fires, and OpenTelemetry spans capture the original output.",
+  "evidence": [
+   {
+    "id": "SQ3-8",
+    "quote": "PostToolUse : updatedToolOutput replaces the tool\u2019s result.",
+    "url": "https://code.claude.com/docs/en/hooks",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-4f437b4495.txt"
+   },
+   {
+    "id": "SQ3-9",
+    "quote": "updatedToolOutput only changes what Claude sees. The tool has already run by the time the hook fires",
+    "url": "https://code.claude.com/docs/en/hooks",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-4f437b4495.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "Claude Code's Bash sandbox is OS-enforced, covers filesystem and network access, and is off by default (enabled with /sandbox or sandbox.enabled).",
+  "evidence": [
+   {
+    "id": "SQ3-10",
+    "quote": "The sandbox is off by default.",
+    "url": "https://code.claude.com/docs/en/sandboxing",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-103f90209f.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "Programmatic tool calling is a Messages API feature (allowed_callers with code_execution_20260120 or later), not a Claude Code setting; Claude Haiku 4.5 does not support it; tools from an MCP connector cannot be called programmatically; and for token accounting with the Agent SDK, modelUsage should be used because the usage field undercounts when subagents run.",
+  "evidence": [
+   {
+    "id": "SQ3-11",
+    "quote": "Programmatic tool calling allows Claude to write code that calls your tools programmatically within a code execution container",
+    "url": "https://platform.claude.com/docs/agents-and-tools/tool-use/programmatic-tool-calling",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/platform.claude.com-e80c81beb9.txt"
+   },
+   {
+    "id": "SQ1-19",
+    "quote": "Claude Haiku 4.5 accepts the code_execution_20260120 and later tool versions but doesn\u2019t support programmatic tool calling.",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/platform.claude.com-667c8bf3c3.txt"
+   },
+   {
+    "id": "SQ1-22",
+    "quote": "Tools provided by an MCP connector",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/platform.claude.com-667c8bf3c3.txt"
+   },
+   {
+    "id": "SQ3-13",
+    "quote": "Use modelUsage , or model_usage in Python, for whole-tree token accounting; the usage field undercounts as soon as nesting occurs.",
+    "url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking",
+    "page": "research/2026-11-03-code-mode-mcp-token-efficiency/pages/code.claude.com-e40616413d.txt"
+   }
+  ]
+ }
+]
