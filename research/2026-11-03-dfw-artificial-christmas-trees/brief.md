@@ -272,4 +272,5 @@ QUALITY BAR
 ```
 
 ## Approval
-- [ ] User approved on <date>, with these changes: <...>
+- [x] User approved on 2026-11-03 ("Run them"), with no changes. No budget or style
+  preference was given, so the report gives picks across budgets and styles.
