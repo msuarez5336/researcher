@@ -1,0 +1,134 @@
+[
+ {
+  "cid": "C6",
+  "claim": "In Lowe's early Black Friday 2026 sale (reported by Bob Vila on 2026-10-29), Christmas trees were up to 40% off, including a Best Choice Products 7.5 ft pre-lit tree at $199.99 (was $219.99), a Fraser Hill Farm 9 ft slim flocked tree at $269.99 (was $299.99) and a Goplus 9 ft pre-lit tree at $319.77 (was $379).",
+  "evidence": [
+   {
+    "id": "SQ2b-5",
+    "quote": "Lowe's Black Friday sale has Christmas trees and holiday decor marked down up to 40% off.",
+    "url": "https://www.bobvila.com/reviews/lowes-early-black-friday-holiday-decor-2026.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-482a6ac188.txt"
+   },
+   {
+    "id": "SQ2b-4",
+    "quote": "Best Choice Products 7.5-Foot Pre-Lit Spruce Christmas Tree for $199.99",
+    "url": "https://www.bobvila.com/reviews/lowes-early-black-friday-holiday-decor-2026.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-482a6ac188.txt"
+   },
+   {
+    "id": "SQ2b-1",
+    "quote": "Fraser Hill Farm 9-Ft. Slim Flocked Tree for $269.99",
+    "url": "https://www.bobvila.com/reviews/lowes-early-black-friday-holiday-decor-2026.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-482a6ac188.txt"
+   },
+   {
+    "id": "SQ2b-3",
+    "quote": "Goplus 9-Ft. Pre-Lit Christmas Tree for $319.77",
+    "url": "https://www.bobvila.com/reviews/lowes-early-black-friday-holiday-decor-2026.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-482a6ac188.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "On Black Friday 2025 (seen 2025-11-27), 7.5 ft pre-lit National Tree Company trees on Amazon were on sale for about $142-$350 (Winchester Pine $141.99, Norwegian Spruce $219.99, Snowy Everest Fir $349.99), and 9 ft pre-lit trees for about $387-$450 (Glitzhome flocked spruce $387.44 at Home Depot, National Tree Dunhill Fir $449.98 at Amazon).",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "National Tree 7.5-ft Pre-Lit Winchester Pine (Clear) for $141.99",
+    "url": "https://www.bobvila.com/reviews/black-friday-christmas-tree-deals-nov-2025.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-2d1c8a7e22.txt"
+   },
+   {
+    "id": "SQ2-2",
+    "quote": "National Tree 7.5-ft \u201cFeel Real\u201d Pre-Lit Norwegian Spruce for $219.99",
+    "url": "https://www.bobvila.com/reviews/black-friday-christmas-tree-deals-nov-2025.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-2d1c8a7e22.txt"
+   },
+   {
+    "id": "SQ2-3",
+    "quote": "National Tree 7.5-ft Pre-Lit Snowy Everest Fir for $349.99",
+    "url": "https://www.bobvila.com/reviews/black-friday-christmas-tree-deals-nov-2025.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-2d1c8a7e22.txt"
+   },
+   {
+    "id": "SQ2-6",
+    "quote": "Glitzhome 9-ft Pre-Lit Flocked Spruce for $387.44",
+    "url": "https://www.bobvila.com/reviews/black-friday-christmas-tree-deals-nov-2025.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-2d1c8a7e22.txt"
+   },
+   {
+    "id": "SQ2-4",
+    "quote": "National Tree 9-ft Pre-Lit Dunhill Fir Tree for $449.98",
+    "url": "https://www.bobvila.com/reviews/black-friday-christmas-tree-deals-nov-2025.md",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-2d1c8a7e22.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "The deepest discounts recorded were after Christmas: a National Tree Company 7.5 ft pre-lit Dunhill Fir listed at $99.99 against $223 on Amazon around 2025-12-10; a 9 ft unlit Dunhill Fir at $199.99 (was $396) in Amazon's post-Christmas December 2025 sales; and King of Christmas offering up to 70% off plus an extra 20% in January 2026.",
+  "evidence": [
+   {
+    "id": "SQ2-13",
+    "quote": "$99.99",
+    "url": "https://slickdeals.net/f/18949555-99-99-national-tree-company-7-5-ft-pre-lit-dunhill-fir-artificial-christmas-tree-at-amazon",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/slickdeals.net-133977360c.txt"
+   },
+   {
+    "id": "SQ2b-13",
+    "quote": "National Tree Co. 9\u2032 Dunhill Fir (Unlit) for $199.99 (was $396.00)",
+    "url": "https://www.bobvila.com/reviews/after-xmas-christmas-tree-deals-dec-2025/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-5933a69046.txt"
+   },
+   {
+    "id": "SQ2b-8",
+    "quote": "discounts up to 70% off, and you can take an extra 20% off with code AFTER20 through January 15",
+    "url": "https://www.bobvila.com/reviews/king-of-christmas-clearance-deals-jan-2026/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-353814c115.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "About 90% of the artificial Christmas trees sold in the US are made in China, and tariffs created about 10-15% upward pressure on prices in 2025 (Fortune, November 2025); Balsam Hill's CEO told shoppers to expect prices about 10-15% higher than the year before.",
+  "evidence": [
+   {
+    "id": "SQ2-9",
+    "quote": "About 85% of the 20 million or so Christmas trees being sold in the U.S. annually are artificial, and of those, about 90% are made in China.",
+    "url": "https://fortune.com/2025/11/22/christmas-tree-tariffs-artificial-natural-prices-economy",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/fortune.com-02465089bd.txt"
+   },
+   {
+    "id": "SQ2-10",
+    "quote": "upward pressure of about 10% to 15% on what Americans are shelling",
+    "url": "https://fortune.com/2025/11/22/christmas-tree-tariffs-artificial-natural-prices-economy",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/fortune.com-02465089bd.txt"
+   },
+   {
+    "id": "SQ2-8",
+    "quote": "Whatever price point you might have been looking at last year, expect that to be about 10% to 15% more this year,",
+    "url": "https://www.hppr.org/npr-news/2025-11-16/your-artificial-christmas-tree-will-cost-more-this-year-thanks-in-part-to-tariffs",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.hppr.org-f048438628.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "Before its January 2026 clearance, King of Christmas priced a 7.5 ft King Flock Slim at $699 and a 9 ft King Flock at $1,499; the clearance took them to $399 and $899.",
+  "evidence": [
+   {
+    "id": "SQ2b-6",
+    "quote": "7.5 Foot King Flock Slim Artificial Christmas Tree, now $399 (was $699)",
+    "url": "https://www.bobvila.com/reviews/king-of-christmas-clearance-deals-jan-2026/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-353814c115.txt"
+   },
+   {
+    "id": "SQ2b-7",
+    "quote": "9 Foot King Flock Artificial Christmas Tree, now $899 (was $1,499)",
+    "url": "https://www.bobvila.com/reviews/king-of-christmas-clearance-deals-jan-2026/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-353814c115.txt"
+   }
+  ]
+ }
+]

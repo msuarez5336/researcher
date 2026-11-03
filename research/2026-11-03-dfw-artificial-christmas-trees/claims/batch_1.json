@@ -1,0 +1,152 @@
+[
+ {
+  "cid": "C1",
+  "claim": "The National Tree Company (Feel Real) Downswept Douglas Fir 7.5 ft is Bob Vila's 'most realistic' pick, Yahoo Shopping's 'best for decorating' pick, Reviewed's best unlit pick with a 5-year manufacturer's warranty, and a CNN Underscored Editor Favorite based on a staffer's three years of use.",
+  "evidence": [
+   {
+    "id": "SQ1-2",
+    "quote": "We tested the 7.5-foot model; it features 1,867 branch tips and 750 independently operating lights that switch between white and multicolor via a foot switch.",
+    "url": "https://www.bobvila.com/reviews/best-artificial-christmas-tree-options/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-2cdd460d3d.txt"
+   },
+   {
+    "id": "SQ1-13",
+    "quote": "Tip material: PVC/PE | Assembly: Hinged branches | Light type: Unlit | Tip count: 1,867",
+    "url": "https://shopping.yahoo.com/home-garden/home-decor/article/best-artificial-christmas-trees-210447647.html",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/shopping.yahoo.com-95a40615aa.txt"
+   },
+   {
+    "id": "SQ1b-13",
+    "quote": "Good balance of cost, realism and ease of setup",
+    "url": "https://www.reviewed.com/home-outdoors/best-right-now/best-artificial-christmas-trees",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.reviewed.com-a0b1e25c16.txt"
+   },
+   {
+    "id": "SQ1b-14",
+    "quote": "5-year manufacturer's warranty",
+    "url": "https://www.reviewed.com/home-outdoors/best-right-now/best-artificial-christmas-trees",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.reviewed.com-a0b1e25c16.txt"
+   },
+   {
+    "id": "SQ1b-9",
+    "quote": "This year will be the third year CNN Underscored strategy and operations manager DaVonne Bacchus puts up his \u2018Feel Real\u2019 tree",
+    "url": "https://www.cnn.com/cnn-underscored/home/best-artificial-christmas-tree",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.cnn.com-a913194317.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "Balsam Hill trees are the top realism pick across testers: Bob Vila's best overall is the Balsam Hill Classic Blue Spruce; Taste of Home names the Classic Blue Spruce most realistic and the Balsam Hill Fraser Fir with Twinkly lights best pre-lit, with a 3-year warranty covering tree and lights; Reviewed's best overall is the Balsam Hill Fraser Fir. Taste of Home found the 7.5 ft Blue Spruce wobbly and weak with heavy ornaments.",
+  "evidence": [
+   {
+    "id": "SQ1-1",
+    "quote": "We tested the 7-foot version; it features 2,366 branch tips and 850 LED lights controlled by a foot pedal.",
+    "url": "https://www.bobvila.com/reviews/best-artificial-christmas-tree-options/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-2cdd460d3d.txt"
+   },
+   {
+    "id": "SQ1b-1",
+    "quote": "If you looked up \u201cChristmas tree\u201d in the dictionary, there\u2019s a chance you\u2019d find an image of the Balsam Hill Classic Blue Spruce .",
+    "url": "https://www.tasteofhome.com/collection/best-artificial-christmas-trees/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.tasteofhome.com-c28e4b88ee.txt"
+   },
+   {
+    "id": "SQ1b-2",
+    "quote": "This 7.5-foot tree took the longest to fluff of all the trees (even longer than the 9-footers)",
+    "url": "https://www.tasteofhome.com/collection/best-artificial-christmas-trees/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.tasteofhome.com-c28e4b88ee.txt"
+   },
+   {
+    "id": "SQ1b-6",
+    "quote": "they\u2019re backed by a best-in-class, three-year warranty that covers the tree as well as the lights.",
+    "url": "https://www.tasteofhome.com/collection/best-artificial-christmas-trees/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.tasteofhome.com-c28e4b88ee.txt"
+   },
+   {
+    "id": "SQ1b-11",
+    "quote": "It\u2019s our Best Overall because, if you\u2019re willing to pay, it\u2019s worth every penny.",
+    "url": "https://www.reviewed.com/home-outdoors/best-right-now/best-artificial-christmas-trees",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.reviewed.com-a0b1e25c16.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "The Home Depot / Home Decorators Collection Grand Duchess tree took the top spot in Yahoo Shopping's testing (7.5 ft tested, 2,250 LEDs, very little shedding) and is Taste of Home's Best Smart tree after a month-long test of the 7.5 ft version, with a 3-year warranty listed.",
+  "evidence": [
+   {
+    "id": "SQ1-10",
+    "quote": "This absolute stunner from The Home Depot took the top spot in our testing.",
+    "url": "https://shopping.yahoo.com/home-garden/home-decor/article/best-artificial-christmas-trees-210447647.html",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/shopping.yahoo.com-95a40615aa.txt"
+   },
+   {
+    "id": "SQ1b-4",
+    "quote": "Editor Paul Rankin tested the 7.5-foot version for a month and had it assembled in about 20 minutes, not including fluffing.",
+    "url": "https://www.tasteofhome.com/collection/best-artificial-christmas-trees/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.tasteofhome.com-c28e4b88ee.txt"
+   },
+   {
+    "id": "SQ1b-5",
+    "quote": "Size options: 7.5, 9, 12 and 15 foot, also full/slim, flocked/unflocked | Warranty: 3 years | Light options: White or multi-color, steady, twinkle, slow fade, flip and variable | Inclusions: Metal stand, remote",
+    "url": "https://www.tasteofhome.com/collection/best-artificial-christmas-trees/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.tasteofhome.com-c28e4b88ee.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "Puleo International's pre-lit Aspen Fir is Bob Vila's 'best bang for the buck' pick, and Puleo's pre-lit Teton Pine (7.5 ft, PVC, 600 clear lights) is Yahoo Shopping's best value pick with a five-year warranty.",
+  "evidence": [
+   {
+    "id": "SQ1-4",
+    "quote": "We found the 7.5-foot tree easy to assemble, thanks to hinged branches that required only light fluffing.",
+    "url": "https://www.bobvila.com/reviews/best-artificial-christmas-tree-options/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.bobvila.com-2cdd460d3d.txt"
+   },
+   {
+    "id": "SQ1-11",
+    "quote": "Tip material: PVC | Assembly: Hinged branches | Light type: Clear | Bulb count: 600 | Tip count: 1,347",
+    "url": "https://shopping.yahoo.com/home-garden/home-decor/article/best-artificial-christmas-trees-210447647.html",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/shopping.yahoo.com-95a40615aa.txt"
+   },
+   {
+    "id": "SQ1-12",
+    "quote": "Comes with a five-year warranty",
+    "url": "https://shopping.yahoo.com/home-garden/home-decor/article/best-artificial-christmas-trees-210447647.html",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/shopping.yahoo.com-95a40615aa.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "Decorator's Warehouse at 3708 W. Pioneer Pkwy, Arlington, Texas is listed by the Arlington visitor bureau as having over 130 styles of lifelike pre-lit Christmas trees; Madisonville Christmas Company opened a seasonal Plano pop-up at 5801 Preston Road in 2026 (press release dated 2026-10-12), and that release does not say artificial trees are sold there.",
+  "evidence": [
+   {
+    "id": "SQ3b-6",
+    "quote": "you'll find over 130 styles of lifelike pre-lit Christmas trees",
+    "url": "https://www.arlington.org/listings/decorators-warehouse/294/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.arlington.org-1afc213a98.txt"
+   },
+   {
+    "id": "SQ3b-7",
+    "quote": "Monday - Saturday 10am - 6pm | Sunday 11am - 6pm",
+    "url": "https://decoratorswarehouse.com/blog/8-reasons-to-visit-the-largest-christmas-store-in-texas/",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/decoratorswarehouse.com-f4a35788b3.txt"
+   },
+   {
+    "id": "SQ3b-1",
+    "quote": "In 2026, the company expands with a seasonal Plano, Texas, pop-up at 5801 Preston Road, bringing a curated version of the experience to the Dallas-Fort Worth area.",
+    "url": "https://www.webull.com/news/15737309371835392",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.webull.com-a125708d4d.txt"
+   },
+   {
+    "id": "SQ3b-3",
+    "quote": "discover a curated selection of the brand's holiday d\u00e9cor, gifts and Christmas inspiration",
+    "url": "https://www.webull.com/news/15737309371835392",
+    "page": "research/2026-11-03-dfw-artificial-christmas-trees/pages/www.webull.com-a125708d4d.txt"
+   }
+  ]
+ }
+]
