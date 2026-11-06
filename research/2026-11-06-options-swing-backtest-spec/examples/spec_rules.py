@@ -27,9 +27,9 @@ SPEC = {
     "spread_short_delta": 0.25,
     "max_spread_pct_of_mid": 0.08,
     "min_open_interest": 500,     # use prior-day OI (point in time)
-    "fill_k": 0.70,               # F3: buys at bid + k*(ask-bid); stress at 1.0
+    "fill_k": 0.70,               # F3: buys at bid + k*(ask-bid); stress 1.0 (Muravyev & Pearson 2020)
     "commission_per_contract": 0.65,
-    "fees_per_contract": 0.05,    # placeholder; set from report.md section on costs
+    "fees_per_contract": 0.05,    # OCC $0.025 + ORF/TAF/CAT, ~$0.05 all-in (report.md, costs)
     "profit_target_spread": 0.50,  # of max profit (F7)
     "profit_target_single": 0.35,  # of premium paid (F7)
     "max_option_loss": 0.50,       # A6 backstop, of premium paid

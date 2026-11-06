@@ -1,0 +1,104 @@
+[
+ {
+  "cid": "C6",
+  "claim": "Muravyev & Pearson (Review of Financial Studies, 2020) find that effective spreads for traders who time their executions are under 40% of conventional measures, and the overall average effective spread is about one-quarter smaller than conventional estimates.",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "Effective spreads of traders who time executions are less than 40% of the size of conventional measures, and the overall average effective spread is one-quarter smaller than conventional estimates.",
+    "url": "https://ideas.repec.org/a/oup/rfinst/v33y2020i11p4973-5014..html",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/ideas.repec.org-0f9d904d0b.txt"
+   },
+   {
+    "id": "SQ2-2",
+    "quote": "Conventional measures of transactions costs are large: The effective spreads are about 80% of the size of the quoted spreads. The price impacts are also large.",
+    "url": "https://threadreaderapp.com/thread/1346160221408829441.html",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/threadreaderapp.com-24c801c21c.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "Interactive Brokers Pro charges $0.65 per option contract at up to 10,000 contracts per month (minimum $1 per order), and passes through an OCC clearing fee of $0.025 per contract.",
+  "evidence": [
+   {
+    "id": "SQ2-3",
+    "quote": "USD 0.65 /contract",
+    "url": "https://www.interactivebrokers.com/en/pricing/commissions-options.php",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/www.interactivebrokers.com-1ba2283ed4.txt"
+   },
+   {
+    "id": "SQ2-4",
+    "quote": "All Contracts: 0.025 /contract",
+    "url": "https://www.interactivebrokers.com/en/pricing/commissions-options.php",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/www.interactivebrokers.com-1ba2283ed4.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "As of November 2026 the SEC Section 31 fee is $20.60 per million dollars of sale proceeds (effective 2026-04-04), and the FINRA Trading Activity Fee on option sales is $0.00329 per contract but is suspended from 2026-10-01 to 2026-12-31.",
+  "evidence": [
+   {
+    "id": "SQ2-7",
+    "quote": "As of April 4, 2026, the SEC fee is $20.60 per $1 million of principal (only for sell orders), which is rounded up to the nearest penny.",
+    "url": "https://robinhood.com/us/en/support/articles/trading-fees-on-robinhood/",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/robinhood.com-1068d6678d.txt"
+   },
+   {
+    "id": "SQ2-8",
+    "quote": "The trading activity fee (TAF) is temporarily paused from October 1, 2026, through December 31, 2026 per FINRA.",
+    "url": "https://robinhood.com/us/en/support/articles/trading-fees-on-robinhood/",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/robinhood.com-1068d6678d.txt"
+   },
+   {
+    "id": "SQ2-10",
+    "quote": "$0.00329 per contract",
+    "url": "https://www.finra.org/rules-guidance/rule-filings/sr-finra-2024-019/fee-adjustment-schedule",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/www.finra.org-1a8406b1d2.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "Bailey, Borwein, López de Prado and Zhu ('The Probability of Backtest Overfitting', Journal of Computational Finance) argue that hold-out validation is unreliable for investment backtests and propose estimating the probability of backtest overfitting with combinatorially symmetric cross-validation (CSCV); the Deflated Sharpe Ratio (Bailey & López de Prado, 2014) adjusts the Sharpe ratio for the number of trials, non-normal returns and sample length.",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "Standard statistical techniques designed to prevent regression overfitting, such as hold-out, tend to be unreliable and inaccurate in the context of investment backtests.",
+    "url": "https://scholarworks.wmich.edu/math_pubs/42",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/scholarworks.wmich.edu-8e41a19f83.txt"
+   },
+   {
+    "id": "SQ3-3",
+    "quote": "DSR considers non-normality of returns, length of the training sample, number of independent trials and intensity of",
+    "url": "https://www.cxoadvisory.com/big-ideas/10-steps-to-becoming-a-better-quant",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/www.cxoadvisory.com-d2b0368b96.txt"
+   },
+   {
+    "id": "SQ3-5",
+    "quote": "Per Bailey and Lopex de Prado (2014), construct a Deflated Sharpe Ratio and associated p-value based on an observed Sharpe ratio and information drawn",
+    "url": "https://www.rdocumentation.org/packages/quantstrat/versions/0.16.7/topics/deflatedSharpe",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/www.rdocumentation.org-4d9b74286a.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "Early exercise of an in-the-money American call just before the ex-dividend date is rational when the call's remaining time (extrinsic) value is less than the dividend, so a short ITM call is at high assignment risk the day before ex-dividend under that condition.",
+  "evidence": [
+   {
+    "id": "SQ3-10",
+    "quote": "Time value must be less than the dividend for early exercise to make economic sense. Exercising forfeits remaining time value, so the dividend needs to exceed that amount.",
+    "url": "https://app.certfuel.com/series7/learn/options/options-fundamentals/dividends-and-their-effect-on-options",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/app.certfuel.com-201296424b.txt"
+   },
+   {
+    "id": "SQ3-8",
+    "quote": "if a trader is short an ITM call and the extrinsic value of the corresponding put is less than the upcoming dividend, the trader is more likely to be subject to early assignment",
+    "url": "https://www.schwab.com/learn/story/ex-dividend-dates-understanding-dividend-risk",
+    "page": null
+   }
+  ]
+ }
+]

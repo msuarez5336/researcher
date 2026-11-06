@@ -1,0 +1,425 @@
+<title>Swing Options Backtest Spec</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a spec sheet. DTE ruler + checker up top (the tool), then the five phases as a numbered
+   procedure, then evidence, examples, change log. Single column, max ~980px. */
+:root {
+  --paper: #f5f6f3;
+  --sheet: #ffffff;
+  --ink: #17202b;
+  --muted: #5b6672;
+  --rule: #d9ddd6;
+  --accent: #1f5f8b;      /* chart-blue: the spec's own color */
+  --accent-soft: #e3edf5;
+  --good: #23764a; --good-soft: #e2f1e8;
+  --warn: #9a6200; --warn-soft: #fbf0d9;
+  --bad: #b23a2f;  --bad-soft: #f8e4e1;
+  --band-entry: #8fb6d4; --band-hold: #1f5f8b; --band-floor: #b23a2f;
+  --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0f141a; --sheet: #161d25; --ink: #e4e9ee; --muted: #9aa6b2; --rule: #2a3440;
+  --accent: #79b0dc; --accent-soft: #1b2b3a;
+  --good: #6cc495; --good-soft: #15291f; --warn: #e2b04f; --warn-soft: #2d2412; --bad: #ec8a7e; --bad-soft: #321b18;
+  --band-entry: #2f5876; --band-hold: #79b0dc; --band-floor: #ec8a7e; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0f141a; --sheet: #161d25; --ink: #e4e9ee; --muted: #9aa6b2; --rule: #2a3440;
+  --accent: #79b0dc; --accent-soft: #1b2b3a;
+  --good: #6cc495; --good-soft: #15291f; --warn: #e2b04f; --warn-soft: #2d2412; --bad: #ec8a7e; --bad-soft: #321b18;
+  --band-entry: #2f5876; --band-hold: #79b0dc; --band-floor: #ec8a7e; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--paper); color: var(--ink); font: 15px/1.55 var(--f-body); }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--f-display); font-stretch: 80%; text-wrap: balance; margin: 0; letter-spacing: -0.01em }
+h1 { font-size: clamp(30px, 6vw, 46px); font-weight: 800; line-height: 1.02 }
+h2 { font-size: 26px; font-weight: 750 }
+h3 { font-size: 18px; font-weight: 700 }
+p { margin: 0; max-width: 68ch }
+a { color: var(--accent) }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.eyebrow { font: 500 12px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
+.mono, .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums }
+section { display: grid; gap: 16px; min-width: 0 }
+.lede { color: var(--muted); font-size: 16px }
+
+/* header */
+header { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 20px }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font: 13px var(--f-mono); color: var(--muted) }
+.chips { display: flex; flex-wrap: wrap; gap: 8px }
+.chip { font: 500 12px/1 var(--f-mono); padding: 6px 9px; border-radius: 3px; border: 1px solid currentColor }
+.chip.cut { color: var(--bad); background: var(--bad-soft) }
+.chip.fix { color: var(--warn); background: var(--warn-soft) }
+.chip.add { color: var(--good); background: var(--good-soft) }
+.chip.ok  { color: var(--accent); background: var(--accent-soft) }
+
+/* tool panel */
+.tool { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; display: grid; gap: 20px }
+.ruler-wrap { overflow-x: auto }
+#ruler { min-width: 640px; display: block }
+svg text { fill: var(--muted); font: 11px var(--f-mono) }
+.controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 16px }
+.field { display: grid; gap: 4px; min-width: 0 }
+.field label { font-size: 12px; color: var(--muted) }
+.field input { font: 15px var(--f-mono); padding: 7px 9px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper); color: var(--ink); width: 100% }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px }
+@media (max-width: 720px) { .split { grid-template-columns: 1fr } }
+.lint { display: grid; gap: 8px; align-content: start; min-width: 0 }
+.lint-item { padding: 9px 12px; border-left: 3px solid; border-radius: 2px; font-size: 14px }
+.lint-item.ok { border-color: var(--good); background: var(--good-soft) }
+.lint-item.bad { border-color: var(--bad); background: var(--bad-soft) }
+.fillcalc { display: grid; gap: 8px; min-width: 0 }
+table { border-collapse: collapse; width: 100%; font-size: 14px }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--rule); vertical-align: top }
+th { font: 600 12px var(--f-body); color: var(--muted); text-transform: uppercase; letter-spacing: .04em }
+td.num, th.num { text-align: right }
+.tbl { overflow-x: auto; min-width: 0 }
+.presets { display: flex; flex-wrap: wrap; gap: 8px }
+button { font: 500 13px var(--f-body); padding: 7px 12px; border-radius: 4px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer }
+button:hover { background: var(--accent-soft) }
+button[aria-pressed="true"] { background: var(--accent); color: var(--sheet) }
+
+/* phases */
+.phases { display: grid; gap: 0; counter-reset: ph }
+.phase { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 18px 0; border-top: 1px solid var(--rule) }
+.phase .n { font: 800 34px/1 var(--f-display); font-stretch: 75%; color: var(--accent) }
+.phase ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 6px }
+.phase li { max-width: 74ch }
+@media (max-width: 520px) { .phase { grid-template-columns: 1fr; gap: 6px } }
+.tag { font: 500 11px/1 var(--f-mono); padding: 3px 6px; border-radius: 3px; vertical-align: 1px; white-space: nowrap }
+.tag.new { color: var(--good); background: var(--good-soft) }
+.tag.chg { color: var(--warn); background: var(--warn-soft) }
+
+/* findings */
+.findings { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none }
+.finding { display: grid; grid-template-columns: auto 1fr; gap: 12px; padding: 12px 14px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px }
+.finding > div { min-width: 0 }
+.vstat { font: 500 11px/1 var(--f-mono); padding: 5px 7px; border-radius: 3px; height: fit-content; white-space: nowrap }
+.v-sup { color: var(--good); background: var(--good-soft) }
+.v-par { color: var(--warn); background: var(--warn-soft) }
+.v-unv { color: var(--muted); background: var(--paper); border: 1px solid var(--rule) }
+.finding p + p { margin-top: 4px; color: var(--muted); font-size: 13px }
+
+.gate-pass { color: var(--good); font-weight: 600 }
+.gate-fail { color: var(--bad); font-weight: 600 }
+pre { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; padding: 14px; overflow-x: auto; font: 13px/1.5 var(--f-mono); margin: 0 }
+.note { font-size: 13px; color: var(--muted) }
+.copyrow { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap }
+footer { border-top: 2px solid var(--ink); padding-top: 16px; font-size: 13px; color: var(--muted); display: grid; gap: 6px }
+@media (prefers-reduced-motion: no-preference) { .bar { transition: x .25s, width .25s } }
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">Backtest specification · v2 · validated</span>
+  <h1>Swing Options Backtest Spec</h1>
+  <p class="lede">Rules for testing a 3–10 day directional options swing strategy on liquid US underlyings. Every rule can be coded and every result can be falsified. Checked against vendor docs, fee schedules and the overfitting literature as of 6 Nov 2026.</p>
+  <div class="chips" aria-label="Changes from v1">
+    <span class="chip cut">4 cut</span><span class="chip fix">7 fixed</span><span class="chip add">6 added</span><span class="chip ok" id="verifyChip">10 claims fact-checked</span>
+  </div>
+  <div class="meta"><span>as of 2026-11-06</span><span>run: research/2026-11-06-options-swing-backtest-spec</span><span>not investment advice</span></div>
+</header>
+
+<!-- TOOL -->
+<section aria-labelledby="t-tool">
+  <div><span class="eyebrow">Check a parameter set</span><h2 id="t-tool">DTE ruler and spec linter</h2></div>
+  <p class="lede">The original spec had entry at 30 DTE, an exit at DTE &lt; 21, and a hold of up to 15 days, and those three can't all hold. Change the numbers to see whether a variant is consistent before you spend money on data.</p>
+  <div class="tool">
+    <div class="presets" role="group" aria-label="Presets">
+      <button type="button" id="p-v2" aria-pressed="true">v2 defaults</button>
+      <button type="button" id="p-v1" aria-pressed="false">Original (v1)</button>
+    </div>
+    <div class="ruler-wrap"><svg id="ruler" viewBox="0 0 900 120" width="100%" role="img" aria-label="DTE ruler showing the entry window, the holding span and the DTE floor"></svg></div>
+    <div class="controls">
+      <div class="field"><label for="dteMin">Entry DTE, min</label><input id="dteMin" type="number" min="1" max="120" value="35"></div>
+      <div class="field"><label for="dteTarget">Entry DTE, target</label><input id="dteTarget" type="number" min="1" max="120" value="45"></div>
+      <div class="field"><label for="dteMax">Entry DTE, max</label><input id="dteMax" type="number" min="1" max="120" value="60"></div>
+      <div class="field"><label for="floor">Exit when DTE &lt;</label><input id="floor" type="number" min="0" max="60" value="21"></div>
+      <div class="field"><label for="hold">Max hold (trading days)</label><input id="hold" type="number" min="1" max="40" value="10"></div>
+      <div class="field"><label for="k">Fill fraction k</label><input id="k" type="number" min="0" max="1.5" step="0.05" value="0.70"></div>
+    </div>
+    <div class="split">
+      <div class="lint" id="lint" aria-live="polite"></div>
+      <div class="fillcalc">
+        <h3>Fill cost per leg</h3>
+        <div class="controls">
+          <div class="field"><label for="bid">Bid</label><input id="bid" type="number" step="0.05" value="13.60"></div>
+          <div class="field"><label for="ask">Ask</label><input id="ask" type="number" step="0.05" value="13.80"></div>
+          <div class="field"><label for="comm">$/contract all-in</label><input id="comm" type="number" step="0.05" value="0.70"></div>
+        </div>
+        <div class="tbl"><table id="fillTbl" aria-label="Fill price at different k"></table></div>
+        <p class="note">Buy = bid + k·(ask − bid). Sell = ask − k·(ask − bid). Applied per leg, and the cost is charged on entry and exit. k = 0.5 is mid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEC -->
+<section aria-labelledby="t-spec">
+  <div><span class="eyebrow">The rules · hand this to the builder</span><h2 id="t-spec">The v2 spec</h2></div>
+  <p class="note"><span class="tag chg">changed</span> means corrected from v1. <span class="tag new">new</span> means added in v2. Untagged rules are kept as written.</p>
+  <div class="phases">
+    <div class="phase"><div class="n">1</div><div><h3>Hypothesis and universe</h3><ul>
+      <li>SPY, QQQ, and S&amp;P 500 members <b>as of each historical date</b> whose options trade more than 10,000 contracts a day. <span class="tag chg">point-in-time</span></li>
+      <li>One catalyst and one structure per test, <b>long premium only</b>: a 0.60–0.70Δ single leg or a 0.50/0.25Δ debit vertical. Credit spreads are a separate hypothesis. <span class="tag chg">changed</span></li>
+      <li>Max hold <b>10 trading days</b>. <span class="tag chg">one number</span></li>
+      <li>Write these down before running: pass/fail gates, position sizing (risk a fixed % of equity at the debit), max concurrent positions, max per underlying, and a <b>shares-only baseline</b> on the same signal. <span class="tag new">new</span></li>
+    </ul></div></div>
+    <div class="phase"><div class="n">2</div><div><h3>Data</h3><ul>
+      <li>Point-in-time <b>bid/ask (NBBO)</b> chains, never last trade. Record the vendor's snapshot time and execute at it. EOD data is a pre-close snapshot: ORATS ≈ 15:46 ET, Cboe 15:45 ET and close. <span class="tag chg">changed</span></li>
+      <li>IV and Greeks: use the vendor's if supplied. Otherwise compute them with <b>one</b> American model (e.g. Bjerksund-Stensland), with a named rate curve and dividends. Never mix the two.</li>
+      <li>Earnings dates, ex-dividend dates and amounts, delisted tickers, historical index membership. Unadjusted prices for strike and Δ maths. Exclude adjusted (non-standard) contracts. <span class="tag new">new</span></li>
+      <li>Open interest: the latest value dated before entry (at best the prior day). Some feeds lag a further day. <span class="tag new">new</span></li>
+    </ul></div></div>
+    <div class="phase"><div class="n">3</div><div><h3>Contract selection</h3><ul>
+      <li>Expiry <b>35–60 DTE</b>, nearest 45. <span class="tag chg">was 30–60</span></li>
+      <li>Strike by Δ. Reject the trade if no strike sits in the band.</li>
+      <li>Bid-ask spread ≤ 5–8% of mid and prior-day OI ≥ 500, <b>on every leg</b>.</li>
+    </ul></div></div>
+    <div class="phase"><div class="n">4</div><div><h3>Entry, management, exit</h3><ul>
+      <li>Signal on the underlying at bar <i>t</i>. Execute at the next snapshot, or at a fixed intraday time only if you have intraday data. <span class="tag chg">changed</span></li>
+      <li>When several exits fire, the higher one wins: <b>Event &gt; Stop &gt; Time &gt; Profit</b>. <span class="tag new">new</span></li>
+      <li>Event: close 1 trading day before earnings. Stop: underlying invalidation, with a −50% option-value backstop. A gap fills at the next quote. Time: 10 days, or DTE &lt; 21. Profit: 50% of max on spreads, +35% on single legs. <span class="tag chg">split by structure</span></li>
+      <li>Close any short call that is ITM before ex-dividend when its extrinsic value (≈ the same-strike put) is below the dividend. The expiration-Friday pin rule is cut because it never fires above a 21-DTE floor. <span class="tag chg">changed</span></li>
+    </ul></div></div>
+    <div class="phase"><div class="n">5</div><div><h3>Simulation and validation</h3><ul>
+      <li>Fills per leg at <b>k = 0.70</b>, stress at <b>k = 1.0</b>. Costs about $0.70 per contract per side ($0.65 commission + ~$0.05 fees). <span class="tag chg">contradiction fixed</span></li>
+      <li>Rolling walk-forward (3y train / 1y test) plus an untouched final holdout, with the regimes named. <span class="tag chg">was a 60/40 split</span></li>
+      <li>Grid: DTE {35, 45, 55} × Δ {0.40, 0.50, 0.60} × target {25, 35, 50%}. Accept a plateau, never a single peak.</li>
+      <li>Log every configuration. Report the probability of backtest overfitting (PBO, via CSCV) or a deflated Sharpe ratio. <span class="tag new">new</span></li>
+      <li>Pass gates (OOS, k = 1.0): expectancy &gt; 0 · profit factor ≥ 1.3 · ≥ 100 trades (30 floor) · positive in ≥ 2 of 3 regimes · beats the shares baseline · drawdown within the stated limit. <span class="tag new">new</span></li>
+    </ul></div></div>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section aria-labelledby="t-find">
+  <div><span class="eyebrow">Evidence behind the changes</span><h2 id="t-find">What the research found</h2></div>
+  <ul class="findings" id="findings"></ul>
+  <p class="note"><b>Supported</b> means a fresh-context fact-checker re-read the source and agreed. <b>Narrowed</b> means it agreed only after the claim was narrowed. <b>Unverified</b> means the source was read only through a summary, or not reached. Blocked during research: theocc.com, papers.ssrn.com, core.ac.uk.</p>
+</section>
+
+<!-- EXAMPLES -->
+<section aria-labelledby="t-ex">
+  <div><span class="eyebrow">Using it</span><h2 id="t-ex">Three hypotheses in v2 form</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>A · SPY oversold bounce</th><th>B · QQQ squeeze breakout</th><th>C · Post-earnings drift</th></tr></thead>
+    <tbody>
+      <tr><th>Signal</th><td>RSI(2) &lt; 10, close &gt; 200-SMA, IVR &lt; 50</td><td>Bollinger bandwidth at 120-day low, close &gt; upper band, IVR &lt; 30</td><td>Gap &gt; +4% held into day-1 close, with an above-consensus surprise</td></tr>
+      <tr><th>Structure</th><td>Call debit vertical 0.50Δ / 0.25Δ</td><td>Long call 0.60–0.70Δ</td><td>Long call 0.60–0.70Δ</td></tr>
+      <tr><th>Entry</th><td>Next snapshot</td><td>Next snapshot</td><td>Day-2 snapshot</td></tr>
+      <tr><th>Stop</th><td>SPY closes below the signal-bar low</td><td>QQQ closes back inside the bands</td><td>Stock closes below the day-1 low</td></tr>
+      <tr><th>Target</th><td>50% of max spread profit</td><td>+35% premium</td><td>+35% premium</td></tr>
+      <tr><th>Baseline</th><td>SPY shares</td><td>QQQ shares</td><td>The shares</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">A spread suits A because the expected bounce is small and fast. B and C bet on larger moves, which a spread's cap would cut off. All three use 35–60 DTE (nearest 45), the 10-day / DTE-21 time stop, and ORATS near-EOD data.</p>
+
+  <h3>Reading a results readout <span class="note">(hypothetical numbers)</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Gate · OOS · k = 1.0</th><th>Threshold</th><th class="num">Result</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Expectancy after costs</td><td>&gt; 0</td><td class="num">+$18 / trade</td><td class="gate-pass">pass</td></tr>
+      <tr><td>Profit factor</td><td>≥ 1.3</td><td class="num">1.21</td><td class="gate-fail">fail</td></tr>
+      <tr><td>Trades</td><td>≥ 100</td><td class="num">142</td><td class="gate-pass">pass</td></tr>
+      <tr><td>Regimes positive</td><td>≥ 2 of 3</td><td class="num">2 of 3</td><td class="gate-pass">pass</td></tr>
+      <tr><td>vs shares baseline</td><td>higher risk-adjusted</td><td class="num">0.71 vs 0.64</td><td class="gate-pass">pass</td></tr>
+      <tr><td>PBO</td><td>&lt; 0.5</td><td class="num">0.38</td><td class="gate-pass">pass</td></tr>
+    </tbody>
+  </table></div>
+  <p>One failed gate rejects the hypothesis as specified. Don't relax the threshold after seeing the result. Any re-test with changed rules is a new trial and counts toward PBO.</p>
+
+  <h3>Which data vendor</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Situation</th><th>Use</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>EOD entries, Greeks ready</td><td>ORATS near-EOD</td><td>2007+, IV and Greeks included, snapshot 14 min before close</td></tr>
+      <tr><td>Exchange-sourced audit trail</td><td>Cboe DataShop</td><td>NBBO at 15:45 and close, 2012+, Greeks as an add-on</td></tr>
+      <tr><td>Intraday execution</td><td>ORATS 1-min or Databento OPRA</td><td>ORATS 1-min from 2020. Databento lists no IV/Greeks fields, so compute them.</td></tr>
+      <tr><td>Already on Massive</td><td>Signals and reference data</td><td>IV and Greeks are snapshot-only, so compute them for history</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="copyrow"><h3>Brief for the agent that builds it</h3><button type="button" id="copyBrief">Copy brief</button></div>
+  <pre id="brief">OBJECTIVE
+Build and run a backtest of hypothesis A (SPY oversold bounce, call debit vertical) exactly as
+specified in research/2026-11-06-options-swing-backtest-spec/report.md, "The v2 spec".
+
+FIXED
+- Mechanics: reuse examples/spec_rules.py (select_debit_spread, entry_cost, exit_decision,
+  lint_spec). Run lint_spec() first; abort if it returns anything.
+- Fills per leg at k=0.70; rerun everything at k=1.0. Costs $0.70/contract/side.
+- ORATS near-EOD chains; execute at the snapshot time. Signal from an unadjusted equity
+  series, not the ORATS parity-derived price. OI: latest record dated before entry.
+
+SPLITS AND GRID
+- Rolling walk-forward 3y/1y, step 1y; final 2 years held out until the grid is frozen.
+- 27 configs: DTE {35,45,55} x short delta {0.20,0.25,0.30} x target {25,35,50%}.
+  Log all to trials.csv; report PBO (CSCV) or deflated Sharpe across all 27.
+
+OUTPUT
+- results/A/trades.csv, results/A/summary.md (6 gates PASS/FAIL at k=1.0 OOS,
+  shares baseline, sensitivity heatmap, PBO/DSR). Reply with path + 200-word summary.
+
+STOP IF
+- No bid/ask in the data, or fewer than 30 OOS trades.</pre>
+  <p class="note" id="copyMsg" aria-live="polite"></p>
+</section>
+
+<!-- CHANGELOG -->
+<section aria-labelledby="t-log">
+  <div><span class="eyebrow">v1 → v2</span><h2 id="t-log">What changed and why</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Kind</th><th>Item</th><th>Reason</th></tr></thead>
+    <tbody id="changelog"></tbody>
+  </table></div>
+</section>
+
+<footer>
+  <span>Sources: ORATS, Cboe DataShop, Databento, Massive and FINRA docs; IBKR, Fidelity, tastytrade and Robinhood fee pages (seen 2026-11-06); Muravyev &amp; Pearson, RFS 2020; Bailey, Borwein, López de Prado &amp; Zhu, J. Comp. Finance 2017. Full source list in sources.md in the run folder.</span>
+  <span>A research specification, not investment advice. Example strategies are illustrative hypotheses, not recommendations.</span>
+</footer>
+</div>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const CAL_PER_TRADING = 7 / 5;
+  const ids = ["dteMin", "dteTarget", "dteMax", "floor", "hold", "k", "bid", "ask", "comm"];
+  const PRESETS = {
+    v2: { dteMin: 35, dteTarget: 45, dteMax: 60, floor: 21, hold: 10, k: 0.70 },
+    v1: { dteMin: 30, dteTarget: 45, dteMax: 60, floor: 21, hold: 15, k: 0.75 }
+  };
+  const val = (id) => parseFloat($(id).value);
+
+  function lint(p) {
+    const out = [];
+    const holdCal = p.hold * CAL_PER_TRADING;
+    const room = p.dteMin - p.floor;
+    if (room < holdCal - 0.5) {
+      out.push(["bad", `From the ${p.dteMin}-DTE floor, only ${room} calendar days remain before the DTE < ${p.floor} exit, but a ${p.hold}-trading-day hold needs about ${Math.round(holdCal)}. The DTE stop will cut the swing short. Raise the entry minimum to ${p.floor + Math.round(holdCal)} or more, or shorten the hold.`]);
+    } else {
+      out.push(["ok", `A full ${p.hold}-day hold (≈${Math.round(holdCal)} calendar days) fits: entry at ${p.dteMin} DTE exits by about ${Math.round(p.dteMin - holdCal)} DTE, at or above the ${p.floor}-DTE floor.`]);
+    }
+    if (!(p.dteMin <= p.dteTarget && p.dteTarget <= p.dteMax)) out.push(["bad", "The target DTE sits outside the entry window."]);
+    if (p.k < 0.5) out.push(["bad", `k = ${p.k} assumes fills better than mid. Use k ≥ 0.5, with 0.70 as the base and 1.0 as the stress test.`]);
+    else if (p.k > 1) out.push(["bad", `k = ${p.k} fills beyond the quoted price. Cap the stress test at 1.0.`]);
+    else if (p.k < 0.65) out.push(["bad", `k = ${p.k} is optimistic. Measured average effective spreads point to about 0.6–0.8 (Muravyev & Pearson 2020). Report it, but don't decide on it.`]);
+    else out.push(["ok", `k = ${p.k.toFixed(2)} is within the evidence-backed range. Rerun at 1.0 before deciding.`]);
+    if (p.floor <= 0) out.push(["bad", "With no DTE floor, positions can reach expiry, so you need pin-risk and assignment rules again."]);
+    return out;
+  }
+
+  function drawRuler(p) {
+    const svg = $("ruler"), W = 900, L = 30, R = 870, maxD = Math.max(70, p.dteMax + 10);
+    const x = (d) => L + (maxD - d) / maxD * (R - L);
+    const holdCal = p.hold * CAL_PER_TRADING;
+    const holdEnd = p.dteTarget - holdCal;
+    let s = "";
+    for (let d = 0; d <= maxD; d += 5) {
+      const big = d % 10 === 0;
+      s += `<line x1="${x(d)}" x2="${x(d)}" y1="88" y2="${big ? 96 : 92}" stroke="var(--rule)" />`;
+      if (big) s += `<text x="${x(d)}" y="110" text-anchor="middle">${d}</text>`;
+    }
+    s += `<line x1="${L}" x2="${R}" y1="88" y2="88" stroke="var(--muted)" />`;
+    s += `<text x="${R}" y="110" text-anchor="end" dx="28">DTE</text>`;
+    // entry window
+    s += `<rect class="bar" x="${x(p.dteMax)}" y="22" width="${Math.max(0, x(p.dteMin) - x(p.dteMax))}" height="16" fill="var(--band-entry)" rx="2" />`;
+    s += `<text x="${x(p.dteMax)}" y="16">entry window ${p.dteMin}–${p.dteMax}</text>`;
+    // hold from target and from minimum
+    const holdFromMin = p.dteMin - holdCal;
+    s += `<rect class="bar" x="${x(p.dteTarget)}" y="46" width="${Math.max(0, x(Math.max(0, holdEnd)) - x(p.dteTarget))}" height="10" fill="var(--band-hold)" rx="2" />`;
+    s += `<rect class="bar" x="${x(p.dteMin)}" y="62" width="${Math.max(0, x(Math.max(0, holdFromMin)) - x(p.dteMin))}" height="10" fill="var(--band-hold)" opacity=".55" rx="2" />`;
+    s += `<text x="${x(p.dteTarget) - 6}" y="55" text-anchor="end">hold from ${p.dteTarget}</text>`;
+    s += `<text x="${x(p.dteMin) - 6}" y="71" text-anchor="end">from ${p.dteMin}</text>`;
+    // floor
+    s += `<line x1="${x(p.floor)}" x2="${x(p.floor)}" y1="14" y2="96" stroke="var(--band-floor)" stroke-width="2" stroke-dasharray="4 3" />`;
+    s += `<text x="${x(p.floor) + 6}" y="30" style="fill:var(--band-floor)">exit &lt; ${p.floor}</text>`;
+    svg.innerHTML = s;
+  }
+
+  function fills(p) {
+    const bid = val("bid"), ask = val("ask"), c = val("comm");
+    const tbl = $("fillTbl");
+    if (!(ask >= bid && bid >= 0) || isNaN(c)) { tbl.innerHTML = `<tr><td>Enter a bid at or below the ask.</td></tr>`; return; }
+    const mid = (bid + ask) / 2, w = ask - bid;
+    const ks = [0.5, p.k, 1.0].filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => a - b);
+    let h = `<thead><tr><th>k</th><th class="num">Buy</th><th class="num">Sell</th><th class="num">Round trip / contract</th><th class="num">vs mid</th></tr></thead><tbody>`;
+    ks.forEach((k) => {
+      const buy = bid + k * w, sell = ask - k * w, rt = (buy - sell) * 100 + 2 * c;
+      const pct = mid > 0 ? (buy - sell) / mid * 100 : 0;
+      h += `<tr><td class="num">${k.toFixed(2)}${k === p.k ? " ·" : ""}</td><td class="num">${buy.toFixed(3)}</td><td class="num">${sell.toFixed(3)}</td><td class="num">$${rt.toFixed(2)}</td><td class="num">${pct.toFixed(2)}%</td></tr>`;
+    });
+    tbl.innerHTML = h + "</tbody>";
+  }
+
+  function update() {
+    const p = { dteMin: val("dteMin"), dteTarget: val("dteTarget"), dteMax: val("dteMax"), floor: val("floor"), hold: val("hold"), k: val("k") };
+    if (Object.values(p).some(isNaN)) return;
+    $("lint").innerHTML = lint(p).map(([c, t]) => `<div class="lint-item ${c}">${c === "ok" ? "✓ " : "✕ "}${t}</div>`).join("");
+    drawRuler(p); fills(p);
+    const isV1 = Object.keys(PRESETS.v1).every((k) => PRESETS.v1[k] === p[k]);
+    const isV2 = Object.keys(PRESETS.v2).every((k) => PRESETS.v2[k] === p[k]);
+    $("p-v1").setAttribute("aria-pressed", String(isV1));
+    $("p-v2").setAttribute("aria-pressed", String(isV2));
+  }
+  function apply(name) { Object.entries(PRESETS[name]).forEach(([k, v]) => { $(k).value = v; }); update(); }
+  ids.forEach((id) => $(id).addEventListener("input", update));
+  $("p-v1").addEventListener("click", () => apply("v1"));
+  $("p-v2").addEventListener("click", () => apply("v2"));
+
+  $("copyBrief").addEventListener("click", () => {
+    const text = $("brief").textContent;
+    const done = () => { $("copyMsg").textContent = "Brief copied."; };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents($("brief")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("copyMsg").textContent = "Copy was blocked here, so the brief is selected. Press Ctrl+C or ⌘C."; };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  // findings: [status, headline, detail, sourceLabel, url]
+  const FINDINGS = [
+    ["sup", "Fill at k = 0.70 of the spread, and stress at 1.0.", "Muravyev & Pearson measure the average effective option spread as about a quarter below conventional estimates, and below 40% for traders who time executions. The v1 fill rule contradicted itself.", "RFS 2020", "https://ideas.repec.org/a/oup/rfinst/v33y2020i11p4973-5014..html"],
+    ["sup", "\"End of day\" is a pre-close snapshot.", "ORATS gathers its near-EOD data 14 minutes before the close (2007+, with IV and Greeks). Cboe DataShop snapshots at 15:45 ET and at the close (2012+).", "ORATS", "https://orats.com/university/historical-data"],
+    ["sup", "Polygon.io is now Massive.", "Renamed on 30 Oct 2025. Massive's IV and Greeks come only from a live snapshot endpoint, so compute historical Greeks yourself.", "Massive", "https://massive.com/blog/polygon-is-now-massive"],
+    ["par", "Databento OPRA: raw quotes, suffix-marked adjusted contracts.", "Adjusted contracts carry suffixes like MSFT1, and data before 2023-03-28 is subsampled. Its docs list no IV or Greeks fields. That they are absent is an inference, not a Databento statement.", "Databento", "https://databento.com/docs/venues-and-datasets/opra-pillar"],
+    ["par", "Open interest is known one day late, or later.", "The OCC posts it the morning after each session, so a backtest can use at most the prior day's figure. Some feeds lag a further day.", "Options Playbook", "https://optionsplaybook.com/options-introduction/open-interest"],
+    ["par", "All-in cost is about $0.70 per contract per side.", "IBKR Pro charges $0.65 (≤10k a month, premiums of $0.10 or more), plus OCC clearing of $0.025. The SEC fee is $20.60 per $1M of sales. The FINRA options TAF is $0.00329, paused Oct–Dec 2026.", "IBKR", "https://www.interactivebrokers.com/en/pricing/commissions-options.php"],
+    ["sup", "A single holdout doesn't control overfitting.", "The PBO paper calls hold-out \"unreliable and inaccurate\" for investment backtests. Count your trials and report PBO or a deflated Sharpe ratio.", "Bailey et al. 2017", "https://scholarworks.wmich.edu/math_pubs/42"],
+    ["par", "Early exercise before ex-dividend needs time value below the dividend.", "This is a necessary condition, not a sufficient one. In practice, check the same-strike put's extrinsic value. A short deep-ITM call in that state faces elevated assignment risk the day before the ex-date, so the spec closes it early.", "Series 7 material", "https://app.certfuel.com/series7/learn/options/options-fundamentals/dividends-and-their-effect-on-options"],
+    ["unv", "\"30 / 100+ trades minimum\" has no primary source.", "It's a convention. Set your threshold in advance and treat it as a rule, not as statistics.", "forum", "https://www.elitetrader.com/et/threads/minimum-number-of-trades-required-for-backtesting-results-to-be-trusted.356588/page-2"],
+    ["unv", "50% profit and 21-DTE management are vendor conventions.", "tastylive calls 50% the \"sweet spot\" without published figures. Keep both rules, but as grid parameters.", "tastylive", "https://www.tastylive.com/definitions/managing-winners"]
+  ];
+  const LABEL = { sup: ["v-sup", "supported"], par: ["v-par", "narrowed"], unv: ["v-unv", "unverified"] };
+  $("findings").innerHTML = FINDINGS.map(([s, h, d, l, u]) => `<li class="finding"><span class="vstat ${LABEL[s][0]}">${LABEL[s][1]}</span><div><p><b>${h}</b></p><p>${d} <a href="${u}" target="_blank" rel="noopener">${l}</a></p></div></li>`).join("");
+
+  const LOG = [
+    ["cut", "Expiration-Friday pin rule", "Never fires: the DTE < 21 exit closes positions weeks before expiry."],
+    ["cut", "Credit spreads in the same test", "Phase 3 had no rules for short premium. One archetype per hypothesis."],
+    ["cut", "\"OPRA\" as a provider", "OPRA is the consolidated feed. Name vendors."],
+    ["cut", "Explanatory intro text", "Rationale, not a rule."],
+    ["fix", "Entry 30 → 35–60 DTE", "A 30-DTE entry plus the 21-DTE exit left about 9 days for a 10–15 day swing."],
+    ["fix", "Hold given three ways", "One number: 10 trading days."],
+    ["fix", "Fill rule", "\"mid − 25–50%\" ≠ \"65–75% from bid\". Now k·spread per leg, base 0.70, stress 1.0."],
+    ["fix", "60/40 split called walk-forward", "Rolling walk-forward plus an untouched holdout, regimes named."],
+    ["fix", "Intraday timing on EOD data", "Execute at the vendor's snapshot time unless the data is intraday."],
+    ["fix", "Vendor Greeks or a model", "Pick one source, and name the model, rates and dividends."],
+    ["fix", "Mixed profit target", "50% of max on spreads, +35% premium on single legs."],
+    ["add", "Pass/fail gates", "Written before running, judged OOS at k = 1.0."],
+    ["add", "Sizing and portfolio limits", "Without them there is no equity curve or drawdown."],
+    ["add", "Shares-only baseline", "Shows whether the option structure adds anything."],
+    ["add", "Multiple-testing control", "PBO or deflated Sharpe across every configuration tried."],
+    ["add", "Point-in-time hygiene", "Index membership, unadjusted prices, prior-day OI, no adjusted contracts."],
+    ["add", "Exit priority and gaps", "Event > Stop > Time > Profit. Gaps fill at the next quote. −50% backstop."]
+  ];
+  const KIND = { cut: "chip cut", fix: "chip fix", add: "chip add" };
+  $("changelog").innerHTML = LOG.map(([k, i, r]) => `<tr><td><span class="${KIND[k]}">${k}</span></td><td>${i}</td><td>${r}</td></tr>`).join("");
+
+  update();
+})();
+</script>

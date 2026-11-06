@@ -1,0 +1,92 @@
+[
+ {
+  "cid": "C1",
+  "claim": "ORATS near-end-of-day option data is gathered 14 minutes before the close (about 15:46 ET), goes back to 2007, and includes implied volatilities and Greeks; ORATS 1-minute intraday data starts in August 2020.",
+  "evidence": [
+   {
+    "id": "SQ1-1",
+    "quote": "This data set goes back to 2007, and includes the full options chain, derived Greeks, theoretical values, and IVs for over 5,000 symbols gathered 14 minutes before the close of each day.",
+    "url": "https://orats.com/university/historical-data",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/orats.com-c0c37324cc.txt"
+   },
+   {
+    "id": "SQ1-2",
+    "quote": "This data set goes back to August 2020 and includes the full options chain, derived Greeks, theoretical values, and IVs for every minute during the trading day of over 5,000 symbols.",
+    "url": "https://orats.com/university/historical-data",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/orats.com-c0c37324cc.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "Cboe DataShop's Option EOD Summary provides NBBO bid/ask at 15:45 ET and at the close from January 2012, with implied volatility and Greeks available as a paid add-on calculated at 15:45.",
+  "evidence": [
+   {
+    "id": "SQ1-4",
+    "quote": "Our daily summary contains two market snapshots, one at 15:45 U.S. Eastern and another at end-of-day (market closing time is product dependent).",
+    "url": "https://datashop.cboe.com/option-quotes",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/datashop.cboe.com-5b0e847edd.txt"
+   },
+   {
+    "id": "SQ1-5",
+    "quote": "As an additional purchase option, we provide calculations at the 15:45 snapshot for Implied Volatility and Greeks.",
+    "url": "https://datashop.cboe.com/option-quotes",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/datashop.cboe.com-5b0e847edd.txt"
+   },
+   {
+    "id": "SQ1-6",
+    "quote": "Available from January 2012 to present",
+    "url": "https://datashop.cboe.com/option-quotes",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/datashop.cboe.com-5b0e847edd.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "Polygon.io was renamed Massive (massive.com) on 2025-10-30.",
+  "evidence": [
+   {
+    "id": "SQ1-10",
+    "quote": "We have just renamed Polygon.io to Massive.com, effective today (October 30, 2025) at 4 PM ET.",
+    "url": "https://massive.com/blog/polygon-is-now-massive",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/massive.com-4a2a0bf0ff.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "Databento's OPRA options data provides raw quotes without implied volatility or Greeks, marks corporate-action-adjusted contracts with suffix symbols (e.g. MSFT1), and data before 2023-03-28 is subsampled.",
+  "evidence": [
+   {
+    "id": "SQ1-7",
+    "quote": "the symbol MSFT will change to MSFT1 , with the numeric suffix identifying this option as an adjusted, \"non-standard” contract.",
+    "url": "https://databento.com/docs/venues-and-datasets/opra-pillar",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/databento.com-bc000e384e.txt"
+   },
+   {
+    "id": "SQ1-8",
+    "quote": "The cmbp-1 , cbbo-1s and tcbbo schemas are not available. The highest granularity available for BBO data is the cbbo-1m schema.",
+    "url": "https://databento.com/docs/venues-and-datasets/opra-pillar",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/databento.com-bc000e384e.txt"
+   },
+   {
+    "id": "SQ1-9",
+    "quote": "The statistics schema only has information for Open Interest, which is published on an aggregated basis.",
+    "url": "https://databento.com/docs/venues-and-datasets/opra-pillar",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/databento.com-bc000e384e.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "Option open interest is not updated intraday; OCC posts it the morning after each trading session, so a backtest can only use the prior day's open interest at entry.",
+  "evidence": [
+   {
+    "id": "SQ3-11",
+    "quote": "open interest is a lagging number: it’s not updated during the course of a trading day. Instead, it is officially posted by The OCC the morning after any given trading session",
+    "url": "https://optionsplaybook.com/options-introduction/open-interest",
+    "page": "research/2026-11-06-options-swing-backtest-spec/pages/optionsplaybook.com-53f799e0bd.txt"
+   }
+  ]
+ }
+]
