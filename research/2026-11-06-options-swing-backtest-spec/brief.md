@@ -216,4 +216,4 @@ QUALITY BAR
 ```
 
 ## Approval
-- [ ] Pending user approval.
+- [x] User approved on 2026-11-06, launch as planned (no changes; credit spreads stay out of v2).
