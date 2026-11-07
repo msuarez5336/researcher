@@ -1,0 +1,110 @@
+[
+ {
+  "cid": "C16",
+  "claim": "ORATS sells 1-minute historical option chains from August 2020 with bid/ask, IV and Greeks. An individual licence is $199 a month plus a one-time $1,500 backfill, and ORATS does not supply real underlying stock prices.",
+  "evidence": [
+   {
+    "id": "SQ4-1",
+    "quote": "Historical options data for every minute going back to August 2020.",
+    "url": "https://orats.com/one-minute-data",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/orats.com-f4d0af6629.txt"
+   },
+   {
+    "id": "SQ4-2",
+    "quote": "For an individual license, recurring delivery is $199 per month and the historical backfill from August 2020 is $1,500 as a one-time purchase.",
+    "url": "https://orats.com/one-minute-data",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/orats.com-f4d0af6629.txt"
+   },
+   {
+    "id": "SQ4-3",
+    "quote": "ORATS does not provide stock prices for US equities, ETFs or indexes.",
+    "url": "https://orats.com/docs/historical-intraday-api",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/orats.com-b0e88a74ca.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C17",
+  "claim": "Databento's OPRA data before 2023-03-28 is subsampled, with cbbo-1m the finest BBO schema for that period. Historical OPRA data starts in 2013 and is priced from $0.04/GB.",
+  "evidence": [
+   {
+    "id": "SQ4-4",
+    "quote": "Data prior to 2023-03-28 was not generated from OPRA packet captures, but from subsampled data.",
+    "url": "https://databento.com/docs/venues-and-datasets/opra-pillar",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/databento.com-bc000e384e.txt"
+   },
+   {
+    "id": "SQ4-5",
+    "quote": "The highest granularity available for BBO data is the cbbo-1m schema.",
+    "url": "https://databento.com/docs/venues-and-datasets/opra-pillar",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/databento.com-bc000e384e.txt"
+   },
+   {
+    "id": "SQ4-6",
+    "quote": "Consolidated last sale and national BBO across all US equity options exchanges.",
+    "url": "https://databento.com/options",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/databento.com-fb7cba5837.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C18",
+  "claim": "ThetaData's tiers list 1-minute option data from 2021 (Value) and 2016 (Standard), and tick data from June 2012 (Pro). The free tier is one year of EOD only, and deep ITM/OTM 0DTE strikes may not be quoted.",
+  "evidence": [
+   {
+    "id": "SQ4-7",
+    "quote": "1 year of free historical EOD (End of Day) data for US stocks and options is provided for free.",
+    "url": "https://http-docs.thetadata.us/Articles/Getting-Started/Subscriptions.html",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/http-docs.thetadata.us-eb993c5593.txt"
+   },
+   {
+    "id": "SQ4-9",
+    "quote": "If the option contract is 0DTE, deep ITM / OTM strikes might not be quoted / traded.",
+    "url": "https://docs.thetadata.us/Articles/Data-And-Requests/Data-Issues.html",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/docs.thetadata.us-806ed8579d.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C19",
+  "claim": "Cboe DataShop's Option Quote Intervals give NBBO snapshots with size at 1-minute or longer intervals from January 2012. IV and Greeks are an extra purchase, and SPX underlying prices need a licence starting at $1,000 a month.",
+  "evidence": [
+   {
+    "id": "SQ4-10",
+    "quote": "Each snapshot includes the National Best Bid and Offer (NBBO) quote and size, along with open, high, low, close and trading volume for the interval.",
+    "url": "https://datashop.cboe.com/options-intervals",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/datashop.cboe.com-8c6a114d41.txt"
+   },
+   {
+    "id": "SQ4-11",
+    "quote": "Available from January 2012 to present.",
+    "url": "https://datashop.cboe.com/options-intervals",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/datashop.cboe.com-8c6a114d41.txt"
+   },
+   {
+    "id": "SQ4-12",
+    "quote": "fees start at $1000/month",
+    "url": "https://datashop.cboe.com/options-intervals",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/datashop.cboe.com-8c6a114d41.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C20",
+  "claim": "Massive's historical option quotes date back to March 7, 2022, and need the Options Advanced plan ($199/month) or higher.",
+  "evidence": [
+   {
+    "id": "SQ4-13",
+    "quote": "Records date back to March 7, 2022",
+    "url": "https://massive.com/docs/rest/options/trades-quotes/quotes.md",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/massive.com-632df5754d.txt"
+   },
+   {
+    "id": "SQ4-14",
+    "quote": "Options Advanced $199/mo",
+    "url": "https://massive.com/docs/flat-files/options/quotes",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/massive.com-bd15a0385a.txt"
+   }
+  ]
+ }
+]

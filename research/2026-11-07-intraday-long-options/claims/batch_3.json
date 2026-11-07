@@ -1,0 +1,86 @@
+[
+ {
+  "cid": "C11",
+  "claim": "Dim, Eraker & Vilkov find that 0DTE options dampen S&P 500 volatility on average through a shift in market makers' hedging needs. Higher net gamma predicts reversal in E-mini order flow, an effect that fades after about one hour, and market makers stay net long gamma through the 0DTE expiration day.",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "we sh",
+    "url": "https://quantpedia.com/do-sp500-0dtes-options-increase-market-volatility/",
+    "page": "research/2026-11-07-intraday-long-options/pages/quantpedia.com-83745d790b.txt"
+   },
+   {
+    "id": "SQ2-2",
+    "quote": "a higher net gamma predicts a stronger reversal pattern in the intraday order flow of E-mini futures. The direction is consistent with the observed dampening effect on volatility, and the effect dissipates after one hour.",
+    "url": "https://quantpedia.com/do-sp500-0dtes-options-increase-market-volatility/",
+    "page": "research/2026-11-07-intraday-long-options/pages/quantpedia.com-83745d790b.txt"
+   },
+   {
+    "id": "SQ2-3",
+    "quote": "market makers maintain a positive portfolio net gamma throughout the 0DTE expiration day.",
+    "url": "https://quantpedia.com/do-sp500-0dtes-options-increase-market-volatility/",
+    "page": "research/2026-11-07-intraday-long-options/pages/quantpedia.com-83745d790b.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C12",
+  "claim": "Cboe (self-reported) says the gap between close-to-close and intraday realised S&P 500 volatility averaged 2.7 vol points year to date, the same as the 10-year average, and that 0DTE trading has no discernible impact on SPX intraday volatility.",
+  "evidence": [
+   {
+    "id": "SQ2-4",
+    "quote": "The YTD average spread of 2.7 vol pts is exactly the same as the 10-year average (Exhibit 5).",
+    "url": "https://www.cboe.com/insights/posts/volatility-insights-evaluating-the-market-impact-of-spx-0-dte-options",
+    "page": "research/2026-11-07-intraday-long-options/pages/www.cboe.com-fef9873d48.txt"
+   },
+   {
+    "id": "SQ2-5",
+    "quote": "There is also no discernible market impact from 0DTE option trading, with SPX index intraday volatility and price patterns in line with historical averages.",
+    "url": "https://www.cboe.com/insights/posts/volatility-insights-evaluating-the-market-impact-of-spx-0-dte-options",
+    "page": "research/2026-11-07-intraday-long-options/pages/www.cboe.com-fef9873d48.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C13",
+  "claim": "Narain (IJCB 2026): market volatility during Powell's press conferences is more than three times that during Yellen's and Bernanke's, and since COVID markets tend to move in the opposite direction during the press conference to their move after the statement.",
+  "evidence": [
+   {
+    "id": "SQ2-7",
+    "quote": "market volatility is more than three times higher during press conferences given by Chair Jerome Powell than during press conferences by his predecessors Janet Yellen and Ben Bernanke.",
+    "url": "https://www.ijcb.org/journal/v22n1/market-impact-fed-communications-role-press-conference",
+    "page": "research/2026-11-07-intraday-long-options/pages/www.ijcb.org-91d8b6b56f.txt"
+   },
+   {
+    "id": "SQ2-8",
+    "quote": "markets tend to move in the opposite direction during the press conference compared with their movements following the release of the FOMC statement.",
+    "url": "https://www.ijcb.org/journal/v22n1/market-impact-fed-communications-role-press-conference",
+    "page": "research/2026-11-07-intraday-long-options/pages/www.ijcb.org-91d8b6b56f.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C14",
+  "claim": "Since 26 January 2026, Cboe has listed up to two Monday and Wednesday expirations on qualifying single stocks (market cap over $700bn) and ETFs (AUM over $50bn). These are not daily expirations.",
+  "evidence": [
+   {
+    "id": "SQ3-8",
+    "quote": "Effective January 26, 2026, the Cboe Options Exchanges will begin listing up to two Monday and Wednesday expirations for options on certain individual stocks or Exchange\u2011Traded Fund (ETF) Shares",
+    "url": "https://www.cboe.com/notices/content/?id=58202",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/www.cboe.com-fa14ce2aa3.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C15",
+  "claim": "A one-day snapshot (13 Sept 2023, about 5 minutes before the close) showed SPY 0DTE options near $1.00 with spreads of 5.8% of price, against about 1% for other expirations.",
+  "evidence": [
+   {
+    "id": "SQ3-6",
+    "quote": "The spread on the 0DTE options (expiration date of Tuesday, Sept. 12) was 5.8%, while the spread on the options at other expirations were closer to 1%.",
+    "url": "https://www.schaeffersresearch.com/content/bgs/2023/09/22/0dte-options-are-higher-spreads-imminent",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/www.schaeffersresearch.com-7777f6884e.txt"
+   }
+  ]
+ }
+]

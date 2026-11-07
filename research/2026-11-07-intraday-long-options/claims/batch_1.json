@@ -1,0 +1,74 @@
+[
+ {
+  "cid": "C1",
+  "claim": "Average percent effective spreads of at-the-money SPX 0DTE options were 8.7% of the option price for calls and 9.5% for puts, against about 6% for 1\u20136-day options and about 2% for options with 42\u201348 days left, in OPRA trade data from January 2004 to July 2021 (Doshi, Pederzoli & Sert, 2025 working paper).",
+  "evidence": [
+   {
+    "id": "SQ3-9",
+    "quote": "The average spread is very high, ranging from a maximum of 9% for 0DTE options to a minimum of 2% for options with 21-48 days to maturity.",
+    "url": "https://bauer.uh.edu/hdoshi/docs/DPS_May_2025.pdf",
+    "page": "research/2026-11-07-intraday-long-options/pages/bauer.uh.edu-654a5aec18.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "Option bid-ask spreads follow a U-shape through the trading day, widest at the open and the close.",
+  "evidence": [
+   {
+    "id": "SQ3-10",
+    "quote": "bid-ask spread follows a U-shaped pattern over the trading day, widening at the open and close",
+    "url": "https://bauer.uh.edu/hdoshi/docs/DPS_May_2025.pdf",
+    "page": "research/2026-11-07-intraday-long-options/pages/bauer.uh.edu-654a5aec18.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "VIX1D is computed in business minutes on a 405-minute trading day. Its weight shifts from same-day to next-day SPX options as the session goes on, and from about 3:00 p.m. ET the same-day component is frozen at its last valid value.",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "The calculation of the VIX1D Index uses business years and business minutes \u2013 this is a different increment than the VIX Index, which uses calendar years and calendar minutes.",
+    "url": "https://www.cboe.com/insights/posts/what-the-vix-and-vix-1-d-indices-attempt-to-measure-and-how-they-differ",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/www.cboe.com-bd79ca0cc4.txt"
+   },
+   {
+    "id": "SQ3-2",
+    "quote": "when the time to expiration for the near-term (current day expiry) series is less than 60 business minutes (approximately 3:00 p.m. ET), the single-term volatility of the near term will be the last valid value",
+    "url": "https://www.cboe.com/insights/posts/what-the-vix-and-vix-1-d-indices-attempt-to-measure-and-how-they-differ",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/www.cboe.com-bd79ca0cc4.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "In Beckmeyer, Branger & Gayda's retail data, the average retail long SPX 0DTE position lost 53% of its value over the full sample and 61% since May 2022, while short positions earned 48% and 56%.",
+  "evidence": [
+   {
+    "id": "SQ3-3",
+    "quote": "While the average long position of retail investors lost 53% of its value across the full sample and 61% for the sample since May 2022, selling insurance earned a large premium for the average trade, with returns of 48% and 56%, respectively.",
+    "url": "https://www.wealthmanagement.com/equities/retail-investors-are-in-love-with-same-day-options",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/www.wealthmanagement.com-dffaf36185.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "Vilkov finds a positive but economically tiny variance risk premium in SPX 0DTE options (Sept 2016\u2013Jan 2024, positions opened at 10:00 and held to the close), and no unhedged structure held to expiry was consistently profitable.",
+  "evidence": [
+   {
+    "id": "SQ3-4",
+    "quote": "Only risk reversals - long call, short put - produced slightly positive mean returns, roughly 0.01% of the index value , trivial even before costs.",
+    "url": "https://breakingnasdaq.beehiiv.com/p/the-0dte-illusion",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/breakingnasdaq.beehiiv.com-b9ab8c4b32.txt"
+   },
+   {
+    "id": "SQ3-5",
+    "quote": "implied volatility tends to be high relative to what is subsequently realized, even at same-day horizons.",
+    "url": "https://hulltactical.com/2026/07/08/0dte-options-tiny-edge-huge-distribution/",
+    "page": "/home/user/researcher/research/2026-11-07-intraday-long-options/pages/hulltactical.com-d698f07084.txt"
+   }
+  ]
+ }
+]

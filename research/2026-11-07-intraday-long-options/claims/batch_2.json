@@ -1,0 +1,86 @@
+[
+ {
+  "cid": "C6",
+  "claim": "Gao, Han, Li & Zhou (JFE 2018) find, on SPY over 1993\u20132013, that the first half-hour return measured from the previous close predicts the last half-hour return. In the working-paper version, timing the last half-hour on that signal earned 6.3% a year gross against \u22120.5% for always holding it, with frictions ignored.",
+  "evidence": [
+   {
+    "id": "SQ1-1",
+    "quote": "the first half-hour return on the market as measured from the previous day\u2019s market close predicts the last half-hour return.",
+    "url": "https://econpapers.repec.org/RePEc:eee:jfinec:v:129:y:2018:i:2:p:394-414",
+    "page": "research/2026-11-07-intraday-long-options/pages/econpapers.repec.org-596b363529.txt"
+   },
+   {
+    "id": "SQ1-2",
+    "quote": "Holding SPY (cash) during the last half-hour when the first half-hour return is positive (negative) generates a gross annualized return of 6.3%, compared to -0.5% for holding SPY during all last half-hours.",
+    "url": "https://www.cxoadvisory.com/?p=25481",
+    "page": "research/2026-11-07-intraday-long-options/pages/www.cxoadvisory.com-089f4f31dc.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "Later checks are weak: on SPY from Aug 2012 to May 2014 the first/last half-hour correlation was 0.12 (R\u00b2 0.014), and Rosa (JFM 2022) finds that the overnight-return variant's predictability disappears out of sample.",
+  "evidence": [
+   {
+    "id": "SQ1-3",
+    "quote": "The Pearson correlation for the relationship is 0.12 and the R-squared statistic 0.014, indicating that first half-hour return explains 1% to 2% of the variation in last half-hour return.",
+    "url": "https://www.cxoadvisory.com/?p=25481",
+    "page": "research/2026-11-07-intraday-long-options/pages/www.cxoadvisory.com-089f4f31dc.txt"
+   },
+   {
+    "id": "SQ1-4",
+    "quote": "The predictability disappears in the out\u2010of\u2010sample period.",
+    "url": "https://econpapers.repec.org/RePEc:wly:jfutmk:v:42:y:2022:i:12:p:2218-2234",
+    "page": "research/2026-11-07-intraday-long-options/pages/econpapers.repec.org-746ceb9082.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "Baltussen, Da, Lammers & Martens (JFE 2021) find market intraday momentum across more than 60 futures, from 1974 to 2020, and link it to gamma-hedging demand.",
+  "evidence": [
+   {
+    "id": "SQ1-5",
+    "quote": "we find strong market intraday momentum everywhere.",
+    "url": "https://econpapers.repec.org/RePEc:eee:jfinec:v:142:y:2021:i:1:p:377-403",
+    "page": "research/2026-11-07-intraday-long-options/pages/econpapers.repec.org-73d996fd58.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "A self-published ORB working paper reports a Sharpe ratio of 2.81 and 36% annual alpha for the top-20 stocks in play over 2016\u20132023. Its QQQ version (33.2% vs 14.9% CAGR) assumed zero slippage. An independent 2015\u20132026 replication on index CFDs found at most +0.06R out of sample over 2021\u20132026.",
+  "evidence": [
+   {
+    "id": "SQ1-6",
+    "quote": "A portfolio that consisted of the top 20 Stocks in Play achieved a total net performance of over 1,600%, with a Sharpe ratio of 2.81, and an annualized alpha of 36%.",
+    "url": "https://ideas.repec.org/p/chf/rpseri/rp2498.html",
+    "page": "research/2026-11-07-intraday-long-options/pages/ideas.repec.org-85734340e9.txt"
+   },
+   {
+    "id": "SQ1-7",
+    "quote": "A 5-minute opening range breakout day-trading strategy on QQQ (long/short after first 5 minutes; 1% risk per trade; daily exit) outperformed buy-and-hold QQQ (33.2% vs 14.9% CAGR; Jan 2016\u2013Feb 2023; 1,795 trades; zero slippage assumed).",
+    "url": "https://www.cxoadvisory.com/technical-trading/day-trading-with-an-opening-range-breakout-strategy",
+    "page": "research/2026-11-07-intraday-long-options/pages/www.cxoadvisory.com-2e4e6d85f3.txt"
+   },
+   {
+    "id": "SQ1-8",
+    "quote": "The out-of-sample years 2021 to 2026 give +0.06 R on NQ at best; futures with commission only were not tested.",
+    "url": "https://www.mql5.com/en/blogs/post/776235",
+    "page": "research/2026-11-07-intraday-long-options/pages/www.mql5.com-2886883e2c.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "Lou, Polk & Skouras (JFE 2019) find that momentum and reversal profits are earned either entirely overnight or entirely intraday, typically with opposite signs across the two.",
+  "evidence": [
+   {
+    "id": "SQ1-10",
+    "quote": "profits are either earned entirely overnight (for reversal and a variety of momentum strategies) or entirely intraday, typically with profits of opposite signs across these components.",
+    "url": "https://econpapers.repec.org/RePEc:eee:jfinec:v:134:y:2019:i:1:p:192-213",
+    "page": "research/2026-11-07-intraday-long-options/pages/econpapers.repec.org-35d41c7f7b.txt"
+   }
+  ]
+ }
+]
