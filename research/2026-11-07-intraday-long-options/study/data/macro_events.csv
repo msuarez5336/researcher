@@ -1,0 +1,279 @@
+event_date,event_code,event_name,assumed_time_et,crosscheck_status,time_verified,needs_review,is_scheduled
+2022-01-04,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-01-06,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-01-07,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-01-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-01-26,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2022-02-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-02-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-02-04,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-02-08,cpi,Consumer Price Index,08:30,missing,FALSE,TRUE,FALSE
+2022-02-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-03-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-03-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-03-04,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-03-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-03-16,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2022-04-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-04-01,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-04-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-04-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-05-02,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-05-04,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2022-05-04,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-05-06,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-05-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-06-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-06-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-06-03,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-06-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-06-15,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2022-07-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-07-06,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-07-08,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-07-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-07-27,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2022-08-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-08-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-08-05,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-08-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-09-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-09-02,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-09-06,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-09-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-09-21,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2022-10-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-10-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-10-07,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-10-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-11-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-11-02,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2022-11-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-11-04,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-11-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-12-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2022-12-02,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2022-12-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2022-12-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2022-12-14,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2023-01-04,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-01-06,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-01-06,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-01-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-02-01,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2023-02-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-02-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-02-03,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-02-10,cpi,Consumer Price Index,08:30,missing,FALSE,TRUE,FALSE
+2023-02-14,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-03-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-03-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-03-10,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-03-14,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-03-22,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2023-04-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-04-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-04-07,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-04-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-05-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-05-03,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2023-05-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-05-05,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-05-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-06-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-06-02,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-06-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-06-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-06-14,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2023-07-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-07-06,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-07-07,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-07-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-07-26,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2023-08-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-08-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-08-04,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-08-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-09-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-09-01,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-09-06,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-09-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-09-20,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2023-10-02,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-10-04,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-10-06,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-10-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-11-01,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2023-11-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-11-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-11-03,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-11-14,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-12-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2023-12-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2023-12-08,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2023-12-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2023-12-13,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2024-01-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-01-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-01-05,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-01-10,nfp,Non-Farm Payrolls,08:30,missing,FALSE,TRUE,FALSE
+2024-01-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-01-31,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2024-02-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-02-02,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-02-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-02-09,cpi,Consumer Price Index,08:30,missing,FALSE,TRUE,FALSE
+2024-02-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-03-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-03-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-03-08,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-03-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-03-20,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2024-04-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-04-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-04-05,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-04-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-05-01,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2024-05-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-05-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-05-03,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-05-15,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-06-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-06-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-06-07,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-06-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-06-12,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2024-07-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-07-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-07-05,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-07-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-07-31,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2024-08-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-08-02,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-08-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-08-14,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-08-21,nfp,Non-Farm Payrolls,08:30,missing,FALSE,TRUE,FALSE
+2024-09-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-09-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-09-06,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-09-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-09-18,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2024-10-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-10-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-10-04,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-10-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-11-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-11-01,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-11-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-11-07,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2024-11-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-12-02,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2024-12-04,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2024-12-06,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2024-12-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2024-12-18,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-01-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-01-07,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-01-10,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-01-15,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-01-29,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-02-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-02-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-02-07,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-02-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-03-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-03-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-03-07,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-03-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-03-19,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-04-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-04-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-04-04,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-04-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-05-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-05-02,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-05-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-05-07,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-05-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-06-02,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-06-04,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-06-06,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-06-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-06-18,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-07-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-07-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-07-03,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-07-15,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-07-30,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-08-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-08-01,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-08-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-08-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-08-22,fomc,FOMC Statement,14:00,missing,FALSE,TRUE,FALSE
+2025-09-02,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-09-04,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-09-05,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-09-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-09-17,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-10-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-10-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-10-24,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2025-10-29,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-11-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-11-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-11-20,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-12-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2025-12-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2025-12-10,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2025-12-16,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2025-12-18,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-01-05,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-01-07,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-01-09,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-01-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-01-28,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2026-02-02,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-02-04,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-02-11,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-02-13,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-03-02,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-03-04,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-03-06,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-03-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-03-18,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2026-04-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-04-03,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-04-06,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-04-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-04-29,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2026-05-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-05-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-05-08,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-05-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-06-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-06-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-06-05,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-06-10,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-06-17,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2026-07-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-07-02,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-07-06,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-07-14,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-07-29,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2026-08-03,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-08-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-08-07,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-08-12,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-09-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-09-03,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-09-04,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-09-11,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-09-16,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2026-10-01,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-10-02,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE
+2026-10-05,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-10-14,cpi,Consumer Price Index,08:30,match,TRUE,FALSE,FALSE
+2026-10-28,fomc,FOMC Statement,14:00,match,TRUE,FALSE,FALSE
+2026-11-02,ism_mfg,ISM Manufacturing PMI,10:00,match,TRUE,FALSE,FALSE
+2026-11-04,ism_services,ISM Services PMI,10:00,match,TRUE,FALSE,FALSE
+2026-11-06,nfp,Non-Farm Payrolls,08:30,match,TRUE,FALSE,FALSE

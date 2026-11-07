@@ -11,6 +11,9 @@ Sources:
 - Cboe daily index CSVs (cdn.cboe.com): VIX1D, VIX, VIX9D, VXN.
 - Nasdaq historical daily OHLCV (api.nasdaq.com), 2016-10 -> today, SPY, QQQ and 16 stocks.
 - federalreserve.gov FOMC calendar pages (statement dates).
+- Concretum Group macro event calendar (free public export, no login): CPI, NFP, FOMC, ISM
+  release dates and ET times, 2022-01 -> 2026-11 (calendar.concretumgroup.com/api/events/export/).
+  Third-party; FOMC dates are cross-checked against federalreserve.gov in the study script.
 - The H-MOM1 event list is copied from the prior continuation run (branch
   claude/inspiring-cerf-epxwvd, research/2026-11-07-event-windows/continuation/events.csv)
   with `git show`; it is not re-derived here because it needs the earnings calendar.
@@ -73,6 +76,8 @@ def main() -> None:
              f"&fromdate=2016-10-01&limit=9999&todate=2026-11-07")
     for pg in ["fomccalendars.htm", "fomchistorical2020.htm"]:
         save(f"fed_{pg}", f"https://www.federalreserve.gov/monetarypolicy/{pg}")
+    save("macro_events.csv", "https://calendar.concretumgroup.com/api/events/export/?start=2022-01-01"
+         "&end=2026-11-07&layout=long&include_assumed_time=true&events=cpi,nfp,fomc,ism_mfg,ism_services")
     out = DATA / "prior_continuation_events.csv"
     if not out.exists():
         txt = subprocess.run(["git", "show", f"{PRIOR_BRANCH}:{PRIOR_EVENTS}"], capture_output=True,
