@@ -146,11 +146,23 @@ def ncdf(x): return 0.5 * (1 + math.erf(x / math.sqrt(2)))
 
 
 def ninv(p):
-    lo, hi = -10.0, 10.0
-    for _ in range(80):
-        mid = (lo + hi) / 2
-        lo, hi = (mid, hi) if ncdf(mid) < p else (lo, mid)
-    return (lo + hi) / 2
+    """Inverse standard normal CDF (Acklam's rational approximation, |error| < 1.2e-9 after one Newton step)."""
+    a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00]
+    b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01]
+    c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00]
+    d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00]
+    pl = 0.02425
+    if p < pl:
+        q = math.sqrt(-2 * math.log(p))
+        x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)
+    elif p > 1 - pl:
+        q = math.sqrt(-2 * math.log(1 - p))
+        x = -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)
+    else:
+        q = p - 0.5; r = q * q
+        x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1)
+    e = ncdf(x) - p
+    return x - e * math.sqrt(2 * math.pi) * math.exp(x * x / 2)
 
 
 def bs(S, K, T, v, cp):
@@ -165,20 +177,27 @@ def strike_for_delta(S, T, v, cp, delta):
     return S * math.exp(-d1 * v * math.sqrt(T) + 0.5 * v * v * T)
 
 
-def option_return(S0, S1, iv0, iv1, h, cp, structure, cost):
-    """Return of a 45-DTE position bought at S0/iv0 and sold h trading days later at S1/iv1."""
+def option_returns(S0, S1, iv0, iv1, h, cp, structure):
+    """Returns {cost: return} for a 45-DTE position bought at S0/iv0, sold h trading days later at S1/iv1."""
     T0 = DTE0 / 365; T1 = (DTE0 - h * 7 / 5) / 365
     if structure == "atm":
         legs = [(S0, +1)]
     else:
         legs = [(strike_for_delta(S0, T0, iv0, cp, 0.50), +1), (strike_for_delta(S0, T0, iv0, cp, 0.25), -1)]
-    v0 = sum(q * bs(S0, K, T0, iv0, cp) for K, q in legs)
-    v1 = sum(q * bs(S1, K, T1, iv1, cp) for K, q in legs)
-    c = COST[cost]
-    cost0 = sum(c * bs(S0, K, T0, iv0, cp) + COMM for K, _ in legs) if c else 0.0
-    cost1 = sum(c * bs(S1, K, T1, iv1, cp) + COMM for K, _ in legs) if c else 0.0
-    paid = v0 + cost0
-    return (v1 - cost1 - paid) / paid if paid > 0 else math.nan
+    p0 = [bs(S0, K, T0, iv0, cp) for K, _ in legs]
+    p1 = [bs(S1, K, T1, iv1, cp) for K, _ in legs]
+    v0 = sum(q * x for (_, q), x in zip(legs, p0)); v1 = sum(q * x for (_, q), x in zip(legs, p1))
+    out = {}
+    for name, c in COST.items():
+        cost0 = sum(c * x + COMM for x in p0) if c else 0.0
+        cost1 = sum(c * x + COMM for x in p1) if c else 0.0
+        paid = v0 + cost0
+        out[name] = (v1 - cost1 - paid) / paid if paid > 0 else math.nan
+    return out
+
+
+def option_return(S0, S1, iv0, iv1, h, cp, structure, cost):
+    return option_returns(S0, S1, iv0, iv1, h, cp, structure)[cost]
 
 
 # ------------------------------------------------------------------ helpers
@@ -213,18 +232,19 @@ BASE_CACHE: dict = {}
 
 
 def baseline(ser, iv, cp, structure, h, cost, period):
-    key = (ser.tk, cp, structure, h, cost, period)
+    key = (ser.tk, cp, structure, h, period)
     if key not in BASE_CACHE:
-        xs = []
+        xs = {c: [] for c in COST}
         for i in range(62, len(ser.d) - h):
             if (ser.d[i] >= OOS_START) != (period == "OOS"):
                 continue
             a, b = iv.at(i), iv.at(i + h)
             if math.isnan(a) or math.isnan(b):
                 continue
-            xs.append(option_return(ser.C[i], ser.C[i + h], a, b, h, cp, structure, cost))
-        BASE_CACHE[key] = st.mean(xs) if xs else math.nan
-    return BASE_CACHE[key]
+            for c, v in option_returns(ser.C[i], ser.C[i + h], a, b, h, cp, structure).items():
+                xs[c].append(v)
+        BASE_CACHE[key] = {c: (st.mean(v) if v else math.nan) for c, v in xs.items()}
+    return BASE_CACHE[key][cost]
 
 
 ROWS: list[dict] = []
@@ -465,14 +485,15 @@ def run_C(series, ivs, vix, fomc, gx):
 # ------------------------------------------------------------------ main
 def main():
     log = [f"run {datetime.now().isoformat(timespec='seconds')}"]
+    say = lambda m: print(f"[{datetime.now():%H:%M:%S}] {m}", flush=True)
     series = {tk: Series(tk) for tk in ETFS + STOCKS}
     v = {n: vol_index(n) for n in ("VIX", "VIX9D", "VIX1D", "VIX3M", "VVIX", "VXN", "RVX", "VXAPL", "VXAZN", "VXGOG")}
     gx = gex(); fomc = fomc_dates()
     log.append(f"FOMC dates {len(fomc)} ({min(fomc)}..{max(fomc)}); GEX days {len(gx)}; tickers {len(series)}")
     ivs = {tk: IV(series[tk], v.get(IV_MAP.get(tk, ""))) for tk in series}
-    run_M(series, v["VIX"], v["VIX9D"], v["VIX1D"], v["VXN"], fomc)
-    run_R(series, v["VIX"], v["VIX9D"], v["VIX3M"], v["VVIX"], v["VXN"], gx)
-    dropped, c3 = run_C(series, ivs, v["VIX"], fomc, gx)
+    say("data loaded"); run_M(series, v["VIX"], v["VIX9D"], v["VIX1D"], v["VXN"], fomc)
+    say("M done"); run_R(series, v["VIX"], v["VIX9D"], v["VIX3M"], v["VVIX"], v["VXN"], gx)
+    say("R done"); dropped, c3 = run_C(series, ivs, v["VIX"], fomc, gx); say("C done")
     log.append(f"C2 single-stock events dropped for earnings: {dropped}")
     log += c3
     with open(HERE / "results.csv", "w", newline="") as f:

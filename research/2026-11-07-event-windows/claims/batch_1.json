@@ -1,0 +1,80 @@
+[
+ {
+  "cid": "C1",
+  "claim": "Medhat & Schmeling (Review of Financial Studies, 2022) find that one-month short-term reversal is concentrated in low-turnover stocks, while high-turnover (large, liquid) stocks show short-term momentum; in a large-cap sample the reversal strategy earned about 0.84% per month gross, below the average monthly transaction cost of 1.94%.",
+  "evidence": [
+   {
+    "id": "SQ1-1",
+    "quote": "double sorting on the previous month’s return and share turnover revealed significant short-term reversal among thinly traded, low-turnover stocks, whereas high-turnover stocks exhibited short-term momentum.",
+    "url": "https://alphaarchitect.com/short-term-momentum/",
+    "page": "/home/user/researcher/research/2026-11-07-event-windows/pages/alphaarchitect.com-fab069b752.txt"
+   },
+   {
+    "id": "SQ1-2",
+    "quote": "Despite the large gross return, STREV’s average monthly transaction cost of 1.94 percent subsumed its average gross return.",
+    "url": "https://alphaarchitect.com/short-term-momentum/",
+    "page": "/home/user/researcher/research/2026-11-07-event-windows/pages/alphaarchitect.com-fab069b752.txt"
+   },
+   {
+    "id": "SQ1-3",
+    "quote": "Short-term momentum persists for 12 months and is strongest among the largest and most liquid stocks. On the other hand, short-term reversal was indistinguishable from zero after two months.",
+    "url": "https://alphaarchitect.com/short-term-momentum/",
+    "page": "/home/user/researcher/research/2026-11-07-event-windows/pages/alphaarchitect.com-fab069b752.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "Nagel (Review of Financial Studies, 2012) shows that returns to short-term reversal (liquidity provision) strategies are highly predictable with the VIX, being larger when VIX is high.",
+  "evidence": [
+   {
+    "id": "SQ1-5",
+    "quote": "this article shows that the return from liquidity provision is highly predictable with the VIX index.",
+    "url": "https://econpapers.repec.org/RePEc:oup:rfinst:v:25:y:2012:i:7:p:2005-2039",
+    "page": "/home/user/researcher/research/2026-11-07-event-windows/pages/econpapers.repec.org-5b25d4ebbf.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "Savor (2012) finds that large stock price changes not accompanied by analyst recommendations tend to reverse, while those accompanied by recommendations tend to continue (drift).",
+  "evidence": [
+   {
+    "id": "SQ1-6",
+    "quote": "events unaccompanied by analyst recommendations experience reversals, whereas events accompanied by analyst recommendations exhibit momentum.",
+    "url": "https://rpc.cfainstitute.org/research/cfa-digest/2013/02/stock-returns-after-major-price-shocks-the-impact-of-information-digest-summary",
+    "page": "/home/user/researcher/research/2026-11-07-event-windows/pages/rpc.cfainstitute.org-adb211d50f.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "The pre-FOMC announcement drift documented by Lucca & Moench (over 80% of the US equity premium since 1994 earned in the 24 hours before scheduled FOMC announcements) essentially disappeared after 2015, according to Kurov, Wolfe & Gilbert (Finance Research Letters, 2021).",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "We show that since 1994, more than 80 percent of the equity premium on U.S. stocks has been earned over the twenty-four hours preceding scheduled Federal Open Market Committee (FOMC) announcements",
+    "url": "https://libertystreeteconomics.newyorkfed.org/?p=1112",
+    "page": "research/2026-11-07-event-windows/pages/libertystreeteconomics.newyorkfed.org-6ff642adea.txt"
+   },
+   {
+    "id": "SQ2-2",
+    "quote": "the pre-FOMC drift essentially disappeared after 2015 in both announcements accompanied by press conferences and announcements not accompanied by press conferences.",
+    "url": "https://ideas.repec.org/a/eee/finlet/v40y2021ics1544612320315956.html",
+    "page": "research/2026-11-07-event-windows/pages/ideas.repec.org-684af6957e.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "Index straddle returns around scheduled macroeconomic announcements are negative on average, with FOMC meetings the exception where they are positive (as summarized by OptionMetrics).",
+  "evidence": [
+   {
+    "id": "SQ2-4",
+    "quote": "Risk premia in index option straddle positions are also negative around announcements, except that they are positive around Fed Open Market Committee (FOMC) meetings.",
+    "url": "https://optionmetrics.com/?p=445",
+    "page": "research/2026-11-07-event-windows/pages/optionmetrics.com-84036035e6.txt"
+   }
+  ]
+ }
+]

@@ -1,0 +1,68 @@
+[
+ {
+  "cid": "C6",
+  "claim": "A practitioner backtest on SPY finds dealer gamma exposure (GEX) has a raw rank correlation of about -0.36 with next-day realized volatility, but the relationship falls to about -0.03 (not significant) after controlling for VIX and ATM implied volatility.",
+  "evidence": [
+   {
+    "id": "SQ2-6",
+    "quote": "After controlling for VIX and ATM IV, the GEX-only signal drops from rank correlation -0.36 (strong) to -0.03 (statistical noise, p=0.18).",
+    "url": "https://flashalpha.com/articles/gex-dex-vex-chex-8-year-backtest-spy-vix-control",
+    "page": "research/2026-11-07-event-windows/pages/flashalpha.com-08f8329e67.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "In 2008, forward 30-day realized volatility rose above the VIX from July until November, when the VIX caught up, and the VIX then overshot realized volatility in early 2009; in panics the VIX lags the onset of volatility and then overreacts.",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "In July 2008, realized volatility on a 30-day, forward-looking basis began to spike over the VIX. This continued until November 2008 when the VIX finally caught up and matched realized volatility.",
+    "url": "https://rpc.cfainstitute.org/blogs/enterprising-investor/2024/how-well-does-the-market-predict-volatility",
+    "page": "research/2026-11-07-event-windows/pages/rpc.cfainstitute.org-1c146f146b.txt"
+   },
+   {
+    "id": "SQ3-2",
+    "quote": "VIX is slow to react to the oncoming volatility and then overreacts once it realizes the volatility that is coming.",
+    "url": "https://rpc.cfainstitute.org/blogs/enterprising-investor/2024/how-well-does-the-market-predict-volatility",
+    "page": "research/2026-11-07-event-windows/pages/rpc.cfainstitute.org-1c146f146b.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "Man Group's study of the top 20 VIX spikes over 30 years found mixed subsequent S&P 500 returns: when the index rose in the week after the spike, the second week was negative on average.",
+  "evidence": [
+   {
+    "id": "SQ3-3",
+    "quote": "However, the pattern reverses if the S&P 500 declines in the week after the VIX spike, as we saw between 29 November and 3 December. In this instance, returns persistence after the second week improves to 86%",
+    "url": "https://www.man.com/insights/views-from-the-floor-2021-dec-14",
+    "page": "research/2026-11-07-event-windows/pages/www.man.com-1ddecfc561.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "According to an IVolatility vendor analysis, single-day SPY implied-volatility spikes of 5 points or more were followed by an average SPY gain of about 5.12% over the next 20 trading days, roughly five times the baseline, using overlapping windows.",
+  "evidence": [
+   {
+    "id": "SQ1-10",
+    "quote": "IV spikes of ≥5 points in a single day were followed by an average +5.12% over 20 days — five times the baseline return.",
+    "url": "https://www.ivolatility.com/news/3127",
+    "page": "/home/user/researcher/research/2026-11-07-event-windows/pages/www.ivolatility.com-bac5d2e97e.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "A reversal strategy on E-mini S&P 500 futures on FOMC announcement days, trading from 13:50 ET to the close against the prior 24-hour return, averaged about 0.18% net per announcement with a Sharpe ratio of 0.36 over October 1997 to January 2020 (180 announcements).",
+  "evidence": [
+   {
+    "id": "SQ2-5",
+    "quote": "A reversal strategy trading E-mini S&P 500 from 13:50 EST to the close, opposite the prior 24-hour return, averaged 0.18% net per FOMC announcement with Sharpe ratio 0.36 (Oct 1997–Jan 2020; 180 announcements; trades at bid/ask).",
+    "url": "https://cxoadvisory.com/calendar-effects/stock-market-return-reversal-after-fomc-announcements",
+    "page": "research/2026-11-07-event-windows/pages/cxoadvisory.com-6531c9b786.txt"
+   }
+  ]
+ }
+]
