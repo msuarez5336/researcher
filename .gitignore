@@ -3,3 +3,6 @@ research/*/pages/
 .claude/settings.local.json
 CLAUDE.local.md
 __pycache__/
+
+# Third-party price data downloaded by screen scripts (regenerable)
+research/*/screen/data/
