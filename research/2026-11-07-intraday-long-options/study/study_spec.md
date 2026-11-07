@@ -136,4 +136,16 @@ Structures for directional cells: A0 (ATM 0DTE), O0 (0.30Δ 0DTE), A1 (ATM 1DTE)
 `results.csv` (one row per cell, with its trial number), `vrp.csv` (Part 1a/1b), `run.log`, and `trades_sample.csv` (the first 200 trades for audit).
 
 ## Amendments
-(none yet)
+(none; the spec was not changed after the first run)
+
+## Run log
+- Run 1 (official, 2026-11-07): 428 cells, trials #1,538–#1,965. 54 descriptive VRP cells (1a/1b) in
+  `vrp.csv`; 374 scored cells in `results.csv`, 342 eligible (n_OOS ≥ 20). 2 cells passed the bar:
+  #1,592 (SPY 0DTE ATM straddle 09:30→10:30, OOS excess +12.7 pts, t 8.1) and #1,772 (QQQ, same,
+  +19.7 pts, t 10.2). 18 eligible cells had t ≥ 2, 28 had t ≤ −2.
+- Post-run diagnostics (not trials, `diagnostics.py` → `diagnostics.log`): the open-hour result is the
+  same with the exit priced at the entry σ; the first hour carries 23–34% of the session's realised
+  variance against a 15% share on the flat business-minute clock; VIX1D does not fall after the open
+  (mean 09:30 ≈ 10:30) and rises through the session (5-min bars). The pass therefore depends on how
+  real 0DTE prices decay through the first hour, which modelled prices cannot show. Treated as a
+  suspected model artefact pending chain data, not as an edge.

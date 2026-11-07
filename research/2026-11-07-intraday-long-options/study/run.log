@@ -1,0 +1,16 @@
+run 2026-11-07T19:02:05
+FOMC cross-check: 40 dates match federalreserve.gov
+sessions 695 (2024-01-22 -> 2026-11-06); IS 338, OOS 357
+day types in sample: fomc 24, macro0830 65, ism 65, opex 33, all 695, other 513
+Part 1a/1b written: 54 cells
+SPY W1 done
+SPY W2 done
+SPY W3-W7 done
+QQQ W1 done
+QQQ W2 done
+QQQ W3-W7 done
+Part 3 events: strict 50, all 496
+Part 3 done
+trading cells 374, eligible 342, passed 2; trials 1538..1965
+PASS #1592: 1c SPY open all S0 09:30->10:30 exc +0.127 t 8.06
+PASS #1772: 1c QQQ open all S0 09:30->10:30 exc +0.197 t 10.18

@@ -1,0 +1,10 @@
+D1 SPY IS n=338: open-hour S0 k70 mean, exit at VIX1D(10:30) +0.007; exit at entry sigma +0.002; first-hour share of session realised variance 0.230 (clock share 0.154); mean sigma 09:30 0.1227 vs 10:30 0.1235
+D1 SPY OOS n=357: open-hour S0 k70 mean, exit at VIX1D(10:30) +0.032; exit at entry sigma +0.033; first-hour share of session realised variance 0.285 (clock share 0.154); mean sigma 09:30 0.1042 vs 10:30 0.1041
+D1 QQQ IS n=338: open-hour S0 k70 mean, exit at VIX1D(10:30) +0.094; exit at entry sigma +0.090; first-hour share of session realised variance 0.312 (clock share 0.154); mean sigma 09:30 0.1454 vs 10:30 0.1466
+D1 QQQ OOS n=357: open-hour S0 k70 mean, exit at VIX1D(10:30) +0.107; exit at entry sigma +0.108; first-hour share of session realised variance 0.341 (clock share 0.154); mean sigma 09:30 0.1351 vs 10:30 0.1348
+D2 #1952 strict overnight: n 23/27  t IS 0.6781 OOS 2.0839  raw mean OOS 0.0087  excess OOS 0.0084
+D2 #1953 strict intraday: n 23/27  t IS -0.9416 OOS 2.8950  raw mean OOS 0.0205  excess OOS 0.0206
+D2 #1954 strict full: n 23/27  t IS -0.3399 OOS 3.6144  raw mean OOS 0.0292  excess OOS 0.0291
+D2 #1959 all overnight: n 219/277  t IS 0.5862 OOS 1.5016  raw mean OOS 0.0023  excess OOS 0.0022
+D2 #1960 all intraday: n 219/277  t IS -3.9269 OOS 1.8030  raw mean OOS 0.0030  excess OOS 0.0031
+D2 #1961 all full: n 219/277  t IS -2.3454 OOS 2.4208  raw mean OOS 0.0053  excess OOS 0.0053
