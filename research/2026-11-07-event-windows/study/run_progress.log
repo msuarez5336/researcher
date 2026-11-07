@@ -1,0 +1,15 @@
+[04:43:33] data loaded
+[04:43:33] M done
+[04:43:33] R done
+[05:12:33] C done
+run 2026-11-07T04:43:27
+FOMC dates 85 (2016-12-14..2026-10-28); GEX days 3904; tickers 19
+C2 single-stock events dropped for earnings: 247
+C3 C1 h=3: mean IV change after events -0.41 pts (n=290) vs random days +0.01 pts
+C3 C2 indexed h=3: mean IV change after events -0.63 pts (n=102) vs random days +0.02 pts
+C3 C1 h=10: mean IV change after events -1.56 pts (n=290) vs random days +0.04 pts
+C3 C2 indexed h=10: mean IV change after events -1.10 pts (n=102) vs random days +0.07 pts
+cells scored (trials this run): 343; cumulative trials incl. previous run: 348
+promising cells: 2
+  PROMISING C2 single-stock reversal (non-earnings) | 16 stocks pooled | vix=mid | atm h=10 | excess OOS 0.2006 (t 2.64, n 103) IS 0.178
+  PROMISING C2 single-stock reversal (non-earnings) | 16 stocks pooled | vix=mid | spread h=10 | excess OOS 0.1639 (t 3.27, n 103) IS 0.1687

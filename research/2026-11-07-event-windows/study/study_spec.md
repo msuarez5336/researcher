@@ -91,3 +91,13 @@ bottom as new trials, with the reason. Earnings are excluded throughout (user de
   out-of-sample includes the 2022 bear market and the 2025 shocks). Vol indices and GEX are cut to the same window.
 - Pre-run note (2026-11-07): no reachable CPI or payroll release-date history (bls.gov 403; SQ2 found
   none), so M1 is FOMC-only. CPI and payroll windows are untested, not rejected.
+- Implementation change (before results): `ninv` switched from bisection to Acklam's closed form
+  (same values to 1e-9), and baseline costs computed in one pass. Definitions unchanged.
+- Run 1 (official, 2026-11-07): 343 cells scored (cumulative 348 trials). 2 cells passed the
+  promising bar (C2, VIX mid-tercile, ATM and spread, h = 10). 4 k = 0.70 cells reached
+  t ≥ 2 with excess ≥ 0.10 out of sample, about what chance would produce among ~81 eligible
+  cells. 11 k = 0.70 cells were significantly negative.
+- Post-run diagnostic (not a trial): the C2 IV **proxy** keeps the shock day inside its 20-day
+  window at both entry and exit (h ≤ 10 < 20), so it cannot show post-shock IV decay. Indexed
+  names show IV falling 1.1–1.6 points over 10 days (C3). Proxy-priced C2 option returns are
+  therefore biased upward, and the C2 "promising" cells are unconfirmed until repriced with chain IV.

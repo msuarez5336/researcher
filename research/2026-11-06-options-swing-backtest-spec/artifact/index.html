@@ -66,6 +66,7 @@ header { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-
 #ruler { min-width: 640px; display: block }
 #stradChart { min-width: 520px; display: block }
 #tickers table { min-width: 620px }
+#windows table { min-width: 560px }
 svg text { fill: var(--muted); font: 11px var(--f-mono) }
 .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 16px }
 .field { display: grid; gap: 4px; min-width: 0 }
@@ -124,7 +125,7 @@ footer { border-top: 2px solid var(--ink); padding-top: 16px; font-size: 13px; c
   <h1>Swing Options Backtest Spec</h1>
   <p class="lede">Rules for testing a 3–10 day directional options swing strategy on liquid US underlyings. Every rule can be coded and every result can be falsified. Checked against vendor docs, fee schedules and the overfitting literature as of 6 Nov 2026.</p>
   <div class="chips" aria-label="Changes from v1">
-    <span class="chip cut">4 cut</span><span class="chip fix">7 fixed</span><span class="chip add">6 added</span><span class="chip ok" id="verifyChip">19 claims fact-checked</span><a class="chip ok" href="#tickers">Tickers for long options</a>
+    <span class="chip cut">4 cut</span><span class="chip fix">7 fixed</span><span class="chip add">6 added</span><span class="chip ok" id="verifyChip">29 claims fact-checked</span><a class="chip ok" href="#tickers">Tickers for long options</a><a class="chip ok" href="#windows">When opportunities open</a>
   </div>
   <div class="meta"><span>as of 2026-11-06</span><span>run: research/2026-11-06-options-swing-backtest-spec</span><span>not investment advice</span></div>
 </header>
@@ -312,6 +313,27 @@ STOP IF
       <li><b>Variant S-E (earnings):</b> ~5–14 DTE straddle bought at the close before the print and sold after, only when implied &lt; historical earnings move. A vendor study found +36.7% per trade in that quintile and −18.5% overall. It is in-sample and unreplicated.</li>
     </ul></div></div>
   </div>
+</section>
+
+<!-- WINDOWS -->
+<section aria-labelledby="t-win" id="windows">
+  <div><span class="eyebrow">Follow-up run · 7 Nov 2026 · earnings excluded</span><h2 id="t-win">When opportunities open</h2></div>
+  <p class="lede">Each episodic window was tested by buying options at the time the window opened, pricing them at the Cboe implied vol, repricing them at exit, and comparing against the same option bought on random days. The study covers 2016–2026, split in half to check whether results held.</p>
+  <div class="lint-item bad"><b>Verdict:</b> no window beat random entries in a way that chance can't explain. The clearest results are negative. Buying the bounce after a big index down-day lost 21 points against random days, and implied vol falls 1–1.6 points in the 10 days after shocks, which drags on any call or put bought for a rebound.</div>
+  <div class="tbl"><table>
+    <thead><tr><th>Window</th><th>Measured (2021–26)</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Single-stock shock &gt; 2.5σ, no earnings, VIX 15–20 → reversal spread, 10 days</td><td class="num">+16 to +20 pts vs random (t 2.6–3.3)</td><td><span class="chip fix">lead, unconfirmed</span></td></tr>
+      <tr><td>FOMC-day straddle</td><td class="num">−2% to +7% vs −16 to −19% on other days (t &lt; 2)</td><td><span class="chip ok">watch</span></td></tr>
+      <tr><td>Post-FOMC reversal, 3 days</td><td class="num">+29%, t 2.1 (in-sample negative)</td><td><span class="chip ok">watch</span></td></tr>
+      <tr><td>Pre-FOMC drift (calls)</td><td class="num">≈ 0</td><td><span class="chip cut">no edge</span></td></tr>
+      <tr><td>Dealer short gamma (GEX &lt; 0)</td><td class="num">−31% (in-sample +19%)</td><td><span class="chip cut">no edge</span></td></tr>
+      <tr><td>Vol-shock onset (VIX jump, inversion, VVIX)</td><td class="num">4–29 events, mixed</td><td><span class="chip cut">inconclusive</span></td></tr>
+      <tr><td>Buy the bounce after an index shock day</td><td class="num">−21 pts vs random (t −3.5)</td><td><span class="chip cut">avoid</span></td></tr>
+      <tr><td>After a VIX spike</td><td class="num">−4 to +4 pts</td><td><span class="chip cut">no edge</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">The lead is probably a false positive: 2 passes out of ~81 eligible tests is about the chance rate. Its pricing also used a stand-in IV for most stocks that can't show the post-shock IV drop. It goes forward only as a confirmation test on real option-chain data. The default structure after any shock is a debit spread. Not tested: CPI and payrolls (no date source) and earnings (excluded).</p>
 </section>
 
 <!-- CHANGELOG -->
