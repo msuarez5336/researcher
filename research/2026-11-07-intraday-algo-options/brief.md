@@ -6,7 +6,7 @@
 | Requested by / for | Repo owner: a self-directed trader placing orders through a retail broker |
 | Run folder | `research/2026-11-07-intraday-algo-options/` |
 | Tier | DEEP (money depends on the answer; the topic is contested and full of marketing) |
-| Budget | Wave A: 6 workers × 15 tool calls; wave B: 1 worker × 15 calls; ≤5 claim-verifier batches. ~105 worker calls total |
+| Budget | Wave A: SQ1–SQ3 × 15 tool calls, SQ4–SQ6 × 20; wave B: SQ7 × 15; ≤5 claim-verifier batches. ~120 worker calls total |
 
 ## 1. The decision this research feeds
 Which 2–4 complete trading rules are worth backtesting first. Each rule names:
@@ -223,7 +223,7 @@ Out of scope for everyone: selling options, spreads and multi-leg trades; strate
 times a day; HFT and market making; crypto, FX, non-US options; tax advice; specific trade calls.
 
 At least one search, in the first half of your budget, for evidence against the likely answer.
-Budget: at most 15 tool calls. Stop earlier once two searches in a row add nothing new. If the task
+Budget: at most 15 tool calls unless your brief states a different number. Stop earlier once two searches in a row add nothing new. If the task
 is impossible as written, stop and say so; nobody can answer questions mid-run.
 
 Reply with only: (1) your two file paths, (2) a summary of ≤300 words, (3) gaps, conflicts and
@@ -259,6 +259,12 @@ a study used), costs (SQ5), data vendors (SQ6).
 
 HOW
 - Start from the leads above, then search for later replications or extensions (2019-2026).
+- Baltussen et al. (dealer hedging and intraday momentum) belongs to SQ2; don't extract it.
+- For earnings and macro events, report the underlying's move only, not implied volatility
+  (SQ3 covers IV crush).
+- If a lead is only on SSRN (e.g. Zarattini & Aziz), record "verified": false and also look for
+  a published or later version.
+- Record the exit rule each study used; SQ4 relies on you for exits inside signal papers.
 - Prefer journals, NBER, arXiv q-fin and author pages. Use practitioner backtests only if they
   state their method.
 - For each signal record: definition, time it fires, signals per day, horizon, instrument,
@@ -338,6 +344,7 @@ levels (SQ5); tooling (SQ6).
 HOW
 - Prefer academic studies and Cboe or OCC research. Broker and educator examples are grade C
   unless their method is stated.
+- Time-of-day spread levels belong to SQ5. You report premium and returns only.
 - Do at least one search for the case against buying short-dated options (retail 0DTE losses).
 
 OUTPUT
@@ -383,8 +390,16 @@ In:
 Out: entry signals (SQ1, SQ2); contract choice (SQ3); which broker supports what (SQ5).
 
 HOW
+- Budget: at most 20 tool calls.
+- Priority order: (1) volatility-scaled versus fixed exits, (2) stops set as a percent of the
+  option's premium, (3) time stops, (4) mapping to broker orders. Skip the rest if the budget
+  runs out.
+- Exits used inside signal papers (opening range, intraday momentum) are recorded by SQ1. You
+  search only for studies that compare exit rules. Baltussen et al. belongs to SQ2.
 - Prefer papers and studies with measured comparisons of exit rules. Practitioner write-ups
   count only if they state their method.
+- If no study tests exits on long options, say so. Label any result from stocks or futures
+  "transfer to options unproven"; don't pad with it unlabelled.
 - Do at least one search for evidence that stops or targets reduce returns.
 
 OUTPUT
@@ -432,9 +447,14 @@ and Alpaca (check whether it supports options).
 Out: signals, returns, exit design, data vendors.
 
 HOW
+- Budget: at most 20 tool calls. Spend at most 6 on spreads, microstructure and the
+  pattern-day-trader rule, and the rest on brokers (about 1–2 per broker).
 - Prefer microstructure papers; Cboe, OCC, FINRA and SEC pages; broker fee and order-type
   documentation.
 - Fee schedules change, so record each page's as-of date.
+- If a broker page can't be fetched, write "unreachable" in that cell; a broker you didn't get
+  to is "not checked". Never fill a cell from memory.
+- Fill-model rules for backtests belong to SQ6; you report measured spreads only.
 
 OUTPUT
 - RUN/evidence/SQ5.jsonl and RUN/notes/SQ5.md. Notes must end with two tables:
@@ -472,9 +492,14 @@ In:
 Out: signal evidence; returns; measured spread levels (SQ5); broker order types (SQ5).
 
 HOW
+- Budget: at most 20 tool calls.
+- Cover at most 5 vendors: Cboe DataShop / LiveVol, Databento, ThetaData, ORATS, and Polygon
+  or its renamed successor.
 - Use vendor pricing and documentation pages directly, and record each price's as-of date.
 - Give repo URLs for open-source projects.
-- For each top vendor, do at least one search for complaints or known data-quality problems.
+- Fill-model rules of thumb (for example, filling at a fraction of the spread) belong to you.
+  Measured spread levels belong to SQ5.
+- If budget remains, run one search per vendor for complaints or data-quality problems.
 
 OUTPUT
 - RUN/evidence/SQ6.jsonl and RUN/notes/SQ6.md. Notes must end with three tables:
@@ -484,6 +509,8 @@ OUTPUT
 ```
 
 ### Brief SQ7: replication, decay and failure (wave B, filled in after wave A)
+Don't launch SQ7 until CANDIDATES is filled in and the SQ1–SQ4 evidence files exist. At most 6
+candidates.
 ```text
 OBJECTIVE
 SQ7: For each candidate rule listed below, find independent replications, results after
@@ -504,6 +531,11 @@ especially 2022-2026; the effect of growth in 0DTE and retail option volume; reg
 funds; market-structure changes that break a rule.
 Out: new candidates (list them by name only); cost levels; tooling.
 
+HOW
+- About 2 tool calls per candidate. Mark "unknown" when nothing is found.
+- Cite the original source id from the SQ1-SQ4 evidence for each candidate. Don't re-verify the
+  original number.
+
 OUTPUT
 - RUN/evidence/SQ7.jsonl and RUN/notes/SQ7.md. Notes must end with a table:
   candidate | replicated? (by whom, sample) | post-publication result | decay / crowding evidence |
@@ -518,5 +550,6 @@ OUTPUT
   - ETF and large single-stock options;
   - orders placed through any retail broker;
   - no data budget limit.
-- [ ] User approved the final plan on <date>, with these changes: <...>
-- [ ] `brief-reviewer` run before launch (DEEP tier), and its fixes applied.
+- [x] User approved the final plan on 2026-11-07 ("Go"), with no further changes.
+- [x] `brief-reviewer` run on 2026-11-07, and its fixes applied. SQ4–SQ6 budgets were raised to
+  20 calls; priority, boundary and stop rules were added to SQ1 and SQ3–SQ7.
