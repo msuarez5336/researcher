@@ -1,0 +1,247 @@
+<title>Intraday Signal Clock</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a trading-session clock (09:30–16:00) on top, then one card per setup in the order its signal can fire. */
+:root{
+  --bg:#f3f6f7; --panel:#ffffff; --ink:#15212a; --muted:#5b6b75; --rule:#d5dee3;
+  --accent:#0f6d78; --track:#e6edf0;
+  --watch:#b26a00; --watch-bg:#fff2dc;
+  --avoid:#b4232c; --avoid-bg:#fde6e7;
+  --none:#5f6b73; --none-bg:#e9eef1;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1418; --panel:#151e24; --ink:#e4ecf0; --muted:#94a5ae; --rule:#2a3740;
+  --accent:#4fb8c4; --track:#1d2830;
+  --watch:#f0a83a; --watch-bg:#3a2a10; --avoid:#f2737a; --avoid-bg:#3d1a1d; --none:#a3b1b9; --none-bg:#25313a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1418; --panel:#151e24; --ink:#e4ecf0; --muted:#94a5ae; --rule:#2a3740;
+  --accent:#4fb8c4; --track:#1d2830;
+  --watch:#f0a83a; --watch-bg:#3a2a10; --avoid:#f2737a; --avoid-bg:#3d1a1d; --none:#a3b1b9; --none-bg:#25313a;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body)}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 56px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:grid;gap:28px}
+header{display:grid;gap:10px}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:700 clamp(34px,6vw,54px)/1 var(--display);letter-spacing:.01em;margin:0;text-wrap:balance}
+.lede{max-width:68ch;margin:0;color:var(--muted)}
+.lede strong{color:var(--ink)}
+.verdict{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--watch);padding:14px 16px;border-radius:6px;max-width:80ch}
+.verdict p{margin:0}
+h2{font:600 26px/1.1 var(--display);margin:0 0 4px;letter-spacing:.01em}
+.sub{margin:0;color:var(--muted);font-size:14px}
+
+/* status chips */
+.chip{display:inline-flex;align-items:center;gap:6px;font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.watch{color:var(--watch);background:var(--watch-bg)}
+.avoid{color:var(--avoid);background:var(--avoid-bg)}
+.none{color:var(--none);background:var(--none-bg)}
+
+/* session clock */
+.clock{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:18px 16px 14px;overflow-x:auto}
+.clock-inner{min-width:720px;display:grid;grid-template-columns:150px 1fr;gap:8px 14px;align-items:center}
+.lane-label{font:500 13px/1.25 var(--body);color:var(--ink)}
+.lane-label small{display:block;color:var(--muted);font-size:11.5px}
+.track{position:relative;height:26px;background:var(--track);border-radius:4px}
+.band{position:absolute;top:3px;bottom:3px;border-radius:3px;display:flex;align-items:center;padding:0 8px;font:600 11px/1 var(--mono);white-space:nowrap;overflow:hidden}
+.band.watch{background:var(--watch-bg);color:var(--watch);border:1px solid var(--watch)}
+.band.avoid{background:var(--avoid-bg);color:var(--avoid);border:1px solid var(--avoid)}
+.band.none{background:var(--none-bg);color:var(--none);border:1px dashed var(--none)}
+.entry{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--ink);border-radius:2px}
+.axis{position:relative;height:34px;grid-column:2}
+.tick{position:absolute;top:0;transform:translateX(-50%);font:400 11px/1 var(--mono);color:var(--muted);text-align:center}
+.tick::before{content:"";display:block;width:1px;height:6px;background:var(--rule);margin:0 auto 4px}
+.events{grid-column:2;position:relative;height:22px}
+.ev{position:absolute;transform:translateX(-50%);font:600 10.5px/1 var(--mono);color:var(--accent);white-space:nowrap}
+.ev::after{content:"▲";display:block;text-align:center;font-size:8px;margin-top:2px}
+.ev.left{transform:none}
+.ev.left::after{text-align:left}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:12px;font-size:12.5px;color:var(--muted);align-items:center}
+.legend .mark{display:inline-block;width:3px;height:14px;background:var(--ink);vertical-align:middle;margin-right:6px;border-radius:2px}
+
+/* setup cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:18px;display:grid;gap:12px;align-content:start;min-width:0}
+.card-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.when{font:600 13px/1 var(--mono);color:var(--accent);margin-bottom:6px}
+.card h3{font:600 22px/1.1 var(--display);margin:0;letter-spacing:.01em}
+dl{margin:0;display:grid;grid-template-columns:76px 1fr;gap:7px 12px;font-size:14px}
+dt{font:600 11px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+dd{margin:0;min-width:0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px}
+.caveat{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:10px;margin:0}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.rule{border-top:2px solid var(--ink);padding-top:10px}
+.rule h3{font:600 19px/1.15 var(--display);margin:0 0 6px}
+.rule p{margin:0;font-size:14px;color:var(--muted)}
+.rule p strong{color:var(--ink)}
+.skip{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:16px 18px}
+.skip ul{margin:8px 0 0;padding-left:18px;display:grid;gap:6px;font-size:14px}
+footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:4px}
+code{font-family:var(--mono);font-size:12px}
+@media (max-width:520px){dl{grid-template-columns:1fr}dt{line-height:1.2}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SPY · QQQ · shortlist stocks · calls &amp; puts, no straddles · as of 2026-11-07</div>
+    <h1>Intraday Signal Clock</h1>
+    <p class="lede">When during the session a directional signal can fire, what to buy when it does, when to get out, and how strong the evidence is. Every setup below was scored in a pre-registered study (trials #1,538–#1,965) with costs at <strong>k&nbsp;=&nbsp;0.70</strong> and <strong>k&nbsp;=&nbsp;1.0</strong> and a same-time-of-day baseline.</p>
+    <div class="verdict">
+      <span class="chip watch">Watch</span>
+      <p><strong>No directional setup is ready to trade.</strong> None cleared the bar (out-of-sample excess ≥ 10 pts, t ≥ 3, in-sample same sign, still positive at k = 1.0). Four setups are worth watching. Paper-trade them, or test them on real 1-minute option quotes, before putting money in. Option prices in the study were modelled, not quoted.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>The session, by signal</h2>
+    <p class="sub">Bands show the holding window. The dark tick marks the entry. Scroll sideways on a phone.</p>
+    <div class="clock" role="img" aria-label="Session timeline from 09:30 to 16:00 showing when each setup enters and exits">
+      <div class="clock-inner" id="clock"></div>
+      <div class="legend">
+        <span class="chip watch">Watch</span><span class="chip avoid">Avoid</span><span class="chip none">No edge</span>
+        <span><span class="mark"></span>entry</span>
+        <span>▲ scheduled release</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:14px">
+    <div><h2>What to do when each signal fires</h2>
+    <p class="sub">In the order the signal can appear, from the prior evening to the close.</p></div>
+    <div class="cards">
+
+      <article class="card">
+        <div class="card-top"><div><div class="when">Prior close → next session</div><h3>Day after a big stock-specific move</h3></div><span class="chip watch">Watch</span></div>
+        <dl>
+          <dt>Trigger</dt><dd>Single stock moves ≥ 2.5σ of its 60-day range, the market doesn't (|SPY| &lt; 1σ), volume ≥ 2× its 20-day average, close in the top or bottom 20% of the day's range, VIX not in its top third. No earnings that day or the day before (H-MOM1).</dd>
+          <dt>Buy</dt><dd>ATM call (up move) or put (down move), 7–14 DTE. Enter at the move-day close, or at the next open if you missed it.</dd>
+          <dt>Exit</dt><dd>Next day's close.</dd>
+          <dt>Evidence</dt><dd class="num">2021–26: next day +2.9% (t 3.6, n 27), of which +2.1% open→close. Options: close entry +43 pts, open entry +29 pts vs random days.</dd>
+        </dl>
+        <p class="caveat">It reversed in 2016–21 (−7 to −12 pts), so it depends on the regime. The open entry keeps about two-thirds of the edge, because most of the continuation comes during the session, not overnight. IV was a proxy.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div><div class="when">09:30 (or 10:30)</div><h3>Gap fill</h3></div><span class="chip watch">Watch</span></div>
+        <dl>
+          <dt>Trigger</dt><dd>Opening gap at least 1× the standard deviation of the last 60 gaps (around 0.4–0.5% on SPY lately).</dd>
+          <dt>Buy</dt><dd>0DTE ATM option <em>against</em> the gap (call after a gap down, put after a gap up), or an ATM/0.25Δ debit spread.</dd>
+          <dt>Exit</dt><dd>First hourly mark where the trade is up after costs. Otherwise out by 15:30.</dd>
+          <dt>Evidence</dt><dd class="num">SPY: +8 to +10 pts average excess over 40 variants; best +16.7 pts (t 1.6–2.05). QQQ: +3 to +9 pts. In-sample same sign, smaller.</dd>
+        </dl>
+        <p class="caveat">Not significant on its own. There's no academic study of gap fill, only this run's data (87 out-of-sample gap days). Example: 2026-10-30, SPY gapped −1.0% and kept falling, and the fill call lost 98%.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div><div class="when">09:30</div><h3>Gap-and-go on SPY</h3></div><span class="chip avoid">Avoid</span></div>
+        <dl>
+          <dt>Trigger</dt><dd>Same gap as above.</dd>
+          <dt>Don't</dt><dd>Buy a 0DTE call or put <em>in</em> the gap's direction on SPY.</dd>
+          <dt>Evidence</dt><dd class="num">SPY: −11 to −15 pts average excess; 14 of 40 variants at t ≤ −2. QQQ: −2 to −10 pts.</dd>
+        </dl>
+        <p class="caveat">This is the most consistent negative result among the directional setups. On CPI/payroll days the gap rules show nothing either way.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div><div class="when">10:30</div><h3>First-hour continuation, QQQ</h3></div><span class="chip watch">Watch</span></div>
+        <dl>
+          <dt>Trigger</dt><dd>QQQ's 09:30→10:30 move is at least its 60-day median first-hour move.</dd>
+          <dt>Buy</dt><dd>0DTE ATM in the move's direction at 10:30, or an ATM/0.25Δ debit spread.</dd>
+          <dt>Exit</dt><dd>Hold to 15:30. Early exits gave back most of the edge here.</dd>
+          <dt>Evidence</dt><dd class="num">Out-of-sample +11 pts (t 1.1, n 175); in-sample +40 pts (t 2.9).</dd>
+        </dl>
+        <p class="caveat">Fading the first hour has no edge, and SPY continuation is ≈ 0. Opening-range-breakout papers look strong gross of costs, but an independent net-of-cost replication found ≈ 0.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div><div class="when">14:30, FOMC days only</div><h3>Fade the statement into the press conference</h3></div><span class="chip watch">Watch</span></div>
+        <dl>
+          <dt>Trigger</dt><dd>FOMC statement at 14:00. Note the direction of the 13:30→14:30 move.</dd>
+          <dt>Buy</dt><dd>0DTE ATM option against that move at 14:30 (or an ATM/0.25Δ debit spread).</dd>
+          <dt>Exit</dt><dd>15:30.</dd>
+          <dt>Evidence</dt><dd class="num">SPY out-of-sample +47 pts, but only 13 meetings; in-sample −5. Powell's press conferences carry more than 3× the volatility of his predecessors' and tend to reverse the statement move (IJCB 2026).</dd>
+        </dl>
+        <p class="caveat">Too few events to judge. Hourly bars can't separate 14:00 from 14:30; this needs minute data.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div><div class="when">15:30</div><h3>Last half-hour momentum</h3></div><span class="chip none">No edge</span></div>
+        <dl>
+          <dt>Trigger</dt><dd>Direction of the move from the prior close to 10:30 (intraday momentum).</dd>
+          <dt>Result</dt><dd>Excess ≈ 0 against a random side. Absolute loss of about 25–43% per trade at k = 0.70.</dd>
+        </dl>
+        <p class="caveat">The underlying effect is real in long samples but too small to beat 30 minutes of 0DTE decay plus the widest spreads of the day.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section style="display:grid;gap:14px">
+    <h2>Rules that apply to every setup</h2>
+    <div class="rules">
+      <div class="rule"><h3>Pick the structure for the signal's strength</h3><p><strong>1DTE ATM</strong> decays least over a few hours. <strong>0.30Δ OTM 0DTE</strong> is the most extreme in both directions. The <strong>debit spread</strong> narrows outcomes but had the worst average, because it pays the spread twice. No structure turned a weak signal into an edge.</p></div>
+      <div class="rule"><h3>Costs are the main toll</h3><p>ATM SPX 0DTE options average about <strong>9% of premium</strong> in effective spread (2004–21). Spreads are widest at the open and into the close. Use limit orders and never assume a fill at mid.</p></div>
+      <div class="rule"><h3>Exits</h3><p>Be out by <strong>15:30–15:45</strong>; never carry a 0DTE to settlement. A first-profit exit is cost-sensitive: a +1.8% gross gain can be 0% net, so the rule doesn't fire. Pick one exit rule per setup in advance.</p></div>
+      <div class="rule"><h3>Size</h3><p>Risk a fixed small debit per trade. Retail long 0DTE positions lost <strong>53–61%</strong> on average in the Beckmeyer–Branger–Gayda data (as summarised).</p></div>
+    </div>
+    <div class="skip">
+      <strong>No directional edge found; skip these</strong>
+      <ul>
+        <li>Fading the first hour (SPY or QQQ).</li>
+        <li>Trading in the CPI or payroll direction after the 08:30 release: excess between −5 and +6 pts, all t &lt; 1.</li>
+        <li>Monthly OpEx Fridays as a long-option day. Dealers stay net long gamma, and moves are smaller than implied.</li>
+        <li>Single-stock "0DTE": only about nine names have Monday/Wednesday expiries since 2026-01-26. There are no daily expiries.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>Source: research run <code>research/2026-11-07-intraday-long-options/</code> (report.md, study/results.csv, examples.md). Study: SPY/QQQ hourly bars and VIX1D, 2024-01 → 2026-11, out-of-sample from 2025-06. Option prices modelled with Black-Scholes at VIX1D. Load-bearing outside figures checked by fresh-context verifiers.</span>
+    <span>Next step: a 54-trial test on purchased 1-minute option quotes (spec and builder brief in examples.md). Not investment advice.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const S=0, E=390; // minutes after 09:30
+  const pct=m=>((m-S)/(E-S)*100).toFixed(2)+"%";
+  const t=h=>{const [a,b]=h.split(":").map(Number);return (a*60+b)-(9*60+30);};
+  const lanes=[
+    {label:"Gap fill",sub:"against the gap",cls:"watch",from:"09:30",to:"15:30",entry:["09:30","10:30"],text:"enter 09:30 / 10:30 → first profit"},
+    {label:"Gap-and-go (SPY)",sub:"with the gap",cls:"avoid",from:"09:30",to:"15:30",entry:["09:30"],text:"avoid"},
+    {label:"First-hour continuation",sub:"QQQ",cls:"watch",from:"10:30",to:"15:30",entry:["10:30"],text:"enter 10:30 → hold to 15:30"},
+    {label:"First-hour fade",sub:"SPY / QQQ",cls:"none",from:"10:30",to:"15:30",entry:["10:30"],text:"no edge"},
+    {label:"FOMC fade",sub:"FOMC days",cls:"watch",from:"14:30",to:"15:30",entry:["14:30"],text:"14:30 → 15:30"},
+    {label:"Last half-hour",sub:"momentum",cls:"none",from:"15:30",to:"16:00",entry:["15:30"],text:"no edge"},
+    {label:"Day after H-MOM1",sub:"single stocks",cls:"watch",from:"09:30",to:"16:00",entry:["09:30"],text:"open entry (or prior close) → close"}
+  ];
+  const root=document.getElementById("clock");
+  const ev=document.createElement("div");ev.className="events";
+  [["08:30 CPI/NFP (pre-open)",0,true],["10:00 ISM",t("10:00")],["14:00 FOMC · 14:30 presser",t("14:00"),true]].forEach(([n,m,l])=>{
+    const s=document.createElement("span");s.className="ev"+(l?" left":"");s.style.left=pct(m);s.textContent=n;ev.appendChild(s);});
+  const sp=document.createElement("div");root.appendChild(sp);root.appendChild(ev);
+  lanes.forEach(L=>{
+    const lab=document.createElement("div");lab.className="lane-label";lab.innerHTML=L.label+"<small>"+L.sub+"</small>";
+    const tr=document.createElement("div");tr.className="track";
+    const b=document.createElement("div");b.className="band "+L.cls;b.style.left=pct(t(L.from));b.style.width="calc("+pct(t(L.to))+" - "+pct(t(L.from))+")";b.textContent=L.text;tr.appendChild(b);
+    L.entry.forEach(e=>{const k=document.createElement("span");k.className="entry";k.style.left="calc("+pct(t(e))+" - 1px)";tr.appendChild(k);});
+    root.appendChild(lab);root.appendChild(tr);
+  });
+  const ax=document.createElement("div");ax.className="axis";
+  ["09:30","10:30","11:30","12:30","13:30","14:30","15:30","16:00"].forEach(h=>{const s=document.createElement("span");s.className="tick";s.style.left=pct(t(h));s.textContent=h;ax.appendChild(s);});
+  const sp2=document.createElement("div");root.appendChild(sp2);root.appendChild(ax);
+})();
+</script>
