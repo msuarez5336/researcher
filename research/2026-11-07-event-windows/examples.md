@@ -70,3 +70,37 @@ results/H-C2m/{trades.csv, summary.md}. Reply with the path and a 200-word summa
 don't count it as evidence. Re-test it when the regime it depends on returns (e.g. FOMC in an
 active hiking cycle). "**Avoid**" means significantly worse than random entries out of sample.
 "**No edge**" means indistinguishable from random entries.
+
+## 6. H-MOM1 on one ticker: AAPL, 11 June 2024 (real prices, modelled option)
+
+Prices are Nasdaq daily data. Implied vol is Cboe VXAPL × VIX9D/VIX. The option is priced with
+Black-Scholes, so it is not a real fill. Costs are k = 0.70 plus $0.70 per contract.
+
+| Check at the 11 June close | Value | Rule | Pass? |
+|---|---|---|---|
+| Move | 193.12 → 207.15, +7.3% | — | — |
+| Size vs AAPL's own 60-day daily σ (1.52%) | **4.6σ** | ≥ 2.5σ | ✓ |
+| Earnings that day or the day before | none (it was WWDC week) | none | ✓ |
+| Stock-specific? SPY that day | +0.24% = 0.35σ | \|SPY\| < 1σ | ✓ |
+| Volume vs 20-day average | 172M = **3.2×** | ≥ 2× | ✓ |
+| Close location in the day's range | **1.00** (closed at the high) | ≥ 0.8 for an up move | ✓ |
+| VIX vs its trailing year | 12.85, below the 13.45 low-tercile cut | not top tercile | ✓ |
+
+**Trade:** buy an ATM call, 14 DTE, at the close. Model price $3.82 (IV 23.6%), so you pay
+$385 per contract with costs. **Sell at the next close** (12 June: 213.07, IV 22.3%). The model
+value is $7.21, so you receive $716. **P&L +$331, +86%.** The same call bought on a random day and
+held one day averaged +0.4% in 2021–26.
+
+Holding longer (for comparison only): +102% on day 2, +59% on day 3, +154% on day 4, +96% on day 5.
+In this case holding paid, but on average it didn't.
+
+**The same rule, other outcomes** (model prices, proxy IV):
+
+| Ticker / date | Move | Next-close P&L | If held 3 days |
+|---|---|---|---|
+| MSFT 2026-05-29 (call) | +5.5%, 3.1σ, 2.3× volume | **+62%** | −89% (the move reversed) |
+| PLTR 2025-08-19 (put) | −9.4%, 3.3σ, 2.2× volume | +4% | −27% |
+| PFE 2025-09-12 (put) | −4.0%, 2.7σ, 2.2× volume | **−21%** | −41% |
+
+27 events met all the H-MOM1 conditions in 2021-07 → 2026-11 across the 16 stocks, about 5 a
+year. These examples aren't the test. H-MOM1 still needs its chain-data and forward test.
