@@ -39,3 +39,4 @@ bls.gov (403 for page, ics, archived schedule). Not opened: papers.ssrn.com.
 
 ## Search log
 1 0DTE gamma volatility amplify (search, 6+ sources); 2 FOMC intraday reversal (search, mostly media); 3 curl x4 date sources; 4 fetch_page x4 (Cboe, Harbourfront, Quantpedia, CXO); 5 BLS dates search (found macro-impact page); 6 fetch macro-impact; 7 Fed press conference papers (disconfirm-ish; found Narain); 8 CPI intraday implied vs realized (anecdotal); 9 fetch IJCB + Fed calendar; 10 dates dataset search (Concretum); 11 fetch Concretum; 12 Ni-Pearson-Poteshman search.
+- Correction after claim verification (C11): SQ2-1..3 are Adams et al. (SSRN 5641974) via Quantpedia, not Dim-Eraker-Vilkov. Evidence items updated.

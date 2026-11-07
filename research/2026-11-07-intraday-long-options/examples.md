@@ -65,7 +65,7 @@ continues from **#1,966**.
 - **Vendors**, all self-reported (see `sources.md`):
   - ORATS 1-minute: from Aug 2020, bid/ask, IV and Greeks; $199/month plus a $1,500 backfill.
   - Cboe DataShop Option Quote Intervals: NBBO from 2012; Greeks are an add-on.
-  - ThetaData Standard: 1-minute from 2016.
+  - ThetaData: options 1-minute from 2020 (Value), tick-level from 2016 (Standard).
   - Databento OPRA: cbbo-1m before 2023-03-28 (subsampled), tick after.
   - Massive Options Advanced: quotes from 2022-03-07, no historical Greeks.
 - **Underlying:** real 1-minute stock/ETF bars from a separate source. ORATS's underlying is option-implied, so it can't be used for signals.
