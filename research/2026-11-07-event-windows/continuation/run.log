@@ -1,0 +1,6 @@
+run 2026-11-07T14:36:48
+IV decay table (mean IV_{t+d}/IV_t, indexed events): up d1=1.012 d2=1.022 d3=1.014 d4=1.028 d5=1.030 | down d1=0.985 d2=0.967 d3=0.968 d4=0.965 d5=0.957
+events per k [1125, 621, 341]; stock events dropped for earnings 723
+cells scored this run: 1188; cumulative trials: 1536
+promising cells: 1
+  PROMISING stocks k=2.5 OTM30d14 green EOD type=idio | OOS excess 0.3313 t 3.12 n 112 | IS 0.0452 | k1.0 OOS 0.3062

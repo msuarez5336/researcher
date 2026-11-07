@@ -68,3 +68,8 @@ That makes 9 exit rules.
 
 ## Change log
 - (none yet)
+- Run 1 (official, 2026-11-07): 1,188 cells (cumulative trials 1,536). 1 cell passed the bar (stocks,
+  k = 2.5, OTM 0.30Δ 14 DTE, first-green exit, idiosyncratic moves: OOS +33 pts, t 3.1, IS +4.5).
+  That is consistent with the ~1.6 false positives expected at t ≥ 3 over 1,188 cells.
+- Post-run diagnostics (not trials): yearly P&L of stocks/k = 2.5/ATM14/EOD/fix2, and an indexed-IV
+  vs proxy-IV split out of sample (+6.8% vs +5.8% mean, so the result is not a proxy artifact).

@@ -79,6 +79,65 @@ new pre-registered trial, and the count starts at 348.
 | FOMC straddles | Positive (OptionMetrics summary) | Overpriced in 10 of 12 recent events (Nasdaq piece ~) | Depends on the cycle. Ours were negative 2016–21 and near zero or positive 2021–26. |
 | Pre-FOMC drift | Persists (Ignatieva & Ohashi 2025 ~; NY Fed 2018 ~) | Disappeared after 2015 (Kurov et al. ✓) | Our data agrees with "disappeared" for close-to-close SPY calls. |
 
+## Follow-up: buying *with* the move (continuation), 2026-11-07
+Spec, script and results: `continuation/` (spec frozen before the run). Same 19 tickers, earnings
+excluded, artifact not updated.
+
+**Question:** after a large move, does buying a short-dated call (up move) or put (down move) pay,
+and when should you exit?
+
+**Defining "large":** the day's move ≥ k × the ticker's own 60-day daily σ (move day excluded),
+with k = 2.0, 2.5 or 3.0. The quality filters were close strength, volume ≥ 2× average, gap vs
+intraday, stock-specific vs market-wide, and the VIX tercile over the trailing year.
+
+**Result: no rule passed the pre-registered bar. There is a regime-dependent single-stock lead.**
+
+| Finding | 2016-11 → 2021-06 | 2021-07 → 2026-11 |
+|---|---|---|
+| Price after a 2.5σ stock move, day 1 (move direction) | −0.5% (reversal) | **+0.5% (continuation)** |
+| Price after a 2.5σ ETF move, day 1 | +0.1% | +0.3% |
+| Stocks, 2.5σ moves: buy at the move-day close (ATM 7/14/30 DTE or 0.30Δ 14 DTE), sell at the next close, vs random days (k = 0.70) | −4 to −5 pts | **+5 to +12 pts (t 2.4–2.7)** |
+| Same, 3σ moves | −5 to −6 pts | +7 to +17 pts (t 2.3–2.6) |
+| Stocks, *confirmed* entry (wait for day 2 to continue), 1–2 day holds | mixed (−18 to +8 pts) | −2 to −12 pts |
+| ETFs, any structure or exit | mostly t < 1 | no cell with t > 1.7 |
+
+**Exit rules (stocks, move-day-close entry, mean over structures and k, 2021–26 excess at k = 0.70):**
+
+| Exit | Excess | t (avg) | Win rate |
+|---|---|---|---|
+| **Sell at the next close (1 day)** | **+8.8 pts** | **2.4** | 48% |
+| 2 days | +7.5 | 1.3 | 45% |
+| 3 days | +7.6 | 0.9 | 42% |
+| 5 days | −0.6 | 0.0 | 35% |
+| First green close | +7.7 | 1.2 | **68%** |
+| Green + 1 day | +4.6 | 0.3 | 49% |
+| Green + 2 days | +4.5 | 0.5 | 42% |
+| +30% target / −40% stop | +8.7 | 1.4 | 46% |
+| Trail (exit when the stock turns against you) | −0.5 | −0.4 | 41% |
+
+- **The edge, where it exists, is in the first day.** Holding longer, letting a winner run one or two more days, or trailing all gave it back. Waiting for confirmation misses it entirely, because the continuation happens *on* day 1.
+- **"First green" wins most often** (68%) but makes about the same on average. The losers that never turn green ride to day 5.
+- **Bigger moves pay more per trade:** about +3–7 pts at 2σ, +5–12 at 2.5σ and +7–17 at 3σ, but with fewer events.
+- **Filters (2.5σ, ATM 14 DTE, 1-day hold, 2021–26):**
+  - Stock-specific moves: +16 pts (t 2.6). Market-wide: +1.
+  - Volume ≥ 2×: +18 (t 2.6). Normal volume: +4.
+  - Strong close: +9 (t 2.7). Faded close: +2.
+  - VIX low or mid: +15 / +19. **VIX high: −3.**
+  - In 2016–21 the same filters were mostly flat or negative. Low VIX was +4 pts, on 28 events.
+- **Year by year** (2.5σ stocks, ATM 14 DTE, 2-day hold): 2017 −9%, 2018 −21%, 2019 −26%, 2020 +11%, 2021 −1%, 2022–24 +2% to +4%, 2025 +7%, 2026 +16%. The sign changed around 2020.
+- **Multiple testing:** 1,188 cells (cumulative 1,536 trials). One cell passed: OTM 0.30Δ 14 DTE, first-green exit, stock-specific moves. Chance would produce about that many at t ≥ 3.
+- **Literature fit:** this is consistent with liquid stocks showing short-term momentum (Medhat & Schmeling ✓) and news-driven moves drifting (Savor ✓; high volume as the news proxy). It doesn't explain why 2016–19 reversed.
+
+**Hypothesis to forward-test (not a trading rule): H-MOM1.**
+- **Trigger:** a single stock (shortlist universe, no earnings on t or t−1) moves ≥ 2.5σ60, stock-specific (|SPY| < 1σ), on volume ≥ 2× its 20-day average, closing in the top/bottom 20% of its range in the move's direction. VIX must be below the top tercile of its trailing year.
+- **Trade:** buy an ATM 14-DTE call/put in the move's direction at the close. Sell at the next close.
+- **Test:** this combination was *not* run, so it is one new trial (#1,537). Run it on chain data (ORATS bid/ask at the close snapshot) and paper-trade forward. It passes only if out-of-sample excess ≥ 10 pts with t ≥ 3 at k = 1.0, and only if 2016–21 isn't negative on chain data.
+
+**Limits:**
+- Daily closes only. A real "next close" exit is fine, but intraday targets would fill differently.
+- Short-dated IV is approximated by the 30-day index × VIX9D/VIX. 7-DTE single-stock spreads are often wider than the assumed 3%, although results hold at k = 1.0.
+- The non-indexed stock IV uses a proxy with an empirical decay table. Results were similar on indexed names (+6.8% vs +5.8% for the proxied names, 2-day hold, 2021–26).
+
 ## Method and limitations
 - **Effort:** 3 researchers (≤15 calls each); one stdlib event study (`study/events.py`) with a spec frozen before the run (`study/study_spec.md`); 2 claim-verifier batches (10 claims: 9 supported, 1 narrowed).
 - **Prices:** the Nasdaq API serves only about 10 years, so the study covers 2016-11 → 2026-11. 2008 and 2011 are outside it, and so is any regime-onset sample of decent size.
