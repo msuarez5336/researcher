@@ -521,8 +521,21 @@ The trader will backtest only the rules that still look alive. Wave A workers ha
 gathered the original evidence in RUN/evidence/SQ1-SQ4.jsonl, so do not collect it again.
 
 CANDIDATES
-<filled in by the orchestrator after wave A: 4-8 named rules, each with its entry signal,
-option choice, exit, original source id and claimed effect>
+C1. 5-minute opening-range breakout (Zarattini & Aziz, QQQ, SSRN 2023). Entry in the direction
+    of the first 5-minute bar; stop at the far side of that bar; exit at the close. Claimed 33.2%
+    vs 14.9% CAGR, 2016-2023, zero slippage, 4x leverage. Sources: SQ1-4 (via CXO), SQ1-5 to
+    SQ1-7 (one blog replication on index CFDs; net about zero).
+C2. "Stocks in Play" opening-range breakout on individual US stocks (Zarattini, Barbon & Aziz,
+    2016-2023, top-20 by relative volume). Source: SQ1-8.
+C3. Intraday momentum: first half-hour return predicts last half-hour return (Gao, Han, Li &
+    Zhou, JFE 2018, SPY 1993-2013; out-of-sample R2 about 0.018; 6.3%/yr gross). Sources: SQ1-1,
+    SQ1-2; QuantConnect 2015-2020 replication underperformed (SQ1-11).
+C4. C3 filtered by dealer gamma: intraday momentum concentrated on negative net-gamma days
+    (Baltussen, Da, Lammers & Martens, JFE 2021, S&P futures to 2020). Source: SQ2-7.
+C5. SPY "noise area" intraday momentum with VWAP/band trailing stop, flat at close (Zarattini,
+    Aziz & Barbon, 2007-2024; Sharpe 1.33, 19.6%/yr net of costs, in-sample). Source: SQ1-9.
+C6. Intraday option momentum (Cologne CFR working paper 26-02), seen only as a search snippet;
+    first find the paper and what it claims, then its replication status. No source id yet.
 
 SCOPE
 In: replications and extensions by other authors; out-of-sample periods after publication,
