@@ -236,4 +236,4 @@ QUALITY BAR: numbers with sample and setup; evidence vs opinion tagged; pages ar
 ```
 
 ## Approval
-- [ ] Pending user approval.
+- [x] User approved on 2026-11-07: launch as revised (earnings excluded; post-catalyst mean reversion added).
