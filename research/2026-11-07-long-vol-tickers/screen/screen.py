@@ -27,7 +27,8 @@ START, END = "2016-11-07", "2026-11-06"
 IS_END, OOS_START = date(2021, 12, 31), date(2022, 1, 1)
 VOL_MAP = {"SPY": "VIX", "QQQ": "VXN", "IWM": "RVX", "AAPL": "VXAPL", "AMZN": "VXAZN",
            "GOOGL": "VXGOG", "GOOG": "VXGOG", "GS": "VXGS", "GLD": "GVZ", "USO": "OVX",
-           "EEM": "VXEEM", "SLV": "VXSLV", "XLE": "VXXLE"}
+           "EEM": "VXEEM", "SLV": "VXSLV", "XLE": "VXXLE",
+           "TLT": "VXTLT", "EWZ": "VXEWZ", "FXI": "VXFXI", "EFA": "VXEFA", "IBM": "VXIBM"}
 UA = {"User-Agent": "Mozilla/5.0 (research-script)", "Accept": "application/json, text/csv"}
 
 

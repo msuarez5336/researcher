@@ -1,0 +1,80 @@
+[
+ {
+  "cid": "C6",
+  "claim": "For a delta-hedged long straddle, the P&L over a short interval is approximately one-half gamma times S squared times (realized variance minus implied variance) times dt, so the position profits only if realized volatility exceeds the implied volatility paid; the ATM straddle's daily break-even move is about S times IV divided by the square root of 252.",
+  "evidence": [
+   {
+    "id": "SQ2-5",
+    "quote": "dP&L ≈ ½ Γ S² (σ² realized − σ² implied ) dt",
+    "url": "https://flashalpha.com/articles/gamma-scalping-complete-guide-delta-hedged-straddle-pnl",
+    "page": "research/2026-11-07-long-vol-tickers/pages/flashalpha.com-be5eddb55b.txt"
+   },
+   {
+    "id": "SQ2-6",
+    "quote": "breakeven ≈ S × IV / √252",
+    "url": "https://flashalpha.com/articles/gamma-scalping-complete-guide-delta-hedged-straddle-pnl",
+    "page": "research/2026-11-07-long-vol-tickers/pages/flashalpha.com-be5eddb55b.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "A long strangle has positive vega, decays faster than a comparable straddle, has break-evens further apart, and has a greater chance of losing 100% at expiration (Fidelity).",
+  "evidence": [
+   {
+    "id": "SQ2-7",
+    "quote": "When volatility falls, long straddles decrease in price and lose money.",
+    "url": "https://www.fidelity.com/learning-center/investment-products/options/options-strategy-guide/long-straddle",
+    "page": "research/2026-11-07-long-vol-tickers/pages/www.fidelity.com-7bd7cc5716.txt"
+   },
+   {
+    "id": "SQ2-8",
+    "quote": "Thus, when there is little or no stock price movement, a long strangle will experience a greater percentage loss over a given time period than a comparable straddle.",
+    "url": "https://www.fidelity.com/learning-center/investment-products/options/options-strategy-guide/long-straddle",
+    "page": "research/2026-11-07-long-vol-tickers/pages/www.fidelity.com-7bd7cc5716.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "By average daily options volume over the month to 2026-10-30, the most active US option underlyings were SPY (about 11.7M contracts/day), QQQ (8.7M), NVDA (2.6M), TSLA (2.0M) and IWM (1.9M).",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "Average daily call and put volume in the past month, as of October 30, 2026.",
+    "url": "https://www.tradestation.com/insights/top-stocks-for-options-trading/",
+    "page": "research/2026-11-07-long-vol-tickers/pages/www.tradestation.com-54d8b5a53f.txt"
+   },
+   {
+    "id": "SQ3-3",
+    "quote": "Daily option chains for about 2,900 US stocks and ETFs (day volume, volume-weighted price, start-of-day open interest)",
+    "url": "https://www.thetrading.tools/most-active-options",
+    "page": "research/2026-11-07-long-vol-tickers/pages/www.thetrading.tools-437f5d48be.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "Cboe still publishes daily history for its single-stock and ETF volatility indices, including VXAPL, GVZ and VIX, with data through early November 2026.",
+  "evidence": [
+   {
+    "id": "SQ3-9",
+    "quote": "11/06/2026,33.250000,33.250000,28.770000,29.890000",
+    "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VXAPL_History.csv",
+    "page": "research/2026-11-07-long-vol-tickers/pages/cdn.cboe.com-0ff1e0ebfd.txt"
+   },
+   {
+    "id": "SQ3-10",
+    "quote": "11/06/2026,25.970000",
+    "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/GVZ_History.csv",
+    "page": "research/2026-11-07-long-vol-tickers/pages/cdn.cboe.com-593c0b37b9.txt"
+   },
+   {
+    "id": "SQ3-11",
+    "quote": "11/05/2026,17.140000,28.360000,16.700000,28.180000",
+    "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+    "page": "research/2026-11-07-long-vol-tickers/pages/cdn.cboe.com-a614d95ab8.txt"
+   }
+  ]
+ }
+]

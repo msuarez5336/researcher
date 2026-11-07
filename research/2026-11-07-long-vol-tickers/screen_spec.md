@@ -55,3 +55,19 @@ the bottom as a new trial, with the reason.
   forward ranges look large relative to it. The score uses cross-sectional ranks, so the bias is
   common to all tickers and doesn't change the ranking. When reading absolute values, compare
   `expand` with the ≈ 1.9 null, not with 1.0. No definitions changed.
+- Pre-run amendment (2026-11-07, before the candidate run): SQ3 found extra active Cboe indices.
+  VXTLT, VXEWZ, VXFXI, VXEFA and VXIBM were added to the vol map (TLT and EWZ are candidates).
+  VXXLE returned 403 and is treated as unavailable. vrp isn't scored, so the ranking is unaffected.
+- Trial 1 (official, 2026-11-07): frozen definitions on 24 SQ3 candidates → `screen/metrics.csv`.
+  VXTLT loaded no data (its CSV has a `DATE,VXTLT` header instead of `CLOSE`), so TLT has no vrp.
+- Trial 2 (sensitivity, after seeing Trial 1): `payoff10` = expected payoff of a 1σ strangle priced at
+  recent realised vol (`screen/trial2_payoff10.csv`). Reason: `tail10` penalises fat tails, which
+  help long options. Reported only.
+- Trial 3 (sensitivity): frozen score with at most 2 semiconductor names (6 of the official 10 are
+  semis or semi ETFs). Reported only.
+- Trial 4 (pricing test): 10-day ATM straddle priced at the Cboe vol index, gross
+  (`screen/trial4_straddle_iv.csv`), on the 7 tickers with a usable index.
+- Trial 5 (pricing test): Trial 4 split by entry condition: cheap (IV < rv20), rich, squeeze, and both
+  (`screen/trial5_conditional.csv`).
+- Trials counted: 5 (1 official ranking + 4 reported sensitivities). The deflated-Sharpe/PBO count in
+  the v2 backtest should start from here.

@@ -1,0 +1,26 @@
+run 2026-11-07T00:06:25  tickers=24  vol=['GVZ', 'OVX', 'RVX', 'VIX', 'VXAPL', 'VXAZN', 'VXEEM', 'VXEFA', 'VXEWZ', 'VXFXI', 'VXGOG', 'VXGS', 'VXIBM', 'VXN', 'VXSLV', 'VXTLT']
+SPY: bars=2513 2016-11-07..2026-11-05 vol=VIX split_flags=none
+QQQ: bars=2513 2016-11-07..2026-11-05 vol=VXN split_flags=none
+NVDA: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+IWM: bars=2513 2016-11-07..2026-11-05 vol=RVX split_flags=none
+TSLA: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+MU: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+AAPL: bars=2513 2016-11-07..2026-11-05 vol=VXAPL split_flags=none
+INTC: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+AMD: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+AMZN: bars=2513 2016-11-07..2026-11-05 vol=VXAZN split_flags=none
+META: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+IBIT: bars=708 2024-01-11..2026-11-05 vol=- split_flags=none
+SMH: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+TLT: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+PLTR: bars=1533 2020-09-30..2026-11-05 vol=- split_flags=none
+GOOGL: bars=2513 2016-11-07..2026-11-05 vol=VXGOG split_flags=none
+MSFT: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+EWZ: bars=2513 2016-11-07..2026-11-05 vol=VXEWZ split_flags=none
+AVGO: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+ORCL: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+HOOD: bars=1325 2021-07-29..2026-11-05 vol=- split_flags=2021-08-04
+PFE: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+SOXX: bars=2513 2016-11-07..2026-11-05 vol=- split_flags=none
+SOFI: bars=1487 2020-12-04..2026-11-05 vol=- split_flags=2021-01-07
+wrote /home/user/researcher/research/2026-11-07-long-vol-tickers/screen/metrics.csv; top10=['QQQ', 'AAPL', 'NVDA', 'MU', 'AMD', 'SMH', 'HOOD', 'TSLA', 'SOXX', 'SOFI']

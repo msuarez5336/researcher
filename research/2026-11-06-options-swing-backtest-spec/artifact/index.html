@@ -64,6 +64,8 @@ header { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-
 .tool { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; display: grid; gap: 20px }
 .ruler-wrap { overflow-x: auto }
 #ruler { min-width: 640px; display: block }
+#stradChart { min-width: 520px; display: block }
+#tickers table { min-width: 620px }
 svg text { fill: var(--muted); font: 11px var(--f-mono) }
 .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 16px }
 .field { display: grid; gap: 4px; min-width: 0 }
@@ -122,7 +124,7 @@ footer { border-top: 2px solid var(--ink); padding-top: 16px; font-size: 13px; c
   <h1>Swing Options Backtest Spec</h1>
   <p class="lede">Rules for testing a 3–10 day directional options swing strategy on liquid US underlyings. Every rule can be coded and every result can be falsified. Checked against vendor docs, fee schedules and the overfitting literature as of 6 Nov 2026.</p>
   <div class="chips" aria-label="Changes from v1">
-    <span class="chip cut">4 cut</span><span class="chip fix">7 fixed</span><span class="chip add">6 added</span><span class="chip ok" id="verifyChip">10 claims fact-checked</span>
+    <span class="chip cut">4 cut</span><span class="chip fix">7 fixed</span><span class="chip add">6 added</span><span class="chip ok" id="verifyChip">19 claims fact-checked</span><a class="chip ok" href="#tickers">Tickers for long options</a>
   </div>
   <div class="meta"><span>as of 2026-11-06</span><span>run: research/2026-11-06-options-swing-backtest-spec</span><span>not investment advice</span></div>
 </header>
@@ -273,6 +275,45 @@ STOP IF
   <p class="note" id="copyMsg" aria-live="polite"></p>
 </section>
 
+<!-- TICKERS -->
+<section aria-labelledby="t-tick" id="tickers">
+  <div><span class="eyebrow">Follow-up run · 7 Nov 2026 · long premium and strangles</span><h2 id="t-tick">Tickers for long options</h2></div>
+  <div class="lint-item bad"><b>Verdict:</b> no liquid ticker shows favourable odds for buying options on its own. On every ticker with a free implied-vol series, a 10-day ATM straddle priced at implied lost money before costs. Compression ("squeeze") was not followed by outsized ranges on any of the 24 candidates. A long-strangle test must beat a negative baseline with an entry filter.</div>
+
+  <h3>10-day ATM straddle priced at implied, mean gross return</h3>
+  <div class="ruler-wrap"><svg id="stradChart" viewBox="0 0 640 230" role="img" aria-label="Bar chart of mean gross 10-day straddle returns: SPY −22.7%, IWM −16.4%, QQQ −14.3%, EWZ −13.2%, AMZN −12.3%, GOOGL −9.8%, AAPL −7.0%"></svg></div>
+  <p class="note">Nasdaq daily closes 2016–2026, priced at each ticker's Cboe 30-day vol index (VIX, RVX, VXN, VXEWZ, VXAZN, VXGOG, VXAPL). Gross of spreads and commissions. All are significant except AAPL (t = −0.4). Entering only when implied &lt; 20-day realised cut the loss on every ticker but never made it positive.</p>
+
+  <h3>The shortlist (frozen screen, official)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Ticker</th><th class="num">Liquidity rank</th><th class="num">Largest 10-day swing ÷ recent vol</th><th class="num">Implied − realised</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td><b>QQQ</b></td><td class="num">2</td><td class="num">1.10</td><td class="num">+2.8</td><td>straddle −14%</td></tr>
+      <tr><td class="num">2</td><td><b>AAPL</b></td><td class="num">7</td><td class="num">1.14</td><td class="num">+3.4</td><td>best long-vol candidate: −7% (n.s.), squeeze ≈ flat</td></tr>
+      <tr><td class="num">3</td><td><b>NVDA</b></td><td class="num">3</td><td class="num">1.11</td><td class="num">–</td><td>semis</td></tr>
+      <tr><td class="num">4</td><td><b>MU</b></td><td class="num">6</td><td class="num">1.14</td><td class="num">–</td><td>semis</td></tr>
+      <tr><td class="num">5</td><td><b>AMD</b></td><td class="num">9</td><td class="num">1.08</td><td class="num">–</td><td>semis</td></tr>
+      <tr><td class="num">6</td><td><b>SMH</b></td><td class="num">13</td><td class="num">1.10</td><td class="num">–</td><td>semis ETF</td></tr>
+      <tr><td class="num">7</td><td><b>HOOD</b></td><td class="num">21</td><td class="num">1.17</td><td class="num">–</td><td>short history, IPO-period jumps</td></tr>
+      <tr><td class="num">8</td><td><b>TSLA</b></td><td class="num">5</td><td class="num">1.10</td><td class="num">–</td><td></td></tr>
+      <tr><td class="num">9</td><td><b>SOXX</b></td><td class="num">23</td><td class="num">1.11</td><td class="num">–</td><td>semis ETF, overlaps SMH</td></tr>
+      <tr><td class="num">10</td><td><b>SOFI</b></td><td class="num">24</td><td class="num">1.16</td><td class="num">–</td><td>short history, SPAC jump</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Liquidity rank is out of 24 candidates (SPY first). The score averages percentile ranks of liquidity, how often 10-day moves beat recent vol, the largest swing inside 10 days, and post-compression range. These are the best candidates to <i>test</i>, not proven edges. Six of the ten are semis, so cap them at 2 open positions. The sector-capped alternative is QQQ, AAPL, NVDA, MU, HOOD, TSLA, SOFI, PFE, AMZN, PLTR.</p>
+
+  <h3>Long-strangle addendum to the spec</h3>
+  <div class="phases">
+    <div class="phase"><div class="n">S</div><div><ul>
+      <li>Long call + long put, <b>0.25–0.30Δ each</b>, 35–60 DTE, exit by 21 DTE or day 10. Run an ATM straddle on the same dates as a control.</li>
+      <li><b>Entry filter:</b> implied move (straddle mid ÷ spot, scaled to the hold) &lt; trailing 10-day realised move. A squeeze can only be an <i>extra</i> filter, tested against this one.</li>
+      <li>Exits: +40% / −40% of the total debit, the time exit, and the day before earnings. All are grid parameters.</li>
+      <li>Must beat <b>random-date entries</b> and <b>trigger-only entries</b> at k = 1.0 on both legs, plus the v2 gates. Report the median trade too.</li>
+      <li><b>Variant S-E (earnings):</b> ~5–14 DTE straddle bought at the close before the print and sold after, only when implied &lt; historical earnings move. A vendor study found +36.7% per trade in that quintile and −18.5% overall. It is in-sample and unreplicated.</li>
+    </ul></div></div>
+  </div>
+</section>
+
 <!-- CHANGELOG -->
 <section aria-labelledby="t-log">
   <div><span class="eyebrow">v1 → v2</span><h2 id="t-log">What changed and why</h2></div>
@@ -419,6 +460,27 @@ STOP IF
   ];
   const KIND = { cut: "chip cut", fix: "chip fix", add: "chip add" };
   $("changelog").innerHTML = LOG.map(([k, i, r]) => `<tr><td><span class="${KIND[k]}">${k}</span></td><td>${i}</td><td>${r}</td></tr>`).join("");
+
+  // straddle-at-implied chart: single series, horizontal bars from a zero baseline on the right
+  (function () {
+    const D = [["SPY", -0.227], ["IWM", -0.164], ["QQQ", -0.143], ["EWZ", -0.132], ["AMZN", -0.123], ["GOOGL", -0.098], ["AAPL", -0.070]];
+    const L = 70, R = 600, top = 12, row = 28, min = -0.25;
+    const x = (v) => R - (v / min) * (R - L);
+    let s = "";
+    [0, -0.05, -0.10, -0.15, -0.20, -0.25].forEach((g) => {
+      s += `<line x1="${x(g)}" x2="${x(g)}" y1="${top - 4}" y2="${top + row * D.length}" stroke="var(--rule)" />`;
+      s += `<text x="${x(g)}" y="${top + row * D.length + 16}" text-anchor="middle">${g === 0 ? "0" : Math.round(g * 100) + "%"}</text>`;
+    });
+    D.forEach(([t, v], i) => {
+      const y = top + i * row + 4, w = x(0) - x(v);
+      s += `<g><title>${t}: ${(v * 100).toFixed(1)}% mean gross return per 10-day straddle</title>`;
+      s += `<rect x="${x(v)}" y="${y}" width="${w}" height="18" rx="4" fill="var(--accent)" />`;
+      s += `<text x="${L - 8}" y="${y + 13}" text-anchor="end" style="fill:var(--ink)">${t}</text>`;
+      s += `<text x="${x(v) - 6}" y="${y + 13}" text-anchor="end" style="fill:var(--ink)">${(v * 100).toFixed(1)}%</text></g>`;
+    });
+    s += `<line x1="${x(0)}" x2="${x(0)}" y1="${top - 4}" y2="${top + row * D.length}" stroke="var(--muted)" />`;
+    $("stradChart").innerHTML = s;
+  })();
 
   update();
 })();

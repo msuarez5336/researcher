@@ -1,0 +1,7 @@
+SPY    all:-0.217(2363)  cheap:-0.113(354)  rich:-0.236(2009)  squeeze:-0.336(684)  cheap+squeeze:n<60(3)
+QQQ    all:-0.137(2363)  cheap:-0.110(572)  rich:-0.146(1791)  squeeze:-0.153(582)  cheap+squeeze:n<60(14)
+IWM    all:-0.152(2358)  cheap:-0.140(483)  rich:-0.155(1875)  squeeze:-0.194(662)  cheap+squeeze:n<60(5)
+AAPL   all:-0.069(2359)  cheap:-0.057(641)  rich:-0.073(1718)  squeeze:+0.005(567)  cheap+squeeze:n<60(14)
+AMZN   all:-0.116(2359)  cheap:-0.111(714)  rich:-0.118(1645)  squeeze:-0.193(579)  cheap+squeeze:n<60(24)
+GOOGL  all:-0.100(2359)  cheap:-0.096(870)  rich:-0.102(1489)  squeeze:-0.081(541)  cheap+squeeze:n<60(17)
+EWZ    all:-0.126(2359)  cheap:-0.121(382)  rich:-0.127(1977)  squeeze:-0.223(704)  cheap+squeeze:n<60(28)

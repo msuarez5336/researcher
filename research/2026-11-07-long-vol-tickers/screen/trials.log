@@ -1,0 +1,3 @@
+trial2 payoff10 (top 12): [('INTC', 13, 0.249), ('ORCL', 16, 0.223), ('TSLA', 8, 0.221), ('SPY', 15, 0.212), ('PFE', 11, 0.21), ('AAPL', 2, 0.209), ('IWM', 17, 0.209), ('MU', 4, 0.203), ('AMZN', 12, 0.2), ('GOOGL', 18, 0.198), ('EWZ', 23, 0.197), ('AMD', 5, 0.197)]
+trial2 above normal null: 22 of 24
+trial3 sector-capped top10: ['QQQ', 'AAPL', 'NVDA', 'MU', 'HOOD', 'TSLA', 'SOFI', 'PFE', 'AMZN', 'PLTR']
