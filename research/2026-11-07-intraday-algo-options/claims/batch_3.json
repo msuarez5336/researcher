@@ -1,0 +1,96 @@
+[
+ {
+  "claim_id": "C11",
+  "claim": "Coval & Shumway (J. Finance 2001): zero-beta at-the-money S&P 500 index straddles lost about 3% per week on average.",
+  "evidence": [
+   {
+    "evidence_id": "SQ3-1",
+    "quote": "zero\u2010beta, at\u2010the\u2010money straddle positions produce average losses of approximately three percent per week.",
+    "url": "https://econpapers.repec.org/RePEc:bla:jfinan:v:56:y:2001:i:3:p:983-1009",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/econpapers.repec.org-050ff40d3b.txt",
+    "source_title": "Expected Option Returns (J. Finance)",
+    "date": "2001"
+   }
+  ]
+ },
+ {
+  "claim_id": "C12",
+  "claim": "Beckmeyer, Branger & Gayda: retail traders lost on average about $184k per day in 0DTE SPX options (about $358k per day after May 2022), and about 60% of the losses came from transaction costs.",
+  "evidence": [
+   {
+    "evidence_id": "SQ3-2",
+    "quote": "While average daily retail losses were $184,000 for the entire sample, since May 16, 2022 (the introduction of a daily expiration calendar), daily retail losses grew to $358,000.",
+    "url": "https://www.wealthmanagement.com/equities/retail-investors-are-in-love-with-same-day-options",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/www.wealthmanagement.com-dffaf36185.txt",
+    "source_title": "Retail Investors are in Love with Same Day Options (summary by the authors, WealthManagement)",
+    "date": "2023"
+   },
+   {
+    "evidence_id": "SQ3-3",
+    "quote": "buyers of options pay the variance risk premium and have negative expected returns even before expenses",
+    "url": "https://www.wealthmanagement.com/equities/retail-investors-are-in-love-with-same-day-options",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/www.wealthmanagement.com-dffaf36185.txt",
+    "source_title": "Retail Investors are in Love with Same Day Options",
+    "date": "2023"
+   }
+  ]
+ },
+ {
+  "claim_id": "C13",
+  "claim": "Vilkov's study of static 0DTE SPX rules held to expiry (Sept 2016-Jan 2024) finds deep in-the-money call buys have a positive median return but a mean not distinguishable from zero, and that P&L is largely explained by realised skewness of the underlying.",
+  "evidence": [
+   {
+    "evidence_id": "SQ3-4",
+    "quote": "Some trades look profitable at the median, including buying deep in-the-money calls and selling out-of-the-money calls and puts",
+    "url": "https://hulltactical.com/2026/07/08/0dte-options-tiny-edge-huge-distribution/",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/hulltactical.com-d698f07084.txt",
+    "source_title": "0DTE options: tiny edge, huge distribution (Hull Tactical summary of Vilkov)",
+    "date": "2026-07-08"
+   },
+   {
+    "evidence_id": "SQ3-5",
+    "quote": "much of the P&L of these strategies can be explained by realized skewness in the underlying index return",
+    "url": "https://hulltactical.com/2026/07/08/0dte-options-tiny-edge-huge-distribution/",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/hulltactical.com-d698f07084.txt",
+    "source_title": "0DTE options: tiny edge, huge distribution",
+    "date": "2026-07-08"
+   }
+  ]
+ },
+ {
+  "claim_id": "C14",
+  "claim": "Kaminski & Lo (J. Financial Markets 2014): on index futures, some stop-loss policies can raise expected return and lower volatility at longer sampling frequencies.",
+  "evidence": [
+   {
+    "evidence_id": "SQ4-1",
+    "quote": "At longer sampling frequencies, certain stop-loss policies can increase expected return while substantially reducing volatility, consistent with their objectives in practical applications.",
+    "url": "https://dspace.mit.edu/handle/1721.1/114876",
+    "cached_page": "research/2026-11-07-intraday-algo-options/pages/dspace.mit.edu-180cfbf3f7.txt",
+    "source_title": "When do stop-loss rules stop losses? (MIT DSpace abstract)",
+    "date": "2014"
+   }
+  ]
+ },
+ {
+  "claim_id": "C15",
+  "claim": "Lei & Li (Financial Services Review): on individual US stocks, stop-loss rules neither reduce nor increase losses relative to buy-and-hold; trailing stops reduce risk.",
+  "evidence": [
+   {
+    "evidence_id": "SQ4-2",
+    "quote": "Our results indicate that these strategies neither reduce nor increase investors' losses relative to a buy-and-hold strategy once we extend security returns from past realizations to possible future paths.",
+    "url": "https://openjournals.libs.uga.edu/fsr/article/view/4933",
+    "cached_page": "research/2026-11-07-intraday-algo-options/pages/openjournals.libs.uga.edu-53ac04db21.txt",
+    "source_title": "The value of stop loss strategies (FSR)",
+    "date": "2009"
+   },
+   {
+    "evidence_id": "SQ4-7",
+    "quote": "stop-loss thresholds of 5, 10 or 20 daily return standard deviations",
+    "url": "https://www.cxoadvisory.com/technical-trading/using-trailing-stop-losses-to-reduce-risk",
+    "cached_page": "research/2026-11-07-intraday-algo-options/pages/www.cxoadvisory.com-ba5c007c1f.txt",
+    "source_title": "CXO Advisory summary of Lei & Li",
+    "date": "2008"
+   }
+  ]
+ }
+]

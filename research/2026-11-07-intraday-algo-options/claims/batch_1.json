@@ -1,0 +1,88 @@
+[
+ {
+  "claim_id": "C1",
+  "claim": "Gao, Han, Li & Zhou (JFE 2018): on SPY, the first half-hour return predicts the last half-hour return; out-of-sample R2 about 0.018 and a timing rule earned 6.3% vs -0.5% per year gross (1999-2012).",
+  "evidence": [
+   {
+    "evidence_id": "SQ1-1",
+    "quote": "the first half-hour return on the market as measured from the previous day\u2019s market close predicts the last half-hour return.",
+    "url": "https://econpapers.repec.org/RePEc:eee:jfinec:v:129:y:2018:i:2:p:394-414",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/econpapers.repec.org-596b363529.txt",
+    "source_title": "Market intraday momentum (JFE abstract, RePEc)",
+    "date": "2018"
+   },
+   {
+    "evidence_id": "SQ1-2",
+    "quote": "SPY first half-hour returns predict last half-hour returns with R-squared 0.018 out-of-sample, generating 6.3% vs -0.5% gross annual return",
+    "url": "https://cxoadvisory.com/calendar-effects/first-and-last-half-hours-of-trading-linked",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/cxoadvisory.com-f0fc0ffdfc.txt",
+    "source_title": "CXO Advisory: First and Last Half-Hours of Trading Linked",
+    "date": "2014"
+   }
+  ]
+ },
+ {
+  "claim_id": "C2",
+  "claim": "Zarattini & Aziz 5-minute opening-range breakout on QQQ: 33.2% CAGR vs 14.9% buy-and-hold, Jan 2016-Feb 2023, with zero slippage and up to 4x leverage, in-sample.",
+  "evidence": [
+   {
+    "evidence_id": "SQ1-4",
+    "quote": "outperformed buy-and-hold QQQ (33.2% vs 14.9% CAGR; Jan 2016\u2013Feb 2023; 1,795 trades; zero slippage assumed)",
+    "url": "https://www.cxoadvisory.com/technical-trading/day-trading-with-an-opening-range-breakout-strategy",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/www.cxoadvisory.com-2e4e6d85f3.txt",
+    "source_title": "CXO Advisory: Day Trading with an Opening Range Breakout Strategy (summary of SSRN 4416622)",
+    "date": "2023"
+   }
+  ]
+ },
+ {
+  "claim_id": "C3",
+  "claim": "An independent replication of the 5-minute ORB on index CFDs (2015-2026) reproduces the gross edge (about +0.13 R per trade) but net of costs it is about zero on Nasdaq (+0.002 R) and negative in 4 of 5 markets.",
+  "evidence": [
+   {
+    "evidence_id": "SQ1-5",
+    "quote": "Gross yes: +0.131 R on NQ, as in the paper. Net no: no market is distinguishable from zero, four of five are negative.",
+    "url": "https://www.mql5.com/en/blogs/post/776235",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/www.mql5.com-2886883e2c.txt",
+    "source_title": "The opening-range breakout paper, replicated on five indices: gross reproduced, net zero (MQL5 blog)",
+    "date": "2026-09-25"
+   },
+   {
+    "evidence_id": "SQ1-6",
+    "quote": "the out-of-sample years 2021 to 2026 give +0.06 R on NQ at best.",
+    "url": "https://www.mql5.com/en/blogs/post/776235",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/www.mql5.com-2886883e2c.txt",
+    "source_title": "The opening-range breakout paper, replicated on five indices: gross reproduced, net zero (MQL5 blog)",
+    "date": "2026-09-25"
+   }
+  ]
+ },
+ {
+  "claim_id": "C4",
+  "claim": "Zarattini, Aziz & Barbon SPY 'noise area' intraday momentum (2007-early 2024): 19.6% annualised net of costs, Sharpe 1.33, flat at close.",
+  "evidence": [
+   {
+    "evidence_id": "SQ1-9",
+    "quote": "From 2007 to early 2024, the resulting intraday momentum portfolio achieved a total return of 1,985% (net of costs), an annualized return of 19.6%, and a Sharpe Ratio of 1.33.",
+    "url": "https://www.alexandria.unisg.ch/handle/20.500.14171/122124",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/www.alexandria.unisg.ch-5170a37a3a.txt",
+    "source_title": "Beat the Market: An Effective Intraday Momentum Strategy for S&P500 ETF (SPY) (SFI RP 24-97)",
+    "date": "2024"
+   }
+  ]
+ },
+ {
+  "claim_id": "C5",
+  "claim": "SPY overnight gap and the same day's open-to-close return have a correlation of about 0.01 (1993-2025), so neither gap fade nor gap continuation works on average.",
+  "evidence": [
+   {
+    "evidence_id": "SQ1-10",
+    "quote": "SPY opening gaps showed little tendency toward reversal or continuation of the gap through the rest of the trading day (correlation 0.01 between gap and open-to-close return; Jan 1993\u2013Mar 2025",
+    "url": "https://www.cxoadvisory.com/technical-trading/gap-reversal-or-continuation",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/www.cxoadvisory.com-93e028a3b7.txt",
+    "source_title": "CXO Advisory: Gap Reversal or Continuation?",
+    "date": "2025"
+   }
+  ]
+ }
+]

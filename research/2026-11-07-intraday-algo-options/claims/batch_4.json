@@ -1,0 +1,96 @@
+[
+ {
+  "claim_id": "C16",
+  "claim": "FINRA Regulatory Notice 26-10 replaces the pattern-day-trader designation and the $25,000 minimum with intraday margin standards, effective June 4, 2026, with broker phase-in allowed until October 20, 2027.",
+  "evidence": [
+   {
+    "evidence_id": "SQ5-1",
+    "quote": "FINRA has adopted new intraday margin standards to replace in their entirety the outdated day trading margin requirements",
+    "url": "https://www.finra.org/rules-guidance/notices/26-10",
+    "cached_page": "research/2026-11-07-intraday-algo-options/pages/www.finra.org-90f9200019.txt",
+    "source_title": "FINRA Regulatory Notice 26-10: FINRA Adopts New Intraday Margin Standards to Replace the Day Trading Margin Requirements",
+    "date": "2026-04"
+   },
+   {
+    "evidence_id": "SQ5-2",
+    "quote": "Effective Date: June 4, 2026; Phase-in Period: Ends October 20, 2027",
+    "url": "https://www.finra.org/rules-guidance/notices/26-10",
+    "cached_page": "research/2026-11-07-intraday-algo-options/pages/www.finra.org-90f9200019.txt",
+    "source_title": "FINRA Regulatory Notice 26-10",
+    "date": "2026-04"
+   }
+  ]
+ },
+ {
+  "claim_id": "C17",
+  "claim": "Interactive Brokers conditional orders can be triggered by the price of another contract (e.g. a stock) and submit or cancel an order, allowing an option exit triggered by the underlying's price.",
+  "evidence": [
+   {
+    "evidence_id": "SQ5-11",
+    "quote": "A conditional order is an order that will automatically be submitted or cancelled ONLY IF specified criteria for one or more defined contracts are met.",
+    "url": "https://www.interactivebrokers.com/campus/trading-lessons/conditional-orders/",
+    "cached_page": "research/2026-11-07-intraday-algo-options/pages/www.interactivebrokers.com-60ddfb215b.txt",
+    "source_title": "IBKR Campus: Conditional Orders",
+    "date": "unknown"
+   }
+  ]
+ },
+ {
+  "claim_id": "C18",
+  "claim": "ThetaData individual options plans as of Nov 2026: Value $40/month (1-minute data), Standard $80/month (tick-level NBBO quotes), Pro $160/month.",
+  "evidence": [
+   {
+    "evidence_id": "SQ6-7",
+    "quote": "$80 per",
+    "url": "https://thetadata.net/pricing",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/thetadata.net-43b3d6e42a.txt",
+    "source_title": "ThetaData Pricing",
+    "date": "2026-11-07"
+   },
+   {
+    "evidence_id": "SQ6-8",
+    "quote": "\u2714 14 Years of data",
+    "url": "https://thetadata.net/pricing",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/thetadata.net-43b3d6e42a.txt",
+    "source_title": "ThetaData Pricing",
+    "date": "2026-11-07"
+   }
+  ]
+ },
+ {
+  "claim_id": "C19",
+  "claim": "Massive (formerly Polygon.io) options plans: only the Advanced plan ($199/month) includes quotes; Developer ($79) has trades but not quotes.",
+  "evidence": [
+   {
+    "evidence_id": "SQ6-11",
+    "quote": "$199 /month Billed monthly",
+    "url": "https://massive.com/options",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/massive.com-11a598da00.txt",
+    "source_title": "Massive Options pricing",
+    "date": "2026-11-07"
+   },
+   {
+    "evidence_id": "SQ6-12",
+    "quote": "$79 /month Billed monthly",
+    "url": "https://massive.com/options",
+    "cached_page": "/home/user/researcher/research/2026-11-07-intraday-algo-options/pages/massive.com-11a598da00.txt",
+    "source_title": "Massive Options pricing",
+    "date": "2026-11-07"
+   }
+  ]
+ },
+ {
+  "claim_id": "C20",
+  "claim": "CFR working paper 26-02 (Bali, Goyal, Moerke, Weigert) finds half-day option returns show momentum within the same half-day period (intraday or overnight) and reversal across periods, about 0.22-0.45% per half-day, persisting up to 20 business days, for delta-hedged option returns.",
+  "evidence": [
+   {
+    "evidence_id": "SQ7-2",
+    "quote": "These patterns increase over time, are robust to various delta-hedging schemes and option selection criteria, and persist across different subsamples.",
+    "url": "https://econpapers.repec.org/RePEc:zbw:cfrwps:336775",
+    "cached_page": "research/2026-11-07-intraday-algo-options/pages/econpapers.repec.org-11f4ab9bf2.txt",
+    "source_title": "In search of seasonality in intraday and overnight option returns",
+    "date": "2026"
+   }
+  ]
+ }
+]
