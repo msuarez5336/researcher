@@ -6,3 +6,4 @@ __pycache__/
 
 # Third-party price data downloaded by screen scripts (regenerable)
 research/*/screen/data/
+research/*/study/data/
