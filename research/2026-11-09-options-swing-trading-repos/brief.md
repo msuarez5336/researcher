@@ -491,3 +491,8 @@ repos are read in parallel. Exact texts are in `briefs/SQ6a.txt` and `briefs/SQ6
 ## Approval
 - [x] User approved on 2026-11-09, with these changes: DEEP tier; 0DTE in scope; underlyings
   limited to stocks and indexes; long option trades only (premium selling out).
+- 2026-11-09, user ruling after group A: holding time must be under 3 months. The limit moves
+  from about 8 weeks to under 3 months (about 90 days). LEAPS repos (300-800 days) stay out of
+  the shortlist and are reported only as out of scope. No group A repo fell between 8 weeks and
+  3 months, so the shortlist is unchanged. The worker briefs keep the 8-week wording they were
+  sent with.
