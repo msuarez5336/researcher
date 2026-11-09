@@ -15,14 +15,17 @@ on stocks and indexes (index ETFs are labelled), held from intraday up to under 
    read in code, none has a live-money record; results are backtests or paper trading, and
    most price options with a Black-Scholes model instead of historical quotes. [E] ✓
 2. **The best-built swing study is `Darson2004/kelly-event-vol`, and its edge is narrow.** It
-   buys an at-the-money straddle 14 days before earnings on real exchange quotes and reports
-   +6.39% per trade after spread and commissions on 193 trades. The same rule entered 7 days
-   before earns +0.24%, and the author says the exit cost is unmeasured and the result turns
+   buys an at-the-money straddle 14 days before earnings on real exchange quotes. For the
+   subset where the implied move is at most 0.90× the stock's past realised move it reports
+   +6.39% per trade after spread and commissions on 193 trades; without that filter the
+   README gives +2.16%. The filtered rule entered 7 days before earns +0.24%, and the author says the exit cost is unmeasured and the result turns
    negative if the exit pays more than 0.605 of the half-spread. [E]
    ([README](https://raw.githubusercontent.com/Darson2004/kelly-event-vol/HEAD/README.md)) ✓
 3. **The most-starred find, `randomwalkhan/Short-Term-Reversal-Strategy` (266 stars), reports
-   +690.85% on modelled prices.** Its backtest prices the calls with a Black-Scholes function
-   and the worker found no spread or commission cost in the backtest scripts. It does keep a
+   +690.85%, and the backtest script we checked uses modelled prices.** That script (Reversal
+   2.4) prices the calls with a Black-Scholes function; the pricing behind the headline
+   Reversal 3.3 figure was not checked separately, and the worker found no spread or
+   commission cost in the backtest scripts. It does keep a
    live paper log, and the author demoted one entry type after it underperformed on paper. [E]
    ([README](https://raw.githubusercontent.com/randomwalkhan/Short-Term-Reversal-Strategy/HEAD/README.md)) ✓
 4. **Three of four 0DTE repos report no edge from buying options.** One finds profit factor
@@ -31,7 +34,7 @@ on stocks and indexes (index ETFs are labelled), held from intraday up to under 
    "No structure retains a materially positive net Sharpe ratio". [E] ✓
 5. **The one positive 0DTE record is small, on paper, and contradicted by the repo's own
    document.** `milgar7969/alpaca-options-framework` shows 104 paper trades with profit factor
-   1.26 on a dashboard, while its strategy PDF gives a clean total of -$121 for an earlier
+   1.26 on a dashboard that covers only 2026-10-12 to 2026-11-09 and regenerates, while its strategy PDF gives a clean total of -$121 for an earlier
    window. [E] dashboard ✓, PDF ~
 6. **The strongest outside evidence is against the trade type itself.** A University of
    Münster study of Cboe data finds retail investors lost $241,000 on an average day in
@@ -44,7 +47,8 @@ on stocks and indexes (index ETFs are labelled), held from intraday up to under 
    index data. `ib_async` is the maintained successor to the archived `ib_insync`. Schwab's
    login token lasts seven days. [E] ✓ (archive status of `ib_insync` ~)
 8. **Realistic backtests need paid data.** No free source of historical option quotes was
-   found. QuantConnect bundles minute-level index and equity option data from January 2012;
+   found. QuantConnect offers AlgoSeek minute-level index and equity option data from
+   January 2012 (what it costs was not checked);
    ThetaData starts at $40/month for six years of 1-minute data. [E] ✓
 9. **Most of the usual advice for buying options has no published test in what we found.**
    No measured test turned up for delta choice, days to expiry, position sizing or profit
@@ -57,10 +61,10 @@ Eight repos were cloned and read. Four trade on a swing timeframe, four trade 0D
 | Repo | Idea | Option prices | Costs | Author-reported result | Verdict |
 |---|---|---|---|---|---|
 | [`Darson2004/kelly-event-vol`](https://raw.githubusercontent.com/Darson2004/kelly-event-vol/HEAD/README.md) | Straddle 14 days before earnings, 42 liquid stocks, 2020-09 to 2026-08 | Real quotes | Half-spread fraction plus $0.75 per contract | +6.39% per trade net, n=193; +0.24% if entered 7 days before | Study |
-| [`randomwalkhan/Short-Term-Reversal-Strategy`](https://raw.githubusercontent.com/randomwalkhan/Short-Term-Reversal-Strategy/HEAD/README.md) | ~30-day calls after large intraday drops, QQQ and leveraged ETFs | Modelled | None found in backtest | +690.85%, max drawdown -26.42%, 117 trades, 69.2% wins; paper equity $117,024.80 on 2026-11-06 | Study; licence is "All rights reserved" |
+| [`randomwalkhan/Short-Term-Reversal-Strategy`](https://raw.githubusercontent.com/randomwalkhan/Short-Term-Reversal-Strategy/HEAD/README.md) | ~30-day calls after large intraday drops, QQQ and leveraged ETFs | Modelled in the script checked | None found in backtest | +690.85%, max drawdown -26.42%, 117 trades, 69.2% wins; paper equity $117,024.80 on 2026-11-06 | Study; licence is "All rights reserved" |
 | [`carolinehutchins05-prog/options-desk`](https://raw.githubusercontent.com/carolinehutchins05-prog/options-desk/HEAD/README.md) | Trend-screened calls on S&P 500 stocks, sold within 5 sessions | Modelled | 2% half-spread each way | Mean -0.37% per trade on 117,754 trades, 45.2% wins; "near breakeven" | Useful negative control |
-| [`erictao947/earnings-vol-study`](https://raw.githubusercontent.com/erictao947/earnings-vol-study/HEAD/src/phase7_backtest.py) | Sells the straddle before earnings | — | — | Out of scope (premium selling) | Skip |
-| [`milgar7969/alpaca-options-framework`](https://raw.githubusercontent.com/milgar7969/alpaca-options-framework/HEAD/README.md) | SPY (ETF) 0DTE calls and puts on a momentum signal, mornings only | Paper fills | Simulated | Dashboard: 104 trades, 48.1% wins, +$539, profit factor 1.26. PDF: clean total -$121 for 2026-05-20 to 06-17 ~ | Study the execution code |
+| [`erictao947/earnings-vol-study`](https://raw.githubusercontent.com/erictao947/earnings-vol-study/HEAD/src/phase7_backtest.py) | Earnings volatility study; its trading backtest sells the straddle before earnings | — | — | Out of scope (premium selling); README not reachable | Skip |
+| [`milgar7969/alpaca-options-framework`](https://raw.githubusercontent.com/milgar7969/alpaca-options-framework/HEAD/README.md) | SPY (ETF) 0DTE calls and puts on a momentum signal, mornings only | Paper fills | Simulated | Dashboard (2026-10-12 to 2026-11-09): 104 trades, 48.1% wins, +$539, profit factor 1.26. PDF: clean total -$121 for 2026-05-20 to 06-17 ~ | Study the execution code |
 | [`YichengYang-Ethan/0dte-strategy`](https://raw.githubusercontent.com/YichengYang-Ethan/0dte-strategy/HEAD/README.md) | SPX 0.20-delta 0DTE call, 09:45 to 15:55, no signal, 951 days | Real quotes, buy at ask, sell at bid | In the fills | Profit factor 0.97 with no stop; 1.28 with a -40% stop | Study the method |
 | [`vilkovgr/0dte-strategies`](https://raw.githubusercontent.com/vilkovgr/0dte-strategies/HEAD/KNOWN-ISSUES.md) | Replication package for a paper; mixed long and short SPX structures | Real data (not fetchable) | Yes, after a bug fix | No structure keeps a materially positive net Sharpe | Skip |
 | [`luphillip041-hub/odte-bot`](https://raw.githubusercontent.com/luphillip041-hub/odte-bot/HEAD/README.md) | SPY/QQQ (ETF) 0DTE calls and puts, ~0.25 delta | Modelled, 10% slippage per side | Yes | "Eleven research waves found no long-premium options edge" | Read the docs, skip the bot |
@@ -76,8 +80,8 @@ Things worth knowing behind the table:
   the worker found the backtest runs 30 calendar days with 45 as a sensitivity. The 95%
   confidence interval on the mean is -2.7% to +1.9%, so no edge is shown either way.
   [E] results file ✓, code reading ~
-- **`alpaca-options-framework` stops new entries at noon** because, in the author's words,
-  afternoons were "net -$514/47 trades in Jul". Its dashboard figures are not in the repo, so
+- **`alpaca-options-framework` stops new entries at noon** because, in the author's code
+  comment, afternoons were "net -$514/47 trades in Jul" (year not stated). Its dashboard figures are not in the repo, so
   they cannot be reproduced from the clone. [E] ✓
 - **A stop changed the 0DTE baseline's sign, at a price.** In `0dte-strategy` the -40% stop
   lifts profit factor from 0.97 to 1.28, but the worker's reading is that the win rate falls
@@ -106,7 +110,7 @@ Other repos seen but not read in code:
 | Avoid buying before earnings | A vendor backtest of S&P 500 earnings straddles, entered 9 days before and exited the next session, reports -18.5% per trade with a 22% win rate ([IVolatility](https://www.ivolatility.com/news/3147)). `kelly-event-vol` reports +6.39% for a filtered entry 14 days before. | [E] ✓ both; they conflict, see below |
 | Use a hard stop on 0DTE | One test: -40% stop moves profit factor from 0.97 to 1.28 | [E] ✓ single test |
 | Trade defined time windows on 0DTE | One repo cut afternoon entries after losing $514 on 47 afternoon trades in one month | [E] ✓ one month, paper |
-| Model fills at the spread, not the mid | A short-put-spread backtest flips from positive at mid fills to breakeven or negative at honest fills ([FlashAlpha](https://flashalpha.com/articles/vrp-short-put-spreads-honest-7-year-backtest)); `kelly-event-vol` flips sign at 0.605 of the half-spread on exit | [E] ✓ (first is a selling strategy) |
+| Model fills at the spread, not the mid | A short-put-spread backtest gives breakeven to negative results at honest fills, and its authors say a companion study finds the same strategy strongly positive at mid fills ([FlashAlpha](https://flashalpha.com/articles/vrp-short-put-spreads-honest-7-year-backtest)); `kelly-event-vol` flips sign at 0.605 of the half-spread on exit | [E] ✓ (first is a selling strategy) |
 | Trade only liquid contracts | `Short-Term-Reversal-Strategy` gates live entries on spread, open interest and volume; no test of the gate's effect | [O] ~ |
 | Buy higher delta, buy more time, size at 1–2%, fixed profit targets, buy when volatility is low | No measured test on long options found | Not found |
 
@@ -135,7 +139,7 @@ Background evidence on the trade type:
 | Interactive Brokers | `ib-api-reloaded/ib_async` | 1,787 | 2025-12-06 | Maintained successor to `ib_insync` | Spot SPX and Greeks need extra data subscriptions ([IBKR](https://www.interactivebrokers.com/docs/general/market-data-subscriptions/popular-market-data-subscriptions)) |
 | Schwab | `alexgolec/schwab-py`, unofficial | 480 | 2025-08-04 | Buy-to-open order templates, weekly SPX symbols | "Tokens are only good for seven days" ([docs](https://schwab-py.readthedocs.io/en/latest/auth.html)); no historical options data; no paper trading found |
 | Tradier | Official REST API | — | — | Chains and Greeks; sandbox | Sandbox fills against delayed data; index options $0.35 per contract on Pro, $0.10 on Pro Plus ([pricing](https://tradier.com/individuals/pricing)) |
-| Tastytrade | `tastyware/tastytrade`, unofficial | 259 | 2026-08-07 | Chains, streamed quotes and Greeks | Sandbox resets every 24 hours on a delayed feed ([docs](https://developer.tastytrade.com/docs/sandbox)) |
+| Tastytrade | `tastyware/tastytrade`, unofficial | 259 | 2026-08-07 | Chains, streamed quotes and Greeks | Sandbox resets every 24 hours ([docs](https://developer.tastytrade.com/docs/sandbox)); how current its quotes are is not stated |
 | Webull | `webull-inc/webull-openapi-python-sdk`, official | 73 | not checked | Single and multi-leg options | Old SDK deprecated; no paper trading per QuantConnect ~ |
 | Robinhood, E*TRADE | `robin_stocks`, `pyetrade`, unofficial | 2,127 / 250 | not checked | — | No official Robinhood options API ~; E*TRADE tokens expire at midnight Eastern ~ |
 
@@ -151,8 +155,8 @@ is paper; its broker was not confirmed).
 
 | Tool | Stars | Last commit | What it gives | Limit |
 |---|---|---|---|---|
-| `QuantConnect/Lean` | 22,466 | 2026-11-09 | Bundled minute data: SPX, VIX, NDX options and 4,000 equity option symbols from January 2012 ([index](https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/algoseek/us-index-options), [equity](https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/algoseek/us-equity-options)) | Default fill model "does not take size or volume into account" (staff forum reply) [O] |
-| `goldspanlabs/optopsy` | 1,514 | 2026-11-04 | Options backtester with slippage settings | Needs an outside data provider; its own disclaimer says results omit liquidity, slippage and assignment risk |
+| `QuantConnect/Lean` | 22,466 | 2026-11-09 | AlgoSeek minute data on QuantConnect: SPX, VIX, NDX options and 4,000 equity option symbols from January 2012 ([index](https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/algoseek/us-index-options), [equity](https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/algoseek/us-equity-options)) | Default fill model "does not take size or volume into account" (staff forum reply) [O] |
+| `goldspanlabs/optopsy` | 1,514 | 2026-11-04 | Options backtester with slippage settings; loads your own CSV, with EODHD as an optional source | No data included; its own disclaimer says results omit liquidity, slippage and assignment risk |
 | `Lumiwealth/lumibot` | 2,219 | 2026-11-05 | One strategy class for backtest and live | Open issues on option backtests ~ |
 | `nautechsystems/nautilus_trader` | 31,416 | 2026-11-10 | Option instruments, Greeks, chains | Open issues on option backtesting ~ |
 
@@ -160,7 +164,7 @@ is paper; its broker was not confirmed).
 |---|---|---|
 | ThetaData | 6 years at 1-minute; 10 years at tick; 14 years | $40, $80, $160 per month ([pricing](https://thetadata.net/pricing)) |
 | Cboe DataShop | 1-minute option quotes with sizes | SPX index bid/ask needs a licence, "fees start at $1k/month" ([page](https://datashop.cboe.com/option-quotes)) |
-| Massive (formerly Polygon.io) | Option bars built from trades only, so quiet contracts have gaps ([docs](https://massive.com/docs/options/getting-started)) | Not captured from the vendor |
+| Massive ([formerly Polygon.io](https://massive.com/blog/polygon-is-now-massive)) | Option bars built from trades only, so quiet contracts have gaps ([docs](https://massive.com/docs/options/getting-started)) | Not captured from the vendor |
 | ORATS | Backtester assumes slippage of 75% of the spread on single legs ([method](https://orats.com/university/backtesting-methodology)) | Prices differ across its pages; not reconciled |
 | yfinance | Current chains only ~ | Free; Yahoo's API is personal-use only |
 
@@ -183,16 +187,20 @@ backtesting.py handle options were not reached.
 - **TD Ameritrade API and `tda-api`**: replaced by the Schwab API and `schwab-py`. The
   retirement itself was not checked in this run.
 - **Webull `openapi-python-sdk`**: deprecated; replaced by `webull-openapi-python-sdk`. ✓
-- **Polygon.io**: now trades as Massive; the docs say "formerly Polygon.io" ✓, the rename
-  date of 2025-10-30 is from a snippet ~.
+- **Polygon.io**: renamed Massive, effective 2025-10-30
+  ([announcement](https://massive.com/blog/polygon-is-now-massive)), confirmed by the
+  claim verifier ✓.
 - **`michaelchu/optopsy`**: the project now lives at `goldspanlabs/optopsy`. ✓
 - **Pages saying Alpaca has no index options** predate Alpaca's launch of them. ~
 
 ## Method and limitations
 
 - **Workers:** 5 discovery researchers, 2 follow-up researchers, 2 deep-read researchers
-  and 1 brief reviewer, 111 evidence items. Claim verification results are in `verdicts/`.
-- **Quote check:** 101 of 111 items matched their cached source at the last full check; the
+  and 1 brief reviewer, 112 evidence items.
+- **Claim verification:** 7 fresh-context verifiers checked 35 claims: 26 supported, 9
+  partial, none unsupported or contradicted. All 9 partial claims were narrowed in this
+  report as the verifiers suggested (verdicts are in `verdicts/`).
+- **Quote check:** 102 of 112 items matched their cached source at the last full check; the
   rest are labelled ~ here.
 - **Reddit was effectively blocked.** Its search returned 403 and web search limited to
   reddit.com was refused. No first-hand "I ran this" account with trade count, period and
