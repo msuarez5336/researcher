@@ -470,6 +470,14 @@ OUTPUT
   commit, licence, and a one-line verdict (study / reuse / skip).
 ```
 
+## Follow-up wave (launched 2026-11-09)
+Group A left two gaps, so the one permitted follow-up wave runs with 2 workers × 10 calls.
+Exact texts are in `briefs/SQ7.txt` and `briefs/SQ8.txt`.
+| ID | Sub-question | Why |
+|---|---|---|
+| SQ7 | First-hand accounts by routes other than Reddit search; the original Beckmeyer 0DTE paper | SQ5 found no account it could open: Reddit search returned 403 and SSRN was not reached |
+| SQ8 | Qualifying repos by topic, README and code search | SQ1 and SQ2 saw only the top results of short keyword queries |
+
 ## Approval
 - [x] User approved on 2026-11-09, with these changes: DEEP tier; 0DTE in scope; underlyings
   limited to stocks and indexes; long option trades only (premium selling out).
