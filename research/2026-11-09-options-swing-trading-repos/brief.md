@@ -478,6 +478,16 @@ Exact texts are in `briefs/SQ7.txt` and `briefs/SQ8.txt`.
 | SQ7 | First-hand accounts by routes other than Reddit search; the original Beckmeyer 0DTE paper | SQ5 found no account it could open: Reddit search returned 403 and SSRN was not reached |
 | SQ8 | Qualifying repos by topic, README and code search | SQ1 and SQ2 saw only the top results of short keyword queries |
 
+## Deep read (group B, launched 2026-11-09)
+Split into two workers of 4 repos × 15 calls (30 calls, 5 over the planned 25) so swing and 0DTE
+repos are read in parallel. Exact texts are in `briefs/SQ6a.txt` and `briefs/SQ6b.txt`.
+- SQ6a (swing): Darson2004/kelly-event-vol, randomwalkhan/Short-Term-Reversal-Strategy,
+  carolinehutchins05-prog/options-desk, erictao947/earnings-vol-study.
+- SQ6b (0DTE): milgar7969/alpaca-options-framework, YichengYang-Ethan/0dte-strategy,
+  vilkovgr/0dte-strategies, luphillip041-hub/odte-bot.
+- Left out: LEAPS repos (holding 300-800 days, over the 8-week limit), debit and calendar
+  spread repos, repos with no outcome artifact.
+
 ## Approval
 - [x] User approved on 2026-11-09, with these changes: DEEP tier; 0DTE in scope; underlyings
   limited to stocks and indexes; long option trades only (premium selling out).
