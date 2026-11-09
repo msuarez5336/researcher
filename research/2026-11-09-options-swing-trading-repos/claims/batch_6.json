@@ -1,0 +1,86 @@
+[
+ {
+  "cid": "C26",
+  "claim": "The Tastytrade sandbox resets every 24 hours and uses a delayed feed.",
+  "evidence": [
+   {
+    "id": "SQ3-10",
+    "quote": "The environment resets every 24 hours , clearing trades, transactions and",
+    "url": "https://developer.tastytrade.com/docs/sandbox",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/developer.tastytrade.com-362680a30f.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C27",
+  "claim": "QuantConnect's bundled data covers SPX, VIX and NDX index options and 4,000 equity option symbols from January 2012 at minute resolution.",
+  "evidence": [
+   {
+    "id": "SQ4-1",
+    "quote": "It starts from January 2012 and is delivered on minute resolution.",
+    "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/algoseek/us-index-options",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/www.quantconnect.com-c021ef04d8.txt"
+   },
+   {
+    "id": "SQ4-2",
+    "quote": "The data covers 4,000 Symbols, starts in January 2012, and is delivered on a minute frequency.",
+    "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/algoseek/us-equity-options",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/www.quantconnect.com-6afa481ffd.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C28",
+  "claim": "LEAN's default fill model does not take size or volume into account, according to a QuantConnect staff forum reply.",
+  "evidence": [
+   {
+    "id": "SQ4-3",
+    "quote": "No. The default Fill Model does not take size or volume into account.",
+    "url": "https://www.quantconnect.com/forum/discussion/6981/does-lean-engine-check-for-bid-ask-size-during-backtesting-of-options/",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/www.quantconnect.com-3bf405bf57.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C29",
+  "claim": "ThetaData's options plans cost $40 per month for 6 years of 1-minute data, $80 for 10 years of tick-level data and $160 for 14 years.",
+  "evidence": [
+   {
+    "id": "SQ4-15",
+    "quote": "6 Years of data",
+    "url": "https://thetadata.net/pricing",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/thetadata.net-43b3d6e42a.txt"
+   },
+   {
+    "id": "SQ4-16",
+    "quote": "1 minute intervals",
+    "url": "https://thetadata.net/pricing",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/thetadata.net-43b3d6e42a.txt"
+   },
+   {
+    "id": "SQ4-17",
+    "quote": "10 Years of data",
+    "url": "https://thetadata.net/pricing",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/thetadata.net-43b3d6e42a.txt"
+   },
+   {
+    "id": "SQ4-18",
+    "quote": "14 Years of data",
+    "url": "https://thetadata.net/pricing",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/thetadata.net-43b3d6e42a.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C30",
+  "claim": "Cboe DataShop requires a Cboe Global Indices licence, with fees from $1k per month, for SPX index bid/ask values.",
+  "evidence": [
+   {
+    "id": "SQ4-22",
+    "quote": "Customers with an active Cboe Global Indices (CGI) license (fees start at $1k/month) will receive values for indices that disseminate a distinct Bid/Ask (currently only ^SPX and ^OEX).",
+    "url": "https://datashop.cboe.com/option-quotes",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/datashop.cboe.com-5b0e847edd.txt"
+   }
+  ]
+ }
+]

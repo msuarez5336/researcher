@@ -1,0 +1,68 @@
+[
+ {
+  "cid": "C16",
+  "claim": "milgar7969/alpaca-options-framework stops new entries after noon because afternoon trades were net -$514 over 47 trades in July.",
+  "evidence": [
+   {
+    "id": "SQ6b-1",
+    "quote": "no new entries after noon (afternoons net -$514/47 trades in Jul; edge concentrates AM)",
+    "url": "https://raw.githubusercontent.com/milgar7969/alpaca-options-framework/HEAD/config.py",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-bd5aa7d4cd.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C17",
+  "claim": "Beckmeyer, Branger and Gayda find retail investors lost $241,000 on an average day in S&P 500 0DTE options between February 2021 and September 2023, and $350,000 per day since daily expirations began in May 2022.",
+  "evidence": [
+   {
+    "id": "SQ7-P1",
+    "quote": "between February 2021 and September 2023, retail investors lost $241,000 on an average day; since the introduction of a daily expiration calendar in May of 2022, this number has grown to average losses of $350,000 per day",
+    "url": "https://wp.lancs.ac.uk/fofi2024/files/2024/04/FoFI-2024-146-Leander-Gayda.pdf",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/wp.lancs.ac.uk-gayda-0dte.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C18",
+  "claim": "The same paper says retail investors lost more than $125 million in total, more than $90 million of it from transaction costs, and that roughly 60% of daily losses come from transaction costs.",
+  "evidence": [
+   {
+    "id": "SQ7-P2",
+    "quote": "retail investors together lost more than $125 million. More than $90 million of these losses are the result of the transaction costs, the remainder a result of poor positioning",
+    "url": "https://wp.lancs.ac.uk/fofi2024/files/2024/04/FoFI-2024-146-Leander-Gayda.pdf",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/wp.lancs.ac.uk-gayda-0dte.txt"
+   },
+   {
+    "id": "SQ7-P4",
+    "quote": "Roughly 60% of daily losses are the result of transaction costs",
+    "url": "https://wp.lancs.ac.uk/fofi2024/files/2024/04/FoFI-2024-146-Leander-Gayda.pdf",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/wp.lancs.ac.uk-gayda-0dte.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C19",
+  "claim": "The same paper attributes the losses to single-leg trades, trades requiring an upfront payment and trades in high-implied-volatility options.",
+  "evidence": [
+   {
+    "id": "SQ7-P3",
+    "quote": "We find that single-leg trades, trades that require an upfront payment to be set up, and trades that use high-implied volatility options are responsible for these losses",
+    "url": "https://wp.lancs.ac.uk/fofi2024/files/2024/04/FoFI-2024-146-Leander-Gayda.pdf",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/wp.lancs.ac.uk-gayda-0dte.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C20",
+  "claim": "An IVolatility backtest of S&P 500 earnings straddles reports long-straddle expectancy of -18.5% per trade with a 22% win rate.",
+  "evidence": [
+   {
+    "id": "SQ5-3",
+    "quote": "Aggregate long-straddle expectancy across the index is −18.5% per trade with 22% WR , driven by an average IV crush of +15.6pp",
+    "url": "https://www.ivolatility.com/news/3147",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/www.ivolatility.com-38904fc625.txt"
+   }
+  ]
+ }
+]

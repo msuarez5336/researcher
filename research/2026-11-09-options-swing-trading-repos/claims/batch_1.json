@@ -1,0 +1,74 @@
+[
+ {
+  "cid": "C1",
+  "claim": "Darson2004/kelly-event-vol reports +6.39% per trade net of half-spread fills and commissions for buying the at-the-money straddle 14 days before earnings, on 193 trades.",
+  "evidence": [
+   {
+    "id": "SQ1-1",
+    "quote": "buying the ATM straddle 14 days before earnings when the implied earnings move is at most 0.90x the name's average past realized move earns **+6.39% per trade net of half-spread fills and commissions**",
+    "url": "https://raw.githubusercontent.com/Darson2004/kelly-event-vol/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-9af3e5c0ea.txt"
+   },
+   {
+    "id": "SQ6a-1",
+    "quote": "earns **+6.39% per trade net of half-spread fills and commissions** (n=193, t=2.65",
+    "url": "https://raw.githubusercontent.com/Darson2004/kelly-event-vol/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-9af3e5c0ea.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "In kelly-event-vol the same rule entered 7 days before earnings instead of 14 earns +0.24% per trade.",
+  "evidence": [
+   {
+    "id": "SQ1-2",
+    "quote": "The same rule entered at T-7 instead of T-14 earns +0.24% per trade (t=0.21).",
+    "url": "https://raw.githubusercontent.com/Darson2004/kelly-event-vol/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-9af3e5c0ea.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "kelly-event-vol states its exit-leg fill cost is unmeasured and the net result flips sign at an exit half-spread fraction of 0.605.",
+  "evidence": [
+   {
+    "id": "SQ6a-3",
+    "quote": "The exit-leg fill cost is unmeasured.** The net result flips sign at φ_exit = 0.605.",
+    "url": "https://raw.githubusercontent.com/Darson2004/kelly-event-vol/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-9af3e5c0ea.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "kelly-event-vol fills every leg at mid plus or minus 0.5 of the half-spread by default, plus $0.75 per contract.",
+  "evidence": [
+   {
+    "id": "SQ1-3",
+    "quote": "Every leg fills at $\\text{mid} \\pm \\varphi \\cdot \\tfrac{1}{2}\\text{spread}$, with $\\varphi = 0.5$ by default, plus $0.75 per contract.",
+    "url": "https://raw.githubusercontent.com/Darson2004/kelly-event-vol/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-9af3e5c0ea.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "randomwalkhan/Short-Term-Reversal-Strategy reports +690.85% total return, -26.42% max drawdown, 117 trades and a 69.2% win rate for its Reversal 3.3 backtest.",
+  "evidence": [
+   {
+    "id": "SQ6a-4",
+    "quote": "reversal_3_3_official,qqq_plus_leverage_etfs,99,79084.73420604714,690.8473420604714,-26.417731009485777,117,69.23076923076923",
+    "url": "https://raw.githubusercontent.com/randomwalkhan/Short-Term-Reversal-Strategy/HEAD/results/reversal_3_3/reversal_3_3_summary.csv",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-3f1598e761.txt"
+   },
+   {
+    "id": "SQ8-2",
+    "quote": "The current recorded Reversal 3.3 result is `+690.85%` total return, `-26.42%` max drawdown, `69.23%` win rate, and `4.32` Sharpe.",
+    "url": "https://raw.githubusercontent.com/randomwalkhan/Short-Term-Reversal-Strategy/HEAD/README.md",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-0d2d128521.txt"
+   }
+  ]
+ }
+]

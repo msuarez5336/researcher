@@ -1,0 +1,80 @@
+[
+ {
+  "cid": "C11",
+  "claim": "YichengYang-Ethan/0dte-strategy reports that a signal-free 0.20-delta SPX 0DTE call bought at the ask over 951 days had profit factor 0.97 with no stop and 1.28 with a -40% stop.",
+  "evidence": [
+   {
+    "id": "SQ6b-3",
+    "quote": "No stop: PF **0.97** (mean EV < 0 — unconditional strategy loses money)",
+    "url": "https://raw.githubusercontent.com/YichengYang-Ethan/0dte-strategy/HEAD/docs/validation_summary_2026_04_21.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-b6828361ee.txt"
+   },
+   {
+    "id": "SQ6b-4",
+    "quote": "−40% stop: PF **1.28** (+32% improvement)",
+    "url": "https://raw.githubusercontent.com/YichengYang-Ethan/0dte-strategy/HEAD/docs/validation_summary_2026_04_21.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-b6828361ee.txt"
+   },
+   {
+    "id": "SQ2-4",
+    "quote": "951 days. Pick call with |delta| ≈ 0.20 at 09:45 ET.",
+    "url": "https://raw.githubusercontent.com/YichengYang-Ethan/0dte-strategy/HEAD/docs/validation_summary_2026_04_21.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-b6828361ee.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C12",
+  "claim": "0dte-strategy reports that in its earlier next-day SPY call test the long-call wrapper consumed about 41% of the signal's edge and a debit spread about 95%.",
+  "evidence": [
+   {
+    "id": "SQ2-6",
+    "quote": "but long-call wrapper ate ~41% of edge; debit spread ate ~95%.",
+    "url": "https://raw.githubusercontent.com/YichengYang-Ethan/0dte-strategy/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-064b65a669.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C13",
+  "claim": "vilkovgr/0dte-strategies states that after fixing a cost bug no structure retains a materially positive net Sharpe ratio.",
+  "evidence": [
+   {
+    "id": "SQ6b-5",
+    "quote": "No structure retains a materially positive net Sharpe ratio.",
+    "url": "https://raw.githubusercontent.com/vilkovgr/0dte-strategies/HEAD/KNOWN-ISSUES.md",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-280b39807d.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C14",
+  "claim": "The luphillip041-hub/odte-bot README says eleven research waves found no long-premium options edge.",
+  "evidence": [
+   {
+    "id": "SQ6b-6",
+    "quote": "Eleven research waves found no long-premium options edge",
+    "url": "https://raw.githubusercontent.com/luphillip041-hub/odte-bot/HEAD/README.md",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-dcb46af6a6.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C15",
+  "claim": "The milgar7969 paper-trading dashboard shows 104 trades, a 48.1% win rate, +$539 net and profit factor 1.26, and the README says all published results are paper trading with simulated fills.",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "avg W +$51.88 / L -$38.06",
+    "url": "https://milgar7969.github.io/spy-0dte-dashboard/",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/milgar7969.github.io-a745386a3d.txt"
+   },
+   {
+    "id": "SQ2-2",
+    "quote": "Paper results are not live results.",
+    "url": "https://raw.githubusercontent.com/milgar7969/alpaca-options-framework/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-7692c399eb.txt"
+   }
+  ]
+ }
+]

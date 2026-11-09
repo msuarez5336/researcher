@@ -1,0 +1,74 @@
+[
+ {
+  "cid": "C6",
+  "claim": "The Short-Term-Reversal-Strategy backtest prices its calls with a Black-Scholes function, not historical option quotes.",
+  "evidence": [
+   {
+    "id": "SQ6a-5",
+    "quote": "def bs_call(spot: float, strike: float, tau_years: float, r: float, sigma: float) -> float:",
+    "url": "https://raw.githubusercontent.com/randomwalkhan/Short-Term-Reversal-Strategy/HEAD/backtest_reversal_2_4_calls.py",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-7a9435c75c.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "Short-Term-Reversal-Strategy reports live paper equity of $117,024.80 and says early-entry execution was changed to shadow-only after live-paper underperformance.",
+  "evidence": [
+   {
+    "id": "SQ8-3",
+    "quote": "Equity: `$117,024.80` | Realized: `$107,024.80` | Unrealized: `$0.00` | Open positions: `0`",
+    "url": "https://raw.githubusercontent.com/randomwalkhan/Short-Term-Reversal-Strategy/HEAD/README.md",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-0d2d128521.txt"
+   },
+   {
+    "id": "SQ8-4",
+    "quote": "changes early-entry execution to shadow-only after live-paper underperformance",
+    "url": "https://raw.githubusercontent.com/randomwalkhan/Short-Term-Reversal-Strategy/HEAD/README.md",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-0d2d128521.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "The options-desk backtest results file shows the calls screen with 117,754 trades, a mean return of -0.37% per trade, a 45.2% win rate and a 95% confidence interval of -2.7% to +1.9%.",
+  "evidence": [
+   {
+    "id": "SQ6a-12",
+    "quote": "\"n\": 117754,",
+    "url": "https://raw.githubusercontent.com/carolinehutchins05-prog/options-desk/HEAD/backtest/results.json",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-3540bc9dcf.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "The options-desk backtest assumes a 2% half-spread each way and its README says calls come out near breakeven after costs.",
+  "evidence": [
+   {
+    "id": "SQ6a-9",
+    "quote": "Round trip cost: 2% half spread each way.",
+    "url": "https://raw.githubusercontent.com/carolinehutchins05-prog/options-desk/HEAD/backtest/run_backtest.py",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-64271ead88.txt"
+   },
+   {
+    "id": "SQ8-6",
+    "quote": "After costs the calls come out near breakeven, and the spread is what decides it.",
+    "url": "https://raw.githubusercontent.com/carolinehutchins05-prog/options-desk/HEAD/README.md",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-2b96289432.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "erictao947/earnings-vol-study sells an at-the-money straddle before earnings, so it is a premium-selling strategy.",
+  "evidence": [
+   {
+    "id": "SQ6a-11",
+    "quote": "Strategy: at the last close BEFORE each earnings announcement, SELL one ATM",
+    "url": "https://raw.githubusercontent.com/erictao947/earnings-vol-study/HEAD/src/phase7_backtest.py",
+    "page": "/home/user/researcher/research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-eded9f4f5b.txt"
+   }
+  ]
+ }
+]

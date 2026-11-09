@@ -1,0 +1,68 @@
+[
+ {
+  "cid": "C31",
+  "claim": "Optopsy's own disclaimer says its results omit liquidity constraints, execution slippage and assignment risk, and it needs an outside data provider.",
+  "evidence": [
+   {
+    "id": "SQ4-5",
+    "quote": "they do not account for all real-world factors such as liquidity constraints, execution slippage, assignment risk, or changing market conditions",
+    "url": "https://raw.githubusercontent.com/goldspanlabs/optopsy/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-44053edafb.txt"
+   },
+   {
+    "id": "SQ4-6",
+    "quote": "Fetch options chains and stock prices directly from supported data sources (e.g. EODHD)",
+    "url": "https://raw.githubusercontent.com/goldspanlabs/optopsy/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-44053edafb.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C32",
+  "claim": "Massive (formerly Polygon.io) builds option aggregate bars only from trades, so intervals with no trade have no bar.",
+  "evidence": [
+   {
+    "id": "SQ4-11",
+    "quote": "Aggregates are derived exclusively from qualifying trades that meet specific conditions.",
+    "url": "https://massive.com/docs/options/getting-started",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/massive.com-86ca8ea4b2.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C33",
+  "claim": "ORATS's backtester assumes slippage of 75% of the bid-ask width for single-leg trades.",
+  "evidence": [
+   {
+    "id": "SQ4-25",
+    "quote": "We use a slippage of 75% of bid ask width for single legs all the way to 53% for four leg spreads.",
+    "url": "https://orats.com/university/backtesting-methodology",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/orats.com-e26838860f.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C34",
+  "claim": "A FlashAlpha backtest of short put spreads gives breakeven to negative results with honest fills and strongly positive results with mid fills.",
+  "evidence": [
+   {
+    "id": "SQ5-5",
+    "quote": "honest fills give breakeven to negative (these numbers); idealized mid-fills (the universal public-backtest default) give strongly positive.",
+    "url": "https://flashalpha.com/articles/vrp-short-put-spreads-honest-7-year-backtest",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/flashalpha.com-cce74a1c41.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C35",
+  "claim": "Webull's original openapi-python-sdk is deprecated and replaced by webull-openapi-python-sdk.",
+  "evidence": [
+   {
+    "id": "SQ3-19",
+    "quote": "# ⚠️ DEPRECATED — This project is no longer maintained",
+    "url": "https://raw.githubusercontent.com/webull-inc/openapi-python-sdk/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-f7828d58e0.txt"
+   }
+  ]
+ }
+]

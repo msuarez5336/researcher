@@ -1,0 +1,80 @@
+[
+ {
+  "cid": "C21",
+  "claim": "Option Alpha reports implied volatility contracted after about 90% of 1,546 earnings events.",
+  "evidence": [
+   {
+    "id": "SQ5-4",
+    "quote": "This means that about 90% of the time we saw implied volatility go through a crush or contraction.",
+    "url": "https://optionalpha.com/we-stopped-trading-earnings-after-we-saw-this-new-research-188320.html",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/optionalpha.com-7369d7486a.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C22",
+  "claim": "Alpaca offers index options including SPX, SPXW, VIX and XSP for live trading through its Trading API, and does not provide spot index data.",
+  "evidence": [
+   {
+    "id": "SQ3-11",
+    "quote": "Today, index options are available for live trading through the our Trading API and dashboard!",
+    "url": "https://alpaca.markets/blog/alpaca-launches-index-options-via-trading-api",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/alpaca.markets-1f040e4ffc.txt"
+   },
+   {
+    "id": "SQ3-12",
+    "quote": "Alpaca does not currently provide index data through its Market Data offering.",
+    "url": "https://alpaca.markets/blog/alpaca-launches-index-options-via-trading-api",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/alpaca.markets-1f040e4ffc.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C23",
+  "claim": "ib_async is the maintained successor to ib_insync.",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "The library is currently maintained by [Matt Stancliff](https://github.com/mattsta) and we are open to adding more committers and org contributors if people show interest in helping out.",
+    "url": "https://raw.githubusercontent.com/ib-api-reloaded/ib_async/HEAD/README.md",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-6f4d6aa9f6.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C24",
+  "claim": "Schwab API refresh tokens last seven days, and schwab-py provides no historical options pricing data.",
+  "evidence": [
+   {
+    "id": "SQ3-6",
+    "quote": "Tokens are only good for seven days.",
+    "url": "https://schwab-py.readthedocs.io/en/latest/auth.html",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/schwab-py.readthedocs.io-e4df69cc54.txt"
+   },
+   {
+    "id": "SQ3-8",
+    "quote": "Historical options pricing data is not available.",
+    "url": "https://raw.githubusercontent.com/alexgolec/schwab-py/HEAD/README.rst",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/raw.githubusercontent.com-5a7e508025.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C25",
+  "claim": "Tradier's sandbox fills paper trades against delayed data, and its index options cost $0.35 per contract on Pro and $0.10 on Pro Plus.",
+  "evidence": [
+   {
+    "id": "SQ3-17",
+    "quote": "Paper trades (filled against delayed data)",
+    "url": "https://docs.tradier.com/docs/getting-started",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/docs.tradier.com-df493aeab8.txt"
+   },
+   {
+    "id": "SQ3-18",
+    "quote": "* Single Listed Index Options are subject to a $0.35/contract commission in the Pro Plan and $0.10/contract in the Pro Plus plan",
+    "url": "https://tradier.com/individuals/pricing",
+    "page": "research/2026-11-09-options-swing-trading-repos/pages/tradier.com-10f9c3e436.txt"
+   }
+  ]
+ }
+]
