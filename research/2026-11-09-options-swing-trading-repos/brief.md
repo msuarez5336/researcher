@@ -6,7 +6,7 @@
 | Requested by / for | Repo owner, deciding what to study or reuse before building or trading anything |
 | Run folder | `research/2026-11-09-options-swing-trading-repos/` |
 | Tier | DEEP (chosen by the user) |
-| Budget | Group A: 5 workers × 15 tool calls. Group B: 1 worker × 25 calls. At most one follow-up wave of 2 workers × 10 calls. Verification batches for every number and ranking (estimate 4). |
+| Budget | Group A: 3 workers × 15 and 2 workers × 20 tool calls. Group B: 1 worker × 25 calls. At most one follow-up wave of 2 workers × 10 calls. Verification batches for every number and ranking (estimate 4). |
 
 ## 1. The decision this research feeds
 Which public repos are worth studying or reusing for buying options (long calls and puts) on
@@ -67,8 +67,8 @@ proves a practice is profitable; the report can only say which practices were tr
 authors measured. Running any repo's code is out of scope.
 
 **Overlap test:** SQ1 and SQ2 both search GitHub for strategy repos and are split by holding
-period: SQ1 takes trades held overnight for 2 days or more, SQ2 takes 0DTE, same-day and
-next-day expiry. A repo doing both is recorded by whichever finds it and noted as "both".
+expiry at entry: SQ2 owns a trade only if the contract expires the same day or the next
+trading day; SQ1 owns everything held overnight or longer on later expiries. A repo doing both is recorded by whichever finds it and noted as "both".
 SQ3 (execution) and SQ4 (backtest and data) search for libraries, split by function: a
 framework that does both live trading and backtesting (QuantConnect LEAN, NautilusTrader)
 belongs to SQ4. SQ5 never starts from GitHub search. The orchestrator de-duplicates.
@@ -98,7 +98,7 @@ belongs to SQ4. SQ5 never starts from GitHub search. The orchestrator de-duplica
   documented conflict. At most 1 follow-up wave, launched only for an unanswered sub-question.
 
 ## 8. Verification plan
-- `brief-reviewer` reads this brief before launch; its fixes are applied.
+- `brief-reviewer` read this brief on 2026-11-09; its 12 fixes are applied.
 - Every quote: `check_quotes.py` against the cached page.
 - Every number and ranking in the report (returns, win rates, drawdowns, stars, dates, "most
   used", "maintained", "dead", every Top finding): `claim-verifier`, batches of ≤5, fresh
@@ -129,11 +129,12 @@ COMMON
   RUN = /home/user/researcher/research/2026-11-09-options-swing-trading-repos
 - Definitions:
   - "Long option trade" = the position is opened by buying calls or puts (LEAPS and long
-    straddles/strangles included). Debit spreads: record, but flag as "not pure long".
+    straddles/strangles included). Debit-spread repos go in a separate "not pure long"
+    section of your notes and are never ranked as deep-read candidates.
     Strategies that open by selling premium (wheel, covered call, cash-secured put, credit
     spread, iron condor) are out of scope.
   - Underlyings: single stocks and indexes (SPX, NDX, RUT, VIX). Index ETFs (SPY, QQQ, IWM)
-    count as index exposure; label them "ETF".
+    count as index exposure; label them "ETF" so ETF-only repos can be told apart.
   - Holding period: 0DTE/intraday up to about 8 weeks. Label each item 0DTE, short swing
     (1-10 days) or long swing (over 10 days).
   - "Tried" = runnable code plus at least one outcome artifact (backtest numbers, paper/live
@@ -146,13 +147,17 @@ COMMON
   - Code search:  gh api -X GET search/code -f q='<terms> repo:<owner>/<name>'
   - Issue search: gh api -X GET search/issues -f q='<terms> repo:<owner>/<name>'
   - Read a file:  https://raw.githubusercontent.com/<owner>/<name>/HEAD/<path>
-  - Use gh only for search. github.com HTML pages return 403 to curl, so quote from
-    raw.githubusercontent.com URLs or other reachable pages.
+  - Repo metadata (stars, last push): the repo search with q='repo:<owner>/<name>'.
+  - gh works only for these search endpoints; other gh api paths may be refused. Read issue
+    text from the issue search results. github.com HTML pages return 403 to curl, so quote
+    from raw.githubusercontent.com URLs or other reachable pages.
 - Before quoting any page, cache it:
     python3 .claude/skills/research/scripts/fetch_page.py --run-dir RUN <URL>
   and copy the quote verbatim from the cached file in RUN/pages/.
-- Stars = the API's stargazers_count, with the date you read it.
-- Budget: stop at the stated tool calls, or once two searches in a row add nothing new. If the
+- Stars = the API's stargazers_count, with the date you read it. Last push = the API's
+  pushed_at, labelled as such; the orchestrator verifies the last commit later.
+- Budget: stop at the stated tool calls, or once two searches in a row add nothing new
+  (SQ3, SQ4 and SQ6: the tool-call budget only; report items not reached). If the
   task is impossible as written, stop and say so. Nobody can answer questions mid-run.
 - Report every blocked host or tool by name. Do not fill a gap with a guess.
 - Cite the original URL for every claim. Tag each finding as evidence (a measured result, with
@@ -167,9 +172,10 @@ SUB-QUESTION ID: SQ1
 EVIDENCE: RUN/evidence/SQ1.jsonl      NOTES: RUN/notes/SQ1.md
 
 OBJECTIVE
-Find public GitHub repos that implement multi-day long-option swing trades (bought calls or
-puts held overnight, 2 days to about 8 weeks) on stocks or indexes AND publish an outcome, and
-record what each one published.
+Find public GitHub repos that implement long-option swing trades (bought calls or puts held
+overnight or longer, 1 day to about 8 weeks, on contracts that do NOT expire the same or the
+next trading day) on stocks or indexes AND publish an outcome, and record what each one
+published.
 
 WHY
 The user wants to study or reuse repos where someone actually tried buying options on a swing
@@ -194,6 +200,8 @@ HOW
   mean-reversion signals; swing trading bots that pick option contracts (delta, DTE); LEAPS
   buying; long straddles or strangles around earnings or volatility events; unusual options
   activity followers; ML or LLM signal bots that buy options.
+- Add "swing" or "overnight" to every query, the losses search included. If a result belongs
+  to SQ2, put it on the hand-off list and don't read it.
 - For each candidate read the README and look for results files (csv, notebooks, trade logs,
   "results", "performance", "journal", "post-mortem").
 - In the first half of the budget, run one search for repos that report losses, an abandoned
@@ -223,13 +231,15 @@ published.
 
 WHY
 The user accepts 0DTE trading and wants repos where someone actually tried it by buying
-options. Four other workers run in parallel: SQ1 covers multi-day swing repos (held 2 days
-or more); SQ3 covers broker API libraries; SQ4 covers backtesting frameworks and data
+options. Four other workers run in parallel: SQ1 covers swing repos (held overnight or longer on later
+expiries); SQ3 covers broker API libraries; SQ4 covers backtesting frameworks and data
 sources; SQ5 covers write-ups outside GitHub. Do not catalogue multi-day swing repos or
 libraries, and do not search Reddit or blogs. If you meet a multi-day repo, list its name
 under "for SQ1" in your notes and move on. Record a library only as "used by repo X".
 
 WHAT IS ALREADY KNOWN
+- You own a trade only if the contract expires the same day or the next trading day.
+  Holding period alone does not decide it.
 - Hypothesis to test, not confirm: most 0DTE repos sell premium (iron condors, credit
   spreads), which is out of scope; long-option 0DTE repos with recorded outcomes are rare.
 - 0DTE results are very sensitive to fills; note whether bid-ask and slippage are modelled.
@@ -243,6 +253,8 @@ HOW
 - Search, one query each, then narrow: 0dte; SPX or SPY options bot; opening range breakout
   with options; scalping calls/puts; gamma exposure (GEX) or dealer-positioning signals used
   to buy options; intraday momentum with options; ML or LLM bots that buy 0DTE contracts.
+- Add "0dte" or "intraday" to every query, the losses search included. If a result belongs
+  to SQ1, put it on the hand-off list and don't read it.
 - For each candidate read the README and look for results files (csv, notebooks, trade logs,
   "results", "performance", "journal", "post-mortem").
 - In the first half of the budget, run one search for repos that report losses, an abandoned
@@ -298,8 +310,10 @@ HOW
 - In the first half of the budget, search for evidence that a popular choice is dead,
   deprecated or unusable for options.
 
-BUDGET: 15 tool calls. Cover the candidates most used by options repos first; list the ones you
-did not reach.
+BUDGET: 20 tool calls, and that is your only stop rule. Plan 1-2 calls per item: a breadth
+pass on the 6-8 candidates with the most stars and the most recent push, not a deep pass on
+three. Mark the rest "not reached". Broker-supplied market data belongs to SQ3 (one line in
+the broker row); standalone data vendors and yfinance belong to SQ4.
 
 OUTPUT
 - Evidence items to RUN/evidence/SQ3.jsonl in your standard schema.
@@ -346,8 +360,10 @@ HOW
 - In the first half of the budget, search for evidence that a popular choice is dead,
   deprecated, or gives misleading option backtests.
 
-BUDGET: 15 tool calls. Cover the candidates most used by options repos first; list the ones you
-did not reach.
+BUDGET: 20 tool calls, and that is your only stop rule. Plan 1-2 calls per item: a breadth
+pass on the 6-8 candidates with the most stars and the most recent push, not a deep pass on
+three. Mark the rest "not reached". Broker-supplied market data belongs to SQ3 (one line in
+the broker row); standalone data vendors and yfinance belong to SQ4.
 
 OUTPUT
 - Evidence items to RUN/evidence/SQ4.jsonl in your standard schema.
@@ -406,7 +422,8 @@ BUDGET: 15 tool calls.
 OUTPUT
 - Evidence items to RUN/evidence/SQ5.jsonl in your standard schema.
 - RUN/notes/SQ5.md with: (1) table of first-hand accounts: URL, date, strategy, holding-period
-  label, platform, period, numbers as stated, linked repo, grade; (2) table of practices:
+  label, platform, period, numbers as stated, linked repo, grade (A = trade count, period
+  and P&L all stated, with costs; B = two of the three; C = anecdote or screenshot only); (2) table of practices:
   practice, evidence for, evidence against, conditions, source; (3) blocked hosts.
 ```
 
@@ -439,7 +456,8 @@ HOW
   expiry and exercise handling.
 - Confirm the code buys options to open. If it sells premium, say so and stop on that repo.
 - Find the results artifacts and record period, number of trades, return, drawdown and
-  benchmark exactly as given; note anything missing.
+  benchmark exactly as given; note anything missing. If a results file the README claims is
+  absent from the clone, mark "results not in repo" and say so in the verdict.
 - For quotes, cache the file from raw.githubusercontent.com with fetch_page.py.
 
 BUDGET: 25 tool calls. If the budget runs short, finish fewer repos fully rather than all
@@ -448,7 +466,8 @@ of them partly, and list the ones not reached.
 OUTPUT
 - Evidence items to RUN/evidence/SQ6.jsonl in your standard schema.
 - RUN/notes/SQ6.md with one section per repo: practices implemented (with file:line), results
-  shown, realism gaps, last commit, licence, and a one-line verdict (study / reuse / skip).
+  shown, realism gaps, holding-period label and "tried" status as found in the code, last
+  commit, licence, and a one-line verdict (study / reuse / skip).
 ```
 
 ## Approval
