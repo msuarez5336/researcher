@@ -1,0 +1,418 @@
+<title>Option Setup Backtest</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a trading-desk worksheet. Settings rail on the left, verdict then evidence on the right; one column on phones. */
+:root {
+  --plane: #f6f6f3; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --line: #dddcd4;
+  --cond: #2a78d6; --base: #a3a199; --accent: #1c5cab; --accent-ink: #ffffff;
+  --good: #006300; --bad: #b3261e; --warn-bg: #fdf3d6; --warn-ink: #5c4300; --chip: #ecebe6;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --plane: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --line: #2c2c2a;
+  --cond: #3987e5; --base: #6f6e68; --accent: #6da7ec; --accent-ink: #0b0b0b;
+  --good: #3fbf3f; --bad: #f08a80; --warn-bg: #3a3012; --warn-ink: #f3dfa0; --chip: #2a2a28; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --plane: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --line: #2c2c2a;
+  --cond: #3987e5; --base: #6f6e68; --accent: #6da7ec; --accent-ink: #0b0b0b;
+  --good: #3fbf3f; --bad: #f08a80; --warn-bg: #3a3012; --warn-ink: #f3dfa0; --chip: #2a2a28; color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--plane); color: var(--ink); font: 15px/1.5 var(--sans); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 20px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header h1 { font: 600 24px/1.2 var(--sans); margin: 0 0 4px; text-wrap: balance; }
+header p { margin: 0; color: var(--ink-2); max-width: 70ch; }
+.banner { margin-top: 12px; background: var(--warn-bg); color: var(--warn-ink); padding: 10px 14px; border-radius: 6px; font-size: 14px; max-width: 90ch; }
+.layout { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 24px; margin-top: 20px; align-items: start; }
+@media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+.rail { display: flex; flex-direction: column; gap: 14px; }
+fieldset { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 12px 14px 14px; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+legend { font: 600 12px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); padding: 0 6px; }
+.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field > label, .field > .lab { font-size: 13px; color: var(--ink-2); display: flex; justify-content: space-between; gap: 8px; }
+.field output { font: 500 13px var(--mono); color: var(--ink); }
+select, button { font: inherit; color: inherit; }
+select { width: 100%; padding: 7px 8px; border: 1px solid var(--axis); border-radius: 6px; background: var(--surface); }
+input[type=range] { width: 100%; accent-color: var(--accent); margin: 0; }
+.seg { display: flex; border: 1px solid var(--axis); border-radius: 6px; overflow: hidden; }
+.seg button { flex: 1 1 0; min-width: 0; padding: 6px 4px; border: 0; background: transparent; cursor: pointer; font-size: 13px; border-left: 1px solid var(--axis); }
+.seg button:first-child { border-left: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.check { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--ink-2); }
+.check input { margin-top: 3px; accent-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.note { font-size: 12.5px; color: var(--muted); margin: 0; }
+.btn { padding: 7px 12px; border: 1px solid var(--axis); border-radius: 6px; background: var(--surface); cursor: pointer; font-size: 13px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.lock { background: var(--warn-bg); color: var(--warn-ink); border-radius: 6px; padding: 10px 12px; font-size: 13px; display: flex; flex-direction: column; gap: 8px; }
+
+.main { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.panel h2 { font: 600 16px/1.3 var(--sans); margin: 0 0 2px; }
+.panel .sub { color: var(--ink-2); font-size: 13px; margin: 0 0 12px; }
+.verdict { display: flex; flex-direction: column; gap: 10px; }
+.verdict .line { font-size: 17px; line-height: 1.45; max-width: 68ch; margin: 0; }
+.chip { display: inline-block; font: 600 12px/1 var(--sans); letter-spacing: .04em; padding: 6px 9px; border-radius: 999px; background: var(--chip); color: var(--ink); }
+.chip.good { color: var(--good); } .chip.bad { color: var(--bad); }
+.figs { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.fig { display: flex; flex-direction: column; }
+.fig b { font: 500 22px/1.2 var(--mono); }
+.fig span { font-size: 12.5px; color: var(--ink-2); }
+.scroll { overflow-x: auto; }
+.scroll.tall { max-height: 460px; overflow-y: auto; }
+.scroll.tall thead th { position: sticky; top: 0; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { font-weight: 500; color: var(--ink-2); font-size: 12.5px; }
+td { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+td:first-child { font-family: var(--sans); }
+.pos { color: var(--good); } .neg { color: var(--bad); }
+.legend { display: flex; gap: 16px; font-size: 13px; color: var(--ink-2); margin-bottom: 6px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; }
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--surface); font-size: 12.5px; line-height: 1.4; padding: 6px 9px; border-radius: 6px; white-space: nowrap; z-index: 3; }
+details summary { cursor: pointer; color: var(--ink-2); font-size: 13px; margin-top: 8px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.toolbar select { width: auto; }
+.method ul { margin: 6px 0 0; padding-left: 20px; max-width: 75ch; }
+.method li { margin-bottom: 5px; }
+.method p { max-width: 75ch; margin: 0 0 8px; }
+.busy { opacity: .55; transition: opacity .1s; }
+@media (prefers-reduced-motion: reduce) { .busy { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Option Setup Backtest</h1>
+    <p>Tests whether buying a 1–6 month call or put after a chosen setup did better than buying the same option on ordinary days, across 65 large US stocks.</p>
+    <div class="banner"><strong>Option prices here are estimates, not market quotes.</strong> Results rank ideas for further checking. They are not evidence that a setup is profitable, and nothing here is a recommendation to trade.</div>
+  </header>
+
+  <div class="layout">
+    <div class="rail">
+      <fieldset>
+        <legend>Setup to test</legend>
+        <div class="field"><label for="metric">Condition on the stock</label><select id="metric"></select></div>
+        <div class="field" id="xField"><label for="x"><span id="xLabel">Threshold</span><output id="xOut"></output></label><input type="range" id="x"></div>
+        <div class="field" id="nField"><label for="win">Window (N trading days)</label>
+          <select id="win"><option value="5">5 days</option><option value="10">10 days</option><option value="20" selected>20 days (about a month)</option><option value="60">60 days (about a quarter)</option></select></div>
+        <div class="field"><label for="vix">Market mood (VIX against its past year)</label>
+          <select id="vix"><option value="any">Any</option><option value="low">Calm third</option><option value="mid">Middle third</option><option value="high">Fearful third</option></select></div>
+        <p class="note" id="condNote" hidden></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Option bought</legend>
+        <div class="field"><span class="lab">Type</span><div class="seg" id="side" role="group" aria-label="Option type"><button data-v="call">Call</button><button data-v="put">Put</button></div></div>
+        <div class="field"><span class="lab">Strike, by delta <span>lower = further out of the money</span></span><div class="seg" id="delta" role="group" aria-label="Delta"><button data-v="0.5">0.50</button><button data-v="0.35">0.35</button><button data-v="0.2">0.20</button><button data-v="0.1">0.10</button></div></div>
+        <div class="field"><span class="lab">Days to expiry at purchase</span><div class="seg" id="dte" role="group" aria-label="Days to expiry"><button data-v="30">30</button><button data-v="60">60</button><button data-v="90">90</button><button data-v="120">120</button><button data-v="180">180</button></div></div>
+        <div class="field"><label for="exit">Exit</label>
+          <select id="exit"><option value="expiry">Hold to expiry</option><option value="half">Sell halfway to expiry</option><option value="quarter">Sell a quarter of the way</option><option value="x2">Sell when worth 2× cost, else hold</option><option value="x3">Sell when worth 3× cost, else hold</option></select></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Trading cost</legend>
+        <div class="field"><label for="spread">Bid-ask spread, % of option price <output id="spreadOut"></output></label><input type="range" id="spread" min="0" max="30" step="1" value="8"></div>
+        <div class="field"><span class="lab">How much of the spread you pay</span><div class="seg" id="fill" role="group" aria-label="Fill"><button data-v="0">None</button><button data-v="0.5">50%</button><button data-v="0.75">75%</button><button data-v="1">All</button></div></div>
+        <p class="note">The spread is an assumption. Published studies found 50–75% of the quoted spread is paid; the spread size itself was not measured for recent years.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Price estimate</legend>
+        <div class="field"><label for="prem">Shift estimated volatility <output id="premOut"></output></label><input type="range" id="prem" min="-6" max="10" step="1" value="0"></div>
+        <label class="check"><input type="checkbox" id="term" checked><span>Adjust for time to expiry using the market's own 3- and 6-month volatility</span></label>
+        <label class="check"><input type="checkbox" id="skew" checked><span>Adjust for strike distance</span></label>
+        <label class="check"><input type="checkbox" id="real"><span>Use the real volatility index for the five stocks that have one</span></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Stocks and period</legend>
+        <div class="field"><label for="sector">Stocks</label><select id="sector"></select></div>
+        <div class="field"><span class="lab">Period</span><div class="seg" id="period" role="group" aria-label="Period"><button data-v="dev">2009–2020</button><button data-v="hold">2021–2026</button><button data-v="all">All</button></div></div>
+        <div class="lock" id="lock" hidden>
+          <span>2021–2026 is the holdout: the final third of the history, kept unseen so that a setup found on 2009–2020 can be checked once on fresh data. Unlock it only after you have fixed a setup.</span>
+          <div><button class="btn primary" id="unlock">Unlock the holdout</button></div>
+        </div>
+        <p class="note"><span id="trials">0</span> different setups tried so far on this device. Every extra try raises the chance that one looks good by luck. <button class="btn" id="resetTrials" style="padding:2px 8px">Reset count</button></p>
+      </fieldset>
+    </div>
+
+    <div class="main" id="main">
+      <section class="panel verdict" aria-live="polite">
+        <div><span class="chip" id="chip">Calculating</span></div>
+        <p class="line" id="verdict">Loading 18 years of prices…</p>
+        <div class="figs" id="figs"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Setup against ordinary days</h2>
+        <p class="sub" id="cmpSub"></p>
+        <div class="scroll"><table id="cmp"></table></div>
+      </section>
+
+      <section class="panel">
+        <h2>How the trades ended</h2>
+        <p class="sub">Share of trades by return on the premium paid.</p>
+        <div class="legend"><span><i style="background:var(--cond)"></i>After the setup</span><span><i style="background:var(--base)"></i>Ordinary days</span></div>
+        <div class="chart" id="histChart"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Year by year</h2>
+        <p class="sub">Average return by year of purchase. A setup that works in one or two years only is probably not a setup.</p>
+        <div class="legend"><span><i style="background:var(--cond)"></i>After the setup</span><span><i style="background:var(--base)"></i>Ordinary days</span></div>
+        <div class="chart" id="yearChart"></div>
+        <details><summary>Show as a table</summary><div class="scroll"><table id="yearTable"></table></div></details>
+      </section>
+
+      <section class="panel">
+        <div class="toolbar"><h2>Trades after the setup</h2>
+          <label>Sort <select id="sort"><option value="new">Newest first</option><option value="best">Best first</option><option value="worst">Worst first</option></select></label></div>
+        <p class="sub" id="tradeSub"></p>
+        <div class="scroll tall"><table id="trades"></table></div>
+        <details><summary>By stock</summary><div class="scroll"><table id="byStock"></table></div></details>
+      </section>
+
+      <section class="panel method">
+        <h2>How prices are estimated, and how far to trust them</h2>
+        <p id="ivText"></p>
+        <ul>
+          <li><strong>Survivors only.</strong> The 65 stocks were picked in 2026, so none went bankrupt or was delisted. That flatters calls and penalises puts.</li>
+          <li><strong>No earnings premium.</strong> Real options cost more ahead of earnings reports. The estimate does not know when they fall.</li>
+          <li><strong>After a sharp fall, real options get more expensive faster than this estimate does.</strong> That flatters the fall-and-rebound setups in particular.</li>
+          <li><strong>Calibrated on five very large companies.</strong> The estimate may be further off for smaller or more volatile stocks.</li>
+          <li><strong>Simplifications.</strong> Any strike is available, dividends are ignored, and the purchase is at the closing price on the day after the setup appears.</li>
+          <li><strong>Significance.</strong> The t-statistic is computed on monthly averages and divided by the square root of the holding period in months, because overlapping trades are not independent. A value of 3 or more is the bar; below that, treat a result as chance.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="iv_model.js"></script>
+<script src="engine.js"></script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var D = window.BT_DATA, IV = window.BT_IV, BT = window.BT;
+  if (!D || !IV || !BT) { $("verdict").textContent = "The price data did not load. Reload the page; if it still fails, the data files are missing."; $("chip").textContent = "Not loaded"; return; }
+  var ctx = BT.prepare(D, IV);
+  var DEV = [20091001, 20201231], HOLD = [20210101, 20991231];
+
+  // ----- persisted conveniences -----
+  var store = { get: function (k, d) { try { var v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+                set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } } };
+  var tried = store.get("bt.tried", []), unlocked = store.get("bt.unlocked", false);
+
+  // ----- controls -----
+  var state = { side: "call", delta: "0.35", dte: "90", fill: "0.75", period: "dev" };
+  function seg(id) {
+    var el = $(id);
+    function paint() { [].forEach.call(el.children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === state[id])); }); }
+    el.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; state[id] = b.dataset.v; paint(); onChange(); });
+    paint();
+  }
+  ["side", "delta", "dte", "fill", "period"].forEach(seg);
+
+  var metricSel = $("metric");
+  Object.keys(BT.METRICS).forEach(function (k) { var o = document.createElement("option"); o.value = k; o.textContent = BT.METRICS[k].label; metricSel.appendChild(o); });
+  metricSel.value = "ret1";
+  var sectorSel = $("sector"), sectors = [];
+  D.tickers.forEach(function (t) { if (sectors.indexOf(D.sector[t]) < 0) sectors.push(D.sector[t]); });
+  [["all", "All 65 stocks"]].concat(sectors.map(function (s) { return [s, s]; })).forEach(function (p) { var o = document.createElement("option"); o.value = p[0]; o.textContent = p[1]; sectorSel.appendChild(o); });
+
+  function syncMetric(reset) {
+    var m = BT.METRICS[metricSel.value], x = $("x");
+    $("xField").hidden = !m.test; $("nField").hidden = !m.window;
+    if (m.test && reset) { x.min = m.min; x.max = m.max; x.step = m.step; x.value = m.def; }
+    var note = $("condNote");
+    note.hidden = !m.circular;
+    if (m.circular) note.textContent = "Caution: the option price is itself estimated from recent volatility, so this condition makes the option cheap by construction. It cannot be tested fairly without real option prices.";
+    labels();
+  }
+  function labels() {
+    var m = BT.METRICS[metricSel.value];
+    if (m.test) { $("xLabel").textContent = "Threshold"; $("xOut").textContent = $("x").value + (m.unit === "×" ? "×" : "%"); }
+    $("spreadOut").textContent = $("spread").value + "%";
+    var p = +$("prem").value; $("premOut").textContent = (p > 0 ? "+" : "") + p + " points";
+  }
+  metricSel.addEventListener("change", function () { syncMetric(true); onChange(); });
+  ["x", "win", "vix", "exit", "spread", "prem", "term", "skew", "real", "sector"].forEach(function (id) { $(id).addEventListener("input", function () { labels(); onChange(); }); });
+  $("sort").addEventListener("input", function () { if (last) drawTrades(last); });
+  $("unlock").addEventListener("click", function () { unlocked = true; store.set("bt.unlocked", true); onChange(); });
+  $("resetTrials").addEventListener("click", function () { tried = []; store.set("bt.tried", tried); $("trials").textContent = "0"; });
+
+  function config() {
+    var ex = $("exit").value;
+    var exit = ex === "expiry" ? { type: "expiry" } : ex === "half" ? { type: "days", frac: 0.5 } : ex === "quarter" ? { type: "days", frac: 0.25 } : { type: "target", mult: ex === "x2" ? 2 : 3 };
+    var per = state.period === "dev" ? DEV : state.period === "hold" ? HOLD : [DEV[0], HOLD[1]];
+    var sec = sectorSel.value;
+    return { side: state.side, delta: +state.delta, dte: +state.dte, exit: exit, spread: +$("spread").value, fill: +state.fill, lag: 1,
+      iv: { premium: +$("prem").value, term: $("term").checked, skew: $("skew").checked, useRealIndex: $("real").checked },
+      cond: { metric: metricSel.value, x: +$("x").value, n: +$("win").value }, vix: $("vix").value, gap: 10, baseStep: 5,
+      from: per[0], to: per[1], tickers: sec === "all" ? null : D.tickers.filter(function (t) { return D.sector[t] === sec; }) };
+  }
+
+  // ----- formatting -----
+  function pct(x, sign) { if (x == null || x !== x) return "–"; var v = x * 100, a = Math.abs(v); var s = a >= 100 ? v.toFixed(0) : v.toFixed(1); return (sign && v > 0 ? "+" : "") + s.replace("-", "−") + "%"; }
+  function share(x) { return x == null ? "–" : (x * 100).toFixed(1) + "%"; }
+  function num(x, d) { return x.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function ymd(v) { var s = String(v); return s.slice(0, 4) + "-" + s.slice(4, 6) + "-" + s.slice(6); }
+  function cls(x) { return x > 0 ? "pos" : x < 0 ? "neg" : ""; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  // ----- run -----
+  var timer = null, last = null;
+  function onChange() {
+    var locked = state.period !== "dev" && !unlocked;
+    $("lock").hidden = !locked;
+    $("main").classList.add("busy");
+    clearTimeout(timer);
+    timer = setTimeout(function () { runNow(locked); }, 60);
+  }
+  function runNow(locked) {
+    if (locked) {
+      $("chip").textContent = "Holdout locked"; $("chip").className = "chip";
+      $("verdict").textContent = "Results for 2021–2026 are hidden until you unlock the holdout in the settings."; $("figs").innerHTML = "";
+      $("main").classList.remove("busy"); return;
+    }
+    var cfg = config(), res = BT.run(ctx, cfg);
+    last = { cfg: cfg, res: res };
+    if (cfg.cond.metric !== "none") {
+      var key = JSON.stringify(cfg); if (tried.indexOf(key) < 0) { tried.push(key); if (tried.length > 3000) tried.shift(); store.set("bt.tried", tried); }
+    }
+    $("trials").textContent = tried.length;
+    drawVerdict(last); drawCompare(last); drawHist(last); drawYears(last); drawTrades(last);
+    $("main").classList.remove("busy");
+  }
+
+  function drawVerdict(o) {
+    var r = o.res, c = r.cond, b = r.base, e = r.excess, chip = $("chip"), v = $("verdict");
+    var opt = (o.cfg.delta.toFixed(2)) + "-delta " + o.cfg.dte + "-day " + o.cfg.side + "s";
+    chip.className = "chip";
+    if (o.cfg.cond.metric === "none") {
+      chip.textContent = "Baseline only";
+      v.textContent = "Buying " + opt + " on ordinary days returned " + pct(b.mean, true) + " on average; " + share(b.lost) + " of them lost the whole premium. Pick a condition to test a setup against this.";
+    } else if (!c.n) {
+      chip.textContent = "No trades"; v.textContent = "This setup never occurred in the period with these settings. Loosen the threshold.";
+    } else {
+      var t = e.tAdj, few = c.n < 30;
+      if (few) { chip.textContent = "Too few trades to judge"; }
+      else if (t != null && t >= 3) { chip.textContent = "Clears the bar"; chip.classList.add("good"); }
+      else if (t != null && t <= -3) { chip.textContent = "Worse than ordinary days"; chip.classList.add("bad"); }
+      else { chip.textContent = "Not distinguishable from chance"; }
+      v.textContent = "After the setup, " + opt + " returned " + pct(c.mean, true) + " on average across " + num(c.n, 0) + " trades, against " + pct(b.mean, true) + " on ordinary days. " +
+        "Measured against ordinary days in the same year, the difference is " + (e.mean == null ? "–" : (e.mean > 0 ? "+" : "−") + Math.abs(e.mean * 100).toFixed(0) + " points") +
+        (t == null ? "." : ", with an adjusted t-statistic of " + t.toFixed(1).replace("-", "−") + (Math.abs(t) >= 3 ? "." : ", below the bar of 3."));
+    }
+    var figs = o.cfg.cond.metric === "none" || !c.n ? [[pct(b.mean, true), "average return, ordinary days"], [share(b.lost), "lost the whole premium"], [share(b.x2), "at least doubled"]]
+      : [[e.mean == null ? "–" : (e.mean > 0 ? "+" : "−") + Math.abs(e.mean * 100).toFixed(0) + " pts", "average return above ordinary days"], [e.tAdj == null ? "–" : e.tAdj.toFixed(1).replace("-", "−"), "adjusted t-statistic (bar: 3)"], [num(c.n, 0), "trades in " + e.months + " months"], [share(c.lost), "lost the whole premium"]];
+    $("figs").innerHTML = figs.map(function (f) { return '<div class="fig"><b>' + esc(f[0]) + "</b><span>" + esc(f[1]) + "</span></div>"; }).join("");
+  }
+
+  function drawCompare(o) {
+    var c = o.res.cond, b = o.res.base, has = c.n > 0;
+    $("cmpSub").textContent = ymd(o.res.range[0]) + " to " + ymd(o.res.range[1]) + ". Ordinary days: the same option bought on every fifth trading day in every stock.";
+    var rows = [["Trades", has ? num(c.n, 0) : "–", num(b.n || 0, 0)], ["Average return", pct(c.mean, true), pct(b.mean, true)], ["Median return", pct(c.median, true), pct(b.median, true)],
+      ["Lost the whole premium", share(c.lost), share(b.lost)], ["Made money", share(c.win), share(b.win)], ["At least doubled", share(c.x2), share(b.x2)],
+      ["At least 5×", share(c.x5), share(b.x5)], ["At least 10×", share(c.x10), share(b.x10)], ["Best trade", pct(c.best, true), pct(b.best, true)]];
+    $("cmp").innerHTML = "<thead><tr><th></th><th>After the setup</th><th>Ordinary days</th></tr></thead><tbody>" +
+      rows.map(function (r) { return "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td><td>" + r[2] + "</td></tr>"; }).join("") + "</tbody>";
+  }
+
+  // ----- grouped bar chart (one y scale, two series) -----
+  function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function niceStep(span, n) { var raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p; }
+  function barPath(x, y0, y1, w) {
+    var r = Math.min(3, w / 2, Math.abs(y1 - y0)), up = y1 < y0, s = up ? 1 : -1;
+    return "M" + x + "," + y0 + "V" + (y1 + s * r) + "Q" + x + "," + y1 + " " + (x + r) + "," + y1 + "H" + (x + w - r) + "Q" + (x + w) + "," + y1 + " " + (x + w) + "," + (y1 + s * r) + "V" + y0 + "Z";
+  }
+  function bars(el, cats, a, b, opt) {
+    var W = Math.max(280, el.clientWidth), H = 260, m = { l: 50, r: 8, t: 10, b: 38 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var vals = a.concat(b).filter(function (v) { return v != null; });
+    var lo = Math.min(0, Math.min.apply(null, vals.length ? vals : [0])), hi = Math.max(0.01, Math.max.apply(null, vals.length ? vals : [0.01]));
+    if (opt.cap) hi = Math.min(hi, opt.cap);
+    var step = niceStep(hi - lo, 5); lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+    var y = function (v) { return m.t + ih * (1 - (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo)); };
+    var band = iw / cats.length, bw = Math.max(3, Math.min(22, (band - 8) / 2 - 1));
+    var ink = css("--muted"), grid = css("--grid"), axis = css("--axis"), s = "";
+    for (var t = lo; t <= hi + 1e-9; t += step) s += '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(t) + '" y2="' + y(t) + '" stroke="' + (Math.abs(t) < 1e-9 ? axis : grid) + '"/>' +
+      '<text x="' + (m.l - 6) + '" y="' + (y(t) + 4) + '" text-anchor="end" font-size="11" fill="' + ink + '">' + opt.tick(t) + "</text>";
+    var skip = Math.ceil(cats.length * opt.labelW / iw);
+    cats.forEach(function (c, i) {
+      var cx = m.l + band * (i + 0.5);
+      if (a[i] != null) s += '<path d="' + barPath(cx - bw - 1, y(0), y(a[i]), bw) + '" fill="' + css("--cond") + '"/>';
+      if (b[i] != null) s += '<path d="' + barPath(cx + 1, y(0), y(b[i]), bw) + '" fill="' + css("--base") + '"/>';
+      if (opt.cap && a[i] != null && a[i] > hi) s += '<text x="' + (cx - bw / 2 - 1) + '" y="' + (m.t + 9) + '" text-anchor="middle" font-size="10" fill="' + css("--surface") + '">▲</text>';
+      if (i % skip === 0) s += '<text x="' + cx + '" y="' + (H - m.b + 16) + '" text-anchor="middle" font-size="11" fill="' + ink + '">' + esc(c) + "</text>";
+      s += '<rect data-i="' + i + '" x="' + (m.l + band * i) + '" y="' + m.t + '" width="' + band + '" height="' + ih + '" fill="transparent"/>';
+    });
+    s += '<text x="' + (m.l + iw / 2) + '" y="' + (H - 4) + '" text-anchor="middle" font-size="11" fill="' + ink + '">' + esc(opt.xTitle) + "</text>";
+    el.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" height="' + H + '" role="img" aria-label="' + esc(opt.aria) + '">' + s + '</svg><div class="tip" hidden></div>';
+    var tip = el.querySelector(".tip");
+    el.querySelector("svg").addEventListener("pointermove", function (e) {
+      var r = e.target.closest("rect[data-i]"); if (!r) { tip.hidden = true; return; }
+      var i = +r.dataset.i; tip.innerHTML = opt.tip(i); tip.hidden = false;
+      var box = el.getBoundingClientRect(), x = e.clientX - box.left + 12, w = tip.offsetWidth;
+      tip.style.left = Math.max(0, Math.min(x, box.width - w)) + "px"; tip.style.top = Math.max(0, e.clientY - box.top - 44) + "px";
+    });
+    el.querySelector("svg").addEventListener("pointerleave", function () { tip.hidden = true; });
+  }
+  var HIST_AXIS = ["−100", "−99…−50", "−50…0", "0…50", "50…100", "100…200", "200…400", "400+"];
+  function drawHist(o) {
+    var r = o.res, has = r.cond.n > 0;
+    bars($("histChart"), HIST_AXIS, has ? r.histCond : r.histCond.map(function () { return null; }), r.histBase, {
+      tick: function (t) { return Math.round(t * 100) + "%"; }, xTitle: "Return on premium paid (%)", labelW: 62, aria: "Share of trades by return, setup against ordinary days",
+      tip: function (i) { return "<b>" + r.binLabels[i] + "</b><br>" + (has ? "After the setup: " + share(r.histCond[i]) + "<br>" : "") + "Ordinary days: " + share(r.histBase[i]); } });
+  }
+  function drawYears(o) {
+    var ys = o.res.years, has = o.res.cond.n > 0;
+    bars($("yearChart"), ys.map(function (y) { return "’" + String(y.year).slice(2); }), ys.map(function (y) { return has ? y.condMean : null; }), ys.map(function (y) { return y.baseMean; }), {
+      tick: function (t) { return (t > 0 ? "+" : "") + Math.round(t * 100).toString().replace("-", "−") + "%"; }, xTitle: "Year of purchase", labelW: 30, cap: 4, aria: "Average return by year, setup against ordinary days",
+      tip: function (i) { var y = ys[i]; return "<b>" + y.year + "</b><br>" + (has ? "After the setup: " + pct(y.condMean, true) + " (" + y.condN + " trades)<br>" : "") + "Ordinary days: " + pct(y.baseMean, true) + " (" + num(y.baseN, 0) + ")"; } });
+    $("yearTable").innerHTML = "<thead><tr><th>Year</th><th>Setup trades</th><th>Setup average</th><th>Ordinary-day trades</th><th>Ordinary-day average</th></tr></thead><tbody>" +
+      ys.map(function (y) { return "<tr><td>" + y.year + "</td><td>" + y.condN + "</td><td class='" + cls(y.condMean) + "'>" + pct(y.condMean, true) + "</td><td>" + num(y.baseN, 0) + "</td><td class='" + cls(y.baseMean) + "'>" + pct(y.baseMean, true) + "</td></tr>"; }).join("") + "</tbody>";
+  }
+  function drawTrades(o) {
+    var tr = o.res.trades.slice(), s = $("sort").value, dt = D.dates;
+    tr.sort(s === "best" ? function (a, b) { return b.ret - a.ret; } : s === "worst" ? function (a, b) { return a.ret - b.ret; } : function (a, b) { return b.sig - a.sig; });
+    var shown = tr.slice(0, 150);
+    $("tradeSub").textContent = tr.length ? "Showing " + shown.length + " of " + num(tr.length, 0) + ". Option cost and volatility are estimates." : "No trades to show.";
+    $("trades").innerHTML = "<thead><tr><th>Stock</th><th>Setup seen</th><th>Share price at purchase</th><th>Strike</th><th>Est. volatility</th><th>Est. cost per share</th><th>Exit</th><th>Share price at exit</th><th>Return</th></tr></thead><tbody>" +
+      shown.map(function (t) { return "<tr><td>" + esc(t.tk) + "</td><td>" + ymd(dt[t.sig]) + "</td><td>" + num(t.S, 2) + "</td><td>" + num(t.K, 2) + "</td><td>" + (t.iv * 100).toFixed(0) + "%</td><td>" + num(t.cost, 2) + "</td><td>" + ymd(dt[t.exit]) + "</td><td>" + num(t.Sx, 2) + "</td><td class='" + cls(t.ret) + "'>" + pct(t.ret, true) + "</td></tr>"; }).join("") + "</tbody>";
+    var pt = o.res.perTicker.slice().sort(function (a, b) { return b.n - a.n; });
+    $("byStock").innerHTML = "<thead><tr><th>Stock</th><th>Trades</th><th>Average return</th><th>Best trade</th></tr></thead><tbody>" +
+      pt.map(function (p) { return "<tr><td>" + esc(p.tk) + "</td><td>" + p.n + "</td><td class='" + cls(p.mean) + "'>" + pct(p.mean, true) + "</td><td>" + pct(p.best, true) + "</td></tr>"; }).join("") + "</tbody>";
+  }
+
+  // ----- static text from the calibration -----
+  (function () {
+    var t = IV.test, s = IV.simpleRule.test, lo = Infinity, hi = -Infinity;
+    Object.keys(IV.leaveOneOut).forEach(function (k) { var m = IV.leaveOneOut[k].mae; lo = Math.min(lo, m); hi = Math.max(hi, m); });
+    $("ivText").innerHTML = "There are no option quotes in this tool. Each option is priced with the standard Black-Scholes formula, using a volatility estimated from the stock's own price swings over the past 60 trading days and the VIX that day. " +
+      "The estimate was fitted on the five stocks that have a published volatility index (" + IV.stocks.join(", ") + ") using " + String(IV.fitPeriod[0]).slice(0, 4) + "–" + String(IV.fitPeriod[1]).slice(0, 4) +
+      ", then checked on " + String(IV.testPeriod[0]).slice(0, 4) + "–" + String(IV.testPeriod[1]).slice(0, 4) + ": it was off by <strong>" + t.mae.toFixed(1) + " volatility points on average (" + t.mape.toFixed(0) + "%)</strong>, " +
+      "against " + s.mae.toFixed(1) + " points for the simpler recent-volatility-plus-a-margin rule. Tested on each stock when left out of the fit, the average miss ranged from " + lo.toFixed(1) + " to " + hi.toFixed(1) + " points. " +
+      "An at-the-money option's price moves roughly in proportion to volatility, so expect individual prices to be off by about that percentage, and more for out-of-the-money options. Prices built " + esc(D.built) + ".";
+  })();
+
+  var ro = window.ResizeObserver ? new ResizeObserver(function () { if (last) { drawHist(last); drawYears(last); } }) : null;
+  if (ro) ro.observe($("histChart"));
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { if (last) { drawHist(last); drawYears(last); } });
+  new MutationObserver(function () { if (last) { drawHist(last); drawYears(last); } }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  syncMetric(true);
+  onChange();
+})();
+</script>

@@ -3,3 +3,6 @@ research/*/pages/
 .claude/settings.local.json
 CLAUDE.local.md
 __pycache__/
+
+# Raw market-data downloads for the backtest: regenerable with backtest/fetch_data.py
+backtest/data/raw/
