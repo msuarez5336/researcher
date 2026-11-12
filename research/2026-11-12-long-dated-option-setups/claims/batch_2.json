@@ -1,0 +1,74 @@
+[
+ {
+  "cid": "C6",
+  "claim": "In 1996-2005, calls in the tenth of stocks with the largest predicted rise in implied volatility returned +8.8% a month, against -3.1% in the tenth with the largest predicted fall.",
+  "evidence": [
+   {
+    "id": "SQ10-2",
+    "quote": "equal to 8.8%, 5.6%, and 5.6% for calls, puts, and straddles, respectively.",
+    "url": "https://www.cis.upenn.edu/~mkearns/finread/CrossOptions.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/www.cis.upenn.edu-37a493c301.txt"
+   },
+   {
+    "id": "SQ10-3",
+    "quote": "–3.1%, –12.0%, and –7.2% for calls, puts, and straddles, respectively.",
+    "url": "https://www.cis.upenn.edu/~mkearns/finread/CrossOptions.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/www.cis.upenn.edu-37a493c301.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "A long-short straddle strategy sorted on predicted change in implied volatility earned 12.9% a month on options expiring in 1-2 months, 5.9% on options expiring in 3-4 months and 3.6% on options expiring in 6-7 months.",
+  "evidence": [
+   {
+    "id": "SQ10-4",
+    "quote": "0.129 0.132 -0.216 0.486 0.977 0.105 0.059 0.069 -0.138 0.222 0.843 0.051 0.036 0.073",
+    "url": "https://www.cis.upenn.edu/~mkearns/finread/CrossOptions.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/www.cis.upenn.edu-37a493c301.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "Held to expiry, the same long-short straddle strategy returned 16.1% at mid-prices and 5.5% when costs were set at an effective spread of 75% of the quoted spread.",
+  "evidence": [
+   {
+    "id": "SQ10-5",
+    "quote": "The average return to expiration of the long-short strategy is equal to 16.1% when the returns are computed from mid-point prices and 5.5% when transaction costs are applied",
+    "url": "https://www.cis.upenn.edu/~mkearns/finread/CrossOptions.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/www.cis.upenn.edu-37a493c301.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "In a 1996-2020 study of 273 option and stock characteristics, a nonlinear machine-learning long-short strategy on delta-hedged option returns earned 2.04% a month, and 0.67% a month when paying the full quoted spread.",
+  "evidence": [
+   {
+    "id": "SQ9-2",
+    "quote": "generate economically significant return spreads of 1.30% and 2.04% per month,",
+    "url": "https://libra.unine.ch/server/api/core/bitstreams/22f02a64-96bf-4bdb-801d-6734fce4f7c7/content",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/libra.unine.ch-d562a7ef75.txt"
+   },
+   {
+    "id": "SQ9-3",
+    "quote": "Our results show that the returns of the nonlinear machine learning trading strategy remain sizeable (0.67% per month) even if investors have to pay the",
+    "url": "https://libra.unine.ch/server/api/core/bitstreams/22f02a64-96bf-4bdb-801d-6734fce4f7c7/content",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/libra.unine.ch-d562a7ef75.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "In that study, higher implied volatility predicts lower delta-hedged option returns.",
+  "evidence": [
+   {
+    "id": "SQ9-4",
+    "quote": "higher implied volatility negatively affects returns, whereas higher bid-ask spreads and industry momentum predict returns positively.",
+    "url": "https://libra.unine.ch/server/api/core/bitstreams/22f02a64-96bf-4bdb-801d-6734fce4f7c7/content",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/libra.unine.ch-d562a7ef75.txt"
+   }
+  ]
+ }
+]

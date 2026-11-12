@@ -1,0 +1,68 @@
+[
+ {
+  "cid": "C1",
+  "claim": "Near-the-money single-stock calls with 30-60 days to expiry returned +3.4% a month on average at mid-prices in 1996-2005, while puts returned -3.6% and straddles -0.3%.",
+  "evidence": [
+   {
+    "id": "SQ10-1",
+    "quote": "Calls have a positive mean return of 3.4%, respectively, while puts and straddles have a negative average returns of –3.6% and –0.3%.",
+    "url": "https://www.cis.upenn.edu/~mkearns/finread/CrossOptions.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/www.cis.upenn.edu-37a493c301.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "Single-stock calls with strike more than 15% above the share price, bought at mid-price and held to expiry, averaged -36.9% at one month, -21.9% at two months and -23.2% at three months in 1996-2005.",
+  "evidence": [
+   {
+    "id": "SQ8-1",
+    "quote": "Average one-month return of holding call option to expiration using bid-ask-midpoint prices (%)",
+    "url": "https://reducing-suffering.org/do-call-options-have-high-expected-returns",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/reducing-suffering.org-c7a60ff2af.txt"
+   },
+   {
+    "id": "SQ8-2",
+    "quote": "Average two-month return of holding call option to expiration using bid-ask-midpoint prices (%)",
+    "url": "https://reducing-suffering.org/do-call-options-have-high-expected-returns",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/reducing-suffering.org-c7a60ff2af.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "Bought at the ask price instead of the mid-price, one-month single-stock calls held to expiry had negative average returns in every strike group, from -1.0% to -46.5%.",
+  "evidence": [
+   {
+    "id": "SQ8-3",
+    "quote": "Average one-month return of holding call option to expiration using ask prices (%)",
+    "url": "https://reducing-suffering.org/do-call-options-have-high-expected-returns",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/reducing-suffering.org-c7a60ff2af.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "The quoted bid-ask spread on out-of-the-money single-stock calls averaged 34.0% of the option price at 20-70 days to expiry and 22.7% at 71-180 days in 1996-2007.",
+  "evidence": [
+   {
+    "id": "SQ8-6",
+    "quote": "the average relative spread of short-term OTM call options is 34.02%, while for long-term OTM calls the average spread is 22.67%.",
+    "url": "https://repec.econ.au.dk/repec/creates/rp/13/rp13_48.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/repec.econ.au.dk-69616b8cb6.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "In April 2003 to October 2006, conventionally measured effective spreads on equity options averaged 6.2 cents against quoted spreads of 8.1 cents, so the average trade paid about three quarters of the quoted spread.",
+  "evidence": [
+   {
+    "id": "SQ8-9",
+    "quote": "Conventionally measured effective spreads, which reflect the fact that trades tend to occur when quoted spreads are narrow, average 6.2 cents per share. For comparison, the average option price in our sample is $1.70.",
+    "url": "https://c.mql5.com/forextsd/forum/209/Option Trading Costs Are Lower than You Think.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/c.mql5.com-2a86603361.txt"
+   }
+  ]
+ }
+]

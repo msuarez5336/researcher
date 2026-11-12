@@ -1,0 +1,80 @@
+[
+ {
+  "cid": "C11",
+  "claim": "Option momentum returns on one-month at-the-money straddles (1996 to June 2019) were 3.64% a month for the 1-12 month formation quintile spread at mid-prices and close to zero after paying the full bid-ask spread for options with below-median spreads.",
+  "evidence": [
+   {
+    "id": "SQ9-12",
+    "quote": "quintile spread earned 3.64% per month, whereas its daily-hedged counterpart earned 5.59%",
+    "url": "https://www.acem.sjtu.edu.cn/sffs/2021w/pdfs/3.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/sjtu-optmom-pdf.txt"
+   },
+   {
+    "id": "SQ9-13",
+    "quote": "Average option momentum returns are close to zero after paying the full bid-ask spread for options with below-median bid-ask spreads.",
+    "url": "https://www.acem.sjtu.edu.cn/sffs/2021w/pdfs/3.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/sjtu-optmom-pdf.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C12",
+  "claim": "After a one-day share price decline of 10% or more in 1996-2004, the two-day abnormal return was -0.24% for optionable NYSE/AMEX stocks, against +0.72% for non-optionable NYSE/AMEX stocks.",
+  "evidence": [
+   {
+    "id": "SQ3-10",
+    "quote": "are 0.72 per cent, while those of optionable NYSE/AMEX firms are -0.24 per cent.",
+    "url": "https://www.scheller.gatech.edu/directory/research/finance/jayaraman/pdf/jfm_overreaction_feb_27_2008.pdf",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/choi-jayaraman-pdf.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C13",
+  "claim": "At-the-money straddles on individual stocks bought three days before an earnings announcement and held to the announcement date returned 3.34% on average.",
+  "evidence": [
+   {
+    "id": "SQ4-1",
+    "quote": "average at-the-money straddles from 3 days before an earnings announcement to the announcement date yield a highly significant 3.34% return",
+    "url": "https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/anticipating-uncertainty-straddles-around-earnings-announcements/7B34877AD5E06304BA3C55FBA3219FDD",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/www.cambridge.org-7f68350607.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C14",
+  "claim": "On 2026-11-12 ORATS listed its near-end-of-day option data history from 2007 to the present at $599 one-time, and $99 a month for data going forward.",
+  "evidence": [
+   {
+    "id": "SQ5-4",
+    "quote": "Recurring data Monthly From today onward $ 99 Historical data One-time From 2007 - present $ 599",
+    "url": "https://orats.com/near-eod-data",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/orats.com-ac621df4d5.txt"
+   },
+   {
+    "id": "SQ5-3",
+    "quote": "A snapshot of about 6,000 symbols 14 minutes before every close since 2007, with full SMV greeks, theoretical values, and IVs.",
+    "url": "https://orats.com/near-eod-data",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/orats.com-ac621df4d5.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C15",
+  "claim": "FINRA short interest is collected twice a month and published on the 7th business day after the reporting settlement date.",
+  "evidence": [
+   {
+    "id": "SQ6-1",
+    "quote": "All short interest positions must be reported by 6 p.m. Eastern Time on the second business day after the reporting settlement date designated by FINRA.",
+    "url": "https://www.finra.org/finra-data/browse-catalog/equity-short-interest",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/www.finra.org-3ff4f9845c.txt"
+   },
+   {
+    "id": "SQ6-2",
+    "quote": "Once the short position reports are received, the short interest data is compiled for each security and provided for publication on the 7th business day after the reporting settlement date.",
+    "url": "https://www.finra.org/finra-data/browse-catalog/equity-short-interest",
+    "page": "/home/user/researcher/research/2026-11-12-long-dated-option-setups/pages/www.finra.org-3ff4f9845c.txt"
+   }
+  ]
+ }
+]
