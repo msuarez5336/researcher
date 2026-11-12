@@ -586,4 +586,4 @@ stable identifiers, earnings time of day, dividends and interest rates in SQ6; f
 adequate-sample columns in SQ7.
 
 ## Approval
-- [ ] User approved on <date>, with these changes: <...>
+- [x] User approved on 2026-11-12, with no further changes.
