@@ -119,5 +119,20 @@ const base = { side: "call", delta: 0.35, dte: 90, exit: { type: "expiry" }, spr
      BT.describe({ metric: "from_low", op: "<=", value: 5, n: 252 }) === "within 5% of its 52-week low", BT.describe({ metric: "ret", op: "<=", value: -20, n: 20 }));
 }
 
+// --- optional parameters used by backtest/search.js ---
+{ const data = makeData(1500, 4, 5, 0), ctx = BT.prepare(data, IV);
+  const full = BT.run(ctx, base);
+  const again = BT.run(ctx, Object.assign({}, base, { baseTrades: full.baseTrades }));
+  ok("reusing a saved baseline gives the same result", again.base.n === full.base.n && again.base.mean === full.base.mean && again.cond.n === full.cond.n &&
+     again.excess.mean === full.excess.mean && again.excess.tAdj === full.excess.tAdj && JSON.stringify(again.years) === JSON.stringify(full.years));
+  const f = BT.features(ctx, "T0"), cfgH = Object.assign({}, base, { exit: { type: "days", frac: 0.5 } });
+  const t = BT.trade(ctx, f, 400, cfgH), tb = BT.trade(ctx, f, 400, Object.assign({}, cfgH, { ivEntryAdd: 10 }));
+  ok("entry-only volatility bump raises the entry volatility and cost", tb.iv > t.iv + 0.05 && tb.cost > t.cost, `${t.iv.toFixed(3)} -> ${tb.iv.toFixed(3)}`);
+  const half = 0.08 / 2 * 0.75, left = 90 - (tb.exit - tb.entry) * 365 / 252;
+  const vx = BT.estIV(ctx, f, tb.exit, left, tb.Sx, tb.K, BT.IV_DEFAULT);
+  ok("entry-only volatility bump leaves the exit price on the unbumped estimate", near((tb.ret + 1) * tb.cost, BT.bs(tb.Sx, tb.K, left / 365, vx, 0.02, 1) * (1 - half), 1e-9));
+  ok("no bump by default", BT.trade(ctx, f, 400, Object.assign({}, cfgH, { ivEntryAdd: 0 })).ret === t.ret);
+}
+
 console.log(failed ? `\n${failed} FAILED` : "\nall passed");
 process.exit(failed ? 1 : 0);

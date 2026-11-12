@@ -282,9 +282,11 @@
     var r = (ctx.data.rate[i] == null ? 0 : ctx.data.rate[i]) / 100;
     var T = cfg.dte / CAL;
     var ivo = cfg.iv || IV_DEFAULT;
-    var atm = estIV(ctx, f, i, cfg.dte, S, S, ivo); if (atm !== atm) return null;
+    // Optional stress: cfg.ivEntryAdd raises the 30-day estimate by that many points at ENTRY only (exits are unchanged).
+    var ivIn = cfg.ivEntryAdd ? { premium: (ivo.premium || 0) + cfg.ivEntryAdd, term: ivo.term, skew: ivo.skew, useRealIndex: ivo.useRealIndex } : ivo;
+    var atm = estIV(ctx, f, i, cfg.dte, S, S, ivIn); if (atm !== atm) return null;
     var K = strikeForDelta(S, T, atm, r, cp, cfg.delta);
-    var vol = estIV(ctx, f, i, cfg.dte, S, K, ivo);
+    var vol = estIV(ctx, f, i, cfg.dte, S, K, ivIn);
     var mid = bs(S, K, T, vol, r, cp);
     if (!(mid > 0.01)) return null;
     var half = (cfg.spread == null ? COST_DEFAULT.spread : cfg.spread) / 100 / 2 * (cfg.fill == null ? COST_DEFAULT.fill : cfg.fill);   // share of mid paid each way
@@ -341,12 +343,15 @@
     var a = Math.max(idxOnOrAfter(dates, cfg.from), 252), b = Math.min(idxOnOrAfter(dates, cfg.to + 1), n) - 1;
     var tickers = cfg.tickers || ctx.data.tickers;
     var conds = cfg.conds || [];
-    var cond = [], base = [], gap = cfg.gap == null ? 10 : cfg.gap, step = cfg.baseStep || 5;
+    // Optional: cfg.baseTrades is the `baseTrades` of an earlier run with the same option settings, period and
+    // stocks; the ordinary-day trades are then reused instead of simulated again.
+    var reuse = Array.isArray(cfg.baseTrades);
+    var cond = [], base = reuse ? cfg.baseTrades : [], gap = cfg.gap == null ? 10 : cfg.gap, step = cfg.baseStep || 5;
     tickers.forEach(function (tk, ti) {
       var f = features(ctx, tk), lastSig = -1e9, i, t;
       for (i = a; i <= b; i++) {
         if (f.close[i] !== f.close[i]) continue;
-        if ((i + ti) % step === 0) { t = trade(ctx, f, i, cfg); if (t) { t.tk = tk; base.push(t); } }
+        if (!reuse && (i + ti) % step === 0) { t = trade(ctx, f, i, cfg); if (t) { t.tk = tk; base.push(t); } }
         if (conds.length && i - lastSig >= gap && holds(ctx, f, i, conds)) {
           t = trade(ctx, f, i, cfg);
           if (t) { t.tk = tk; cond.push(t); lastSig = i; }
@@ -385,7 +390,7 @@
     return {
       cond: summarise(cond), base: summarise(base), excess: excess, years: years,
       histCond: histogram(cond), histBase: histogram(base), binLabels: BIN_LABELS,
-      trades: cond, perTicker: Object.keys(perTk).map(function (k) { var o = perTk[k]; o.mean = o.s / o.n; return o; }),
+      trades: cond, baseTrades: base, perTicker: Object.keys(perTk).map(function (k) { var o = perTk[k]; o.mean = o.s / o.n; return o; }),
       range: [dates[a], dates[b]]
     };
   }
