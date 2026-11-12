@@ -17,7 +17,7 @@ Published work gives almost no direct answer for this maturity range (report, fi
 
 | Layer | Needed fields | Source found | Cost seen 2026-11-12 | Gap |
 |---|---|---|---|---|
-| Option chains, end of day | date, underlying, expiry, strike, call/put, bid, ask, implied volatility, delta, open interest, volume | ORATS 2007– (`SQ5-3`); iVolatility 2005– (`SQ5-6`); FirstRate 2010– (`SQ5-1`); Cboe 2012– (`SQ5-9`) | ORATS $599 one-time (`SQ5-4`) | Delisted coverage not stated for ORATS; snapshot is 14 minutes before the close |
+| Option chains, end of day | date, underlying, expiry, strike, call/put, bid, ask, implied volatility, delta, open interest, volume | ORATS 2007– (`SQ5-3`); iVolatility 2005– (`SQ5-6`); FirstRate 2010– (`SQ5-1`); Cboe 2012– (`SQ5-9`) | ORATS $599 one-time, individual licence (`SQ5-4`) | Delisted coverage not stated for ORATS; snapshot is 14 minutes before the close |
 | Share prices | date, open/high/low/close, split and dividend adjustments, delisted companies included | Norgate top tiers (`SQ6-15`); Sharadar 1998– (`SQ6-11`) | not retrieved | ORATS does not supply share prices; free feeds reported to omit delisted names |
 | Company identifier | an id stable across ticker changes | SEC CIK via EDGAR | free | Mapping between vendors' ids not researched |
 | Earnings dates | announcement date, before-open or after-close flag | EDGAR 8-K filing times; some paid APIs carry the flag (`SQ6-18`) | free / varies | No source of the date as originally scheduled |
@@ -95,7 +95,7 @@ evidence that they predict anything. Treat them as untested ideas.
 | Signal date | Use only rows public by the close of that day | section 2 |
 | Entry | Next trading day's quotes | **assumption**, avoids trading on the snapshot that produced the signal; one study found a one-day lag changes results little (`SQ10` source) |
 | Contract choice | By target delta and days to expiry, nearest listed contract; test grid: delta 0.50, 0.35, 0.20 × 30–60, 61–120, 121–180 days | **assumption**; the grid mirrors the strike and maturity groups in `SQ8-1`, `SQ8-6` |
-| Entry price | Mid plus 75% of half the quoted spread; also report at mid and at the ask | `SQ8-9`, `SQ10-5`, `SQ7-6` |
+| Entry price | Mid plus 75% of half the quoted spread as the main case; also report at mid, at 50% and at the ask | 53% (timed trades, heavily traded options on 39 stocks) to about 75% (conventional measure): `SQ8-9`, `SQ8-10`, `SQ10-5`, `SQ7-6` |
 | Exit price | Mid minus 75% of half the spread; intrinsic value if held to expiry | same |
 | Exit rule | Report three variants: hold to expiry; fixed holding period of half the days to expiry; exit at a fixed multiple of the premium | **assumption** |
 | Liquidity filter | Skip contracts with quoted spread above 50% of mid or zero open interest | filters used in `notes/SQ9.md`, `notes/SQ3.md` |
@@ -106,7 +106,7 @@ evidence that they predict anything. Treat them as untested ideas.
 ## 6. Test plan
 
 1. **Baseline first.** Unconditional return of each cell in the delta × maturity grid, at mid,
-   at 75% of the spread and at the ask. Compare with the published figures in the report
+   at 50% and 75% of the spread, and at the ask. Compare with the published figures in the report
    (finding 2) as a check that the simulator is sane on the overlapping years and maturities.
 2. **One condition at a time.** For each signal, the difference between trades where it holds
    and the baseline cell, with the whole distribution: mean, median, share of total losses,
