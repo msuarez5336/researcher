@@ -3,14 +3,15 @@
 
 Why: WebFetch returns a model-written summary, so quotes taken from it are often
 paraphrased. Quoting from a cached raw copy makes every quote checkable later by
-check_quotes.py. Standard library only.
+check_quotes.py. Standard library only; PDFs are converted with the `pdftotext`
+command when it is installed, and reported as unsupported when it is not.
 
 Usage:
   python3 fetch_page.py --run-dir research/2026-10-31-topic URL [URL ...] [--json]
 
 Writes RUN/pages/<host>-<hash>.txt and appends one line per page to
 RUN/pages/index.jsonl: {"url", "file", "status", "chars", "fetched_at"}.
-status is one of: ok, thin (<800 chars of text), unsupported (not HTML/text),
+status is one of: ok, thin (<800 chars of text), unsupported (not HTML/text/PDF),
 unreachable (network or HTTP error). A URL already cached as ok is not refetched.
 """
 import argparse
@@ -19,6 +20,8 @@ import html
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import urllib.error
 import urllib.parse
@@ -38,6 +41,26 @@ def html_to_text(raw: str) -> str:
     lines = [re.sub(r"[ \t\r\f\v]+", " ", ln).strip() for ln in raw.split("\n")]
     text = "\n".join(ln for ln in lines if ln)
     return text
+
+
+def pdf_to_text(body: bytes) -> tuple[str, str]:
+    """Return (status, text) for PDF bytes, using pdftotext if present."""
+    if not shutil.which("pdftotext"):
+        return "unsupported", "PDF, and pdftotext is not installed"
+    try:
+        out = subprocess.run(["pdftotext", "-enc", "UTF-8", "-", "-"], input=body,
+                             capture_output=True, timeout=120)
+    except (subprocess.TimeoutExpired, OSError) as e:
+        return "unsupported", f"pdftotext failed: {type(e).__name__}"
+    if out.returncode != 0:
+        return "unsupported", f"pdftotext exit {out.returncode}"
+    text = out.stdout.decode("utf-8", errors="replace")
+    # Rejoin words hyphenated across line ends, then collapse layout whitespace,
+    # so a quote copied from the cached text is one contiguous passage.
+    text = re.sub(r"(\w)-\n(\w)", r"\1\2", text)
+    lines = [re.sub(r"[ \t\r\f\v]+", " ", ln).strip() for ln in text.split("\n")]
+    text = "\n".join(ln for ln in lines if ln)
+    return ("ok" if len(text) >= 800 else "thin"), text
 
 
 def cache_name(url: str) -> str:
@@ -60,18 +83,23 @@ def load_index(path: str) -> dict:
 
 def fetch(url: str) -> tuple[str, str]:
     """Return (status, text)."""
+    if os.path.exists(url) and url.lower().endswith(".pdf"):
+        with open(url, "rb") as f:
+            return pdf_to_text(f.read())
     if os.path.exists(url):
         with open(url, encoding="utf-8", errors="replace") as f:
             body = f.read()
         text = html_to_text(body) if url.lower().endswith((".html", ".htm")) else body
         return ("ok" if len(text) >= 800 else "thin"), text
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,text/plain,*/*"})
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,text/plain,application/pdf,*/*"})
     try:
         with urllib.request.urlopen(req, timeout=40) as resp:
             ctype = resp.headers.get("Content-Type", "")
             body = resp.read()
     except (urllib.error.URLError, TimeoutError, OSError) as e:
         return "unreachable", f"{type(e).__name__}: {e}"
+    if "pdf" in ctype or body[:5] == b"%PDF-":
+        return pdf_to_text(body)
     if not any(t in ctype for t in ("html", "text", "json", "xml", "markdown")):
         return "unsupported", f"content-type {ctype}"
     charset = re.search(r"charset=([\w-]+)", ctype)
