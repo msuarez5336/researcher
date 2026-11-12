@@ -294,7 +294,7 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 13px; margin-
         if (sec) { sectorSel.value = sec; fillGroups(); if (p.groups[0]) groupSel.value = p.groups[0]; applied.push("stocks limited to " + (p.groups[0] || sec)); }
       }
     }
-    setup = { conds: s.conds, note: s.note, dropped: s.dropped, applied: applied };
+    setup = { conds: s.conds, note: s.note, dropped: s.dropped, applied: applied, model: s.model || "" };
     store.set("bt.last", { text: ask.value, conds: s.conds });
     drawReading(); onChange();
   }
@@ -307,6 +307,7 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 13px; margin-
     if (setup.applied.length) h += "<p class='aside'>Also changed in the settings: " + esc(setup.applied.join("; ")) + ".</p>";
     if (setup.note) h += "<p class='aside'>" + esc(setup.note) + "</p>";
     if (setup.dropped.length) h += "<p class='aside'>Left out because it is not something this page can measure: " + esc(setup.dropped.join(", ")) + ".</p>";
+    if (setup.model) h += "<p class='aside'>" + (setup.model === "opus" ? "Read by Claude Opus 5.5." : "Claude Opus 5.5 was not available for this request, so another Claude model read it.") + "</p>";
     el.innerHTML = h; el.hidden = false;
   }
   function prompt(text) {
@@ -344,6 +345,15 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 13px; margin-
       ">>>"
     ].join("\n");
   }
+  var OPUS = "claude-opus-5-5";   // the owner asked for setups to be read by this model
+  function readJson(text) {
+    // whole reply, else the body of one code fence, else first brace to last brace
+    var tries = [text], f = /```(?:json)?\s*([\s\S]*?)```/.exec(text), a = text.indexOf("{"), b = text.lastIndexOf("}");
+    if (f) tries.push(f[1]);
+    if (a >= 0 && b > a) tries.push(text.slice(a, b + 1));
+    for (var k = 0; k < tries.length; k++) { try { return JSON.parse(tries[k]); } catch (e) { /* try the next form */ } }
+    return undefined;
+  }
   function submit() {
     var text = ask.value.trim();
     if (!text || busyAsk) return;
@@ -351,8 +361,11 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 13px; margin-
     if (ex) { applySetup(BT.sanitize({ conditions: ex.conditions }, D)); return; }
     if (!sample) { askStatus.textContent = "Reading your own wording isn't available in this view. Try one of the examples below."; return; }
     busyAsk = true; go.disabled = true; askStatus.textContent = "Working out how to test that…";
-    sample.json(prompt(text), { modelTier: "default" }).then(function (raw) {
+    sample(prompt(text), { model: OPUS, modelTier: "complex" }).then(function (res) {
+      var raw = readJson(res.text);
+      if (raw === undefined) { var err = new Error("unreadable reply"); err.code = "invalid_json"; throw err; }
       var s = BT.sanitize(raw, D);
+      s.model = res.modelApplied === OPUS ? "opus" : "fallback";
       askStatus.textContent = s.conds.length ? "" : "That could not be turned into a test. Try describing what the price did.";
       applySetup(s);
     }).catch(function (e) {
