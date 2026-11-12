@@ -91,7 +91,9 @@ def fetch(url: str) -> tuple[str, str]:
             body = f.read()
         text = html_to_text(body) if url.lower().endswith((".html", ".htm")) else body
         return ("ok" if len(text) >= 800 else "thin"), text
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,text/plain,application/pdf,*/*"})
+    # Percent-encode spaces and other unsafe characters; already-encoded URLs are unchanged.
+    safe_url = urllib.parse.quote(url, safe=":/?&=%#+,;@~!$'()*[]")
+    req = urllib.request.Request(safe_url, headers={"User-Agent": UA, "Accept": "text/html,text/plain,application/pdf,*/*"})
     try:
         with urllib.request.urlopen(req, timeout=40) as resp:
             ctype = resp.headers.get("Content-Type", "")
