@@ -28,15 +28,19 @@ volatility was cheap, not what someone who simply bought the option earned.
    calls lost heavily, and paying the ask removed the gains.** [E]
    - Near-the-money calls with 30–60 days to expiry returned +3.4% a month on average at
      mid-prices in 1996–2005, with a negative median (`SQ10-1`, original).
-   - Calls more than 15% out of the money, held to expiry, averaged −36.9% at one month, −21.9%
-     at two months and −23.2% at three months (`SQ8-1`, `SQ8-2`, secondary).
+   - Calls more than 15% out of the money, held to expiry, averaged about −37% at one month,
+     −22% at two months and −23% at three months in 1996–2005 (`SQ8-1`, `SQ8-2`). These come
+     from a secondary transcription of Ni's tables, which exclude calls with an ex-dividend
+     date before expiry; a summary of a later version gives −28% at one month (`SQ1-1`).
    - Bought at the ask, one-month calls were negative in every strike group, from −1.0% to
      −46.5% (`SQ8-3`, secondary).
 3. **Trading cost is the largest known obstacle, and it is smaller for longer-dated options.** [E]
-   The quoted bid-ask spread on out-of-the-money calls averaged 34.0% of the option price at
-   20–70 days to expiry and 22.7% at 71–180 days in 1996–2007 (`SQ8-6`, original). In 2003–2006
-   the average trade paid 6.2 cents against a quoted spread of 8.1 cents, about three quarters
-   of the quote (`SQ8-9`, original; the ratio is my arithmetic).
+   For out-of-the-money calls on 341 S&P 500 stocks, the quoted bid-ask spread averaged 34.0%
+   of the option price at 20–70 days to expiry and 22.7% at 71–180 days in 1996–2007 (`SQ8-6`,
+   original). How much of the quoted spread a buyer actually pays is disputed: for heavily
+   traded options on 39 stocks in 2003–2006, the conventional measure was 6.2 cents against
+   8.1 cents quoted (about three quarters, my arithmetic), while the authors' measure adjusted
+   for trade timing was 53% of the quoted spread (`SQ8-9`, `SQ8-10`, original).
 4. **The best-supported condition is implied volatility that is low against the stock's own
    history.** [E] In 1996–2005, calls in the tenth of stocks with the largest predicted rise in
    implied volatility returned +8.8% a month, against −3.1% in the opposite tenth (`SQ10-2`,
@@ -58,8 +62,8 @@ volatility was cheap, not what someone who simply bought the option earned.
    +0.72% and +0.78% (`SQ3-10`, original). Nothing was found at 1–6 months, and nothing on
    option returns after a fall.
 8. **Real historical option data is affordable; estimated prices are unvalidated.** [E]
-   ORATS listed its 2007-to-present end-of-day history at $599 one-time on 2026-11-12
-   (`SQ5-4`, vendor page). No free source of historical single-stock option quotes was found,
+   ORATS listed its 2007-to-present end-of-day history at $599 one-time for an individual
+   licence on 2026-11-12 (`SQ5-4`, vendor page). No free source of historical single-stock option quotes was found,
    and no study was found that measures how close a model-estimated price is to real quotes.
 
 ## The baseline: what buying options returned with no signal
@@ -67,8 +71,9 @@ volatility was cheap, not what someone who simply bought the option earned.
 - Near-the-money options, 30–60 days, one-month hold, mid-prices, 1996–2005: calls +3.4%, puts
   −3.6%, straddles −0.3% a month; medians negative for all three (`SQ10-1`, original). [E]
   The positive call average over this period includes the rise in share prices themselves.
-- Calls held to expiry at mid-prices, by strike relative to share price, 1996–2005 (`SQ8-1`,
-  `SQ8-2`, secondary reproduction of Ni's tables): [E]
+- Calls held to expiry at mid-prices, by strike relative to share price, 1996–2005, excluding
+  calls with an ex-dividend date before expiry (`SQ8-1`, `SQ8-2`, secondary transcription of
+  Ni's tables; the original was not read): [E]
 
   | Strike / share price | 1 month | 2 months | 3 months |
   |---|---|---|---|
@@ -139,7 +144,7 @@ volatility was cheap, not what someone who simply bought the option earned.
 
 | Source | History | Price seen | Notes | Id |
 |---|---|---|---|---|
-| ORATS | 2007– , about 6,000 symbols | $599 one-time; $99 a month going forward | Snapshot 14 minutes before the close; delisted coverage not stated | `SQ5-3`, `SQ5-4` |
+| ORATS | 2007– , about 6,000 symbols | $599 one-time; $99 a month going forward (individual licence) | Snapshot 14 minutes before the close; delisted coverage not stated | `SQ5-3`, `SQ5-4` |
 | iVolatility | 2005– | $0.40 per ticker-day for option prices, $0.60 for implied volatility | Pay per use | `SQ5-6` |
 | FirstRate Data | 2010– | not retrievable | Includes stocks delisted after 2010 | `SQ5-1`, `SQ5-2` |
 | Cboe DataShop | 2012– | not retrievable | Snapshots at 15:45 and the close | `SQ5-9` |
@@ -168,9 +173,11 @@ volatility, a volatility index, a fitted pattern applied to earlier dates). What
 
 ## Rules for the test
 
-- **Entry price:** assume about three quarters of the way from mid to ask. Basis: 6.2 cents
-  paid against 8.1 cents quoted (`SQ8-9`); one study and one vendor both use 75% (`SQ10-5`,
-  `SQ7-6`). The one-third saving from timing trades belongs to fast traders (`SQ8-10`).
+- **Entry price:** test at both 50% and 75% of the quoted spread. The cost paper's own
+  estimate for the average trade is 53% of the quoted spread, on heavily traded options on 39
+  stocks (`SQ8-9`, `SQ8-10`). Its conventional measure is about 75%, and one study and one
+  vendor use 75% (`SQ10-5`, `SQ7-6`). The paper ties the lower figure to trades timed around
+  quote changes; treating 75% as the case for an order that is not timed is my reading. [O]
 - **Significance:** a t-statistic above 3.0 is the published hurdle when many candidates are
   tried, derived for share-market factors, not options (`SQ7-7`). For overlapping holding
   periods, divide the t-statistic by the square root of the horizon (`SQ7-9`).
@@ -188,7 +195,7 @@ and test plan.
 | Question | Position A | Position B | When each holds |
 |---|---|---|---|
 | Do bought calls lose on average? | No: near-the-money calls were positive (`SQ10-1`, `SQ8-1`) | Yes: negative in every strike group (`SQ8-3`) | A at mid-prices in 1996–2005; B when buying at the ask |
-| What share of the quoted spread does a trader pay? | About half or less (`SQ7-1`; studies cited in `SQ10-5`'s source) | About three quarters (`SQ8-9`, `SQ7-6`) | A for traders who time quote changes; B for ordinary orders |
+| What share of the quoted spread does a trader pay? | About half: 53% for the average trade (`SQ8-10`, `SQ7-1`) | About three quarters by the conventional measure (`SQ8-9`, `SQ7-6`) | A when trades are timed around quote changes, measured on heavily traded options on 39 stocks; B is the conservative assumption otherwise |
 | Does the slope across expiry dates predict straddle returns? | Yes (`SQ9-14`, abstract) | Not at longer maturities (search snippet, paper unreachable) | Unresolved; B is unverified |
 | Is implied volatility on individual stocks above later realised volatility on average? | No significant gap | A positive or negative gap in some samples | Unresolved; all three sources were seen only in snippets |
 | Do pre-earnings straddles pay? | Yes, 3.34% gross (`SQ4-1`) | No, a loss net of costs beyond 10 days to expiry (`SQ4-2`) | A before costs; B after costs and at longer expiries |
@@ -199,16 +206,22 @@ and test plan.
   Single-stock option volume, weekly listings and retail participation have changed since.
 - The only samples ending after 2015 are hedged or straddle studies (to 2019 and 2020) and
   the retail study (2019–2021).
-- A 2026 proposal to move short-interest reporting to weekly was reported; approval was not
-  confirmed (`SQ6-3`, unverified).
+- A 2026 proposal to move short-interest reporting to weekly was reported (`SQ6-3`,
+  unverified). The claim verifier's search found it was withdrawn on 2026-08-05; I did not
+  read the withdrawal notice. Reporting remains twice a month as of the FINRA page.
 - The five per-stock volatility indexes date from 2011; whether they are still published was
   not checked.
 
 ## Method and limitations
 
 - Seven researchers ran in parallel, then two follow-up researchers re-read original papers,
-  and I read one paper myself (`SQ10`). 117 evidence items; 111 quotes match the cached source
-  text, 10 items have no cached source and are marked unverified, 1 failed and is not used.
+  and I read one paper myself (`SQ10`). 121 evidence items; 111 quotes match the cached source
+  text, 10 items have no cached source and are marked unverified. One further item failed the
+  quote check and was removed.
+- Claim verification: 15 claims went to three fresh verifiers that saw only the claims and
+  their cited sources. 11 were supported and 4 were partial; the partial ones are corrected
+  above (the far out-of-the-money call figures, the scope of the spread sample, the share of
+  the spread paid, and the licence type for the data price). Verdicts are in `verdicts/`.
 - In the first pass the page-caching script could not read PDFs, so several figures came from
   secondary summaries. The script was fixed for the follow-up pass. Figures still read only
   second-hand are labelled *secondary* above, notably Ni's tables and the earnings net-of-cost result.
