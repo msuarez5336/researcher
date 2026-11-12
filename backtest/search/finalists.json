@@ -1,0 +1,504 @@
+{
+ "created": "2026-11-12T21:03:21.017Z",
+ "searchPeriod": {
+  "from": 20091001,
+  "to": 20201231
+ },
+ "N": 14256,
+ "bar": 4.6386281064649415,
+ "funnel": {
+  "N": 14256,
+  "bar": 4.6386281064649415,
+  "ok": 14202,
+  "noTrades": 54,
+  "errors": 0,
+  "a": 9126,
+  "ab": 35,
+  "abNegative": 14,
+  "abc": 33,
+  "abcd": 33,
+  "abcde": 33,
+  "abcdefg": 4,
+  "finalists": 4
+ },
+ "finalists": [
+  {
+   "cell": "from_high252_ge_1|call_d0.35_t60_x2",
+   "set": "from_high252_ge_1",
+   "family": "from_high252_ge",
+   "partner": "",
+   "side": "call",
+   "delta": 0.35,
+   "dte": 60,
+   "exit": "x2",
+   "setup": "30% or more below its 52-week high",
+   "trades": 4506,
+   "months": 136,
+   "mean": 0.29786,
+   "median": 0.64061,
+   "lost": 0.43542,
+   "baseMean": -0.10629,
+   "baseLost": 0.55364,
+   "excess": 0.43167,
+   "t": 7.775,
+   "tAdj": 5.4978,
+   "yearsCounted": 12,
+   "yearsPositive": 12,
+   "neighbours": [
+    {
+     "cell": "from_high252_ge_0|call_d0.35_t60_x2",
+     "excess": 0.26535,
+     "tAdj": 4.7445
+    },
+    {
+     "cell": "from_high252_ge_2|call_d0.35_t60_x2",
+     "excess": 0.56368,
+     "tAdj": 4.2636
+    }
+   ],
+   "checks": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true,
+    "e": true,
+    "f": true,
+    "g": true
+   },
+   "stress": {
+    "cell": "from_high252_ge_1|call_d0.35_t60_x2",
+    "excess": 0.43167173058364444,
+    "sectors": [
+     {
+      "removed": "Communication Services",
+      "trades": 4354,
+      "excess": 0.41992533154060907
+     },
+     {
+      "removed": "Consumer Discretionary",
+      "trades": 4022,
+      "excess": 0.4302288073266832
+     },
+     {
+      "removed": "Consumer Staples",
+      "trades": 4451,
+      "excess": 0.41626008971045747
+     },
+     {
+      "removed": "Energy",
+      "trades": 3987,
+      "excess": 0.4458234241252118
+     },
+     {
+      "removed": "Financials",
+      "trades": 4028,
+      "excess": 0.432718465232039
+     },
+     {
+      "removed": "Health Care",
+      "trades": 4138,
+      "excess": 0.42072748578356584
+     },
+     {
+      "removed": "Industrials",
+      "trades": 3877,
+      "excess": 0.427098392665888
+     },
+     {
+      "removed": "Information Technology",
+      "trades": 3002,
+      "excess": 0.47041205563742317
+     },
+     {
+      "removed": "Materials",
+      "trades": 4318,
+      "excess": 0.4419524740970442
+     },
+     {
+      "removed": "Real Estate",
+      "trades": 4470,
+      "excess": 0.43067235858318303
+     },
+     {
+      "removed": "Utilities",
+      "trades": 4413,
+      "excess": 0.4353354944906076
+     }
+    ],
+    "worstSector": {
+     "removed": "Consumer Staples",
+     "trades": 4451,
+     "excess": 0.41626008971045747
+    },
+    "fillFull": {
+     "excess": 0.43028188077612983,
+     "tAdj": 5.512613497492516
+    },
+    "volBump": {
+     "excess": 0.04891700323894203,
+     "tAdj": -0.5934495546112161,
+     "mean": -0.08495279361819633
+    },
+    "e": true,
+    "f": true,
+    "g": true
+   }
+  },
+  {
+   "cell": "from_high252_ge_2|call_d0.2_t60_x2",
+   "set": "from_high252_ge_2",
+   "family": "from_high252_ge",
+   "partner": "",
+   "side": "call",
+   "delta": 0.2,
+   "dte": 60,
+   "exit": "x2",
+   "setup": "40% or more below its 52-week high",
+   "trades": 1890,
+   "months": 131,
+   "mean": 0.45292,
+   "median": 1.01369,
+   "lost": 0.47725,
+   "baseMean": -0.21829,
+   "baseLost": 0.69397,
+   "excess": 0.69252,
+   "t": 7.1498,
+   "tAdj": 5.0557,
+   "yearsCounted": 12,
+   "yearsPositive": 11,
+   "neighbours": [
+    {
+     "cell": "from_high252_ge_1|call_d0.2_t60_x2",
+     "excess": 0.51087,
+     "tAdj": 6.6587
+    }
+   ],
+   "checks": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true,
+    "e": true,
+    "f": true,
+    "g": true
+   },
+   "stress": {
+    "cell": "from_high252_ge_2|call_d0.2_t60_x2",
+    "excess": 0.6925200341687319,
+    "sectors": [
+     {
+      "removed": "Communication Services",
+      "trades": 1809,
+      "excess": 0.6736538072553981
+     },
+     {
+      "removed": "Consumer Discretionary",
+      "trades": 1684,
+      "excess": 0.699456554671549
+     },
+     {
+      "removed": "Consumer Staples",
+      "trades": 1888,
+      "excess": 0.6680606998563684
+     },
+     {
+      "removed": "Energy",
+      "trades": 1592,
+      "excess": 0.7152617363179983
+     },
+     {
+      "removed": "Financials",
+      "trades": 1712,
+      "excess": 0.6806504088975366
+     },
+     {
+      "removed": "Health Care",
+      "trades": 1815,
+      "excess": 0.6641658163511148
+     },
+     {
+      "removed": "Industrials",
+      "trades": 1596,
+      "excess": 0.6998184889349232
+     },
+     {
+      "removed": "Information Technology",
+      "trades": 1307,
+      "excess": 0.7406170522581577
+     },
+     {
+      "removed": "Materials",
+      "trades": 1794,
+      "excess": 0.6978919672162572
+     },
+     {
+      "removed": "Real Estate",
+      "trades": 1876,
+      "excess": 0.691499058972001
+     },
+     {
+      "removed": "Utilities",
+      "trades": 1827,
+      "excess": 0.6965034043075404
+     }
+    ],
+    "worstSector": {
+     "removed": "Health Care",
+     "trades": 1815,
+     "excess": 0.6641658163511148
+    },
+    "fillFull": {
+     "excess": 0.6855972769313733,
+     "tAdj": 5.017477787123954
+    },
+    "volBump": {
+     "excess": 0.1762351278918942,
+     "tAdj": 0.3422484048927578,
+     "mean": -0.06344756779218833
+    },
+    "e": true,
+    "f": true,
+    "g": true
+   }
+  },
+  {
+   "cell": "from_high252_ge_1|call_d0.35_t90_x2",
+   "set": "from_high252_ge_1",
+   "family": "from_high252_ge",
+   "partner": "",
+   "side": "call",
+   "delta": 0.35,
+   "dte": 90,
+   "exit": "x2",
+   "setup": "30% or more below its 52-week high",
+   "trades": 4512,
+   "months": 136,
+   "mean": 0.29791,
+   "median": 1.00354,
+   "lost": 0.41777,
+   "baseMean": -0.12677,
+   "baseLost": 0.55128,
+   "excess": 0.44849,
+   "t": 8.218,
+   "tAdj": 4.7447,
+   "yearsCounted": 12,
+   "yearsPositive": 12,
+   "neighbours": [
+    {
+     "cell": "from_high252_ge_0|call_d0.35_t90_x2",
+     "excess": 0.27171,
+     "tAdj": 4.0574
+    },
+    {
+     "cell": "from_high252_ge_2|call_d0.35_t90_x2",
+     "excess": 0.60073,
+     "tAdj": 3.3842
+    }
+   ],
+   "checks": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true,
+    "e": true,
+    "f": true,
+    "g": true
+   },
+   "stress": {
+    "cell": "from_high252_ge_1|call_d0.35_t90_x2",
+    "excess": 0.4484919212778527,
+    "sectors": [
+     {
+      "removed": "Communication Services",
+      "trades": 4360,
+      "excess": 0.43719636256184835
+     },
+     {
+      "removed": "Consumer Discretionary",
+      "trades": 4028,
+      "excess": 0.45112568758446653
+     },
+     {
+      "removed": "Consumer Staples",
+      "trades": 4457,
+      "excess": 0.4355894390290142
+     },
+     {
+      "removed": "Energy",
+      "trades": 3993,
+      "excess": 0.4594470229493908
+     },
+     {
+      "removed": "Financials",
+      "trades": 4034,
+      "excess": 0.45622847973560665
+     },
+     {
+      "removed": "Health Care",
+      "trades": 4144,
+      "excess": 0.4292784666392354
+     },
+     {
+      "removed": "Industrials",
+      "trades": 3883,
+      "excess": 0.43813685983142037
+     },
+     {
+      "removed": "Information Technology",
+      "trades": 3002,
+      "excess": 0.4902753780328007
+     },
+     {
+      "removed": "Materials",
+      "trades": 4324,
+      "excess": 0.45210301878818476
+     },
+     {
+      "removed": "Real Estate",
+      "trades": 4476,
+      "excess": 0.4480221561991511
+     },
+     {
+      "removed": "Utilities",
+      "trades": 4419,
+      "excess": 0.45186516847807834
+     }
+    ],
+    "worstSector": {
+     "removed": "Health Care",
+     "trades": 4144,
+     "excess": 0.4292784666392354
+    },
+    "fillFull": {
+     "excess": 0.44190375262406634,
+     "tAdj": 4.795922617841201
+    },
+    "volBump": {
+     "excess": 0.06060080146899662,
+     "tAdj": -0.4881976146676688,
+     "mean": -0.08998487443796264
+    },
+    "e": true,
+    "f": true,
+    "g": true
+   }
+  },
+  {
+   "cell": "ret21_le_0+fear|call_d0.2_t90_x2",
+   "set": "ret21_le_0+fear",
+   "family": "ret21_le",
+   "partner": "fear",
+   "side": "call",
+   "delta": 0.2,
+   "dte": 90,
+   "exit": "x2",
+   "setup": "fell 15% or more in a month AND the market was fearful (VIX in the highest 33% of its past year)",
+   "trades": 1940,
+   "months": 79,
+   "mean": 0.3248,
+   "median": 1.01902,
+   "lost": 0.4567,
+   "baseMean": -0.25689,
+   "baseLost": 0.69688,
+   "excess": 0.59625,
+   "t": 8.0566,
+   "tAdj": 4.6515,
+   "yearsCounted": 10,
+   "yearsPositive": 9,
+   "neighbours": [
+    {
+     "cell": "ret21_le_1+fear|call_d0.2_t90_x2",
+     "excess": 0.65489,
+     "tAdj": 3.9548
+    }
+   ],
+   "checks": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true,
+    "e": true,
+    "f": true,
+    "g": true
+   },
+   "stress": {
+    "cell": "ret21_le_0+fear|call_d0.2_t90_x2",
+    "excess": 0.5962501489386173,
+    "sectors": [
+     {
+      "removed": "Communication Services",
+      "trades": 1868,
+      "excess": 0.608850484984931
+     },
+     {
+      "removed": "Consumer Discretionary",
+      "trades": 1717,
+      "excess": 0.5963110662928081
+     },
+     {
+      "removed": "Consumer Staples",
+      "trades": 1915,
+      "excess": 0.5924413650581176
+     },
+     {
+      "removed": "Energy",
+      "trades": 1753,
+      "excess": 0.6048857220755741
+     },
+     {
+      "removed": "Financials",
+      "trades": 1736,
+      "excess": 0.6246889461479833
+     },
+     {
+      "removed": "Health Care",
+      "trades": 1769,
+      "excess": 0.5860768025695685
+     },
+     {
+      "removed": "Industrials",
+      "trades": 1647,
+      "excess": 0.5900583148265053
+     },
+     {
+      "removed": "Information Technology",
+      "trades": 1274,
+      "excess": 0.581592835226156
+     },
+     {
+      "removed": "Materials",
+      "trades": 1883,
+      "excess": 0.5969169787409937
+     },
+     {
+      "removed": "Real Estate",
+      "trades": 1922,
+      "excess": 0.5980749685607034
+     },
+     {
+      "removed": "Utilities",
+      "trades": 1916,
+      "excess": 0.5929484285291589
+     }
+    ],
+    "worstSector": {
+     "removed": "Information Technology",
+     "trades": 1274,
+     "excess": 0.581592835226156
+    },
+    "fillFull": {
+     "excess": 0.5864132935031425,
+     "tAdj": 4.58775450619657
+    },
+    "volBump": {
+     "excess": 0.025711860009787244,
+     "tAdj": 0.35331868761170704,
+     "mean": -0.24574110672669827
+    },
+    "e": true,
+    "f": true,
+    "g": true
+   }
+  }
+ ]
+}
