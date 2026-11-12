@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-/* Run one configuration from the command line: node backtest/run_cli.js '{"cond":{"metric":"ret1","x":8}}' */
+/* Run one configuration from the command line:
+   node backtest/run_cli.js '{"conds":[{"metric":"ret","op":"<=","value":-8,"n":1}]}' */
 "use strict";
 const fs = require("fs"), path = require("path");
 const BT = require("./artifact/engine.js");
 const load = (f) => { const t = fs.readFileSync(path.join(__dirname, "artifact", f), "utf8"); return JSON.parse(t.slice(t.indexOf("{"), t.lastIndexOf("}") + 1)); };
 const ctx = BT.prepare(load("data.js"), load("iv_model.js"));
 const cfg = Object.assign({ side: "call", delta: 0.35, dte: 90, exit: { type: "expiry" }, spread: 8, fill: 0.75, lag: 1,
-  iv: { premium: 0, term: true, skew: true }, cond: { metric: "none" }, vix: "any", gap: 10, baseStep: 5,
-  from: 20091001, to: 20201231 }, JSON.parse(process.argv[2] || "{}"));
+  conds: [], gap: 10, baseStep: 5, from: 20091001, to: 20991231 }, JSON.parse(process.argv[2] || "{}"));
 const t0 = Date.now(), r = BT.run(ctx, cfg), ms = Date.now() - t0;
 const pc = (x) => x == null ? "  n/a" : (x * 100).toFixed(1).padStart(7) + "%";
 const row = (name, s) => console.log(name.padEnd(10), String(s.n).padStart(6), pc(s.mean), pc(s.median), pc(s.lost), pc(s.win), pc(s.x2), pc(s.x5));

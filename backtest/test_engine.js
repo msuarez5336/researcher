@@ -36,11 +36,12 @@ function makeData(nDays, nTk, seed, driftAfterDrop) {
     close[tk] = c; tickers.push(tk);
   }
   const flat = (v) => new Array(nDays).fill(v);
-  return { dates, tickers, close, vix: flat(20), vix3m: flat(21), vix6m: flat(22), rate: flat(2), volIndex: {} };
+  const sector = {}, group = {}; tickers.forEach((t, k) => { sector[t] = k % 2 ? "Energy" : "Financials"; group[t] = "G" + (k % 3); });
+  return { dates, tickers, close, sector, group, spy: close[tickers[0]].map((x) => x / 2), vix: flat(20), vix3m: flat(21), vix6m: flat(22), rate: flat(2), volIndex: {} };
 }
 const IV = { coef: { a: 4.87, rv20: 0, rv60: 0.505, vix: 0.618 } };
 const base = { side: "call", delta: 0.35, dte: 90, exit: { type: "expiry" }, spread: 8, fill: 0.75, lag: 1,
-               iv: { premium: 0, term: true, skew: true }, cond: { metric: "ret1", x: 8 }, vix: "any", gap: 10, baseStep: 5,
+               conds: [{ metric: "ret", op: "<=", value: -8, n: 1 }], gap: 10, baseStep: 5,
                from: 20100101, to: 20991231 };
 
 // --- held-to-expiry trade pays intrinsic value on the expiry-day close ---
@@ -81,9 +82,41 @@ const base = { side: "call", delta: 0.35, dte: 90, exit: { type: "expiry" }, spr
 { const data = makeData(1500, 2, 5, 0), ctx = BT.prepare(data, IV);
   const half = BT.run(ctx, Object.assign({}, base, { exit: { type: "days", frac: 0.5 } }));
   ok("fixed-period exit leaves after half the option's life", half.trades.every((t) => t.exit - t.entry === Math.round(Math.round(90 * 252 / 365) * 0.5)));
-  const tgt = BT.run(ctx, Object.assign({}, base, { exit: { type: "target", mult: 2 }, cond: { metric: "none" } }));
-  const early = tgt.trades.length === 0;   // metric none gives no condition trades; check on baseline summary instead
+  const tgt = BT.run(ctx, Object.assign({}, base, { exit: { type: "target", mult: 2 }, conds: [] }));
+  const early = tgt.trades.length === 0;   // no conditions gives no setup trades; check the baseline instead
   ok("target exit runs and the baseline has trades", early && tgt.base.n > 100);
+}
+
+// --- condition measures against brute force ---
+{ const data = makeData(900, 2, 21, 0), ctx = BT.prepare(data, IV), f = BT.features(ctx, "T1"), M = BT.METRICS;
+  let okHi = true, okLo = true, okMa = true, okRsi = true;
+  for (const i of [260, 400, 555, 899]) {
+    const w = Array.from(f.close.slice(i - 251, i + 1)), w50 = Array.from(f.close.slice(i - 49, i + 1));
+    okHi = okHi && near(M.from_high.get(ctx, f, i, 252), (1 - f.close[i] / Math.max(...w)) * 100, 1e-9);
+    okLo = okLo && near(M.from_low.get(ctx, f, i, 252), (f.close[i] / Math.min(...w) - 1) * 100, 1e-9);
+    okMa = okMa && near(M.vs_ma.get(ctx, f, i, 50), (f.close[i] / (w50.reduce((p, q) => p + q, 0) / 50) - 1) * 100, 1e-9);
+    const r = M.rsi.get(ctx, f, i, 14); okRsi = okRsi && r >= 0 && r <= 100;
+  }
+  ok("distance from 52-week high matches brute force", okHi); ok("distance from 52-week low matches brute force", okLo);
+  ok("distance from 50-day average matches brute force", okMa); ok("RSI stays between 0 and 100", okRsi);
+  const two = BT.run(ctx, Object.assign({}, base, { conds: [{ metric: "ret", op: "<=", value: -8, n: 1 }, { metric: "from_low", op: "<=", value: 5, n: 252 }] }));
+  const one = BT.run(ctx, base);
+  ok("adding a second condition never adds trades", two.cond.n <= one.cond.n && one.cond.n > 0, `${one.cond.n} -> ${two.cond.n}`);
+}
+
+// --- reading a setup from untrusted input ---
+{ const data = makeData(300, 4, 2, 0);
+  const s = BT.sanitize({ conditions: [{ metric: "ret", op: "<=", value: -1e9, n: 99999 }, { metric: "<script>", op: "<=", value: 1 }, { metric: "rsi", op: "between", value: 30 },
+      { metric: "vix_pctile", op: ">=", value: "67" }],
+    option: { side: "sideways", delta: 0.3, dte: 100, exit: "rm -rf" }, population: { sectors: ["Energy", "Nonsense"], tickers: ["T1", "ZZZZ"] }, note: "x".repeat(900) }, data);
+  ok("unknown metrics and operators are dropped", s.conds.length === 2 && s.dropped.length === 2);
+  ok("numbers are clamped to each measure's range", s.conds[0].value === -90 && s.conds[0].n === 252);
+  ok("option fields snap to allowed values or are ignored", s.option.side === undefined && s.option.delta === 0.35 && s.option.dte === 90 && s.option.exit === undefined);
+  ok("population keeps only known sectors and stocks", s.population.sectors.join() === "Energy" && s.population.tickers.join() === "T1");
+  ok("notes are length-limited", s.note.length === 400);
+  ok("garbage input gives an empty setup", BT.sanitize("hello", data).conds.length === 0 && BT.sanitize(null, data).conds.length === 0);
+  ok("plain-language description", BT.describe({ metric: "ret", op: "<=", value: -20, n: 20 }) === "fell 20% or more in a month" &&
+     BT.describe({ metric: "from_low", op: "<=", value: 5, n: 252 }) === "within 5% of its 52-week low", BT.describe({ metric: "ret", op: "<=", value: -20, n: 20 }));
 }
 
 console.log(failed ? `\n${failed} FAILED` : "\nall passed");

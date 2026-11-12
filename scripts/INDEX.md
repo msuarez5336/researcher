@@ -11,4 +11,4 @@ Add a row whenever `/codify` (or you) adds a script.
 | `backtest/fetch_data.py` | Download daily prices and volatility indexes for the option backtest; rebuild `artifact/data.js` | `python3 backtest/fetch_data.py` | — |
 | `backtest/calibrate_iv.py` | Fit and test the implied-volatility estimate; write `artifact/iv_model.js` | `python3 backtest/calibrate_iv.py` | — |
 | `backtest/test_engine.js` | Tests for the backtest engine | `node backtest/test_engine.js` | — |
-| `backtest/run_cli.js` | Run one backtest configuration and print the comparison | `node backtest/run_cli.js '{"cond":{"metric":"ret1","x":8}}'` | — |
+| `backtest/run_cli.js` | Run one backtest configuration and print the comparison | `node backtest/run_cli.js '{"conds":[{"metric":"ret","op":"<=","value":-8,"n":1}]}'` | — |

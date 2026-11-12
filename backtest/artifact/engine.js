@@ -53,7 +53,7 @@
 
   function prepare(data, ivModel) {
     var n = data.dates.length;
-    var ctx = { data: data, iv: ivModel, n: n, feat: {}, vixTercile: null };
+    var ctx = { data: data, iv: ivModel, n: n, feat: {} };
     return ctx;
   }
 
@@ -71,21 +71,16 @@
 
   function features(ctx, tk) {
     if (ctx.feat[tk]) return ctx.feat[tk];
-    var c = ctx.data.close[tk], n = ctx.n, i;
-    var close = new Float64Array(n), lr = new Float64Array(n).fill(NaN);
-    for (i = 0; i < n; i++) close[i] = c[i] == null ? NaN : c[i];
+    var c = ctx.data.close[tk], n = ctx.n, i, first = -1;
+    var close = new Float64Array(n).fill(NaN), lr = new Float64Array(n).fill(NaN);
+    for (i = 0; i < n; i++) {
+      if (c[i] != null) { close[i] = c[i]; if (first < 0) first = i; }
+      else if (first >= 0) close[i] = close[i - 1];        // a missing day inside the history keeps the last close
+    }
     for (i = 1; i < n; i++) lr[i] = Math.log(close[i] / close[i - 1]);
     var rv20 = rollingStd(lr, 20, n), rv60 = rollingStd(lr, 60, n), rv250 = rollingStd(lr, 250, n);
-    // sigma of the 60 returns BEFORE today, for sizing today's move
-    var sig60 = new Float64Array(n).fill(NaN);
+    var sig60 = new Float64Array(n).fill(NaN);              // usual daily move, from the 60 returns BEFORE today
     for (i = 1; i < n; i++) sig60[i] = rv60[i - 1] / 100 / Math.sqrt(TD);
-    // 252-day high and low of closes, including today
-    var hi = new Float64Array(n).fill(NaN), lo = new Float64Array(n).fill(NaN);
-    for (i = 251; i < n; i++) {
-      var h = -Infinity, l = Infinity, ok = true;
-      for (var k = i - 251; k <= i; k++) { var x = close[k]; if (x !== x) { ok = false; break; } if (x > h) h = x; if (x < l) l = x; }
-      if (ok) { hi[i] = h; lo[i] = l; }
-    }
     var m = ctx.iv.coef, vix = ctx.data.vix, iv30 = new Float64Array(n).fill(NaN);
     var real = ctx.data.volIndex && ctx.data.volIndex[tk];
     var ivReal = new Float64Array(n).fill(NaN);
@@ -93,21 +88,58 @@
       if (rv20[i] === rv20[i] && rv60[i] === rv60[i] && vix[i] != null) iv30[i] = Math.max(8, m.a + m.rv20 * rv20[i] + m.rv60 * rv60[i] + m.vix * vix[i]);
       if (real && real[i] != null) ivReal[i] = real[i];
     }
-    return (ctx.feat[tk] = { close: close, lr: lr, rv20: rv20, rv60: rv60, rv250: rv250, sig60: sig60, hi: hi, lo: lo, iv30: iv30, ivReal: ivReal });
+    return (ctx.feat[tk] = { first: first, close: close, lr: lr, rv20: rv20, rv60: rv60, rv250: rv250, sig60: sig60, iv30: iv30, ivReal: ivReal, c: {} });
   }
 
-  function vixTerciles(ctx) {
-    // tercile of today's VIX within its trailing 252 days: 0 low, 1 middle, 2 high
-    if (ctx.vixTercile) return ctx.vixTercile;
-    var v = ctx.data.vix, n = ctx.n, out = new Int8Array(n).fill(-1);
-    for (var i = 251; i < n; i++) {
-      if (v[i] == null) continue;
-      var below = 0, cnt = 0;
-      for (var k = i - 251; k <= i; k++) if (v[k] != null) { cnt++; if (v[k] < v[i]) below++; }
-      var q = below / cnt; out[i] = q < 1 / 3 ? 0 : q < 2 / 3 ? 1 : 2;
+  // ---------- cached series for conditions ----------
+  function memo(o, key, build) { return o[key] || (o[key] = build()); }
+  function rollExt(close, n, len, first, isMax) {
+    // out[i] = max (or min) of the n closes ending at i, by a monotonic queue
+    var out = new Float64Array(len).fill(NaN), q = new Int32Array(len), h = 0, t = 0, i;
+    if (first < 0) return out;
+    for (i = first; i < len; i++) {
+      while (t > h && (isMax ? close[q[t - 1]] <= close[i] : close[q[t - 1]] >= close[i])) t--;
+      q[t++] = i;
+      if (q[h] <= i - n) h++;
+      if (i - first + 1 >= n) out[i] = close[q[h]];
     }
-    return (ctx.vixTercile = out);
+    return out;
   }
+  function movAvg(close, n, len, first) {
+    var out = new Float64Array(len).fill(NaN), s = 0, i;
+    if (first < 0) return out;
+    for (i = first; i < len; i++) { s += close[i]; if (i - first >= n) s -= close[i - n]; if (i - first + 1 >= n) out[i] = s / n; }
+    return out;
+  }
+  function rsi(lr, n, len, first) {
+    // Wilder's relative strength index on daily closes
+    var out = new Float64Array(len).fill(NaN), g = 0, l = 0, i, k = 0;
+    if (first < 0) return out;
+    for (i = first + 1; i < len; i++) {
+      var up = Math.max(lr[i], 0), dn = Math.max(-lr[i], 0); k++;
+      if (k <= n) { g += up / n; l += dn / n; } else { g = (g * (n - 1) + up) / n; l = (l * (n - 1) + dn) / n; }
+      if (k >= n) out[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l);
+    }
+    return out;
+  }
+  function streak(lr, len, sign) {
+    var out = new Float64Array(len), i;
+    for (i = 1; i < len; i++) out[i] = sign * lr[i] > 0 ? out[i - 1] + 1 : 0;
+    return out;
+  }
+  function vixPctile(ctx) {
+    return memo(ctx, "_vp", function () {
+      var v = ctx.data.vix, n = ctx.n, out = new Float64Array(n).fill(NaN);
+      for (var i = 251; i < n; i++) {
+        if (v[i] == null) continue;
+        var below = 0, cnt = 0;
+        for (var k = i - 251; k <= i; k++) if (v[k] != null) { cnt++; if (v[k] < v[i]) below++; }
+        out[i] = 100 * below / cnt;
+      }
+      return out;
+    });
+  }
+  function pctChange(a, i, n) { var x = a[i - n], y = a[i]; return i >= n && x != null && y != null && x === x && y === y ? (y / x - 1) * 100 : NaN; }
 
   // ---------- implied-volatility estimate ----------
   /** Estimated implied volatility (decimal) for an option on tk at day i with `days` calendar days left and strike K. */
@@ -135,19 +167,107 @@
   }
 
   // ---------- conditions ----------
+  // Each metric gives one number for a stock on a day, from data up to and including that day.
+  // A condition is { metric, op: "<=" | ">=", value, n }. All conditions must hold together.
   var METRICS = {
-    none: { label: "No condition (baseline only)" },
-    ret1: { label: "One-day fall", unit: "%", def: 8, min: 3, max: 20, step: 1, test: function (f, i, p) { return f.lr[i] === f.lr[i] && Math.exp(f.lr[i]) - 1 <= -p.x / 100; } },
-    sigma: { label: "One-day fall, in multiples of the stock's usual daily move", unit: "×", def: 3, min: 1.5, max: 6, step: 0.5, test: function (f, i, p) { return f.sig60[i] === f.sig60[i] && f.lr[i] <= -p.x * f.sig60[i]; } },
-    retN: { label: "Fall over the past N trading days", unit: "%", def: 20, min: 5, max: 50, step: 5, window: true, test: function (f, i, p) { var a = f.close[i - p.n]; return i >= p.n && a === a && f.close[i] / a - 1 <= -p.x / 100; } },
-    upN: { label: "Rise over the past N trading days", unit: "%", def: 20, min: 5, max: 50, step: 5, window: true, test: function (f, i, p) { var a = f.close[i - p.n]; return i >= p.n && a === a && f.close[i] / a - 1 >= p.x / 100; } },
-    low52: { label: "Within X% of the 52-week low", unit: "%", def: 5, min: 0, max: 20, step: 1, test: function (f, i, p) { return f.lo[i] === f.lo[i] && f.close[i] <= f.lo[i] * (1 + p.x / 100); } },
-    high52: { label: "Within X% of the 52-week high", unit: "%", def: 2, min: 0, max: 20, step: 1, test: function (f, i, p) { return f.hi[i] === f.hi[i] && f.close[i] >= f.hi[i] * (1 - p.x / 100); } },
-    mom: { label: "12-month return, skipping the latest month, at least", unit: "%", def: 30, min: -40, max: 100, step: 10, test: function (f, i, p) { var a = f.close[i - 252], b = f.close[i - 21]; return i >= 252 && a === a && b === b && b / a - 1 >= p.x / 100; } },
-    rvlow: { label: "Recent volatility at most X% of its one-year level", unit: "%", def: 60, min: 30, max: 100, step: 5, circular: true, test: function (f, i, p) { return f.rv20[i] === f.rv20[i] && f.rv250[i] === f.rv250[i] && f.rv20[i] <= f.rv250[i] * p.x / 100; } }
+    ret: { doc: "percent change in the share price over the past n trading days (negative = fell)", unit: "%", n: 1, nMin: 1, nMax: 252, min: -90, max: 300,
+      get: function (ctx, f, i, n) { return pctChange(f.close, i, n); } },
+    move_sigma: { doc: "today's move divided by the stock's usual daily move over the prior 60 days (negative = down; -3 is a fall three times the usual size)", unit: "x", min: -15, max: 15,
+      get: function (ctx, f, i) { return f.lr[i] / f.sig60[i]; } },
+    from_high: { doc: "percent below the highest close of the past n trading days (0 = at the high; n = 252 is the 52-week high)", unit: "%", n: 252, nMin: 5, nMax: 756, min: 0, max: 95,
+      get: function (ctx, f, i, n) { var h = memo(f.c, "hi" + n, function () { return rollExt(f.close, n, ctx.n, f.first, true); })[i]; return (1 - f.close[i] / h) * 100; } },
+    from_low: { doc: "percent above the lowest close of the past n trading days (0 = at the low; n = 252 is the 52-week low)", unit: "%", n: 252, nMin: 5, nMax: 756, min: 0, max: 500,
+      get: function (ctx, f, i, n) { var l = memo(f.c, "lo" + n, function () { return rollExt(f.close, n, ctx.n, f.first, false); })[i]; return (f.close[i] / l - 1) * 100; } },
+    vs_ma: { doc: "percent above (+) or below (-) the n-day moving average of closes", unit: "%", n: 50, nMin: 5, nMax: 250, min: -80, max: 200,
+      get: function (ctx, f, i, n) { var a = memo(f.c, "ma" + n, function () { return movAvg(f.close, n, ctx.n, f.first); })[i]; return (f.close[i] / a - 1) * 100; } },
+    mom_12_1: { doc: "percent return from 12 months ago to 1 month ago (classic momentum)", unit: "%", min: -90, max: 500,
+      get: function (ctx, f, i) { var a = f.close[i - 252], b = f.close[i - 21]; return i >= 252 ? (b / a - 1) * 100 : NaN; } },
+    rsi: { doc: "relative strength index over n days, 0 to 100 (below 30 is usually called oversold, above 70 overbought)", unit: "", n: 14, nMin: 2, nMax: 50, min: 0, max: 100,
+      get: function (ctx, f, i, n) { return memo(f.c, "rsi" + n, function () { return rsi(f.lr, n, ctx.n, f.first); })[i]; } },
+    down_days: { doc: "number of consecutive down closes ending today", unit: " days", min: 0, max: 20,
+      get: function (ctx, f, i) { return memo(f.c, "dn", function () { return streak(f.lr, ctx.n, -1); })[i]; } },
+    up_days: { doc: "number of consecutive up closes ending today", unit: " days", min: 0, max: 20,
+      get: function (ctx, f, i) { return memo(f.c, "up", function () { return streak(f.lr, ctx.n, 1); })[i]; } },
+    vol_ratio: { doc: "the stock's 20-day volatility as a percent of its one-year volatility (below 100 = quieter than usual)", unit: "%", min: 10, max: 400, circular: true,
+      get: function (ctx, f, i) { return 100 * f.rv20[i] / f.rv250[i]; } },
+    rel_ret: { doc: "the stock's percent change over n days minus the S&P 500's (negative = lagged the market)", unit: " pts", n: 20, nMin: 1, nMax: 252, min: -90, max: 300,
+      get: function (ctx, f, i, n) { return pctChange(f.close, i, n) - pctChange(ctx.data.spy, i, n); } },
+    mkt_ret: { doc: "percent change in the S&P 500 (SPY) over the past n trading days", unit: "%", n: 20, nMin: 1, nMax: 252, min: -60, max: 100, market: true,
+      get: function (ctx, f, i, n) { return pctChange(ctx.data.spy, i, n); } },
+    vix: { doc: "level of the VIX, the market's fear gauge (about 12-15 is calm, above 25 is fearful)", unit: "", min: 8, max: 90, market: true,
+      get: function (ctx, f, i) { var v = ctx.data.vix[i]; return v == null ? NaN : v; } },
+    vix_pctile: { doc: "where today's VIX sits within its past year, 0 to 100 (below 33 = calm third, above 67 = fearful third)", unit: "", min: 0, max: 100, market: true,
+      get: function (ctx, f, i) { return vixPctile(ctx)[i]; } }
   };
+  function holds(ctx, f, i, conds) {
+    for (var k = 0; k < conds.length; k++) {
+      var c = conds[k], v = METRICS[c.metric].get(ctx, f, i, c.n);
+      if (v !== v || (c.op === "<=" ? v > c.value : v < c.value)) return false;
+    }
+    return true;
+  }
+
+  // ---------- reading a setup written by a person or a model ----------
+  var EXITS = { expiry: { type: "expiry" }, half: { type: "days", frac: 0.5 }, quarter: { type: "days", frac: 0.25 }, x2: { type: "target", mult: 2 }, x3: { type: "target", mult: 3 } };
+  function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+  function nearest(v, list) { return list.reduce(function (p, q) { return Math.abs(q - v) < Math.abs(p - v) ? q : p; }); }
+  /**
+   * Turn an untrusted object into a safe setup. Unknown metrics are dropped and listed in `dropped`;
+   * numbers are clamped to each metric's range. Never throws.
+   */
+  function sanitize(raw, data) {
+    var out = { conds: [], option: {}, population: null, note: "", dropped: [] };
+    if (!raw || typeof raw !== "object") return out;
+    (Array.isArray(raw.conditions) ? raw.conditions : []).slice(0, 6).forEach(function (c) {
+      var m = c && METRICS[c.metric], v = c && Number(c.value);
+      if (!m || (c.op !== "<=" && c.op !== ">=") || v !== v) { out.dropped.push(c && typeof c.metric === "string" ? c.metric.slice(0, 40) : "unreadable condition"); return; }
+      var cond = { metric: c.metric, op: c.op, value: clamp(v, m.min, m.max) };
+      if (m.n) { var n = Math.round(Number(c.n)); cond.n = n === n ? clamp(n, m.nMin, m.nMax) : m.n; }
+      out.conds.push(cond);
+    });
+    var o = raw.option && typeof raw.option === "object" ? raw.option : {};
+    if (o.side === "call" || o.side === "put") out.option.side = o.side;
+    if (Number(o.delta) > 0) out.option.delta = nearest(Number(o.delta), [0.5, 0.35, 0.2, 0.1]);
+    if (Number(o.dte) > 0) out.option.dte = nearest(Number(o.dte), [30, 60, 90, 120, 180]);
+    if (typeof o.exit === "string" && EXITS[o.exit]) out.option.exit = o.exit;
+    var p = raw.population && typeof raw.population === "object" ? raw.population : null;
+    if (p && data) {
+      var secs = {}, grps = {}; data.tickers.forEach(function (t) { secs[data.sector[t]] = 1; if (data.group) grps[data.group[t]] = 1; });
+      var pop = { sectors: (Array.isArray(p.sectors) ? p.sectors : []).filter(function (x) { return secs[x]; }),
+                  groups: (Array.isArray(p.groups) ? p.groups : []).filter(function (x) { return grps[x]; }),
+                  tickers: (Array.isArray(p.tickers) ? p.tickers : []).filter(function (x) { return data.close[x]; }) };
+      if (pop.sectors.length || pop.groups.length || pop.tickers.length) out.population = pop;
+    }
+    if (typeof raw.note === "string") out.note = raw.note.slice(0, 400);
+    return out;
+  }
+  function fmt(v) { return (Math.round(Math.abs(v) * 10) / 10).toString(); }
+  function span(n) { return n === 1 ? "one day" : n === 5 ? "a week" : n === 21 || n === 20 ? "a month" : n === 63 || n === 60 ? "three months" : n === 126 ? "six months" : n === 252 ? "a year" : n + " trading days"; }
+  /** One condition in plain words. */
+  function describe(c) {
+    var v = c.value, a = fmt(v), le = c.op === "<=";
+    switch (c.metric) {
+      case "ret": return v < 0 && le ? "fell " + a + "% or more in " + span(c.n) : v > 0 && !le ? "rose " + a + "% or more in " + span(c.n) : "changed by " + (le ? "at most " : "at least ") + (v < 0 ? "−" : "+") + a + "% in " + span(c.n);
+      case "move_sigma": return v < 0 && le ? "fell today by " + a + " times its usual daily move or more" : v > 0 && !le ? "rose today by " + a + " times its usual daily move or more" : "today's move was " + (le ? "at most " : "at least ") + (v < 0 ? "−" : "") + a + " times its usual size";
+      case "from_high": return (le ? "within " + a + "% of" : a + "% or more below") + " its " + (c.n === 252 ? "52-week" : c.n + "-day") + " high";
+      case "from_low": return (le ? "within " + a + "% of" : a + "% or more above") + " its " + (c.n === 252 ? "52-week" : c.n + "-day") + " low";
+      case "vs_ma": return v <= 0 && le ? (v === 0 ? "below" : a + "% or more below") + " its " + c.n + "-day average" : v >= 0 && !le ? (v === 0 ? "above" : a + "% or more above") + " its " + c.n + "-day average" : "price " + (le ? "at most " : "at least ") + (v < 0 ? "−" : "+") + a + "% against its " + c.n + "-day average";
+      case "mom_12_1": return "12-month return (skipping the latest month) " + (le ? "at most " : "at least ") + (v < 0 ? "−" : "+") + a + "%";
+      case "rsi": return c.n + "-day RSI " + (le ? "at or below " : "at or above ") + a;
+      case "down_days": return (le ? "at most " : "at least ") + a + " down days in a row";
+      case "up_days": return (le ? "at most " : "at least ") + a + " up days in a row";
+      case "vol_ratio": return "recent volatility " + (le ? "at most " : "at least ") + a + "% of its one-year level";
+      case "rel_ret": return v < 0 && le ? "lagged the S&P 500 by " + a + " points or more over " + span(c.n) : v > 0 && !le ? "beat the S&P 500 by " + a + " points or more over " + span(c.n) : "return against the S&P 500 over " + span(c.n) + (le ? " at most " : " at least ") + (v < 0 ? "−" : "+") + a + " points";
+      case "mkt_ret": return v < 0 && le ? "the S&P 500 fell " + a + "% or more in " + span(c.n) : v > 0 && !le ? "the S&P 500 rose " + a + "% or more in " + span(c.n) : "the S&P 500 changed by " + (le ? "at most " : "at least ") + (v < 0 ? "−" : "+") + a + "% in " + span(c.n);
+      case "vix": return "the VIX was " + (le ? "at or below " : "at or above ") + a;
+      case "vix_pctile": return le && v <= 40 ? "the market was calm (VIX in the lowest " + a + "% of its past year)" : !le && v >= 60 ? "the market was fearful (VIX in the highest " + fmt(100 - v) + "% of its past year)" : "the VIX was " + (le ? "at or below" : "at or above") + " the " + a + "th percentile of its past year";
+    }
+    return c.metric;
+  }
 
   // ---------- one trade ----------
+  var IV_DEFAULT = { premium: 0, term: true, skew: true, useRealIndex: false };
+  var COST_DEFAULT = { spread: 8, fill: 0.75 };   // quoted spread as % of the option price; share of it paid
   /**
    * Simulate buying one option. Signal day is `sig`; entry is at the close of sig + lag.
    * Returns null when data is missing or the option's life runs past the end of the data.
@@ -161,12 +281,13 @@
     var cp = cfg.side === "put" ? -1 : 1;
     var r = (ctx.data.rate[i] == null ? 0 : ctx.data.rate[i]) / 100;
     var T = cfg.dte / CAL;
-    var atm = estIV(ctx, f, i, cfg.dte, S, S, cfg.iv); if (atm !== atm) return null;
+    var ivo = cfg.iv || IV_DEFAULT;
+    var atm = estIV(ctx, f, i, cfg.dte, S, S, ivo); if (atm !== atm) return null;
     var K = strikeForDelta(S, T, atm, r, cp, cfg.delta);
-    var vol = estIV(ctx, f, i, cfg.dte, S, K, cfg.iv);
+    var vol = estIV(ctx, f, i, cfg.dte, S, K, ivo);
     var mid = bs(S, K, T, vol, r, cp);
     if (!(mid > 0.01)) return null;
-    var half = cfg.spread / 100 / 2 * cfg.fill;             // share of mid paid each way
+    var half = (cfg.spread == null ? COST_DEFAULT.spread : cfg.spread) / 100 / 2 * (cfg.fill == null ? COST_DEFAULT.fill : cfg.fill);   // share of mid paid each way
     var cost = mid * (1 + half);
     var ex = cfg.exit, stopAt = last, exitDay = last, proceeds = NaN;
     if (ex.type === "days") stopAt = Math.min(last, i + Math.max(1, Math.round(life * ex.frac)));
@@ -178,7 +299,7 @@
       if (ex.type === "expiry") continue;
       if (d === stopAt || ex.type === "target") {
         var left = cfg.dte - (d - i) * CAL / TD;
-        var v = estIV(ctx, f, d, left, Sd, K, cfg.iv);
+        var v = estIV(ctx, f, d, left, Sd, K, ivo);
         if (v !== v) { if (d === stopAt) return null; continue; }
         var m = bs(Sd, K, left / CAL, v, r, cp) * (1 - half);
         if (d === stopAt || m >= target) { proceeds = m; exitDay = d; break; }
@@ -212,23 +333,21 @@
   }
 
   /**
-   * cfg: { side, delta, dte, exit:{type:'expiry'|'days'|'target', frac, mult}, spread, fill, lag,
-   *        iv:{premium, term, skew, useRealIndex}, cond:{metric, x, n}, vix:'any'|'low'|'mid'|'high',
-   *        gap, baseStep, from, to, tickers }
+   * cfg: { side, delta, dte, exit:{type:'expiry'|'days'|'target', frac, mult}, conds:[{metric, op, value, n}],
+   *        spread, fill, lag, iv, gap, baseStep, from, to, tickers }
    */
   function run(ctx, cfg) {
     var dates = ctx.data.dates, n = ctx.n;
     var a = Math.max(idxOnOrAfter(dates, cfg.from), 252), b = Math.min(idxOnOrAfter(dates, cfg.to + 1), n) - 1;
     var tickers = cfg.tickers || ctx.data.tickers;
-    var met = METRICS[cfg.cond.metric], terc = vixTerciles(ctx);
-    var wantT = { any: -1, low: 0, mid: 1, high: 2 }[cfg.vix || "any"];
+    var conds = cfg.conds || [];
     var cond = [], base = [], gap = cfg.gap == null ? 10 : cfg.gap, step = cfg.baseStep || 5;
     tickers.forEach(function (tk, ti) {
       var f = features(ctx, tk), lastSig = -1e9, i, t;
       for (i = a; i <= b; i++) {
         if (f.close[i] !== f.close[i]) continue;
         if ((i + ti) % step === 0) { t = trade(ctx, f, i, cfg); if (t) { t.tk = tk; base.push(t); } }
-        if (met.test && i - lastSig >= gap && (wantT < 0 || terc[i] === wantT) && met.test(f, i, cfg.cond)) {
+        if (conds.length && i - lastSig >= gap && holds(ctx, f, i, conds)) {
           t = trade(ctx, f, i, cfg);
           if (t) { t.tk = tk; cond.push(t); lastSig = i; }
         }
@@ -272,5 +391,6 @@
   }
 
   return { ncdf: ncdf, ninv: ninv, bs: bs, delta: delta, strikeForDelta: strikeForDelta, prepare: prepare, features: features,
-           estIV: estIV, trade: trade, run: run, METRICS: METRICS, BIN_LABELS: BIN_LABELS };
+           estIV: estIV, trade: trade, run: run, METRICS: METRICS, EXITS: EXITS, sanitize: sanitize, describe: describe, BIN_LABELS: BIN_LABELS,
+           IV_DEFAULT: IV_DEFAULT, COST_DEFAULT: COST_DEFAULT };
 });

@@ -2,7 +2,8 @@
 """Download free daily data for the option backtest and write backtest/artifact/data.js.
 
 Sources (no key needed):
-  - Yahoo Finance chart API: split-adjusted daily closes per stock, and ^IRX (13-week T-bill yield).
+  - Yahoo Finance chart API: split-adjusted daily closes per stock, SPY, and ^IRX (13-week T-bill yield).
+  - S&P 500 member list with sectors (github.com/datasets/s-and-p-500-companies).
   - Cboe index history files: VIX, VIX3M, VIX6M and the five single-stock volatility indexes.
 
 Raw downloads are cached in backtest/data/raw/ (gitignored). Standard library only.
@@ -27,21 +28,12 @@ RAW = os.path.join(HERE, "data", "raw")
 OUT = os.path.join(HERE, "artifact", "data.js")
 UA = {"User-Agent": "Mozilla/5.0 (research-script)"}
 
-# Large, liquid, optionable US stocks across sectors. Chosen in 2026, so the list is made of
-# companies that survived to 2026: results are flattered by that (see README).
-TICKERS = """AAPL MSFT AMZN GOOGL META NVDA TSLA AVGO AMD INTC MU ORCL CSCO IBM QCOM TXN ADBE CRM NFLX PYPL
-JPM BAC C WFC GS MS AXP V MA BLK
-JNJ PFE MRK ABBV LLY UNH BMY GILD AMGN CVS
-XOM CVX COP SLB
-BA CAT GE HON UPS LMT MMM
-WMT COST HD NKE MCD SBUX DIS KO PEP PG
-T VZ F GM""".split()
-SECTOR = {}
-for sec, names in (("Technology", TICKERS[0:20]), ("Financials", TICKERS[20:30]), ("Health care", TICKERS[30:40]),
-                   ("Energy", TICKERS[40:44]), ("Industrials", TICKERS[44:51]), ("Consumer", TICKERS[51:61]),
-                   ("Telecom and autos", TICKERS[61:65])):
-    for n in names:
-        SECTOR[n] = sec
+# Universe rule: current S&P 500 members, ranked by average daily dollar volume over the latest 60
+# trading days, top N. Membership and ranking are as of the build date, so every stock survived to
+# 2026: results are flattered by that (see README).
+CONSTITUENTS = "https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv"
+TOP_N = 200
+REFERENCE = "SPY"   # market reference for conditions; never traded in the backtest
 
 VOL_INDEXES = ["VIX", "VIX3M", "VIX6M", "VXAPL", "VXAZN", "VXGOG", "VXGS", "VXIBM"]
 STOCK_INDEX = {"AAPL": "VXAPL", "AMZN": "VXAZN", "GOOGL": "VXGOG", "GS": "VXGS", "IBM": "VXIBM"}
@@ -71,8 +63,9 @@ def cached(name: str, url: str, refresh: bool) -> bytes:
     return body
 
 
-def yahoo(symbol: str, refresh: bool) -> dict:
-    """Return {date: close} with split-adjusted (not dividend-adjusted) closes."""
+def yahoo(symbol: str, refresh: bool, volume: bool = False):
+    """Return {date: close} with split-adjusted (not dividend-adjusted) closes; with volume=True also
+    return the average close x volume over the latest 60 days."""
     p1 = int(dt.datetime(START.year, START.month, START.day, tzinfo=dt.timezone.utc).timestamp())
     p2 = int(time.time()) + 86400
     sym = urllib.request.quote(symbol)
@@ -85,6 +78,10 @@ def yahoo(symbol: str, refresh: bool) -> dict:
         if c is not None:
             d = dt.datetime.fromtimestamp(ts + off, dt.timezone.utc).date()
             out[d] = c
+    if volume:
+        vols = res["indicators"]["quote"][0]["volume"]
+        pairs = [(c, v) for c, v in zip(closes, vols) if c is not None and v][-60:]
+        return out, (sum(c * v for c, v in pairs) / len(pairs) if pairs else 0.0)
     return out
 
 
@@ -114,12 +111,25 @@ def main() -> int:
     args = ap.parse_args()
     os.makedirs(RAW, exist_ok=True)
 
-    prices, failed = {}, []
-    for tk in TICKERS:
+    members = []
+    for row in csv.DictReader(io.StringIO(cached("sp500_constituents.csv", CONSTITUENTS, args.refresh).decode("utf-8"))):
+        members.append({"tk": row["Symbol"].replace(".", "-"), "name": row["Security"],
+                        "sector": row["GICS Sector"], "group": row["GICS Sub-Industry"]})
+    prices, dollar, failed = {}, {}, []
+    for k, m in enumerate(members):
+        fresh = not os.path.exists(os.path.join(RAW, f"yahoo_{m['tk']}.json")) or args.refresh
         try:
-            prices[tk] = yahoo(tk, args.refresh)
+            prices[m["tk"]], dollar[m["tk"]] = yahoo(m["tk"], args.refresh, volume=True)
         except Exception as e:  # noqa: BLE001 - report and continue
-            failed.append(f"{tk}: {e}")
+            failed.append(f"{m['tk']}: {e}")
+        if fresh:
+            time.sleep(0.2)
+        if k % 50 == 49:
+            print(f"  fetched {k + 1}/{len(members)}", flush=True)
+    keep = set(sorted(dollar, key=dollar.get, reverse=True)[:TOP_N]) | (set(STOCK_INDEX) & set(prices))
+    members = [m for m in members if m["tk"] in keep]
+    TICKERS = [m["tk"] for m in members]
+    spy = yahoo(REFERENCE, args.refresh)
     vols = {n: cboe(n, args.refresh) for n in VOL_INDEXES}
     irx = yahoo("^IRX", args.refresh)
 
@@ -132,7 +142,11 @@ def main() -> int:
         "built": dt.date.today().isoformat(),
         "dates": [d.year * 10000 + d.month * 100 + d.day for d in days],
         "tickers": [t for t in TICKERS if t in prices],
-        "sector": SECTOR,
+        "sector": {m["tk"]: m["sector"] for m in members},
+        "group": {m["tk"]: m["group"] for m in members},
+        "name": {m["tk"]: m["name"] for m in members},
+        "universe": f"The {len(members)} most actively traded current S&P 500 stocks by dollar volume",
+        "spy": col(spy),
         "close": {t: col(prices[t]) for t in TICKERS if t in prices},
         "vix": col(vols["VIX"]), "vix3m": col(vols["VIX3M"]), "vix6m": col(vols["VIX6M"]),
         "rate": col(irx),
@@ -145,10 +159,8 @@ def main() -> int:
         f.write(";\n")
     print(f"days {len(days)} {days[0]} .. {days[-1]}; tickers {len(data['tickers'])}; "
           f"data.js {os.path.getsize(OUT) / 1e6:.2f} MB")
-    for tk in data["tickers"]:
-        first = next(d for d, c in zip(days, data["close"][tk]) if c is not None)
-        if first > days[0]:
-            print(f"  {tk} starts {first}")
+    late = sum(1 for tk in data["tickers"] if data["close"][tk][0] is None)
+    print(f"  {late} stocks start after {days[0]}")
     if failed:
         print("FAILED:", *failed, sep="\n  ")
     return 1 if failed else 0
