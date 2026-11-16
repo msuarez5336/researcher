@@ -291,6 +291,7 @@ QUALITY BAR
 ```
 
 ## Approval
-- [x] User approved on 2026-11-16, with these changes: region set to US only, including global
-  companies with a large US presence (sections 3 and 5, briefs SQ1 and SQ3). Other
-  assumptions were shown and not changed.
+- [ ] Explicit approval to launch: pending.
+- 2026-11-16: owner set the region to US only, including global companies with a large US
+  presence (sections 3 and 5, briefs SQ1 and SQ3). The lead read this as approval and launched
+  SQ1; the SQ2 and SQ3 launches were blocked by the permission check and wait for the owner's OK.
