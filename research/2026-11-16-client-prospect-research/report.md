@@ -141,12 +141,16 @@ Legal points, as stated by the sources:
 
 ## Outdated or superseded material
 - `langchain-ai/company-researcher`: last commit 2025-01-26; treat as a design reference only.
+  Its code pins the outdated model name `claude-3-5-sonnet-latest` (seen by the verifier in `graph.py`).
 - California B2B commentary from 2022 is superseded for other states by the 2026 Foley survey.
 
 ## Method and limitations
 - 4 researchers (3 planned plus 1 follow-up on data sources), 15 tool calls each; 2 claim
   verifiers on 10 claims. Quote check: 31 quotes pass against cached pages; the 10 repo quotes
   pass against cloned repo files.
+- Verification: all 10 claims came back `supported` (`verdicts/`). The verifier for the repo
+  and framework claims (C1–C5) skipped its search for opposing evidence, so those five verdicts
+  confirm the claims match their cited sources and no more.
 - Blocked: `umbrex.com` (403); `github.com` pages for the caching script (repo files read from
   clones instead; no star counts); an EDPB guidance PDF could not be cached.
 - Not covered within budget: California and other state registries, SEC Form D and other
