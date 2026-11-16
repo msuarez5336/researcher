@@ -1,0 +1,9 @@
+# Emails and notes from prospects are confidential: they stay on your machine.
+prospects/*/context/*
+!prospects/*/context/README.md
+# Cached web pages: large, third-party, regenerable
+prospects/*/research/pages/
+.claude/settings.local.json
+CLAUDE.local.md
+__pycache__/
+.DS_Store

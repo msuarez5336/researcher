@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch",
+      "Bash(python3 scripts/new_prospect.py:*)",
+      "Bash(python3 scripts/emails_to_text.py:*)",
+      "Bash(python3 scripts/fetch_page.py:*)",
+      "Bash(python3 scripts/check_quotes.py:*)",
+      "Bash(python3 scripts/run_status.py:*)"
+    ]
+  }
+}
