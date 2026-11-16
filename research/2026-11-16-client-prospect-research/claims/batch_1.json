@@ -1,0 +1,104 @@
+[
+ {
+  "cid": "C1",
+  "claim": "Anthropic's knowledge-work-plugins repo contains a sales 'account-research' skill whose required input is a company name or domain (contact optional), which grounds the seller's ICP, value proposition and competitors from org context and scores fit against them.",
+  "evidence": [
+   {
+    "id": "SQ2-4",
+    "quote": "Company name or domain (required); contact name or title (optional).",
+    "url": "https://github.com/anthropics/knowledge-work-plugins",
+    "page": "research/2026-11-16-client-prospect-research/pages/kwp-account-research.md"
+   },
+   {
+    "id": "SQ2-5",
+    "quote": "## Step 6 - Output",
+    "url": "https://github.com/anthropics/knowledge-work-plugins",
+    "page": "research/2026-11-16-client-prospect-research/pages/kwp-account-research.md"
+   },
+   {
+    "id": "SQ2-6",
+    "quote": "every value is",
+    "url": "https://github.com/anthropics/knowledge-work-plugins",
+    "page": "research/2026-11-16-client-prospect-research/pages/kwp-account-research.md"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "The wreynoir/company-enrichment-skill Claude Code skill takes a company domain plus user-written files (my-icp.md, an email template, a call script) and uses Tavily, Apollo and Perplexity, which need API keys.",
+  "evidence": [
+   {
+    "id": "SQ2-7",
+    "quote": "A Claude Code skill that takes a company domain and tells you whether they're a good fit to sell to.",
+    "url": "https://github.com/wreynoir/company-enrichment-skill",
+    "page": "research/2026-11-16-client-prospect-research/pages/wr-README.md"
+   },
+   {
+    "id": "SQ2-8",
+    "quote": "cp templates/my-icp.md ~/.claude/my-icp.md",
+    "url": "https://github.com/wreynoir/company-enrichment-skill",
+    "page": "research/2026-11-16-client-prospect-research/pages/wr-README.md"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "The langchain-ai/company-researcher agent takes a company name, an optional JSON extraction schema and optional user notes, has no input for the seller's services, and needs Anthropic and Tavily API keys.",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "* company: str - A company to research",
+    "url": "https://github.com/langchain-ai/company-researcher",
+    "page": "research/2026-11-16-client-prospect-research/pages/lc-README.md"
+   },
+   {
+    "id": "SQ2-3",
+    "quote": "ANTHROPIC_API_KEY=sk-xxx",
+    "url": "https://github.com/langchain-ai/company-researcher",
+    "page": "research/2026-11-16-client-prospect-research/pages/lc-env.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "MEDDPICC has eight criteria: Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Identify Pain, Champion and Competition; Competition includes the status quo and building in-house; Paper Process covers legal, security and procurement steps.",
+  "evidence": [
+   {
+    "id": "SQ1-1",
+    "quote": "The name is an acronym for eight qualification criteria: Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Identify Pain, Champion, and Competition.",
+    "url": "https://altify.com/blog/meddpicc-enterprise-sellers-qualification/",
+    "page": "research/2026-11-16-client-prospect-research/pages/altify.com-9e9ee97b84.txt"
+   },
+   {
+    "id": "SQ1-3",
+    "quote": "Paper Process covers the legal, security, and procurement steps required to execute a contract after the buying decision is made: redlines, security review, MSA negotiation, PO issuance.",
+    "url": "https://altify.com/blog/meddpicc-enterprise-sellers-qualification/",
+    "page": "research/2026-11-16-client-prospect-research/pages/altify.com-9e9ee97b84.txt"
+   },
+   {
+    "id": "SQ1-5",
+    "quote": "Competition is every alternative the buyer is weighing, including internal status quo, a build-it-yourself option, and named competitors.",
+    "url": "https://altify.com/blog/meddpicc-enterprise-sellers-qualification/",
+    "page": "research/2026-11-16-client-prospect-research/pages/altify.com-9e9ee97b84.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "BANT stands for Budget, Authority, Need and Timeline, and is criticised as outdated for modern sales.",
+  "evidence": [
+   {
+    "id": "SQ1-6",
+    "quote": "Budget (the prospect’s ability to afford the product), Authority (the prospect’s ability to make the final decision), Need (whether the prospect has a need your product solves), Timeline (how quickly the purchase needs to take place).",
+    "url": "https://www.pipedrive.com/en/blog/bant",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.pipedrive.com-43e0937e72.txt"
+   },
+   {
+    "id": "SQ1-7",
+    "quote": "The main criticism against the BANT qualification framework is that it’s outdated in the context of modern sales.",
+    "url": "https://www.pipedrive.com/en/blog/bant",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.pipedrive.com-43e0937e72.txt"
+   }
+  ]
+ }
+]

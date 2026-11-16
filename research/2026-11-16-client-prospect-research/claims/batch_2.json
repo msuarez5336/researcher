@@ -1,0 +1,110 @@
+[
+ {
+  "cid": "C6",
+  "claim": "The SEC limits scripted access to EDGAR to 10 requests per second, does not allow botnets or automated tools to crawl the site, and asks scripts to declare a user agent.",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "Current max request rate: 10 requests/second.",
+    "url": "https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.sec.gov-6f123202b2.txt"
+   },
+   {
+    "id": "SQ3-2",
+    "quote": "The SEC does not allow botnets or automated tools to crawl the site.",
+    "url": "https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.sec.gov-6f123202b2.txt"
+   },
+   {
+    "id": "SQ3-3",
+    "quote": "Please declare your user agent in request headers:",
+    "url": "https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.sec.gov-6f123202b2.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "Foreign private issuers file annual reports with the SEC on Form 20-F, and SEC filings are submitted on EDGAR.",
+  "evidence": [
+   {
+    "id": "SQ3b-1",
+    "quote": "Form 20-F is the primary disclosure document for foreign private issuers under both the Securities Act and the Exchange Act.",
+    "url": "https://www.sec.gov/divisions/corpfin/internatl/foreign-private-issuers-overview.shtml",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.sec.gov-0f0eeaa13d.txt"
+   },
+   {
+    "id": "SQ3b-2",
+    "quote": "All registration statements and other material filed with the Commission must be submitted in electronic format on the Commission’s Electronic Data Gathering and Retrieval (“EDGAR”) system",
+    "url": "https://www.sec.gov/divisions/corpfin/internatl/foreign-private-issuers-overview.shtml",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.sec.gov-0f0eeaa13d.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "The Delaware Division of Corporations' entity search prohibits data mining and says use of automated tools may lead to suspension of access; LinkedIn's terms prohibit using scrapers, crawlers, bots or scripts to copy profiles.",
+  "evidence": [
+   {
+    "id": "SQ3b-6",
+    "quote": "The Division of Corporations strictly prohibits mining data. Excessive and repeated searches that may have a negative impact on our systems and customer experience are also prohibited.",
+    "url": "https://icis.corp.delaware.gov/eCorp/EntitySearch/NameSearch.aspx",
+    "page": "research/2026-11-16-client-prospect-research/pages/icis.corp.delaware.gov-d36486008e.txt"
+   },
+   {
+    "id": "SQ3b-7",
+    "quote": "Use of automated tools in any form may result in the suspension of your access to utilize this service.",
+    "url": "https://icis.corp.delaware.gov/eCorp/EntitySearch/NameSearch.aspx",
+    "page": "research/2026-11-16-client-prospect-research/pages/icis.corp.delaware.gov-d36486008e.txt"
+   },
+   {
+    "id": "SQ3-6",
+    "quote": "Develop, support or use software, devices, scripts, robots or any other means or processes (such as crawlers, browser plugins and add-ons or any other technology) to scrape or copy the Services, including profiles and other data from the Services;",
+    "url": "https://www.linkedin.com/help/linkedin/answer/a1341387",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.linkedin.com-256e45f207.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "As of 2026, most US state comprehensive privacy laws exclude people acting in a commercial or employment context (including B2B contacts), while California applies its law to business contacts; California's B2B exemption expired on 1 January 2023.",
+  "evidence": [
+   {
+    "id": "SQ3b-3",
+    "quote": "individuals acting in a commercial or employment context are generally excluded from coverage. As a result, business-to-business contacts, employees, and job applicants typically fall outside the scope of these statutes",
+    "url": "https://www.foley.com/insights/publications/2026/04/the-compliance-tightrope-balancing-uniformity-and-precision-across-u-s-state-consumer-privacy-laws/",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.foley.com-4115f322c6.txt"
+   },
+   {
+    "id": "SQ3b-4",
+    "quote": "California takes a broader approach, applying its law to personal information collected from or about employees, job applicants, independent contractors, and business representatives and contacts who reside in that State.",
+    "url": "https://www.foley.com/insights/publications/2026/04/the-compliance-tightrope-balancing-uniformity-and-precision-across-u-s-state-consumer-privacy-laws/",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.foley.com-4115f322c6.txt"
+   },
+   {
+    "id": "SQ3-9",
+    "quote": "The California Consumer Privacy Act (CCPA) exemptions for employee and business-to-business (B2B) personal information have not been extended",
+    "url": "https://morganlewis.com/pubs/2022/10/california-consumer-privacy-act-employee-and-b2b-exemptions-expire-january-1-2023",
+    "page": "research/2026-11-16-client-prospect-research/pages/morganlewis.com-de34da843d.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "The US CAN-SPAM Act makes no exception for business-to-business email; and the Greenhouse Job Board API requires no authentication for GET endpoints.",
+  "evidence": [
+   {
+    "id": "SQ3-10",
+    "quote": "The law makes no exception for business-to-business email.",
+    "url": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+    "page": "research/2026-11-16-client-prospect-research/pages/www.ftc.gov-8b947d1b41.txt"
+   },
+   {
+    "id": "SQ3b-8",
+    "quote": "Job Board data is publicly available, so authentication is not required for any GET endpoints.",
+    "url": "https://developers.greenhouse.io/job-board.html",
+    "page": "research/2026-11-16-client-prospect-research/pages/developers.greenhouse.io-0825c5be29.txt"
+   }
+  ]
+ }
+]
