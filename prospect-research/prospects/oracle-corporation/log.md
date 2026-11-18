@@ -1,0 +1,1 @@
+2026-11-18 | STANDARD | context files: 0 | 3 researchers (~36 calls), 1 verifier; lead checks on 10-Q, FY2025 10-K and proxy | unverified: head of HR, WARN-notice cuts, AI hiring, Jewett settlement | test run

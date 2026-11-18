@@ -1,0 +1,98 @@
+[
+ {
+  "cid": "C1",
+  "claim": "Oracle's full-time headcount fell from about 162,000 (about 58,000 in the US) at 31 May 2025 to about 141,000 (about 49,000 in the US) at 31 May 2026.",
+  "evidence": [
+   {
+    "id": "L-3",
+    "quote": "As of May 31, 2025, we employed approximately 162,000 full-time employees, of which approximately 58,000 were employed in the U.S.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017025087926/orcl-20250531.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-ef303a2430.txt"
+   },
+   {
+    "id": "W1-3",
+    "quote": "As of May 31, 2026, we employed approximately 141,000 full-time employees, of which approximately 49,000 were employed in the U.S. and approximately 92,000 were employed internationally.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-446ab67f3a.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "Oracle's restructuring and other expenses were $1,838 million in fiscal 2026 versus $374 million in fiscal 2025; the 2026 Restructuring Plan was estimated at up to $2.1 billion as of 31 August 2026, and management then added about $700 million for further actions.",
+  "evidence": [
+   {
+    "id": "W3-10",
+    "quote": "Restructuring and other expenses increased by $1.5 billion in reported currency in fiscal 2026 relative to fiscal 2025 primarily due to higher restructuring expenses",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-446ab67f3a.txt"
+   },
+   {
+    "id": "L-1",
+    "quote": "Subsequent to August 31, 2026, our management supplemented the 2026 Restructuring Plan by approximately $ 700 million to reflect additional actions that we expect to take.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-ee4d00cc1f.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "Compensia was the Oracle Compensation Committee's independent compensation advisor for fiscal 2026, reported directly to the committee and provided no other services to Oracle in fiscal 2026.",
+  "evidence": [
+   {
+    "id": "W3-1",
+    "quote": "The Compensation Committee retained Compensia, a national compensation consulting firm, as its independent compensation advisor for fiscal 2026",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526402816/orcl-20260925.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-4df06d374f.txt"
+   },
+   {
+    "id": "W3-2",
+    "quote": "Compensia reports directly to the Compensation Committee and Compensia did not provide any other services to Oracle during fiscal 2026.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526402816/orcl-20260925.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-4df06d374f.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "Oracle's 2025 say-on-pay proposal received about 82% of votes cast; the Compensation Committee (Awo Ablo, Charles W. Moorman as Chair, Stephen H. Rusckowski) also oversees human capital matters including talent acquisition and retention.",
+  "evidence": [
+   {
+    "id": "W3-4",
+    "quote": "Stockholders approved our advisory say-on-pay proposal at our 2025 Annual Meeting with approximately 82% of the votes cast voting in favor of the compensation of our NEOs",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526402816/orcl-20260925.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-4df06d374f.txt"
+   },
+   {
+    "id": "L-2",
+    "quote": "Compensation (Chair)",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526402816/orcl-20260925.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-4df06d374f.txt"
+   },
+   {
+    "id": "W1-9",
+    "quote": "Compensation Committee has general oversight over human capital matters, including talent acquisition and retention",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526402816/orcl-20260925.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-4df06d374f.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "Oracle's fiscal 2026 10-K says AI adoption has resulted, and may continue to result, in workforce reductions, and that restructurings may lead to shortages of skilled employees and damage to morale and retention.",
+  "evidence": [
+   {
+    "id": "W2-2",
+    "quote": "The adoption and deployment of AI technologies across our operations have resulted, and may continue to result, in reductions to our workforce,",
+    "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/oracle-lays-off-21-000-employees-in-just-12-months-due-to-ai-adoption-and-costly-ai-infrastructure-ambitions-says-layoffs-will-continue-as-internal-ai-deployment-grows",
+    "page": "prospects/oracle-corporation/research/pages/www.tomshardware.com-fad76bc191.txt"
+   },
+   {
+    "id": "W3-11",
+    "quote": "These types of restructurings may also lead to shortages of sufficiently skilled employees in certain roles, loss of valuable institutional knowledge and damage to employee morale and retention.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm",
+    "page": "prospects/oracle-corporation/research/pages/www.sec.gov-446ab67f3a.txt"
+   }
+  ]
+ }
+]

@@ -61,7 +61,8 @@ Depth, from `prospect.md`:
 
 Workers: W1 = questions 1–2; W2 = question 3; W3 = questions 4–8 for all services (split
 into two workers at DEEP when there are three or more services); W4 = named decision-makers,
-only if `prospect.md` says yes. Workers must not overlap: name the others' scopes in each brief.
+only if `prospect.md` says yes. At STANDARD, W4 counts toward the three-worker cap: fold named
+decision-makers into W1 instead (W1 already covers leadership). Workers must not overlap: name the others' scopes in each brief.
 
 Each worker brief is self-contained and holds:
 - the objective and why it matters;
@@ -71,6 +72,9 @@ Each worker brief is self-contained and holds:
   questions: write "find what vendor they use for payroll", never "they told us they are
   unhappy with <vendor>";
 - the source rules from `CLAUDE.md`, copied in;
+- for a listed company: take every number (headcount, revenue, restructuring costs, pay
+  figures) from the SEC filing itself, not from press coverage of it; press is for dating
+  events and for what filings don't say;
 - `RUN` as an absolute path, the evidence path `RUN/evidence/<W>.jsonl`, the notes path
   `RUN/notes/<W>.md`, the budget, the stop rule (two searches in a row add nothing), the
   reply limit (300 words) and the as-of date.
