@@ -1,0 +1,238 @@
+<title>Oracle Prospect Brief</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single-sheet account brief. Recommendation band, four figures, two fit columns, then signals, hooks and questions. */
+:root {
+  --bg: #f6f7f8;
+  --sheet: #ffffff;
+  --ink: #16202a;
+  --muted: #5a6672;
+  --line: #dde2e7;
+  --accent: #1f5f73;
+  --accent-soft: #e3eef1;
+  --good: #2f7a4b;
+  --good-soft: #e4f2e9;
+  --warn: #9a6a12;
+  --warn-soft: #f7eedb;
+  --bad: #a3392f;
+  --bad-soft: #f6e4e1;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1418; --sheet: #161d23; --ink: #e6ebef; --muted: #9aa6b1; --line: #2a343d;
+    --accent: #6fb3c6; --accent-soft: #1b2e35;
+    --good: #7cc896; --good-soft: #1a2e22; --warn: #e0b45f; --warn-soft: #33291a;
+    --bad: #ec8b80; --bad-soft: #36201d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1418; --sheet: #161d23; --ink: #e6ebef; --muted: #9aa6b1; --line: #2a343d;
+  --accent: #6fb3c6; --accent-soft: #1b2e35;
+  --good: #7cc896; --good-soft: #1a2e22; --warn: #e0b45f; --warn-soft: #33291a;
+  --bad: #ec8b80; --bad-soft: #36201d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 14.5px; line-height: 1.55;
+  padding-block: 28px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.sheet {
+  max-width: 1040px; margin: 0 auto; background: var(--sheet);
+  border: 1px solid var(--line); border-radius: 6px;
+  padding: clamp(18px, 4vw, 40px);
+  display: grid; gap: 28px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(26px, 4.4vw, 38px); font-weight: 800; letter-spacing: -0.01em; line-height: 1.1; }
+h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+h3 { font-size: 18px; font-weight: 700; }
+p { margin: 0; }
+.mono { font-family: var(--font-mono); font-size: 12px; }
+.muted { color: var(--muted); }
+
+header { display: grid; gap: 10px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.04em; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 13px; }
+.meta b { color: var(--ink); font-weight: 600; }
+
+.verdict {
+  background: var(--accent-soft); border-radius: 6px; padding: 18px 20px;
+  display: grid; gap: 6px;
+}
+.verdict .label { font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.verdict p.lead { font-family: var(--font-display); font-size: clamp(18px, 2.4vw, 22px); font-weight: 700; line-height: 1.3; }
+
+.figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.fig { padding: 16px 16px 14px 0; display: grid; gap: 4px; align-content: start; }
+.fig + .fig { padding-left: 16px; border-left: 1px solid var(--line); }
+.fig .num { font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 32px); font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.fig .delta { font-family: var(--font-mono); font-size: 12px; color: var(--bad); }
+.fig .cap { font-size: 13px; color: var(--muted); }
+
+.fit { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.fitcol { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.fithead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.chip.good { background: var(--good-soft); color: var(--good); }
+.chip.warn { background: var(--warn-soft); color: var(--warn); }
+.chip.bad { background: var(--bad-soft); color: var(--bad); }
+.rows { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.row dt { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+.row dd { margin: 0; }
+.hypo { font-size: 13.5px; border-left: 2px solid var(--accent); padding-left: 12px; }
+
+.two { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 28px; }
+.block { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.timeline { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.timeline li { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.timeline .d { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 1px; }
+.unv { font-family: var(--font-mono); font-size: 11px; color: var(--warn); }
+
+ol.list, ul.list { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+ol.list li::marker { font-family: var(--font-mono); color: var(--accent); font-size: 12px; }
+.quote { font-style: italic; }
+
+.risks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.risk { display: grid; gap: 4px; border-top: 2px solid var(--warn); padding-top: 10px; }
+.risk b { font-family: var(--font-display); font-size: 15px; }
+
+footer { border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; font-size: 12.5px; color: var(--muted); }
+footer a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 760px) {
+  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fig:nth-child(3) { padding-left: 0; border-left: 0; }
+  .fig:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .fit, .two, .risks { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 420px) {
+  .row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .timeline li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+</style>
+
+<main class="sheet">
+  <header>
+    <div class="eyebrow">PROSPECT BRIEF · NYSE: ORCL · AS OF 18 NOV 2026</div>
+    <h1>Oracle Corporation</h1>
+    <div class="meta">
+      <span>Services: <b>compensation strategy</b>, <b>talent strategy</b></span>
+      <span>Goal: <b>first meeting</b></span>
+      <span>Sources: <b>public only</b>, no emails yet</span>
+    </div>
+  </header>
+
+  <section class="verdict" aria-label="Recommendation">
+    <span class="label">Recommendation</span>
+    <p class="lead">Lead with talent strategy for Oracle's AI-driven workforce reshaping. Treat compensation as a second angle on broad-based pay, not executive pay.</p>
+    <p class="muted">First job: find who owns talent and total rewards. No head of HR appears in Oracle's SEC filings.</p>
+  </section>
+
+  <section class="figures" aria-label="Key figures">
+    <div class="fig">
+      <span class="num">141,000</span>
+      <span class="delta">−21,000 in a year</span>
+      <span class="cap">full-time staff at 31 May 2026 (162,000 a year earlier)</span>
+    </div>
+    <div class="fig">
+      <span class="num">49,000</span>
+      <span class="delta">−9,000 in a year</span>
+      <span class="cap">US staff (58,000 a year earlier)</span>
+    </div>
+    <div class="fig">
+      <span class="num">~$2.8bn</span>
+      <span class="delta">+$700m after Aug 2026</span>
+      <span class="cap">2026 restructuring plan, mostly severance</span>
+    </div>
+    <div class="fig">
+      <span class="num">$90–95bn</span>
+      <span class="delta mono" style="color: var(--muted)">FY2027 guidance</span>
+      <span class="cap">capex, mainly AI data centres ($55.6bn in FY2026)</span>
+    </div>
+  </section>
+
+  <section class="fit" aria-label="Fit by service">
+    <div class="fitcol">
+      <div class="fithead">
+        <h3>Talent strategy</h3>
+        <div class="chips"><span class="chip good">Moderate to strong</span></div>
+      </div>
+      <dl class="rows">
+        <div class="row"><dt>Pain</dt><dd>Oracle's 10-K says AI adoption <span class="quote">"may continue to result"</span> in workforce cuts, and that restructuring may cause skill shortages and damage to morale and retention.</dd></div>
+        <div class="row"><dt>Today</dt><dd>Strong in-house: talent reviews run on its own Fusion Cloud HCM; 20% of non-entry roles filled internally; 4.2m training hours. No outside talent adviser found.</dd></div>
+        <div class="row"><dt>Buyer</dt><dd>Not identified. The board's compensation committee oversees talent acquisition and retention.</dd></div>
+        <div class="row"><dt>Timing</dt><dd>Now: the restructuring plan was extended in September 2026.</dd></div>
+      </dl>
+      <p class="hypo">Help Oracle decide which skills to keep, retrain and hire, so the cuts don't remove capability it needs for the data-centre build-out.</p>
+    </div>
+
+    <div class="fitcol">
+      <div class="fithead">
+        <h3>Compensation strategy</h3>
+        <div class="chips"><span class="chip warn">Broad-based: moderate</span><span class="chip bad">Executive: poor</span></div>
+      </div>
+      <dl class="rows">
+        <div class="row"><dt>Incumbent</dt><dd>Compensia is the committee's independent adviser for executive and director pay, with no other Oracle work. A switch is unlikely.</dd></div>
+        <div class="row"><dt>Scrutiny</dt><dd>2025 say-on-pay passed with about 82%. The committee met seven large shareholders in FY2026.</dd></div>
+        <div class="row"><dt>Opening</dt><dd>The 10-K flags <span class="quote">"rising compensation costs without corresponding gains in productivity"</span>. New data-centre and AI roles need pay structures.</dd></div>
+        <div class="row"><dt>Gaps</dt><dd>Head of total rewards; pay-transparency approach; outside advisers below executive level.</dd></div>
+      </dl>
+      <p class="hypo">Reset pay ranges and retention incentives for scarce data-centre and AI roles without adding to the cost growth Oracle flags as a risk.</p>
+    </div>
+  </section>
+
+  <div class="two">
+    <section class="block" aria-label="Recent signals">
+      <h2>Recent signals</h2>
+      <ol class="timeline">
+        <li><span class="d">Nov 2026</span><span>About 800 jobs cut in Washington and California under state layoff notices. <span class="unv">unverified</span></span></li>
+        <li><span class="d">Sep 2026</span><span>About $700m added to the 2026 restructuring plan, previously up to $2.1bn (10-Q).</span></li>
+        <li><span class="d">Jun 2026</span><span>FY2026 results: revenue $67.4bn (+17%); restructuring expense $1.84bn vs $0.37bn; headcount down 21,000.</span></li>
+        <li><span class="d">Apr 2026</span><span>Hilary Maxson, formerly CFO of Schneider Electric, becomes CFO.</span></li>
+        <li><span class="d">Sep 2025</span><span>Clayton Magouyrk and Michael Sicilia named co-CEOs; Safra Catz becomes Executive Vice Chair.</span></li>
+      </ol>
+      <p class="muted" style="font-size: 12.5px">Hiring reportedly continues in data-centre, AI and power roles (<span class="unv">unverified</span>). Press estimates of "up to 30,000" cuts are gross figures; the 10-K's 21,000 is net of hiring.</p>
+    </section>
+
+    <section class="block" aria-label="Openers and questions">
+      <h2>Openers</h2>
+      <ol class="list">
+        <li>Your 10-K says AI may keep reducing headcount and that restructuring risks skill shortages. How are you deciding which capabilities to protect?</li>
+        <li>You added about $700m to the plan after August. What does the next wave mean for the US workforce, already down from 58,000 to 49,000?</li>
+        <li>Five data-centre campuses for OpenAI need people Oracle doesn't employ today. Where is that talent coming from?</li>
+      </ol>
+      <h2>Ask in the meeting</h2>
+      <ul class="list">
+        <li>Who owns talent strategy and total rewards, and who do they report to?</li>
+        <li>Do you use outside advisers for workforce planning or broad-based pay today?</li>
+        <li>How are pay ranges set for the new roles, and how do you handle state pay-transparency rules?</li>
+        <li>Who would champion outside help, and what would success look like in a year?</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="block" aria-label="Risks">
+    <h2>Risks</h2>
+    <div class="risks">
+      <div class="risk"><b>Strong in-house</b><span>Oracle sells HR software and runs its own talent processes on it.</span></div>
+      <div class="risk"><b>Buyer unknown</b><span>No head of HR in the filings; Oracle's executives page was not reachable.</span></div>
+      <div class="risk"><b>Cost focus</b><span>Spending is going to cuts and data centres, not advisers.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Sources.</b> Figures come from Oracle's SEC filings: <a href="https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm">10-K FY2026</a>, <a href="https://www.sec.gov/Archives/edgar/data/1341439/000095017025087926/orcl-20250531.htm">10-K FY2025</a>, <a href="https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm">10-Q to Aug 2026</a> and the <a href="https://www.sec.gov/Archives/edgar/data/1341439/000119312526402816/orcl-20260925.htm">2026 proxy</a>. The capex figures come from <a href="https://www.datacenterdynamics.com/en/news/oracle-cloud-infrastructure-revenue-up-93-as-firms-capex-keeps-climbing/">DatacenterDynamics</a>. An independent check confirmed all five key claims.</p>
+    <p><b>Test run.</b> No emails were used. Fit is scored against an assumed profile of a compensation and talent strategy firm. This brief is research, not legal advice.</p>
+  </footer>
+</main>
