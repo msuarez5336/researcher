@@ -5,7 +5,8 @@
 <style>
 /* Layout: a single-sheet account brief. Recommendation band, four figures, two fit columns, then signals, hooks and questions. */
 :root {
-  --bg: #f7f5f8;
+  color-scheme: light;
+  --bg: #FFFFFF;
   --sheet: #ffffff;
   --ink: #2F2C31;
   --muted: #6b6570;
@@ -26,22 +27,7 @@
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #17151a; --sheet: #211e24; --ink: #ece8ef; --muted: #a9a2b0; --line: #38323d;
-    --band: #2F2C31; --on-band: #FFFFFF; --on-band-muted: #d9d3de;
-    --accent: #B98BDB; --accent-strong: #E35BCF; --tint: #2d2236;
-    --good: #7cc896; --good-soft: #1a2e22; --warn: #e0b45f; --warn-soft: #33291a;
-    --bad: #ec8b80; --bad-soft: #36201d; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #17151a; --sheet: #211e24; --ink: #ece8ef; --muted: #a9a2b0; --line: #38323d;
-  --band: #2F2C31; --on-band: #FFFFFF; --on-band-muted: #d9d3de;
-  --accent: #B98BDB; --accent-strong: #E35BCF; --tint: #2d2236;
-  --good: #7cc896; --good-soft: #1a2e22; --warn: #e0b45f; --warn-soft: #33291a;
-  --bad: #ec8b80; --bad-soft: #36201d; color-scheme: dark;
-}
+/* Single light look on purpose: the page stays white whatever the viewer's theme. */
 * { box-sizing: border-box; }
 body {
   background: var(--bg); color: var(--ink);
