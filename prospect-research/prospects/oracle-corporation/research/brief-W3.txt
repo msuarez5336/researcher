@@ -1,0 +1,50 @@
+OBJECTIVE
+W3: For Oracle Corporation (NYSE: ORCL, oracle.com), find public evidence on two services the
+seller offers: (A) compensation strategy consulting (pay philosophy, salary structures, incentive
+and equity plans, executive pay, pay equity and pay-transparency compliance) and (B) talent
+strategy consulting (workforce planning, skills and reskilling for AI, organisation design,
+retention, succession). For each: what pain or initiative exists, what Oracle uses today, budget
+signals, who decides and how, and timing.
+
+WHY
+The seller is preparing a first meeting with Oracle and must judge which service to lead with.
+Other workers cover: W1 = company profile, leaders and the names of compensation committee
+members; W2 = dated events in the last 12 months (layoffs, leadership changes). Do not research
+those beyond what you need to answer your questions.
+
+SCOPE
+In:
+- The latest DEF 14A proxy: the compensation committee's independent compensation consultant
+  (name, how long engaged, how the committee assesses its independence); the say-on-pay vote
+  result(s) and any shareholder or proxy-advisor criticism of executive pay; peer group.
+- The latest 10-K: human capital section (headcount, retention, talent programmes), stock-based
+  compensation expense, restructuring charges.
+- Public reporting on Oracle pay issues: pay-equity litigation, pay-transparency compliance
+  (salary ranges in US job postings), employee-sentiment data only from named, dated sources.
+- Talent: stated skills or AI reskilling programmes, attrition, hiring focus.
+Out: individual employees' pay; sources that require login.
+
+HOW
+- Start from the DEF 14A and 10-K on EDGAR; then targeted news searches.
+- In the first half of the budget, search for counter-evidence: signs that Oracle handles these
+  fully in-house or has a long-standing consultant relationship that makes a switch unlikely.
+
+OUTPUT
+- Evidence: RUN/evidence/W3.jsonl. Notes: RUN/notes/W3.md, with two sections (A, B), each with a
+  table: question (pain / current provider / budget / decision / timing) | finding | evidence id.
+
+COMMON
+RUN = /home/user/researcher/prospect-research/prospects/oracle-corporation/research
+As-of date: 2026-11-18. Work from /home/user/researcher.
+Cache every page you quote: python3 .claude/skills/research/scripts/fetch_page.py --run-dir RUN <URL>
+Quotes must be verbatim from the cached page. Never invent or reconstruct a URL.
+Write only RUN/evidence/<W>.jsonl, RUN/notes/<W>.md and RUN/pages/. Everything else is read-only.
+github.com pages may return 403 to fetch_page.py. If a host or tool is blocked, name it in your reply; do not fill the gap with guesses.
+SOURCE RULES: use Oracle's own site (about, careers, newsroom, investor relations); SEC EDGAR
+(sec.gov and the data.sec.gov JSON APIs; at most 10 requests per second; declare a User-Agent;
+the 10-K, DEF 14A proxy statement and 8-Ks are the key filings); public job-board APIs; reputable
+news. Do NOT automate LinkedIn or the Delaware entity search (both forbid automated tools);
+search-engine snippets about them may be recorded only with "verified": false.
+People: business role and public statements only.
+Budget: at most 12 tool calls. Stop earlier once two searches in a row add nothing new.
+Reply with only: (1) the two paths, (2) a summary of at most 300 words, (3) gaps, conflicts, blocked hosts.

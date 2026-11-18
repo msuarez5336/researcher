@@ -1,0 +1,42 @@
+OBJECTIVE
+W2: Find dated, sourced events at Oracle Corporation (NYSE: ORCL, oracle.com) from 2025-11 to
+2026-11 that bear on pay or talent: layoffs and restructuring, leadership changes (including HR
+leadership), large hiring or data-centre build-outs, AI and cloud-infrastructure strategy and
+spending, M&A, and priorities stated on earnings calls.
+
+WHY
+A consulting firm selling compensation strategy and talent strategy consulting is preparing a
+first meeting with Oracle. Trigger events decide whether and how to open the conversation. Other
+workers cover: W1 = company profile, leaders and the compensation committee; W3 = pay and talent
+issues in filings, the incumbent compensation consultant, budget and timing. Do not research those.
+
+SCOPE
+In: Oracle newsroom and investor releases, 8-K filings (sec.gov), reputable news (wire services,
+major business press). Each event with its date and source; newest first.
+Out: product announcements with no workforce angle; stock-price commentary.
+
+HOW
+- Short broad searches first ("Oracle layoffs 2026", "Oracle restructuring", "Oracle executive
+  changes 2026", "Oracle earnings call 2026 headcount"), then the primary source for each event.
+- In the first half of the budget, search for evidence that contradicts the obvious narrative
+  (e.g. reports that layoffs were reversed or that hiring rose).
+
+OUTPUT
+- Evidence: RUN/evidence/W2.jsonl. Notes: RUN/notes/W2.md, with a table: date | event | workforce
+  angle | source | evidence id.
+
+COMMON
+RUN = /home/user/researcher/prospect-research/prospects/oracle-corporation/research
+As-of date: 2026-11-18. Work from /home/user/researcher.
+Cache every page you quote: python3 .claude/skills/research/scripts/fetch_page.py --run-dir RUN <URL>
+Quotes must be verbatim from the cached page. Never invent or reconstruct a URL.
+Write only RUN/evidence/<W>.jsonl, RUN/notes/<W>.md and RUN/pages/. Everything else is read-only.
+github.com pages may return 403 to fetch_page.py. If a host or tool is blocked, name it in your reply; do not fill the gap with guesses.
+SOURCE RULES: use Oracle's own site (about, careers, newsroom, investor relations); SEC EDGAR
+(sec.gov and the data.sec.gov JSON APIs; at most 10 requests per second; declare a User-Agent;
+the 10-K, DEF 14A proxy statement and 8-Ks are the key filings); public job-board APIs; reputable
+news. Do NOT automate LinkedIn or the Delaware entity search (both forbid automated tools);
+search-engine snippets about them may be recorded only with "verified": false.
+People: business role and public statements only.
+Budget: at most 12 tool calls. Stop earlier once two searches in a row add nothing new.
+Reply with only: (1) the two paths, (2) a summary of at most 300 words, (3) gaps, conflicts, blocked hosts.
