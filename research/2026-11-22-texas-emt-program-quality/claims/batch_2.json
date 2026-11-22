@@ -1,0 +1,116 @@
+[
+ {
+  "cid": "C6",
+  "claim": "UT Dallas's EMT course (UEMR) requires three 12-hour emergency department clinicals and one 12-hour fire department rotation, with clinical partners THR Plano, THR Dallas, Methodist Dallas, Methodist Richardson, Methodist Mansfield and Methodist Charlton, and describes itself as catering to college undergraduates.",
+  "evidence": [
+   {
+    "id": "SQ2-13",
+    "quote": "You will complete three 12 hour Emergency Department Clinicals and one 12-hour clinical rotation with a local fire department.",
+    "url": "https://police.utdallas.edu/programs-and-services/uemr/ems-education/emt-class/emt-class-faq",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/police.utdallas.edu-46d7d5dbc9.txt"
+   },
+   {
+    "id": "SQ2-14",
+    "quote": "Our clinical partners include THR Plano, THR Dallas, Methodist Dallas, Methodist Richardson, Methodist Mansfield, and Methodist Charlton.",
+    "url": "https://police.utdallas.edu/programs-and-services/uemr/ems-education/emt-class/emt-class-faq",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/police.utdallas.edu-46d7d5dbc9.txt"
+   },
+   {
+    "id": "SQ2b-2",
+    "quote": "Our program is one of the only programs in North Texas that caters specifically to college undergraduate students.",
+    "url": "https://police.utdallas.edu/programs-and-services/uemr/ems-education/emt-class/emt-class-faq",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/police.utdallas.edu-46d7d5dbc9.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "RC Health Services - Dallas has a 4.8-star rating from 324 reviews on Birdeye (as of November 2026).",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "RC Health Services - Dallas has a 4.8 star rating with 324 reviews.",
+    "url": "https://reviews.birdeye.com/rc-health-services-dallas-712678912",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/reviews.birdeye.com-7ea1a5f617.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "National EMS Academy's Dallas program costs $1,200 tuition, runs 12 weeks, is located in Fairview, TX, and offers tuition reimbursement to graduates who work for Acadian Ambulance; the page states no clinical hours or sites.",
+  "evidence": [
+   {
+    "id": "SQ2b-4",
+    "quote": "Tuition is $1,200",
+    "url": "https://nationalemsacademy.com/programs/texas/dallas",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/nationalemsacademy.com-5ed146368e.txt"
+   },
+   {
+    "id": "SQ2-16",
+    "quote": "Become an Emergency Medical Technician in 12 weeks",
+    "url": "https://nationalemsacademy.com/programs/texas/dallas",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/nationalemsacademy.com-5ed146368e.txt"
+   },
+   {
+    "id": "SQ2b-5",
+    "quote": "Tuition reimbursement opportunities when you pass the class and work with Acadian Ambulance",
+    "url": "https://nationalemsacademy.com/programs/texas/dallas",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/nationalemsacademy.com-5ed146368e.txt"
+   },
+   {
+    "id": "n1",
+    "quote": "460 S State Hwy 5, Fairview, TX 75244",
+    "url": "https://nationalemsacademy.com/programs/texas/dallas",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/nationalemsacademy.com-5ed146368e.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "Axon Education / Texas EMS School reports an 85% NREMT EMT pass rate for 2024 against a 77% Texas and 79% national average; its online program requires a two-day in-person skills lab and schedules clinicals at partner sites through an advisor, or through the student's employer.",
+  "evidence": [
+   {
+    "id": "SQ1-10",
+    "quote": "2024 EMT 85% 77% 79%",
+    "url": "https://kb.axoneducation.com/module/knowledge-base/article/nremt-pass-rates",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/kb.axoneducation.com-857117b86d.txt"
+   },
+   {
+    "id": "SQ2-17",
+    "quote": "you\u2019ll be required to attend a two-day Skills Lab conducted by Texas EMS School.",
+    "url": "https://axoneducation.com/program/emt",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/axoneducation.com-073907fee9.txt"
+   },
+   {
+    "id": "SQ3-3",
+    "quote": "Your student services advisor will work with you to schedule your field experience and clinical experiences at one of our partner sites.",
+    "url": "https://axoneducation.com/program/emt",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/axoneducation.com-073907fee9.txt"
+   },
+   {
+    "id": "SQ3-4",
+    "quote": "you may be able to complete your field experience or clinical experience through your employer.",
+    "url": "https://axoneducation.com/program/emt",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/axoneducation.com-073907fee9.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "Tarrant County College's EMT certificate includes EMSP-1501 (6 credits, $444 in-county tuition) and a separate clinical course EMSP-1160, with listed extra costs of books $200, uniforms $150, miscellaneous $240 and registry $212.",
+  "evidence": [
+   {
+    "id": "SQ2b-6",
+    "quote": "EMSP-1501 Emergency Medical Technician 6 $444",
+    "url": "https://www.tccd.edu/academics/courses-and-programs/programs-a-z/credit/emergency-medical-services-emt/index.html",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/www.tccd.edu-8c5352dc68.txt"
+   },
+   {
+    "id": "SQ2-15",
+    "quote": "EMSP-1160 Clinical\u2014Emergency Medical Technician",
+    "url": "https://www.tccd.edu/academics/courses-and-programs/programs-a-z/credit/emergency-medical-services-emt/index.html",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/www.tccd.edu-8c5352dc68.txt"
+   }
+  ]
+ }
+]

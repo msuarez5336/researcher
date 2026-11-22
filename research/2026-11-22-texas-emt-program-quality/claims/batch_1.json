@@ -1,0 +1,141 @@
+[
+ {
+  "cid": "C1",
+  "claim": "In the Texas DSHS 2022 table of NREMT EMT pass rates by program (Jan 1 - Dec 31, 2022; first attempt / cumulative within 6 attempts / number attempting): Tarrant County College 82% / 90% / 117; Emergency Medical Training Services EMTS 82% / 89% / 210; RC Health Services 73% / 84% / 708; Dallas College 66% / 83% / 180; Emergency Medical Services University LLC 49% / 66% / 70; University Emergency Medical Response 94% / 96% / 252.",
+  "evidence": [
+   {
+    "id": "t1",
+    "quote": "Tarrant County College 117 82% 90% 90%",
+    "url": "https://kilgore.edu/wp-content/uploads/2024/11/2022NatRegistry.pdf",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dshs-2022-natregistry-pdftotext.txt"
+   },
+   {
+    "id": "t2",
+    "quote": "Training Services EMTS 210 82% 89% 89%",
+    "url": "https://kilgore.edu/wp-content/uploads/2024/11/2022NatRegistry.pdf",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dshs-2022-natregistry-pdftotext.txt"
+   },
+   {
+    "id": "t3",
+    "quote": "Emergency Medical Tra 708 73% 84% 84%",
+    "url": "https://kilgore.edu/wp-content/uploads/2024/11/2022NatRegistry.pdf",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dshs-2022-natregistry-pdftotext.txt"
+   },
+   {
+    "id": "t4",
+    "quote": "Dallas College 180 66% 82% 83%",
+    "url": "https://kilgore.edu/wp-content/uploads/2024/11/2022NatRegistry.pdf",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dshs-2022-natregistry-pdftotext.txt"
+   },
+   {
+    "id": "t5",
+    "quote": "Services University LLC 70 49% 64% 66%",
+    "url": "https://kilgore.edu/wp-content/uploads/2024/11/2022NatRegistry.pdf",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dshs-2022-natregistry-pdftotext.txt"
+   },
+   {
+    "id": "t6",
+    "quote": "Medical Response 252 94% 96% 96%",
+    "url": "https://kilgore.edu/wp-content/uploads/2024/11/2022NatRegistry.pdf",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dshs-2022-natregistry-pdftotext.txt"
+   },
+   {
+    "id": "t0",
+    "quote": "National Registry- Texas Pass",
+    "url": "https://kilgore.edu/wp-content/uploads/2024/11/2022NatRegistry.pdf",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dshs-2022-natregistry-pdftotext.txt"
+   }
+  ],
+  "note": "The cached file is pdftotext -layout output of the PDF; table rows wrap across lines; check the EMT section, not First Responder/AEMT."
+ },
+ {
+  "cid": "C2",
+  "claim": "Dallas EMT is operated by EMS University LLC, and the University Emergency Medical Response (UEMR) program is UT Dallas's EMT program (run by UTD Police).",
+  "evidence": [
+   {
+    "id": "SQ2-8",
+    "quote": "All tracks include the same 150-hour curriculum with a 3-day skills weekend.",
+    "url": "https://dallasemt.com",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dallasemt.com-40def32139.txt"
+   },
+   {
+    "id": "d1",
+    "quote": "Dallas EMT by EMS University, LLC.",
+    "url": "https://dallasemt.com",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dallasemt.com-40def32139.txt"
+   },
+   {
+    "id": "u1",
+    "quote": "EMT Class FAQ - University Emergency Medical Response | UTD Police",
+    "url": "https://police.utdallas.edu/programs-and-services/uemr/ems-education/emt-class/emt-class-faq",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/police.utdallas.edu-46d7d5dbc9.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "RC Health Services states its EMT students complete 48 hours of EMS time (at least 6 patient transports) and 24 hours of Emergency Department time; its hybrid-virtual course states 24 hours of EMS time; its Dallas/Irving page describes hospital and ambulance rotations without naming sites or hours.",
+  "evidence": [
+   {
+    "id": "SQ2-3",
+    "quote": "Students will complete 48 hours of EMS time with at least 6 patient transports, and 24 hours of Emergency Department time.",
+    "url": "https://rchealthservices.com/Live_Oak__TX.html",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/rchealthservices.com-0ac8464b2f.txt"
+   },
+   {
+    "id": "SQ2-5",
+    "quote": "The student will complete 24 hours of EMS time with at least 4 patient contacts.",
+    "url": "https://rchealthservices.com/emt-hybrid-virtual-course.html",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/rchealthservices.com-628b5a9d35.txt"
+   },
+   {
+    "id": "SQ2-6",
+    "quote": "Complete hospital and ambulance clinical rotations for real-world experience.",
+    "url": "https://rchealthservices.com/Dallas_Irving_TX.html",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/rchealthservices.com-13b74bcfda.txt"
+   },
+   {
+    "id": "SQ2-4",
+    "quote": "Each student will complete two skills practice days and at least one National Registry Skills Testing Day.",
+    "url": "https://rchealthservices.com/dallas-emt-course.php",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/rchealthservices.com-c9cac1d0d4.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "Dallas College's EMT program requires 272 training hours including hospital rotations, lab and ambulance internships, is offered in person, hybrid, evenings and weekdays, and estimates tuition at $891 for in-county residents.",
+  "evidence": [
+   {
+    "id": "SQ2-10",
+    "quote": "The EMT certification program requires 272 training hours that consist of hospital rotations, classroom instruction, lab practice and internships\u200b in an ambulance.",
+    "url": "https://dallascollege.edu/cd/credit/ems-paramedic/pages/emt-program.aspx",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dallascollege.edu-d6702cee73.txt"
+   },
+   {
+    "id": "SQ2-11",
+    "quote": "In person, hybrid, evenings and weekdays.",
+    "url": "https://dallascollege.edu/cd/credit/ems-paramedic/pages/emt-program.aspx",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dallascollege.edu-d6702cee73.txt"
+   },
+   {
+    "id": "SQ2-12",
+    "quote": "Estimated tuition total: $891 for in-county residents",
+    "url": "https://dallascollege.edu/cd/credit/ems-paramedic/pages/emt-program.aspx",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/dallascollege.edu-d6702cee73.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "Texas rule 25 TAC 157.32 requires an EMT course to include at least 150 clock hours of classroom, laboratory, clinical and field instruction including supervised emergency department and EMS experience, without a separate minimum number of clinical hours.",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "The course shall include a minimum of 150 clock hours of classroom, laboratory, clinical, and field instruction which shall include supervised experiences in the emergency department and with a licensed EMS provider",
+    "url": "https://www.law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-32",
+    "page": "research/2026-11-22-texas-emt-program-quality/pages/www.law.cornell.edu-18607155b8.txt"
+   }
+  ]
+ }
+]
