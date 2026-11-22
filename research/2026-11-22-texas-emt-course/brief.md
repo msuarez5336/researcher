@@ -307,4 +307,5 @@ QUALITY BAR
 ```
 
 ## Approval
-- [ ] User approved on <date>, with these changes: <...>
+- [x] User approved on 2026-11-22, with no changes. No city or immigration situation given:
+  the report stays statewide and SQ1 covers all immigration situations.
