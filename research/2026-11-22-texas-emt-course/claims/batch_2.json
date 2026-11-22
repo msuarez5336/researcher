@@ -1,0 +1,134 @@
+[
+ {
+  "cid": "C6",
+  "claim": "Alvin Community College (Houston area) lists approximate EMT-Basic tuition and fees of $871 in-district, $1,177 out-of-district and $1,495 for non-residents, with fees and textbooks calculated separately.",
+  "evidence": [
+   {
+    "id": "SQ3-1",
+    "quote": "Approximate costs for the EMT Basic program including tuition and fees are approximately $871 for in-district students, $1,177 for out-of-district students, and $1,495 for non-residents.",
+    "url": "https://alvincollege.edu/ems",
+    "page": "research/2026-11-22-texas-emt-course/pages/alvincollege.edu-0824f2b4f0.txt"
+   },
+   {
+    "id": "SQ3-2",
+    "quote": "Additional associated fees and textbooks must be calculated separately.",
+    "url": "https://alvincollege.edu/ems",
+    "page": "research/2026-11-22-texas-emt-course/pages/alvincollege.edu-0824f2b4f0.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C7",
+  "claim": "Dallas EMT lists a $50 registration fee plus $945 tuition, $995 total, for its standard EMT class, and states it is TX DSHS-approved; other costs it lists (drug screen, vaccines, TB test) are estimates.",
+  "evidence": [
+   {
+    "id": "SQ2b-1",
+    "quote": "Tuition ($945.00) for EMT Class:",
+    "url": "https://dallasemt.com/emt-training-costs/",
+    "page": "research/2026-11-22-texas-emt-course/pages/dallasemt.com-e8b933613a.txt"
+   },
+   {
+    "id": "SQ2b-2",
+    "quote": "The following costs are estimates only:",
+    "url": "https://dallasemt.com/emt-training-costs/",
+    "page": "research/2026-11-22-texas-emt-course/pages/dallasemt.com-e8b933613a.txt"
+   },
+   {
+    "id": "SQ2b-3",
+    "quote": "TX DSHS-approved EMT training since 2010.",
+    "url": "https://dallasemt.com/emt-training-costs/",
+    "page": "research/2026-11-22-texas-emt-course/pages/dallasemt.com-e8b933613a.txt"
+   },
+   {
+    "id": "dallas-total",
+    "quote": "$995.00",
+    "url": "https://dallasemt.com/emt-training-costs/",
+    "page": "research/2026-11-22-texas-emt-course/pages/dallasemt.com-e8b933613a.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C8",
+  "claim": "Texas EMS School's online EMT program costs $1,870 including textbook, drug screen and background check, is offered to Texas residents 18 or older with a high school diploma or equivalent, and states DSHS approval.",
+  "evidence": [
+   {
+    "id": "SQ2b-13",
+    "quote": "$1,870",
+    "url": "https://texasemsschool.com/programs/emergency-medical-technician/",
+    "page": "research/2026-11-22-texas-emt-course/pages/texasemsschool.com-bd2f2c0c13.txt"
+   },
+   {
+    "id": "SQ2b-14",
+    "quote": "Texas EMS School offers our online program to Texas residents 18 years or older.",
+    "url": "https://texasemsschool.com/programs/emergency-medical-technician/",
+    "page": "research/2026-11-22-texas-emt-course/pages/texasemsschool.com-bd2f2c0c13.txt"
+   },
+   {
+    "id": "SQ2b-15",
+    "quote": "This program has been approved by the  Texas Department of State Health Services (DSHS) and meets the requirements for licensure in Texas.",
+    "url": "https://texasemsschool.com/programs/emergency-medical-technician/",
+    "page": "research/2026-11-22-texas-emt-course/pages/texasemsschool.com-bd2f2c0c13.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C9",
+  "claim": "RC Health Services' only published EMT price found is a sheet dated 4/2018: $1,399 online ($1,499 on payment plan), with a $700 down payment; its current pages give no price. National EMS Academy's FAQ lists $1,200 tuition for its Texas EMT program.",
+  "evidence": [
+   {
+    "id": "SQ2-1",
+    "quote": "$1399 Online ($1499 if using payment plan) all inclusive tuition package includes:",
+    "url": "https://elearning.rchealthservices.com/wp-content/uploads/2020/11/Traditional-EMT-Payment-Plan.pdf",
+    "page": "research/2026-11-22-texas-emt-course/pages/rc-payment-plan.txt"
+   },
+   {
+    "id": "SQ2-2",
+    "quote": "The student will make an initial down payment of $700 with their application and a color",
+    "url": "https://elearning.rchealthservices.com/wp-content/uploads/2020/11/Traditional-EMT-Payment-Plan.pdf",
+    "page": "research/2026-11-22-texas-emt-course/pages/rc-payment-plan.txt"
+   },
+   {
+    "id": "SQ2-8",
+    "quote": "Tuition for the Texas EMT program through the National EMS Academy is $1,200.",
+    "url": "https://nationalemsacademy.com/texas-program-faqs/",
+    "page": "research/2026-11-22-texas-emt-course/pages/nationalemsacademy.com-91198c7ac1.txt"
+   },
+   {
+    "id": "rc-date",
+    "quote": "4/2018",
+    "url": "https://elearning.rchealthservices.com/wp-content/uploads/2020/11/Traditional-EMT-Payment-Plan.pdf",
+    "page": "research/2026-11-22-texas-emt-course/pages/rc-payment-plan.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C10",
+  "claim": "The TWC Emergency Medical Response Service Staffing Program gives grants to DSHS-licensed EMS providers to fund scholarships, including for trainees pursuing EMT-Basic (not only current employees); it covers tuition and NREMT fees if passed, excludes books and uniforms, and its latest listed application window was Sept 1 - Oct 31, 2026 for courses starting after Jan 1, 2027.",
+  "evidence": [
+   {
+    "id": "twc-1",
+    "quote": "This program provides grants to Texas Department of State Health Services (DSHS) licensed EMS providers (firms) to fund scholarships for individuals and employees pursuing careers as Emergency Medical Technicians (EMTs) at the Basic, Advanced, and Paramedic levels.",
+    "url": "https://www.twc.texas.gov/emergency-medical-response-service-staffing-program",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.twc.texas.gov-ab016791d7.txt"
+   },
+   {
+    "id": "twc-2",
+    "quote": "Trainees pursuing EMT-Basic certification",
+    "url": "https://www.twc.texas.gov/emergency-medical-response-service-staffing-program",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.twc.texas.gov-ab016791d7.txt"
+   },
+   {
+    "id": "twc-3",
+    "quote": "TWC will accept applications starting September 1, 2026 \u2013 October 31, 2026, at 5:00 PM Central Daylight Time (CT). Course start dates must begin after January 1, 2027.",
+    "url": "https://www.twc.texas.gov/emergency-medical-response-service-staffing-program",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.twc.texas.gov-ab016791d7.txt"
+   },
+   {
+    "id": "twc-4",
+    "quote": "It also excludes equipment, books, student uniforms, and lab coats.",
+    "url": "https://www.twc.texas.gov/emergency-medical-response-service-staffing-program",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.twc.texas.gov-ab016791d7.txt"
+   }
+  ]
+ }
+]

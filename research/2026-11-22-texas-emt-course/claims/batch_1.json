@@ -1,0 +1,134 @@
+[
+ {
+  "cid": "C1",
+  "claim": "To be certified as an EMT in Texas by DSHS, a person must be at least 18 and hold a high school diploma or GED (foreign schooling needs a credential evaluation), complete a DSHS-approved course, pass the NREMT exam, pass a state jurisprudence exam, and submit fingerprints for a Texas/FBI criminal history check, all within two years of course completion.",
+  "evidence": [
+   {
+    "id": "SQ1-1",
+    "quote": "You must be at least 18 years old",
+    "url": "https://www.dshs.texas.gov/dshs-ems-trauma-systems/ems-personnel-certification-licensure/initial-certification-licensure",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.dshs.texas.gov-63c73ec883.txt"
+   },
+   {
+    "id": "SQ1-2",
+    "quote": "Candidates who received a high school education in another country must have their transcript evaluated by a foreign credentials evaluation service that attests to its equivalency.",
+    "url": "https://law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-33",
+    "page": "research/2026-11-22-texas-emt-course/pages/law.cornell.edu-26a95f68be.txt"
+   },
+   {
+    "id": "SQ1-3",
+    "quote": "Submit fingerprints for Texas/FBI criminal history check.",
+    "url": "https://www.dshs.texas.gov/dshs-ems-trauma-systems/ems-personnel-certification-licensure/initial-certification-licensure",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.dshs.texas.gov-63c73ec883.txt"
+   },
+   {
+    "id": "SQ1-4",
+    "quote": "The candidate has completed a state approved jurisprudence examination to determine the knowledge on state EMS laws, rules, and policies.",
+    "url": "https://law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-33",
+    "page": "research/2026-11-22-texas-emt-course/pages/law.cornell.edu-26a95f68be.txt"
+   },
+   {
+    "id": "SQ1-5",
+    "quote": "An initial candidate for certification shall complete all requirements for certification no later than two years after the candidate's course completion date.",
+    "url": "https://law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-33",
+    "page": "research/2026-11-22-texas-emt-course/pages/law.cornell.edu-26a95f68be.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C2",
+  "claim": "Neither the DSHS initial certification page nor 25 TAC 157.33 states a U.S. citizenship, lawful-presence or Social Security number requirement for Texas EMT certification.",
+  "evidence": [
+   {
+    "id": "SQ1-1",
+    "quote": "You must be at least 18 years old",
+    "url": "https://www.dshs.texas.gov/dshs-ems-trauma-systems/ems-personnel-certification-licensure/initial-certification-licensure",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.dshs.texas.gov-63c73ec883.txt"
+   },
+   {
+    "id": "SQ1-2",
+    "quote": "Candidates who received a high school education in another country must have their transcript evaluated by a foreign credentials evaluation service that attests to its equivalency.",
+    "url": "https://law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-33",
+    "page": "research/2026-11-22-texas-emt-course/pages/law.cornell.edu-26a95f68be.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C3",
+  "claim": "The government fees for initial EMT certification are the NREMT application fee of $104 and the DSHS application fee of $64 per the DSHS page ($60 in the rule text copy on Cornell LII).",
+  "evidence": [
+   {
+    "id": "SQ1-9",
+    "quote": "The EMT application fee is $104.",
+    "url": "https://nremt.org/Handbooks/EMT/Certification-Process",
+    "page": "research/2026-11-22-texas-emt-course/pages/nremt.org-a4fda7e9b9.txt"
+   },
+   {
+    "id": "SQ1-7",
+    "quote": "(A) $60 for emergency care attendant (ECA) or emergency medical technician (EMT);",
+    "url": "https://law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-33",
+    "page": "research/2026-11-22-texas-emt-course/pages/law.cornell.edu-26a95f68be.txt"
+   },
+   {
+    "id": "DSHS-fee-table",
+    "quote": "ECA or EMT\n$64",
+    "url": "https://www.dshs.texas.gov/dshs-ems-trauma-systems/ems-personnel-certification-licensure/initial-certification-licensure",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.dshs.texas.gov-63c73ec883.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C4",
+  "claim": "DSHS may provide a criminal-history prescreening before someone enrols, for a nonrefundable $50 fee, and decides denials case by case for offenses related to EMS duties.",
+  "evidence": [
+   {
+    "id": "SQ1-10",
+    "quote": "The department may provide a prescreening criminal history record check for persons interested in pursuing an EMS certification or licensure",
+    "url": "https://www.law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-37",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.law.cornell.edu-d9f297dcc2.txt"
+   },
+   {
+    "id": "SQ1-11",
+    "quote": "submit a nonrefundable fee of $50;",
+    "url": "https://www.law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-37",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.law.cornell.edu-d9f297dcc2.txt"
+   },
+   {
+    "id": "SQ1-12",
+    "quote": "deny to the person an initial or renewed EMS certification or paramedic licensure or the person's opportunity to take a certification or paramedic licensure examination;",
+    "url": "https://www.law.cornell.edu/regulations/texas/25-Tex-Admin-Code-SS-157-37",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.law.cornell.edu-d9f297dcc2.txt"
+   }
+  ]
+ },
+ {
+  "cid": "C5",
+  "claim": "Since January 26, 2026, TDLR (a different Texas licensing agency, not DSHS) requires certain applicants to show lawful presence, citing 8 U.S.C. 1621, and asks applicants without an SSN for proof of lawful presence; the NREMT account is tied to a Social Security number (the profile shows its last 4 digits).",
+  "evidence": [
+   {
+    "id": "SQ1b-6",
+    "quote": "Effective January 26, 2026, the Texas Department of Licensing and Regulation (TDLR) will require certain applicants for an initial license or license renewal to submit documentation establishing lawful presence in the United States.",
+    "url": "https://www.tdlr.texas.gov/news/2026/01/26/lawful-presence-documentation-requirement/",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.tdlr.texas.gov-831f6b204c.txt"
+   },
+   {
+    "id": "SQ1b-1",
+    "quote": "Federal law (8 U.S.C. \u00a7 1621) provides that a person who is NOT a U.S. citizen or national is not eligible for a professional or commercial license issued by a state, unless the person is:",
+    "url": "https://www.tdlr.texas.gov/lawful-presence.htm",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.tdlr.texas.gov-2e517c8117.txt"
+   },
+   {
+    "id": "SQ1b-2",
+    "quote": "Individuals who do not have a Social Security number will be asked to complete the Social Security Number Status Verification form and provide proof of lawful presence from a list of acceptable documents",
+    "url": "https://www.tdlr.texas.gov/lawful-presence.htm",
+    "page": "research/2026-11-22-texas-emt-course/pages/www.tdlr.texas.gov-2e517c8117.txt"
+   },
+   {
+    "id": "SQ1b-4",
+    "quote": "It also displays the last 4 digits of the social security number associated with that account.",
+    "url": "https://nremt.org/Document/Learn-More",
+    "page": "research/2026-11-22-texas-emt-course/pages/nremt.org-807a66e254.txt"
+   }
+  ]
+ }
+]
