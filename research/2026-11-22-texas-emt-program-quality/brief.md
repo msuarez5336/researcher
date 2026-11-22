@@ -212,7 +212,10 @@ In:
    - in-house NREMT skills testing;
    - included NREMT exam prep;
    - for Dallas College, Collin College, EMTS and any program not in the known price list only:
-     published tuition and listed extra costs, with date (cost is a user priority).
+     published tuition and listed extra costs, with date (cost is a user priority). Already
+     known, so skip: Dallas EMT $995; RC Health $1,399 (2018); National EMS Academy $1,200;
+     Texas EMS School $1,870; FASTems $2,500; Texas EMS Academy $2,850; Tarrant County College
+     $1,332 in-county.
 Out: pass rates, prices already known, reviews, refund policies, employer opinions; paramedic and Advanced EMT
 programs.
 Read-only? You write only the two output files below.
