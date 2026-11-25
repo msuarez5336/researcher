@@ -11,7 +11,7 @@ Priorities set by the user: hands-on experience first, cost second.
 1. **Most hands-on training: Dallas College.** Its EMT Basic Certificate is the longest program
    found (272 hours, with hospital rotations and an ambulance internship) and runs evenings,
    weekdays and hybrid. It costs an estimated $1,782 in tuition for Dallas County residents,
-   plus about $280 in listed fees (about $2,060 in all). Its weak point is a below-average
+   plus about $365 in listed fees (about $2,150 in all). Its weak point is a below-average
    first-try pass rate in 2022 (66%; 83% within six tries). [E] ([Dallas College](https://dallascollege.edu/cd/credit/ems-paramedic/pages/emt-program.aspx), [DSHS 2022 table](https://kilgore.edu/wp-content/uploads/2024/11/2022NatRegistry.pdf)) ✓
 2. **RC Health's rotations are real but not unusual.** RC states 48 ambulance hours (at least
    six transports) plus 24 emergency-room hours. Tarrant County College reportedly requires the
@@ -36,7 +36,7 @@ means passed within six attempts. Prices are from the earlier run unless noted.
 
 | Program | Price | Hands-on training stated | 2022 pass rate: first try / within 6 (students) | Format, location | Notes |
 |---|---|---|---|---|---|
-| **Dallas College** | $1,782 in-county tuition ✓; listed fees (uniform, screening, background checks, fingerprints, DSHS $64, NREMT $80) add about $280 ✓ | 272 total hours; hospital rotations, lab, ambulance internship ✓ | 66% / 83% (180) ✓ | in person, hybrid, evenings, weekdays | most hours found; Dallas County rate |
+| **Dallas College** | $1,782 in-county tuition ✓; listed fees (uniform, screening, background checks, fingerprints, DSHS $64, NREMT $80) add about $365 ✓ | 272 total hours; hospital rotations, lab, ambulance internship ✓ | 66% / 83% (180) ✓ | in person, hybrid, evenings, weekdays | most hours found; Dallas County rate |
 | **Collin College** | $603 in-county + ~$208 fees ~ | not stated | 68% / 82% (94) ✓ | Collin County | cheapest if you live in Collin County |
 | **Tarrant County College** | $1,332 in-county; extras listed (books $200, uniforms $150, misc $240, registry $212) ✓ | 24 h ER + 48 h ambulance + 8 h orientation, scheduled by the college ~ | **82% / 90% (117)** ✓ | Fort Worth | best pass rate among colleges; Dallas residents pay an out-of-county rate (not captured) |
 | **EMTS (Carrollton)** | not published (aggregator $1,450–1,765 ~) | not stated | **82% / 89% (210)** ✓ | Carrollton | strong results; little else known |
@@ -59,7 +59,7 @@ was not confirmed; if it has, programs below 48 clinical hours will have to add 
 
 **Dallas College: best for the most hands-on training**
 - Pros: 272 hours, the most found; hospital and ambulance experience; evening and hybrid options;
-  fees published (about $2,060 in all for a Dallas County resident).
+  fees published (about $2,150 in all for a Dallas County resident).
 - Cons: not cheap ($1,782 tuition); 66% first-try pass rate (2022), below the RC and Tarrant
   figures; it's a college
   semester schedule, not a rolling start; clinical hours by setting not published.
@@ -91,7 +91,7 @@ was not confirmed; if it has, programs below 48 clinical hours will have to add 
 - Cons: aimed at UTD undergraduates; price and public access not stated.
 
 ## Recommendation for a Dallas student [O, my judgement]
-1. **Most hands-on experience: Dallas College** (about $2,060 all in for a Dallas County
+1. **Most hands-on experience: Dallas College** (about $2,150 all in for a Dallas County
    resident, 272 hours). Ask for its current first-try pass rate and how clinical hours split
    between hospital and ambulance.
 2. **Exam results are the tiebreaker: compare Tarrant County College and EMTS.** Get both
