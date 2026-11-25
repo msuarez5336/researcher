@@ -80,7 +80,7 @@ and usually immunisations, a drug screen and a uniform unless listed as included
 | 3 | Fire In Texas | Sulphur Springs, online $1,100 / on-site $1,240 | tuition | page does not state DSHS approval for the EMT course; schedule dated 2025–26 | anyone | [fireintexas.com](https://fireintexas.com/fire-and-emt-academy/) ✓ |
 | 4 | National EMS Academy | Texas, hybrid | $1,200 tuition (FAQ, 2026-07) | extras not listed | anyone | [nationalemsacademy.com](https://nationalemsacademy.com/texas-program-faqs/) ✓ |
 | 5 | Blinn College | Bryan / College Station | $1,218 out-of-district | plus a program fee (~$300, snippet only); in-district price not captured | anyone; in-district likely lower | [blinn.edu](https://www.blinn.edu/emergency-medical-services/ems-overview.html) ✓ |
-| 6 | Tarrant County College | Fort Worth | $1,332 at in-county rates | lists books $200, uniforms $150, misc $240, registry $212: about $2,134 total | county residents | [tccd.edu](https://www.tccd.edu/academics/courses-and-programs/programs-a-z/credit/emergency-medical-services-emt/index.html) ✓ |
+| 6 | Tarrant County College | Fort Worth | $444 in-county tuition for the two courses that give Texas EMT certification (EMSP-1501 + clinical, 6 credits); the full 18-credit certificate is $1,332 | lists books $200, uniforms $150, misc $240, registry $212 (approximate, per semester): about $1,250 for the two courses; correction made 2026-11-25 | county residents | [tccd.edu](https://www.tccd.edu/academics/courses-and-programs/programs-a-z/credit/emergency-medical-services-emt/index.html) ✓ |
 | 7 | Lone Star College | Houston area, continuing-ed | $1,344 | residency tiers not stated | — | [lonestar.edu](https://lonestar.edu/programs-of-study/emt-ce.htm) ✓ |
 | 8 | RC Health Services | Online + skills days in Houston/Spring, Dallas, Austin, San Antonio, Fort Worth | $1,399 online, $1,499 on payment plan ($700 down) | **price dated April 2018**; the 2018 sheet excluded NREMT, DSHS, fingerprints and uniform (~$1,650–1,730 total then). The current price is unconfirmed: the "Tuition:" field on its pages came through empty when fetched, so call them. | anyone | [RC 2018 sheet](https://elearning.rchealthservices.com/wp-content/uploads/2020/11/Traditional-EMT-Payment-Plan.pdf) ✓ (date) |
 | 9 | Texas EMS School (Axon) | Online, Texas residents only | $1,870 | includes textbook, drug screen, background check; advertises rebates up to $437 [O] | Texas residents 18+ | [texasemsschool.com](https://texasemsschool.com/programs/emergency-medical-technician/) ✓ |
@@ -90,7 +90,7 @@ and usually immunisations, a drug screen and a uniform unless listed as included
 
 **Which is cheapest depends on where you live** [O]:
 - If you live in a community college district, its in-district rate is usually the lowest price.
-  Alvin's ~$871 was the lowest found. Prices for Houston CC, San Antonio College, El Paso CC and
+  Alvin's ~$871 was the lowest found (Tarrant's $444 in-county tuition is lower still, but it adds about $800 in listed extras). Prices for Houston CC, San Antonio College, El Paso CC and
   Austin CC were not published on the pages read, so check your own district's college.
 - Otherwise, Dallas EMT at $995 is the cheapest published private course with stated DSHS
   approval. Its sister schools, Houston EMT and San Antonio EMT, state DSHS approval but did not

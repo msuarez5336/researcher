@@ -38,7 +38,7 @@ means passed within six attempts. Prices are from the earlier run unless noted.
 |---|---|---|---|---|---|
 | **Dallas College** | $1,782 in-county tuition ✓; listed fees (uniform, screening, background checks, fingerprints, DSHS $64, NREMT $80) add about $365 ✓ | 272 total hours; hospital rotations, lab, ambulance internship ✓ | 66% / 83% (180) ✓ | in person, hybrid, evenings, weekdays | most hours found; Dallas County rate |
 | **Collin College** | $603 in-county + ~$208 fees ~ | not stated | 68% / 82% (94) ✓ | Collin County | cheapest if you live in Collin County |
-| **Tarrant County College** | $1,332 in-county; extras listed (books $200, uniforms $150, misc $240, registry $212) ✓ | 24 h ER + 48 h ambulance + 8 h orientation, scheduled by the college ~ | **82% / 90% (117)** ✓ | Fort Worth | best pass rate among colleges; Dallas residents pay an out-of-county rate (not captured) |
+| **Tarrant County College** | **$444 in-county tuition** for the two EMT courses (EMSP-1501 + clinical, 6 credits; the 18-credit certificate is $1,332); extras listed (books $200, uniforms $150, misc $240, registry $212; approximate, per semester) ≈ $1,250 in all ✓ | 24 h ER + 48 h ambulance + 8 h orientation, scheduled by the college ~ | **82% / 90% (117)** ✓ | Fort Worth | best pass rate among colleges; Dallas residents pay an out-of-county rate (not captured) |
 | **EMTS (Carrollton)** | not published (aggregator $1,450–1,765 ~) | not stated | **82% / 89% (210)** ✓ | Carrollton | strong results; little else known |
 | **RC Health Services** | $1,399 online / $1,499 plan (2018 sheet; current price unconfirmed) | **48 h ambulance (≥6 transports) + 24 h ER** ✓; hybrid-virtual track lists only 24 h EMS ✓; 2 skills days + test day ✓; no sites named | 73% / 84% (708, all sites) ✓ | online + Irving campus, year-round | 4.8★ from 324 reviews ✓ [O]: Birdeye aggregates them, almost all from Google, for the whole Dallas business, not only the EMT course |
 | **Texas EMS School (Axon)** | $1,870 incl. book, drug screen, background check | 2-day skills lab; clinicals at partner sites set up by an advisor, or through your employer ✓ | 76% / 88% (203) ✓; self-reported 85% in 2024 ✓ | online | Texas residents only; least in-person time |
@@ -68,7 +68,7 @@ was not confirmed; if it has, programs below 48 clinical hours will have to add 
 - Pros: 82% / 90% (2022); college-scheduled clinicals (reportedly 24 h ER + 48 h ambulance);
   published extra costs, so fewer surprises (listed as approximate, per semester).
 - Cons: in Fort Worth; Dallas County residents pay out-of-county tuition (amount not captured);
-  the listed extras add about $800.
+  the listed extras add about $800 (about $1,250 in all).
 
 **RC Health Services: best for flexibility, with a known clinical commitment**
 - Pros: 72 clinical hours stated (with a minimum of six ambulance transports); online lectures
